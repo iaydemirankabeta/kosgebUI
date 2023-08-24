@@ -1,0 +1,53 @@
+<!--begin::Row-->
+<div class="row g-12 g-xl-12 mb-12 mb-xl-12">
+  <!--begin::Col-->
+  <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10">
+    <app-cards-widget17 cssClass="h-md-50 mb-5 mb-xl-10"></app-cards-widget17>
+    <app-charts-widget2 cssClass="h-md-50 mb-5 mb-xl-10" description="son siparişler" color="#F1416C"
+      img="./assets/media/patterns/vector-1.png"> </app-charts-widget2>
+
+    <!--<app-cards-widget7 cssClass="h-md-50 mb-5 mb-xl-10" [icon]="false" [stats]="357" description="Professionals"
+      labelColor="dark" textColor="gray-300"></app-cards-widget7>-->
+  </div>
+  <!--end::Col-->
+
+  <!--begin::Col-->
+  <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10">
+    <div class="col-xxl-12 mb-12 mb-xl-12">
+      <app-charts-widget4 class="h-lg-50"></app-charts-widget4>
+    </div>
+    <div class="col-xxl-12 mb-12 mb-xl-12">
+      <app-new-charts-widget8 cssClass="h-xl-100" chartHeight="275px" [chartHeightNumber]="275"></app-new-charts-widget8>
+    </div>
+    
+  </div>
+  <!--end::Col-->
+
+
+  <!--begin::Col-->
+  <!--<app-engage-widget10 class="col-xxl-6" cssClass="h-md-100"></app-engage-widget10>-->
+  <!--end::Col-->
+</div>
+<!--end::Row-->
+
+
+
+
+<div class="row g-5 gx-xxl-8">
+  <div class="col-xxl-4">
+    <app-mixed-widget8 class="card card-xxl-stretch mb-xl-3" chartColor="success" chartHeight="150px">
+    </app-mixed-widget8>
+  </div>
+  <div class="col-xxl-8">
+    <app-tables-widget5 class="card card-xxl-stretch mb-5 mb-xxl-8"></app-tables-widget5>
+  </div>
+</div>
+
+<!-- begin:: Modal example -->
+ <app-modal #modal [modalConfig]="modalConfig">
+  <input type="text" placeholder="deneme"><hr/>
+  <button>Gönder</button>
+</app-modal>
+<button class="btn btn-primary" (click)="openModal()">Open modal</button> 
+<!-- Note: Don't forget import ModalsModule (from _metronic/partials) into your module -->
+<!-- end:: Modal example -->

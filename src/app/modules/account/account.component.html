@@ -1,0 +1,223 @@
+<div class="card mb-5 mb-xl-10" *ngIf="user$ | async as _user">
+  <div class="card-body pt-9 pb-0">
+    <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+      <div class="me-7 mb-4">
+        <div
+          class="
+            symbol symbol-100px symbol-lg-160px symbol-fixed
+            position-relative
+          "
+        >
+          <img src="./assets/media/avatars/300-1.jpg" alt="Metronic" />
+          <div
+            class="
+              position-absolute
+              translate-middle
+              bottom-0
+              start-100
+              mb-6
+              bg-success
+              rounded-circle
+              border border-4 border-white
+              h-20px
+              w-20px
+            "
+          ></div>
+        </div>
+      </div>
+
+      <div class="flex-grow-1">
+        <div
+          class="
+            d-flex
+            justify-content-between
+            align-items-start
+            flex-wrap
+            mb-2
+          "
+        >
+          <div class="d-flex flex-column"  >
+            <div class="d-flex align-items-center mb-2">
+              <a
+                class="
+                  text-gray-800 text-hover-primary
+                  fs-2
+                  fw-bolder
+                  me-1
+                  cursor-pointer
+                "
+              >
+                {{_user.firstname}} {{_user.lastname}}
+              </a>
+              <a class="cursor-pointer">
+                <app-keenicon name="verify" class="fs-1 text-primary"></app-keenicon>
+              </a>
+              
+            </div>
+
+            <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 text-hover-primary
+                  me-5
+                  mb-2
+                  cursor-pointer
+                "
+              >
+                <app-keenicon name="profile-circle" class="fs-4 me-1"></app-keenicon>
+                {{_user.occupation}}
+              </a>
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 text-hover-primary
+                  me-5
+                  mb-2
+                  cursor-pointer
+                "
+              >
+                <app-keenicon name="geolocation" class="fs-4 me-1"></app-keenicon>
+                {{_user.address?.addressLine}}
+              </a>
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 text-hover-primary
+                  mb-2
+                  cursor-pointer
+                "
+              >
+                <app-keenicon name="geolocation" class="fs-4 me-1"></app-keenicon>
+                {{_user.email}}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap flex-stack">
+          <div class="d-flex flex-column flex-grow-1 pe-8">
+            <div class="d-flex flex-wrap">
+              <div
+                class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-125px
+                  py-3
+                  px-4
+                  me-6
+                  mb-3
+                "
+              >
+                <div class="d-flex align-items-center">
+                  <app-keenicon name="arrow-up" class="fs-3 text-success me-2"></app-keenicon>
+                  <div class="fs-2 fw-bolder">4500TL</div>
+                </div>
+
+                <div class="fw-bold fs-6 text-gray-400"> Kazanç</div>
+              </div>
+
+              <div
+                class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-125px
+                  py-3
+                  px-4
+                  me-6
+                  mb-3
+                "
+              >
+                <div class="d-flex align-items-center">
+                  <app-keenicon name="phone" class="fs-3 text-danger me-2"></app-keenicon>
+                  <div class="fs-2 fw-bolder">75</div>
+                </div>
+
+                <div class="fw-bold fs-6 text-gray-400">Ürün</div>
+              </div>
+
+              <div
+                class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-125px
+                  py-3
+                  px-4
+                  me-6
+                  mb-3
+                "
+              >
+                <div class="d-flex align-items-center">
+                  <app-keenicon name="arrow-up" class="fs-3 text-success me-2"></app-keenicon>
+                  <div class="fs-2 fw-bolder">60%</div>
+                </div>
+
+                <div class="fw-bold fs-6 text-gray-400">Başarı Oranı</div>
+              </div>
+            </div>
+          </div>
+
+         <!-- <div
+            class="
+              d-flex
+              align-items-center
+              w-200px w-sm-300px
+              flex-column
+              mt-3
+            "
+          >
+            <div class="d-flex justify-content-between w-100 mt-auto mb-2">
+              <span class="fw-bold fs-6 text-gray-400"
+                >Profile Compleation</span
+              >
+              <span class="fw-bolder fs-6">50%</span>
+            </div>
+            <div class="h-5px mx-3 w-100 bg-light mb-3">
+              <div
+                class="bg-success rounded h-5px"
+                role="progressbar"
+                [style.width]="'50%'"
+              ></div>
+            </div>
+          </div>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex overflow-auto h-55px">
+      <ul
+        class="
+          nav nav-stretch nav-line-tabs nav-line-tabs-2x
+          border-transparent
+          fs-5
+          fw-bolder
+          flex-nowrap
+        "
+      >
+        <li class="nav-item">
+          <a
+            class="nav-link text-active-primary me-6"
+            routerLink="/crafted/account/overview"
+            routerLinkActive="active"
+          >
+            Genel
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-active-primary me-6"
+            routerLink="/crafted/account/settings"
+            routerLinkActive="active"
+          >
+            Ayarlar
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
