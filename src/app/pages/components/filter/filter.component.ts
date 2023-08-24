@@ -28,12 +28,12 @@ const kobiFilter = [
     ],
    },{
     id:2,
-    name:'NACE Kodu',
+    name:'Sertifikasyonlar ve Belgeler',
     options:[
-      {id:1,name:'ISO 9001 - Kalite Yönetim Sistemi',value:1,category:'NACE Kodu'},
-      {id:1,name:'ISO 13485 - Tıbbi Cihazlar Kalite Yönetim Sistemi',value:1,category:'NACE Kodu'},
-      {id:1,name:'ISO 14001 - Çevre Yönetim Sistemi',value:1,category:'NACE Kodu'},
-      {id:1,name:'ISO 15378 - İlaçlar için birincil ambalaj malzemeleri',value:1,category:'NACE Kodu'},
+      {id:1,name:'ISO 9001 - Kalite Yönetim Sistemi',value:1,category:'Sertifikasyonlar ve Belgeler'},
+      {id:1,name:'ISO 13485 - Tıbbi Cihazlar Kalite Yönetim Sistemi',value:1,category:'Sertifikasyonlar ve Belgeler'},
+      {id:1,name:'ISO 14001 - Çevre Yönetim Sistemi',value:1,category:'Sertifikasyonlar ve Belgeler'},
+      {id:1,name:'ISO 15378 - İlaçlar için birincil ambalaj malzemeleri',value:1,category:'Sertifikasyonlar ve Belgeler'},
     ],
    }
    ,{

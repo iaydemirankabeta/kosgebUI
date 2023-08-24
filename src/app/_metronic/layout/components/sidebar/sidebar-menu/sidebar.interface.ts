@@ -4,6 +4,7 @@ export interface MenuItem {
   icon?: string;
   routerLink?: string;
   subMenu?: subMenu[];
+  roles: number[];
 }
 
 export interface subMenu{
