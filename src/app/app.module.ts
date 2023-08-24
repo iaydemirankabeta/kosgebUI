@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { FakeAPIService } from './_fake/fake-api.service';
 // #fake-end#
 import { ReportsComponent } from './pages/reports/reports.component';
+import { CreateCallComponent } from './pages/create-call/create-call.component';
 
 
 
@@ -31,7 +32,7 @@ function appInitializer(authService: AuthService) {
 }
 
 @NgModule({
-  declarations: [AppComponent,   ReportsComponent],
+  declarations: [AppComponent,   ReportsComponent, CreateCallComponent],
   imports: [
     BrowserModule,
     CommonModule,

@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { CompanyChoiceComponent } from './company-choice/company-choice.component';
 import { ReportsComponent } from './reports/reports.component';
 import { KobiComponent } from './kobi/kobi.component';
+import { CreateCallComponent } from './create-call/create-call.component';
 
 
 const Routing: Routes = [
@@ -72,6 +73,7 @@ const Routing: Routes = [
   },
  
   { path: 'raporlar', component: ReportsComponent },
+  { path: 'create-call', component: CreateCallComponent,data:{layout:'dark-sidebar'} },
   {
     path: '**',
     redirectTo: 'error/404',

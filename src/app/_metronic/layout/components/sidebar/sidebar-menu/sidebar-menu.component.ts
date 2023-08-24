@@ -16,7 +16,7 @@ export class SidebarMenuComponent implements OnInit {
 
   menuItems: MenuItem[] = [
     { title: 'Gösterge Paneli', icon: 'element-11', routerLink: '/dashboard',roles:[1] },
-    { title: 'Başvuruya Açık Çözümler', icon: 'fa-solid fa-hands-clapping', routerLink: '/kobi',roles:[1] },
+    { title: 'Başvuruya Açık Çözümler', icon: 'element-2', routerLink: '/kobi',roles:[1] },
     { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call',roles:[1] },
     { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[1] },
     { title: 'Görüşmelerim', icon: 'element-7', routerLink: '/conversations',roles:[1] },

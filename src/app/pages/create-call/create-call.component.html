@@ -1,0 +1,119 @@
+<ng-container style="max-width: 560px;display: block;margin:0 auto;text-align: center;">
+        <div class="d-flex align-items-center mb-12">
+            <form action="" class="form" style="width: 100%;">
+              <select class="form-select  mb-5 " aria-label="Select example">
+                <option value="">Sektör</option>
+                <option value="1">Gıda</option>
+                <option value="1">İnşaat</option>
+                <option value="1">Kozmetik</option>
+                <option value="1">Teknoloji</option>
+                <option value="1">Hububat (Tahıl)</option>
+                
+              </select>
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                  >Anahtar Kelimeyi Giriniz</label
+                >
+                <div class="col-lg-8 fv-row">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Örn;cam, DC Motor"
+                    name="keyword"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                  >Konu Başlığı Giriniz</label
+                >
+                <div class="col-lg-8 fv-row">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Konu Başlığı"
+                    name="subject"
+                    value=""
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                  >İhtiyacınızı Detaylı Olarak Anlatın</label
+                >
+                <div class="col-lg-8 fv-row">
+                    <textarea
+                        name="businessDescription"
+                        class="form-control form-control-lg "
+                        rows="3"
+                        placeholder="Lütfen almak istediğiniz ürün veya hizmeti tanımlayınız."
+                        formControlName="businessDescription"
+                        ></textarea>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                  >İşletmenin Projeden Beklentisi Nedir?</label
+                >
+                <div class="col-lg-8 fv-row">
+                    <textarea
+                        name="businessDescription"
+                        class="form-control form-control-lg "
+                        rows="3"
+                        placeholder="Lütfen detaylı açıklayınız"
+                        formControlName="businessDescription"
+                        ></textarea>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                  >İşletmenin Aradığı Tedarikçi Özellikleri Nelerdir?</label
+                >
+                <div class="col-lg-8 fv-row">
+                    <textarea
+                        name="businessDescription"
+                        class="form-control form-control-lg "
+                        rows="3"
+                        placeholder="Lütfen detaylı açıklayınız"
+                        formControlName="businessDescription"
+                        ></textarea>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                  >Tedarikçi Öncelikli Seçim Kriteri veya Kriterlerini Yazınız</label
+                >
+                <div class="col-lg-8 fv-row">
+                    <textarea
+                        name="businessDescription"
+                        class="form-control form-control-lg "
+                        rows="3"
+                        placeholder="Lütfen detaylı açıklayınız"
+                        formControlName="businessDescription"
+                        ></textarea>
+                </div>
+              </div>
+              <hr/>
+              <p> İşle ilgili varsa, örnek görsel ve metin eklemen tedarikçilerin işi daha rahat anlamalarını sağlar.</p>
+              <div class="drop-zone" 
+     (drop)="dosyaBirak($event)" 
+     (dragover)="onDragOver($event)" 
+     (dragleave)="onDragLeave($event)">
+  <input type="file" (change)="dosyaSec($event)" style="display: none">
+  <p><a href="javascript:void(0);" (click)="dosyaSecManuel()">Dosyayı buraya sürükleyip bırakın veya tıklayarak dosya seçin</a>.</p>
+</div>
+
+<div *ngIf="yuklenenDosyalar.length > 0">
+  <h3>Yüklenen Dosyalar</h3>
+  <ul>
+    <li *ngFor="let dosya of yuklenenDosyalar">{{ dosya.name }}</li>
+  </ul>
+</div>
+
+
+              <button class="btn btn-primary flex-grow-1" style="float:right">Yayınla</button>
+            </form>
+          </div>
+</ng-container>
