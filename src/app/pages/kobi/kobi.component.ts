@@ -4,21 +4,21 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 
 
 const fakeBusinesses = [
-  { id: 1, name: 'Çözüm Önerisi', company: 'Suziki',category:'Araba Parçası',chart:true,group:true,users:false,pin:true,
+  { id: 1, name: 'Motor Parçaları', company: 'Suziki',category:'Araba Parçası',chart:true,group:true,users:false,pin:true,
   companyInfo:[
     {name:'Hakkımızda',ciro:'2.5M',worker:'+50 bin ',code:'gosterge',location:'İstanbul',sektor:'Otomobil',description:'Suzukinin Dünyanın en büyük otomobil üreticilerinden biri haline gelmesi 100 yıldan uzun bir zamanda gerçekleşmiştir. Bu yıllarda şirket, kendisini tercih edenlerin ve kendisine güvenenlerin günlük yaşamlarını önemli ölçüde kolaylaştıran yenilikçi teknolojiler ve kaliteli otomobil modelleri sunarak kendisine görülen değere layık olduğunu ispatlamıştır.'}
   ]
 },
-  { id: 2, name: 'Çözüm Önerisi', company: 'BMW',category:'Araba Parçası',chart:false,group:false,users:true,pin:true,companyInfo:[
+  { id: 2, name: 'Yedek Parça Teminatı', company: 'BMW',category:'Araba Parçası',chart:false,group:false,users:true,pin:true,companyInfo:[
     {name:'Hakkımızda',ciro:'2M',worker:'+50 bin ',code:'gosterge',location:'İstanbul',sektor:'Otomobil',description:'BMW Dünyanın en büyük otomobil üreticilerinden biri haline gelmesi 100 yıldan uzun bir zamanda gerçekleşmiştir. Bu yıllarda şirket, kendisini tercih edenlerin ve kendisine güvenenlerin günlük yaşamlarını önemli ölçüde kolaylaştıran yenilikçi teknolojiler ve kaliteli otomobil modelleri sunarak kendisine görülen değere layık olduğunu ispatlamıştır.'}
   ] },
-  { id: 2, name: 'Çözüm Önerisi', company: 'Wolkswagen',category:'Araba Parçası',chart:false,group:false,users:true,pin:true,companyInfo:[
+  { id: 2, name: 'Motor', company: 'Wolkswagen',category:'Araba Parçası',chart:false,group:false,users:true,pin:true,companyInfo:[
     {name:'Hakkımızda',ciro:'5M',worker:'+20 bin ',code:'gosterge',location:'İstanbul',sektor:'Otomobil',description:'Wolkswagen Dünyanın en büyük otomobil üreticilerinden biri haline gelmesi 100 yıldan uzun bir zamanda gerçekleşmiştir. Bu yıllarda şirket, kendisini tercih edenlerin ve kendisine güvenenlerin günlük yaşamlarını önemli ölçüde kolaylaştıran yenilikçi teknolojiler ve kaliteli otomobil modelleri sunarak kendisine görülen değere layık olduğunu ispatlamıştır.'}
   ] },
-  { id: 2, name: 'Çözüm Önerisi', company: 'Renault',category:'Araba Parçası',chart:true,group:true,users:false,pin:true,companyInfo:[
+  { id: 2, name: 'Lastik Teminatı', company: 'Petlas',category:'Araba Parçası',chart:true,group:true,users:false,pin:true,companyInfo:[
     {name:'Hakkımızda',ciro:'1.5M',worker:'+w0 bin ',code:'gosterge',location:'İstanbul',sektor:'Otomobil',description:'Renault Dünyanın en büyük otomobil üreticilerinden biri haline gelmesi 100 yıldan uzun bir zamanda gerçekleşmiştir. Bu yıllarda şirket, kendisini tercih edenlerin ve kendisine güvenenlerin günlük yaşamlarını önemli ölçüde kolaylaştıran yenilikçi teknolojiler ve kaliteli otomobil modelleri sunarak kendisine görülen değere layık olduğunu ispatlamıştır.'}
   ] },
-  { id: 2, name: 'Çözüm Önerisi', company: 'Fiat',category:'Araba Parçası',chart:true,group:false,users:true,pin:true,companyInfo:[
+  { id: 2, name: 'Tampon', company: 'Fiat',category:'Araba Parçası',chart:true,group:false,users:true,pin:true,companyInfo:[
     {name:'Hakkımızda',ciro:'2.5M',worker:'+80 bin ',code:'gosterge',location:'İstanbul',sektor:'Otomobil',description:'Fiat Dünyanın en büyük otomobil üreticilerinden biri haline gelmesi 100 yıldan uzun bir zamanda gerçekleşmiştir. Bu yıllarda şirket, kendisini tercih edenlerin ve kendisine güvenenlerin günlük yaşamlarını önemli ölçüde kolaylaştıran yenilikçi teknolojiler ve kaliteli otomobil modelleri sunarak kendisine görülen değere layık olduğunu ispatlamıştır.'}
   ] },
   { id: 2, name: 'Çözüm Önerisi', company: 'Hyundai',category:'Araba Parçası',chart:false,group:true,users:true,pin:true,companyInfo:[

@@ -74,6 +74,7 @@ export class FilterComponent {
   appPurchaseUrl: string = environment.appPurchaseUrl;
 
   ngOnInit(): void {
+    
     console.log(kobiFilter);
     
   }
