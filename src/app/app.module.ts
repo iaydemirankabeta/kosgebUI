@@ -1,6 +1,8 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { CommonModule } from '@angular/common';  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +21,7 @@ import { FakeAPIService } from './_fake/fake-api.service';
 // #fake-end#
 import { ReportsComponent } from './pages/reports/reports.component';
 import { CreateCallComponent } from './pages/create-call/create-call.component';
+import { CallsComponent } from './pages/calls/calls.component';
 
 
 
@@ -32,9 +35,10 @@ function appInitializer(authService: AuthService) {
 }
 
 @NgModule({
-  declarations: [AppComponent,   ReportsComponent, CreateCallComponent],
+  declarations: [AppComponent,   ReportsComponent, CreateCallComponent, CallsComponent],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     CommonModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot(),

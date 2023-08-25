@@ -15,14 +15,14 @@ export class SidebarMenuComponent implements OnInit {
 
 
   menuItems: MenuItem[] = [
-    { title: 'Gösterge Paneli', icon: 'element-11', routerLink: '/dashboard',roles:[1] },
-    { title: 'Başvuruya Açık Çözümler', icon: 'element-2', routerLink: '/kobi',roles:[1] },
-    { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call',roles:[1] },
-    { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[1] },
-    { title: 'Görüşmelerim', icon: 'element-7', routerLink: '/conversations',roles:[1] },
-    { title: 'Büyük İşletmeler', icon: 'element-1', routerLink: '/kobi',roles:[2] },
+    { title: 'Gösterge Paneli', icon: 'element-11', routerLink: '/dashboard',roles:[1],disabled:false },
+    { title: 'Başvuruya Açık Çözümler', icon: 'element-2', routerLink: '/kobi',roles:[1],disabled:false },
+    { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call',roles:[1],disabled:false },
+    { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[1],disabled:true },
+    { title: 'Görüşmelerim', icon: 'element-7', routerLink: '/conversations',roles:[1],disabled:true },
+    { title: 'Büyük İşletmeler', icon: 'element-1', routerLink: '/kobi',roles:[2],disabled:false },
     {
-      title: 'Fonksiyonlar ve Modüller', icon: 'element-12', routerLink: '/catalog',roles:[1],
+      title: 'Fonksiyonlar ve Modüller', icon: 'element-12', routerLink: '/catalog',roles:[1],disabled:true,
       subMenu: [
         { title: 'Toplantı Modülü', icon: '', routerLink: 'catalog/vitrin' },
         { title: 'B2B Zekası', icon: '', routerLink: 'catalog/kategoriler' },
@@ -37,9 +37,9 @@ export class SidebarMenuComponent implements OnInit {
         { title: 'Proje Zekası', icon: '', routerLink: 'catalog/urun-ekle' },
       ]
     },
-    { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[1] },
+    { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[1],disabled:false },
   {
-    title: 'Katalog', icon: '', routerLink: '/catalog',roles:[1],
+    title: 'Katalog', icon: '', routerLink: '/catalog',roles:[1],disabled:false,
     subMenu: [
       { title: 'Vitrin', icon: '', routerLink: 'catalog/vitrin' },
       { title: 'Kategoriler', icon: '', routerLink: 'catalog/kategoriler' },
@@ -49,7 +49,7 @@ export class SidebarMenuComponent implements OnInit {
     ]
   },
   {
-    title: 'Raporlar', icon: '', routerLink: 'crafted/widgets',roles:[2],
+    title: 'Raporlar', icon: '', routerLink: 'crafted/widgets',roles:[2],disabled:true,
     subMenu: [
       { title: 'Horizontal', icon: '', routerLink: 'crafted/widgets' },
     ]

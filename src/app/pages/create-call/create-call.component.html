@@ -1,8 +1,19 @@
+<style>
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .ng-invalid.ng-touched {
+    border-color: red;
+  }
+</style>
 <ng-container style="max-width: 560px;display: block;margin:0 auto;text-align: center;">
         <div class="d-flex align-items-center mb-12">
-            <form action="" class="form" style="width: 100%;">
-              <select class="form-select  mb-5 " aria-label="Select example">
-                <option value="">Sektör</option>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
+              <select class="form-select  mb-5 " aria-label="Select example" formControlName="sector">
+                <option value="" disabled selected>Sektör</option>
                 <option value="1">Gıda</option>
                 <option value="1">İnşaat</option>
                 <option value="1">Kozmetik</option>
@@ -10,6 +21,9 @@
                 <option value="1">Hububat (Tahıl)</option>
                 
               </select>
+              <div *ngIf="form.get('sector')?.invalid && form.get('sector')?.touched" class="error-message">
+                Lütfen sektör seçiniz.
+              </div>
               <div class="row mb-6">
                 <label class="col-lg-4 col-form-label required fw-bold fs-6"
                   >Anahtar Kelimeyi Giriniz</label
@@ -21,7 +35,13 @@
                     placeholder="Örn;cam, DC Motor"
                     name="keyword"
                     value=""
-                  />
+                    formControlName="keyword"
+    />
+    <div *ngIf="form.get('keyword')?.invalid && form.get('keyword')?.touched" class="error-message">
+      Anahtar kelime gerekli.
+    </div>
+
+                  
                 </div>
               </div>
               <div class="row mb-6">
@@ -34,8 +54,11 @@
                     class="form-control form-control-lg"
                     placeholder="Konu Başlığı"
                     name="subject"
-                    value=""
-                  />
+                    formControlName="subject"
+    />
+    <div *ngIf="form.get('subject')?.invalid && form.get('subject')?.touched" class="error-message">
+      Konu Başlığını Giriniz.
+    </div>
                 </div>
               </div>
 
@@ -50,7 +73,13 @@
                         rows="3"
                         placeholder="Lütfen almak istediğiniz ürün veya hizmeti tanımlayınız."
                         formControlName="businessDescription"
+                        minlength="{{minLength}}" 
+                        maxlength="{{maxlength}" 
                         ></textarea>
+                        <div *ngIf="form.get('businessDescription')?.invalid && form.get('businessDescription')?.touched" class="error-message">
+                          Lütfen en az {{minLength}} karakter, en fazla {{maxLength}} karakter girişi yapın.
+
+                        </div>
                 </div>
               </div>
               <div class="row mb-6">
@@ -63,8 +92,14 @@
                         class="form-control form-control-lg "
                         rows="3"
                         placeholder="Lütfen detaylı açıklayınız"
-                        formControlName="businessDescription"
+                        formControlName="expectationDescription"
+                        minlength="{{minLength}}" 
+                        maxlength="{{maxLength}}" 
                         ></textarea>
+                        <div *ngIf="form.get('expectationDescription')?.invalid && form.get('expectationDescription')?.touched" class="error-message">
+                          Lütfen en az {{minLength}} karakter, en fazla {{maxLength}} karakter girişi yapın.
+
+                        </div>
                 </div>
               </div>
               <div class="row mb-6">
@@ -77,8 +112,14 @@
                         class="form-control form-control-lg "
                         rows="3"
                         placeholder="Lütfen detaylı açıklayınız"
-                        formControlName="businessDescription"
+                        formControlName="supplierRequirements"
+                        minlength="{{minLength}}" 
+                        maxlength="{{maxLength}}" 
                         ></textarea>
+                        <div *ngIf="form.get('supplierRequirements')?.invalid && form.get('supplierRequirements')?.touched" class="error-message">
+                          Lütfen en az {{minLength}} karakter, en fazla {{maxLength}} karakter girişi yapın.
+
+                        </div>
                 </div>
               </div>
               <div class="row mb-6">
@@ -91,8 +132,14 @@
                         class="form-control form-control-lg "
                         rows="3"
                         placeholder="Lütfen detaylı açıklayınız"
-                        formControlName="businessDescription"
+                        formControlName="selectionCriteria"
+                        minlength="{{minLength}}" 
+                        maxlength="{{maxLength}}" 
                         ></textarea>
+                        <div *ngIf="form.get('selectionCriteria')?.invalid && form.get('selectionCriteria')?.touched" class="error-message">
+                          Lütfen en az {{minLength}} karakter, en fazla {{maxLength}} karakter girişi yapın.
+
+                        </div>
                 </div>
               </div>
               <hr/>
@@ -112,7 +159,10 @@
   </ul>
 </div>
 
+<div *ngIf="isEnabled">
+ <p class="error-message" style="text-align: right;font-size: 14px;">Lütfen Tüm Alanları Doldurun</p>
 
+</div>
               <button class="btn btn-primary flex-grow-1" style="float:right">Yayınla</button>
             </form>
           </div>
