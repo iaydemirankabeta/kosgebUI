@@ -15,7 +15,7 @@ export class SidebarMenuComponent implements OnInit {
 
 
   menuItems: MenuItem[] = [
-    { title: 'Gösterge Paneli', icon: 'element-11', routerLink: '/dashboard',roles:[1],disabled:false },
+    { title: 'Gösterge Paneli', icon: 'element-11', routerLink: '/dashboard',roles:[1,2],disabled:false },
     { title: 'Başvuruya Açık Çözümler', icon: 'element-2', routerLink: '/kobi',roles:[1],disabled:false },
     { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call',roles:[1],disabled:false },
     { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[1],disabled:false },
@@ -37,9 +37,9 @@ export class SidebarMenuComponent implements OnInit {
         { title: 'Proje Zekası', icon: '', routerLink: 'catalog/urun-ekle' },
       ]
     },
-    { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[1],disabled:false },
+    { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[1,2],disabled:false },
   {
-    title: 'Katalog', icon: '', routerLink: '/catalog',roles:[1],disabled:false,
+    title: 'Katalog', icon: '', routerLink: '/catalog',roles:[1,2],disabled:false,
     subMenu: [
       { title: 'Vitrin', icon: '', routerLink: 'catalog/vitrin' },
       { title: 'Kategoriler', icon: '', routerLink: 'catalog/kategoriler' },
@@ -56,6 +56,7 @@ export class SidebarMenuComponent implements OnInit {
   },
 
   ];
+
   user$: Observable<UserType>;
   private unsubscribe: Subscription[] = [];
 
