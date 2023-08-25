@@ -53,19 +53,16 @@ url:[
   targetValue:number;
   
   async openModal(event:any) {
-    
     this.targetValue = event ;  
-
-    this.modalConfig ={
-      modalTitle : ''+this.tabs[event].label+'',
-    } 
-    console.log(this.modalTitle);
     this.showTabContent(this.targetValue);
     return await this.modalComponent.open();
     
   }
   
   showTabContent(index: number) {
+    this.modalConfig ={
+      modalTitle : ''+this.tabs[index].label+'',
+    } 
     
     this.activeTabIndex = index;
     
