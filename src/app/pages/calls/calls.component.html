@@ -1,1 +1,60 @@
-<p>calls works!</p>
+
+<ng-container >
+    <div class="row">
+    <div class="col-4" *ngFor="let item of trigClick">
+        <div class="card p-2 text-center" >
+            <div class="card-header">
+                <div class="w-100"><p class="title-sector" style="background-color: {{item.badgetColor}};">{{item.badget}}</p></div>
+                <h3 style="margin:0 auto;">{{item.title}}</h3>
+                <p class="tags">{{item.tags}}</p>
+            </div>
+            <div class="card-body">
+                <h5 class="text-upperCase"><b>{{item.badget}} Kullanıcısı Şirketin;</b></h5>
+                <div>
+                    <a class="btn btn-dark btn-active-bg-success" *ngFor="let listItem of item.url;let i = index"   href="javascript:;" (click)="openModal(i)">{{listItem.name}}</a>
+                   
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary float-right w-100" disabled>Başvur</button>
+            </div>
+        </div>
+    </div>
+    
+    <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                  <a class="list-group-item list-group-item-action"
+                     *ngFor="let tab of tabs; let i = index"
+                     [class.active]="i === activeTabIndex"
+                     [id]="'list-' + tab.id + '-list'"
+                     data-toggle="list"
+                     role="tab"
+                     [attr.aria-controls]="tab.id"
+                     (click)="showTabContent(i)">
+                    {{ tab.label }}
+                  </a>
+                </div>
+          
+          </div>
+          <div class="col-md-8">
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade"
+                   *ngFor="let tab of tabs; let i = index"
+                   [class.show]="i === activeTabIndex"
+                   [class.active]="i === activeTabIndex"
+                   [id]="tab.id"
+                   role="tabpanel"
+                   [attr.aria-labelledby]="'list-' + tab.id + '-list'">
+                <p>{{ tab.content }}</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </app-modal>
+    </div>
+</ng-container>

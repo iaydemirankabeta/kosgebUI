@@ -4,6 +4,7 @@ import { CompanyChoiceComponent } from './company-choice/company-choice.componen
 import { ReportsComponent } from './reports/reports.component';
 import { KobiComponent } from './kobi/kobi.component';
 import { CreateCallComponent } from './create-call/create-call.component';
+import { CallsComponent } from './calls/calls.component';
 
 
 const Routing: Routes = [
@@ -23,6 +24,12 @@ const Routing: Routes = [
     path: 'kobi',
     loadChildren: () =>
       import('./kobi/kobi.module').then((m) => m.kobiModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'calls',
+    loadChildren: () =>
+      import('./calls/calls.module').then((m) => m.callsModule),
       data:{layout:'dark-sidebar'}
   },
   /*{

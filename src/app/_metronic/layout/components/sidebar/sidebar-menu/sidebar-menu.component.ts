@@ -18,7 +18,7 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Gösterge Paneli', icon: 'element-11', routerLink: '/dashboard',roles:[1],disabled:false },
     { title: 'Başvuruya Açık Çözümler', icon: 'element-2', routerLink: '/kobi',roles:[1],disabled:false },
     { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call',roles:[1],disabled:false },
-    { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[1],disabled:true },
+    { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[1],disabled:false },
     { title: 'Görüşmelerim', icon: 'element-7', routerLink: '/conversations',roles:[1],disabled:true },
     { title: 'Büyük İşletmeler', icon: 'element-1', routerLink: '/kobi',roles:[2],disabled:false },
     {
