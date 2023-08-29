@@ -1,3 +1,5 @@
+import { CompanyTypes } from "../modules/auth/models/user-company.model";
+
 export class UsersTable {
   public static users: any = [
     {
@@ -12,12 +14,26 @@ export class UsersTable {
       fullname: 'Hasan Oruç',
       firstname: 'Hasan',
       lastname: 'Oruç',
-      occupation: 'CEO',
       companyName: 'AnkaBeta',
       country:'Türkiye',
       phone: '531111111',
       language: 'tr',
       timeZone: 'International Date Line West',
+      userCompanies:[{
+        company: { id: 2, name: 'BMW',img : {url:'./assets/media/logos/bmw.png'}, type: CompanyTypes.BI},
+        roles:[1],
+        occupation: 'Genel Müdür',
+      },
+      {
+        company: { id: 1, name: 'Ankabeta',img : {url:'./assets/media/logos/ankabeta-logo.png'}, type: CompanyTypes.KOBI},
+        roles:[1],
+        occupation: 'CEO',
+      },
+      {
+        company: { id: 5, name: 'Odak Teknoloji',img : {url:'./assets/media/logos/logo1.png'}, type: CompanyTypes.BI},
+        roles:[3],
+        occupation: 'Pazarlama Uzmanı',
+      }],
       website: 'https://ankabeta.com.tr',
       emailSettings: {
         emailNotification: true,
@@ -74,6 +90,21 @@ export class UsersTable {
       phone: '456669067891',
       language: 'en',
       timeZone: 'International Date Line West',
+      userCompanies:[{
+        company: { id: 3, name: 'Isuzu',img : {url:'./assets/media/logos/isuzu.png'}, type: CompanyTypes.BI},
+        roles:[2],
+        occupation: 'Manager',
+      },
+      {
+        company: { id: 4, name: 'Ulak A.Ş',img : {url:'./assets/media/logos/logo1.png'}, type: CompanyTypes.KOBI},
+        roles:[1],
+        occupation: 'CEO',
+      },
+      {
+        company: { id: 5, name: 'Odak Teknoloji',img : {url:'./assets/media/logos/logo2.png'}, type: CompanyTypes.BI},
+        roles:[3],
+        occupation: 'Software Engineer',
+      }],
       communication: {
         email: true,
         sms: true,

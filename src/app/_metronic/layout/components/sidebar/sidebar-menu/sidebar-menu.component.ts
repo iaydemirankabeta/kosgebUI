@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnDestroy, OnInit,Input } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit,Input, SimpleChanges } from '@angular/core';
 import { MenuItem,subMenu } from './sidebar.interface';
 import { Observable, Subscription } from 'rxjs';
 
@@ -69,8 +69,9 @@ export class SidebarMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$ = this.auth.currentUserSubject.asObservable();
+    
     console.log(this.user$);
-
   }
+
 
 }

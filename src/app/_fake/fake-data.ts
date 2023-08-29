@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../pages/catalog/categories/category.model';
 import { Product } from '../pages/catalog/products/products.model';
+import { Company } from '../models/Company.model';
+import { CompanyTypes } from '../modules/auth/models/user-company.model';
 
 
 @Injectable({
@@ -58,6 +60,220 @@ export class DataService {
     // ... other products
   ];
 
+  public Companies : Company[] = [
+    {
+      id:1,
+      img : {url:'./assets/media/logos/ankabeta-logo.png'},
+      type:CompanyTypes.KOBI,
+      title:"Ankabeta",
+      adress:{
+        addressLine:"Reşit Paşa Mah. Katar Cad. ARI 4 Binası No: 2 / 50 / 6 Sarıyer",
+        city:"İstanbul",
+        state:"İstanbul",
+        postCode:"4124",
+        country:"Türkiye"
+      }, 
+      incomes:[
+        {type:"Yedek Parça Satışı",value:"4032,4 TL"},
+        {type:"Tedarik",value:"232,4 TL"},
+        {type:"Diğerleri",value:"5032,4 TL"}
+      ],
+      IDR:[
+        {year:"2020",value:"80"},
+        {year:"2021",value:"60"},
+        {year:"2022",value:"120"},
+        {year:"2023",value:"230"},
+      ],
+      Orders:[
+        {year:"2020",value:"8000"},
+        {year:"2021",value:"60500"},
+        {year:"2022",value:"12023"},
+        {year:"2023",value:"230455"},
+      ],
+      personelInfo:{
+        office:200,
+        field:130
+      },
+      sectorInfo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      id:1,
+      img:{url:""},
+      title:"Ankabeta",
+      type:CompanyTypes.KOBI,
+      adress:{
+        addressLine:"Reşit Paşa Mah. Katar Cad. ARI 4 Binası No: 2 / 50 / 6 Sarıyer",
+        city:"İstanbul",
+        state:"İstanbul",
+        postCode:"4124",
+        country:"Türkiye"
+      }, 
+      incomes:[
+        {type:"Yedek Parça Satışı",value:"4032,4 TL"},
+        {type:"Tedarik",value:"232,4 TL"},
+        {type:"Diğerleri",value:"5032,4 TL"}
+      ],
+      IDR:[
+        {year:"2020",value:"80"},
+        {year:"2021",value:"60"},
+        {year:"2022",value:"120"},
+        {year:"2023",value:"230"},
+      ],
+      Orders:[
+        {year:"2020",value:"8000"},
+        {year:"2021",value:"60500"},
+        {year:"2022",value:"12023"},
+        {year:"2023",value:"230455"},
+      ],
+      personelInfo:{
+        office:200,
+        field:130
+      },
+      sectorInfo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      id:2,
+      img : {url:'./assets/media/logos/bmw.png'},
+      type:CompanyTypes.BI,
+      title:"BMW",
+      adress:{
+        addressLine:"Muhtar Mah. Kaldırımcı Cad. No: 2 / 50 / 6 Maslak",
+        city:"İstanbul",
+        state:"İstanbul",
+        postCode:"4124",
+        country:"Türkiye"
+      }, 
+      incomes:[
+        {type:"Araç Satışı",value:"6032,4 TL"},
+        {type:"Tedarik",value:"4322,4 TL"},
+        {type:"Diğerleri",value:"10032,4 TL"}
+      ],
+      IDR:[
+        {year:"2020",value:"56"},
+        {year:"2021",value:"87"},
+        {year:"2022",value:"140"},
+        {year:"2023",value:"240"},
+      ],
+      Orders:[
+        {year:"2020",value:"80050"},
+        {year:"2021",value:"620500"},
+        {year:"2022",value:"125023"},
+        {year:"2023",value:"2130455"},
+      ],
+      personelInfo:{
+        office:300,
+        field:530
+      },
+      sectorInfo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      id:3,
+      img : {url:'./assets/media/logos/isuzu.png'},
+      type:CompanyTypes.BI,
+      title:"Isuzu",
+      adress:{
+        addressLine:"Paşa Mah. Yumurtacı Abdi Cad. No: 8 / 50 / 6 Kağıthane",
+        city:"İstanbul",
+        state:"İstanbul",
+        postCode:"4124",
+        country:"Türkiye"
+      }, 
+      incomes:[
+        {type:"Yedek Parça Satışı",value:"6032,4 TL"},
+        {type:"Tedarik",value:"234,4 TL"},
+        {type:"Diğerleri",value:"5032,4 TL"}
+      ],
+      IDR:[
+        {year:"2020",value:"63"},
+        {year:"2021",value:"54"},
+        {year:"2022",value:"80"},
+        {year:"2023",value:"120"},
+      ],
+      Orders:[
+        {year:"2020",value:"800"},
+        {year:"2021",value:"6050"},
+        {year:"2022",value:"1203"},
+        {year:"2023",value:"23045"},
+      ],
+      personelInfo:{
+        office:320,
+        field:100
+      },
+      sectorInfo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      id:4,
+      img : {url:'./assets/media/logos/logo1.png'},
+      title:"Ulak A.Ş",
+      type:CompanyTypes.KOBI,
+      adress:{
+        addressLine:"Mahmut Paşa Mah. Ulak Cad. No: 4 / 20 / 62 Sarıyer",
+        city:"İstanbul",
+        state:"İstanbul",
+        postCode:"4124",
+        country:"Türkiye"
+      }, 
+      incomes:[
+        {type:"Yazılım Hizmeti",value:"34202,4 TL"},
+        {type:"Donanım Hizmeti",value:"2323,4 TL"},
+        {type:"Diğerleri",value:"50432,4 TL"}
+      ],
+      IDR:[
+        {year:"2020",value:"45"},
+        {year:"2021",value:"200"},
+        {year:"2022",value:"230"},
+        {year:"2023",value:"250"},
+      ],
+      Orders:[
+        {year:"2020",value:"4092"},
+        {year:"2021",value:"5034"},
+        {year:"2022",value:"4235"},
+        {year:"2023",value:"4231"},
+      ],
+      personelInfo:{
+        office:50,
+        field:23
+      },
+      sectorInfo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      id:5,
+      img : {url:'./assets/media/logos/logo2.png'},
+      title:"Odak Teknoloji",
+      type:CompanyTypes.KOBI,
+      adress:{
+        addressLine:"Kerim Cad. No: 54 / 50 / 6 Kadıköy",
+        city:"İstanbul",
+        state:"İstanbul",
+        postCode:"4124",
+        country:"Türkiye"
+      }, 
+      incomes:[
+        {type:"Donanım Satışı",value:"4332,4 TL"},
+        {type:"Teknik Servis Hizmeti",value:"2232,4 TL"},
+        {type:"Diğerleri",value:"50432,4 TL"}
+      ],
+      IDR:[
+        {year:"2020",value:"58"},
+        {year:"2021",value:"76"},
+        {year:"2022",value:"80"},
+        {year:"2023",value:"123"},
+      ],
+      Orders:[
+        {year:"2020",value:"8000"},
+        {year:"2021",value:"60500"},
+        {year:"2022",value:"12023"},
+        {year:"2023",value:"230455"},
+      ],
+      personelInfo:{
+        office:200,
+        field:130
+      },
+      sectorInfo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    }
+  ]
+
+
   getCategories(): Category[] {
     return this.categories;
   }
@@ -79,4 +295,9 @@ export class DataService {
   getProductsByCategory(categoryId: number): Product[] {
     return this.products.filter(product => product.categoryId === categoryId);
   }
+
+  getCompany(companyId:Number):Company{
+    return this.Companies.filter(company => company.id === companyId)[0];
+  }
+
 }

@@ -2,7 +2,8 @@ export type LayoutType =
   | 'dark-sidebar'
   | 'light-sidebar'
   | 'dark-header'
-  | 'light-header';
+  | 'light-header'
+  | 'empty';
 
 export type CSSClassesType = {
   [key: string]: string[];

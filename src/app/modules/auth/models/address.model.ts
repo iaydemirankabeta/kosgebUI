@@ -3,4 +3,5 @@ export class AddressModel {
   city: string;
   state: string;
   postCode: string;
+  country?:string
 }

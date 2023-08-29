@@ -1,4 +1,11 @@
+<h2>Şirket Seçiniz</h2>
+
 <div class="company-list">
-    <div class="company-card" >
-    </div>
+  <div *ngFor="let company of myCompanies" class="card-body d-flex justify-content-center text-center flex-column p-8">
+    <a class="text-gray-800 text-hover-primary d-flex flex-column cursor-pointer">
+      <div class="symbol symbol-75px mb-6"><img class="company-image" [src]="company.company.img.url" alt="" /></div>
+      <div class="fs-5 fw-bolder mb-2">{{ company.company.name }}</div>
+    </a>
+    <button (click)="click(company.company.id)" class="btn btn-primary flex-grow-1" style="float:right">Seç</button>
   </div>
+</div>

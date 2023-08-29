@@ -69,14 +69,14 @@ const Routing: Routes = [
   },*/
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/sirketler',
     pathMatch: 'full',
   },
   {
     path: 'sirketler',
     component: CompanyChoiceComponent,
     pathMatch:'full',
-    data:{layout:'dark-header'}
+    data:{layout:'empty'}
   },
  
   { path: 'raporlar', component: ReportsComponent },

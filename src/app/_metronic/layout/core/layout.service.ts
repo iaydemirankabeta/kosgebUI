@@ -13,6 +13,7 @@ import { DarkSidebarConfig } from './configs/dark-sidebar.config';
 import { LightHeaderConfig } from './configs/light-header.config';
 import { LightSidebarConfig } from './configs/light-sidebar.config';
 import { ActivatedRoute } from '@angular/router';
+import { EmptyConfig } from './configs/empty.config';
 
 const LAYOUT_CONFIG_LOCAL_STORAGE_KEY = `${environment.appVersion}-layoutConfig`;
 const BASE_LAYOUT_TYPE_LOCAL_STORAGE_KEY = `${environment.appVersion}-baseLayoutType`;
@@ -160,6 +161,8 @@ export class LayoutService {
         return DarkHeaderConfig;
       case 'light-header':
         return LightHeaderConfig;
+      case 'empty':
+        return EmptyConfig;
       default:
         return defaultLayoutConfig;
     }
