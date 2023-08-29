@@ -13,28 +13,33 @@
   </button>
 </div>
 <!--end::Secondary button-->
-<div *ngFor="let business of businessList,let i = index" class="business-container">
+<div class="row">
+  <div *ngFor="let business of businessList,let i = index" class="card col-md-4 col-xs-6">
+    <div class="card p-2">
+      <div class="businessTop-icon">
+        <a href="javascript:;">
+          <i class="fa fa-file-text"></i>
+        </a>
+        <a href="javascript:;" *ngIf="business.chart">
+          <i class="fa fa-line-chart"></i>
+        </a>
+        <a href="javascript:;" *ngIf="business.group">
+          <i class="fa fa-group"></i>
+        </a>
+        <a href="javascript:;" *ngIf="business.users">
+          <i class="fa fa-users"></i>
+        </a>
+        <a href="javascript:;" *ngIf="business.chart">
+          <i class="fa fa-map-pin"></i>
+        </a>
+        
+      </div>
+    </div>
+    
     <div class="business-name">{{ business.name }}</div>
     <div class="business-company">{{ business.company }}</div>
     <div class="business-address">{{ business.category }}</div>
-    <div class="businessTop-icon">
-      <a href="javascript:;">
-        <i class="fa fa-file-text"></i>
-      </a>
-      <a href="javascript:;" *ngIf="business.chart">
-        <i class="fa fa-line-chart"></i>
-      </a>
-      <a href="javascript:;" *ngIf="business.group">
-        <i class="fa fa-group"></i>
-      </a>
-      <a href="javascript:;" *ngIf="business.users">
-        <i class="fa fa-users"></i>
-      </a>
-      <a href="javascript:;" *ngIf="business.chart">
-        <i class="fa fa-map-pin"></i>
-      </a>
-      
-    </div>
+    
     <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
       <div class="col-12">
         <ul class="nav">
@@ -74,7 +79,9 @@
       
     </app-modal>
     <div class="business-button">
-      <a href="javascript:;" class="btn btn-primary" (click)="openModal()">Şirketi İncele</a>
+      <a href="javascript:;" class="btn btn-dark" (click)="openModal()">Şirketi İncele</a>
+      <a href="javascript:;" class="btn btn-primary float-right"(click)="openModal()" style="float:right;">Başvur</a>
     </div>
   </div>
+</div>
   

@@ -3,7 +3,6 @@
     padding: 20px 15px;
     margin: 10px;
     background-color: #f5f5f5;
-    position:relative;
     border-radius: 20px;
   }
   
@@ -21,13 +20,11 @@
     color: #666;
   }
   .business-button{
-    position: absolute;
-    right: 10px;
-    bottom:10px;
+    margin-top:15px;
+    
   }
 
   .businessTop-icon{
-    position: absolute;
     right: 10px;
     top:10px;
     margin-bottom: 10px;

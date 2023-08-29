@@ -13,4 +13,13 @@
     background-color: #f7f7f7;
     color: #333;
   }
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .ng-invalid.ng-touched {
+    border-color: red;
+  }
   
