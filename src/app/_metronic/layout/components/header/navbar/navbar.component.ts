@@ -1,4 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from 'src/app/_fake/fake-data';
+import { UserCompany } from 'src/app/modules/auth/models/user-company.model';
+import { UserModel } from 'src/app/modules/auth/models/user.model';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +19,22 @@ export class NavbarComponent implements OnInit {
   userAvatarClass: string = 'symbol-35px symbol-md-40px';
   btnIconClass: string = 'fs-2 fs-md-1';
 
-  constructor() {}
+  myCompanies : UserCompany[] = [];
+  user: UserModel | undefined;
+  selectedValue : Number ;
+  constructor(private dataService: DataService,private auth:AuthService,private router: Router){
+    this.user = auth.currentUserValue;
+    this.selectedValue = this.user?.selectedCompany?.company.id || 5;
+    this.myCompanies = auth.currentUserValue?.userCompanies || [];
+  }
+
+  click(event:any){
+    this.user ? this.user.selectedCompany = this.myCompanies.filter(x => x.company.id === Number(event.target.value))[0] : null;
+    this.auth.currentUserSubject.next(this.user);
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['dashboard']);
+  }); 
+  }
 
   ngOnInit(): void {}
 }

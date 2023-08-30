@@ -5,7 +5,7 @@
      data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
   <!--begin::Menu-->
   
-<div class="menu menu-column menu-rounded menu-sub-indention px-3"  id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
+<div  *ngIf="_user.roles" class="menu menu-column menu-rounded menu-sub-indention px-3"  id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
   <ng-container *ngFor="let menuItem of menuItems">
     <div *ngIf="menuItem.roles.includes(_user.roles[0])" [hidden]="menuItem.disabled" >
       <div class="menu-item" *ngIf="!menuItem.subMenu">
