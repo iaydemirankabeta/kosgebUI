@@ -19,6 +19,7 @@ export class UsersTable {
       language: 'tr',
       timeZone: 'International Date Line West',
       website: 'https://ankabeta.com.tr',
+      selectedCompany:'',
       emailSettings: {
         emailNotification: true,
         sendCopyToPersonalEmail: false,

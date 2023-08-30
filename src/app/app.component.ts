@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
 import {TranslationService} from './modules/i18n';
 // language list
 import {locale as enLang} from './modules/i18n/vocabs/en';
@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
       deLang,
       frLang
     );
+  }
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    // Tarayıcı geri düğmesine basıldığında burası çalışır
+    location.reload();
   }
 
   ngOnInit() {

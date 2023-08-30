@@ -2,7 +2,7 @@ import { Component, HostBinding, OnDestroy, OnInit,Input } from '@angular/core';
 import { MenuItem,subMenu } from './sidebar.interface';
 import { Observable, Subscription } from 'rxjs';
 
-import { AuthService,UserType } from 'src/app/modules/auth';
+import { AuthService,UserModel,UserType } from 'src/app/modules/auth';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -57,9 +57,10 @@ export class SidebarMenuComponent implements OnInit {
 
   ];
 
-  user$: Observable<UserType>;
-  private unsubscribe: Subscription[] = [];
 
+
+  user$: Observable<UserType>;
+   
   constructor(
     private auth: AuthService,
   ) {
@@ -69,8 +70,7 @@ export class SidebarMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$ = this.auth.currentUserSubject.asObservable();
-    console.log(this.user$);
-
+  
   }
 
 }

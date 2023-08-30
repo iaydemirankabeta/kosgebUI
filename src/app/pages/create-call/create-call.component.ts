@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
+
 import { folderLoad } from './folder-load.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,12 +10,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './create-call.component.html',
   styleUrls: ['./create-call.component.scss']
 })
-export class CreateCallComponent {
+export class CreateCallComponent{
   form: FormGroup;
   yuklenenDosyalar: File[] = [];
-isEnabled = false;
+isEnabledError: boolean;
   minLength = 20;
   maxLength = 200;
+
+  modalTitle = 'Çağrı Oluşturuldu';
+  modalConfig: ModalConfig = {
+    modalTitle: this.modalTitle,
+    closeButtonLabel:'Kapat'
+
+  };
+  @ViewChild('modal') private modalComponent: ModalComponent;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -47,15 +57,23 @@ isEnabled = false;
           formData.append('files', file);
         }
       }
-      this.isEnabled=false;
+      this.isEnabledError=false;
+      this.form.reset();      
+       return this.modalComponent.open();
+
   
       // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
       // Örnek: this.myApiService.submitFormData(formData).subscribe(response => { ... });
     } else {
       // Form hatalı, kullanıcıya mesaj göster
-      this.isEnabled = true;
+      this.isEnabledError = true;
     }
   }
+
+  closeModal(){
+    return this.modalComponent.close();
+  }
+
   
 
   dosyaBirak(event: DragEvent): void {
@@ -92,5 +110,7 @@ isEnabled = false;
   onDragLeave(event: DragEvent): void {
     event.preventDefault();
   }
+  
+  
 
 }

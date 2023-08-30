@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
 import { FakeAPIService } from './_fake/fake-api.service';
 // #fake-end#
 import { ReportsComponent } from './pages/reports/reports.component';
-import { CreateCallComponent } from './pages/create-call/create-call.component';
+import { ModalsModule } from "./_metronic/partials/layout/modals/modals.module";
 
 
 
@@ -34,36 +34,37 @@ function appInitializer(authService: AuthService) {
 }
 
 @NgModule({
-  declarations: [AppComponent,   ReportsComponent, CreateCallComponent],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    CommonModule,
-    BrowserAnimationsModule,
-    TranslateModule.forRoot(),
-    HttpClientModule,
-    ClipboardModule,
-    // #fake-start#
-    environment.isMockEnabled
-      ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
-          passThruUnknownUrl: true,
-          dataEncapsulation: false,
-        })
-      : [],
-    // #fake-end#
-    RouterModule,
-    AppRoutingModule,
-    InlineSVGModule.forRoot(),
-    NgbModule,
-  ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: appInitializer,
-      multi: true,
-      deps: [AuthService],
-    },
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, ReportsComponent],
+    providers: [
+        {
+            provide: APP_INITIALIZER,
+            useFactory: appInitializer,
+            multi: true,
+            deps: [AuthService],
+        },
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        CommonModule,
+        BrowserAnimationsModule,
+        TranslateModule.forRoot(),
+        HttpClientModule,
+        ClipboardModule,
+        // #fake-start#
+        environment.isMockEnabled
+            ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
+                passThruUnknownUrl: true,
+                dataEncapsulation: false,
+            })
+            : [],
+        // #fake-end#
+        RouterModule,
+        AppRoutingModule,
+        InlineSVGModule.forRoot(),
+        NgbModule,
+        ModalsModule
+    ]
 })
 export class AppModule {}
