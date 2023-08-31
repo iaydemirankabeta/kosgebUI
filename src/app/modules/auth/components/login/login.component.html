@@ -23,20 +23,7 @@
   </div>
   <!--end::Heading-->
 
-<ul class="nav nav-tabs mb-3">
-  <li class="nav-item">
-    <a class="nav-link"  [ngClass]="{ active: activeTab === 'email' }"
-    (click)="setActiveTab('email')" role="tab" >Email</a>
-  </li>
-  <li class="nav-item" style=":hover{background-color: red;}">
-    <a class="nav-link"  [ngClass]="{ active: activeTab === 'edevlet' }"
-    (click)="setActiveTab('email')" role="tab">E-Devlet ile Giriş</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link"  [ngClass]="{ active: activeTab === 'tubitak' }"
-    (click)="setActiveTab('tubitak')" role="tab" >Tübitak</a>
-  </li>
-</ul>
+
 
   <!--begin::Form group-->
 
@@ -157,7 +144,7 @@
   
 
   <!--begin::Action-->
-  <div class="d-grid mb-10">
+  <div class="d-grid mb-5">
     <button type="submit" id="kt_sign_in_submit" class="btn btn-primary" [disabled]="loginForm.invalid">
       <ng-container *ngIf="isLoading$ | async">
         <span class="indicator-progress" [style.display]="'block'">
@@ -167,6 +154,30 @@
       </ng-container>
       <ng-container *ngIf="(isLoading$ | async) === false">
         <span class="indicator-label">Giriş Yap</span>
+      </ng-container>
+    </button>
+  </div>
+
+  <div class="d-grid mb-5">
+    <button type="submit" id="kt_sign_in_submit" class="btn btn-e-devlet">
+      <ng-container>
+        <span class="indicator-label text-white">E-Devlet ile Giriş</span>
+      </ng-container>
+    </button>
+  </div>
+
+  <div class="d-grid mb-5">
+    <button type="submit" id="kt_sign_in_submit" class="btn btn-success">
+      <ng-container>
+        <span class="indicator-label text-white">KOSGEB ile giriş</span>
+      </ng-container>
+    </button>
+  </div>
+
+  <div class="d-grid mb-5">
+    <button type="submit" id="kt_sign_in_submit" class="btn btn-info">
+      <ng-container>
+        <span class="indicator-label">TÜBİTAK AKİS ile giriş</span>
       </ng-container>
     </button>
   </div>
