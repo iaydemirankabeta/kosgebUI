@@ -27,6 +27,12 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
+    path: 'buyukIsletmeler',
+    loadChildren: () =>
+      import('./kobi/kobi.module').then((m) => m.kobiModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
     path: 'calls',
     loadChildren: () =>
       import('./calls/calls.module').then((m) => m.callsModule),

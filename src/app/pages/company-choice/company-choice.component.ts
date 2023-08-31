@@ -14,6 +14,11 @@ export class CompanyChoiceComponent {
   constructor(private dataService: DataService,private auth:AuthService,private router: Router){
     this.myCompanies = auth.currentUserValue?.userCompanies || [];
     this.user = auth.currentUserValue
+    if(this.myCompanies.length < 2){
+      this.user ? this.user.selectedCompany = this.myCompanies[0] : null;
+      this.auth.currentUserSubject.next(this.user);
+      this.router.navigate(["dashboard"]);
+    }
   }
 
   click(id:Number){

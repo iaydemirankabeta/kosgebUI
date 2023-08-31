@@ -270,6 +270,76 @@ export class DataService {
         field:130
       },
       sectorInfo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      id:6,
+      img : {url:'./assets/media/logos/kosgeb.png'},
+      title:"KOSGEB",
+      type:CompanyTypes.KOSGEB,
+      adress:{
+        addressLine:"T.C. Küçük ve Orta Ölçekli İşletmeleri Geliştirme ve Destekleme İdaresi Başkanlığı Hacı Bayram Mah. İstanbul Cad. No: 3206050",
+        city:"Ankara",
+        state:"Ankara",
+        postCode:"4124",
+        country:"Türkiye"
+      }, 
+      incomes:[
+        {type:"Donanım Satışı",value:"4332,4 TL"},
+        {type:"Teknik Servis Hizmeti",value:"2232,4 TL"},
+        {type:"Diğerleri",value:"50432,4 TL"}
+      ],
+      IDR:[
+        {year:"2020",value:"58"},
+        {year:"2021",value:"76"},
+        {year:"2022",value:"80"},
+        {year:"2023",value:"123"},
+      ],
+      Orders:[
+        {year:"2020",value:"8000"},
+        {year:"2021",value:"60500"},
+        {year:"2022",value:"12023"},
+        {year:"2023",value:"230455"},
+      ],
+      personelInfo:{
+        office:200,
+        field:130
+      },
+      sectorInfo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      id:7,
+      img : {url:'./assets/media/logos/logo2.png'},
+      title:"ADMIN",
+      type:CompanyTypes.ADMIN,
+      adress:{
+        addressLine:"Kerim Cad. No: 54 / 50 / 6 Kadıköy",
+        city:"İstanbul",
+        state:"İstanbul",
+        postCode:"4124",
+        country:"Türkiye"
+      }, 
+      incomes:[
+        {type:"Donanım Satışı",value:"4332,4 TL"},
+        {type:"Teknik Servis Hizmeti",value:"2232,4 TL"},
+        {type:"Diğerleri",value:"50432,4 TL"}
+      ],
+      IDR:[
+        {year:"2020",value:"58"},
+        {year:"2021",value:"76"},
+        {year:"2022",value:"80"},
+        {year:"2023",value:"123"},
+      ],
+      Orders:[
+        {year:"2020",value:"8000"},
+        {year:"2021",value:"60500"},
+        {year:"2022",value:"12023"},
+        {year:"2023",value:"230455"},
+      ],
+      personelInfo:{
+        office:200,
+        field:130
+      },
+      sectorInfo:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     }
   ]
 

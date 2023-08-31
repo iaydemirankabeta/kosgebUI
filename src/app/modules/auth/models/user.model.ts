@@ -1,7 +1,7 @@
 import { AuthModel } from './auth.model';
 import { AddressModel } from './address.model';
 import { SocialNetworksModel } from './social-networks.model';
-import { UserCompany } from './user-company.model';
+import { UserCompany, UserRoles } from './user-company.model';
 
 export class UserModel extends AuthModel {
   id?: number;
@@ -10,7 +10,7 @@ export class UserModel extends AuthModel {
   fullname?: string;
   email?: string;
   pic?: string;
-  roles?: number[];
+  roles?: UserRoles[];
   occupation?: string;
   companyName?: string;
   phone?: string;
