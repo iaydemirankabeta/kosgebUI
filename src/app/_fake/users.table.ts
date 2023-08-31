@@ -210,7 +210,7 @@ export class UsersTable {
         occupation: 'CEO',
       },
       {
-        company: { id: 5, name: 'Odak Teknoloji',img : {url:'./assets/media/logos/logo1.png'}, type: CompanyTypes.KOBI},
+        company: { id: 5, name: 'Odak Teknoloji',img : {url:'./assets/media/logos/logo1.png'}, type: CompanyTypes.Muadil},
         roles:[3],
         occupation: 'Pazarlama Uzmanı',
       }],
