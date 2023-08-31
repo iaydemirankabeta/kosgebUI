@@ -36,6 +36,12 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
+    path: 'apply-calls',
+    loadChildren: () =>
+      import('./apply-calls/apply-calls.module').then((m) => m.ApplyCallsModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
     path: 'create-call',
     loadChildren: () =>
       import('./create-call/create-call.module').then((m) => m.createcallmodule),

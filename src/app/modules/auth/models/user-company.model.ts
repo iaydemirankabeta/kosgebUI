@@ -15,7 +15,8 @@ export enum CompanyTypes{
     KOBI=2,
     KOSGEB=3,
     Muadil=4,
-    ADMIN = 5
+    ADMIN = 5,
+    KOSGEBUSER=6
 }
 
 export enum UserRoles{
