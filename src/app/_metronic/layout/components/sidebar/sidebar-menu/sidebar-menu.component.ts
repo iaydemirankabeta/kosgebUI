@@ -33,7 +33,7 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI]  },
     { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI] },
     { title: 'Görüşmelerim', icon: 'element-7', routerLink: '/conversations',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:true,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI] },
-    { title: 'Büyük İşletmeler', icon: 'element-1', routerLink: '/buyukIsletmeler',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI] },
+    { title: 'Başvuruya Açık Çağrılar', icon: 'element-1', routerLink: '/buyukIsletmeler',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI] },
     {
       title: 'Fonksiyonlar ve Modüller', icon: 'element-12', routerLink: '/catalog',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:true,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],
       subMenu: [
