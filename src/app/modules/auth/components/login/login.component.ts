@@ -17,8 +17,8 @@ type Tabs = 'email' | 'edevlet' | 'tubitak';
 export class LoginComponent implements OnInit, OnDestroy {
   // KeenThemes mock, change it to:
   defaultAuth: any = {
-    email: 'admin@ankabeta.com',
-    password: 'ankabeta',
+    email: 'kosgebadmin@ankabeta.com',
+    password: 'demo',
   };
   loginForm: FormGroup;
   hasError: boolean;
