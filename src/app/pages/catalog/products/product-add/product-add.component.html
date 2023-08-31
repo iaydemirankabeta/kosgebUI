@@ -99,7 +99,7 @@
                     <div class="card-header">
                         <!--begin::Card title-->
                         <div class="card-title">
-                            <h2>Ürün Detay</h2>
+                            <h2>Ürün/Hizmet Detay</h2>
                         </div>
                         <!--end::Card title-->
                     </div>
@@ -121,7 +121,7 @@
                         </select>
                         <!--end::Select2-->
                         <!--begin::Description-->
-                        <div class="text-muted fs-7 mb-7">Bir kategoriye ürün ekleyin</div>
+                        <div class="text-muted fs-7 mb-7">Bir kategoriye ürün/hizmet ekleyin</div>
                         <!--end::Description-->
                         <!--end::Input group-->
                         <!--begin::Button-->
@@ -136,7 +136,7 @@
                         <input id="kt_ecommerce_add_product_tags" name="kt_ecommerce_add_product_tags" class="form-control mb-2" value="" />
                         <!--end::Input-->
                         <!--begin::Description-->
-                        <div class="text-muted fs-7">Ürüne etiket ekleyin</div>
+                        <div class="text-muted fs-7">Etiket ekleyin</div>
                         <!--end::Description-->
                         <!--end::Input group-->
                     </div>
@@ -221,14 +221,14 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10 fv-row">
                                         <!--begin::Label-->
-                                        <label class="required form-label">Ürün İsmi</label>
+                                        <label class="required form-label">Ürün/Hizmet İsmi</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="product_name" class="form-control mb-2" placeholder="Ürün ismi" [value]="product ? product.name : ''" />
+                                        <input type="text" name="product_name" class="form-control mb-2" placeholder="Ürün/Hizmet ismi" [value]="product ? product.name : ''" />
                                         <!--end::Input-->
                                         <!--begin::Description-->
                                         <div class="text-muted fs-7">
-                                            Bir ürün adı gereklidir ve benzersiz olması önerilir.</div>
+                                            Bir ürün/hizmet adı gereklidir ve benzersiz olması önerilir.</div>
                                         <!--end::Description-->
                                     </div>
                                     <!--end::Input group-->
@@ -244,7 +244,7 @@
                                         <!--end::Editor-->
                                         <!--begin::Description-->
                                         <div class="text-muted fs-7">
-                                            Daha iyi görünürlük için ürüne bir açıklama ayarlayın.</div>
+                                            Daha iyi görünürlük için  bir açıklama ayarlayın.</div>
                                         <!--end::Description-->
                                     </div>
                                     <!--end::Input group-->
@@ -405,7 +405,7 @@
                                         <!--end::Slider-->
                                         <!--begin::Description-->
                                         <div class="text-muted fs-7">
-                                            Bu ürüne uygulanacak bir indirim yüzdesi belirleyin.</div>
+                                            Uygulanacak bir indirim yüzdesi belirleyin.</div>
                                         <!--end::Description-->
                                     </div>
                                     <!--end::Input group-->
@@ -419,7 +419,7 @@
                                         <!--end::Input-->
                                         <!--begin::Description-->
                                         <div class="text-muted fs-7">
-                                            İndirimli ürün fiyatını belirleyin. Ürün belirlenen sabit fiyattan indirimli olacaktır.</div>
+                                            İndirimli fiyatını belirleyin. Belirlenen sabit fiyattan indirimli olacaktır.</div>
                                         <!--end::Description-->
                                     </div>
                                     <!--end::Input group-->
@@ -435,11 +435,11 @@
                                                 <option></option>
                                                 <option value="0">Vergisiz</option>
                                                 <option value="1">Vergilendirilebilir</option>
-                                                <option value="2">İndirilebilir Ürün</option>
+                                                <option value="2">İndirilebilir Ürün/hismet</option>
                                             </select>
                                             <!--end::Select2-->
                                             <!--begin::Description-->
-                                            <div class="text-muted fs-7">Ürün vergi sınıfını ayarlayın</div>
+                                            <div class="text-muted fs-7">vergi sınıfını ayarlayın</div>
                                             <!--end::Description-->
                                         </div>
                                         <!--end::Input group-->
@@ -501,7 +501,7 @@
                                         <input type="text" name="sku" class="form-control mb-2" placeholder="Barcode Number" [value]="product ? product.sku:''" />
                                         <!--end::Input-->
                                         <!--begin::Description-->
-                                        <div class="text-muted fs-7">Ürün barkod numarasını girin</div>
+                                        <div class="text-muted fs-7"> barkod numarasını girin</div>
                                         <!--end::Description-->
                                     </div>
                                     <!--end::Input group-->
@@ -555,7 +555,7 @@
                                     <!--begin::Input group-->
                                     <div class="" data-kt-ecommerce-catalog-add-product="auto-options">
                                         <!--begin::Label-->
-                                        <label class="form-label">Ürün varyasyonlarını ekleyin</label>
+                                        <label class="form-label">Varyasyonlarını ekleyin</label>
                                         <!--end::Label-->
                                         <!--begin::Repeater-->
                                         <div id="kt_ecommerce_add_product_options">
@@ -698,7 +698,7 @@
                                         <!--end::Editor-->
                                         <!--begin::Description-->
                                         <div class="text-muted fs-7">
-                                            Artan SEO sıralaması için ürüne bir meta etiket açıklaması ayarlayın.</div>
+                                            Artan SEO sıralaması için bir meta etiket açıklaması ayarlayın.</div>
                                         <!--end::Description-->
                                     </div>
                                     <!--end::Input group-->
