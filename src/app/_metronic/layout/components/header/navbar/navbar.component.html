@@ -1,14 +1,4 @@
 <!--begin::Search-->
-<div class="app-navbar-item justify-content-center" [ngClass]="itemClass">
-  <div>
-    <div>
-      <select class="form-select form-select-solid" data-kt-select2="true" data-placeholder="Select option" (change) = "click($event)"
-        data-allow-clear="true">
-        <option *ngFor="let company of myCompanies" [selected]="selectedValue === company.company.id" [value]="company.company.id">{{company.company.name}}</option>
-      </select>
-    </div>
-  </div>
-</div>
 <div class="app-navbar-item align-items-stretch" [ngClass]="itemClass">
   <!--begin::Search-->
   <div id="kt_header_search" class="header-search d-flex align-items-stretch" data-kt-search-keypress="true"

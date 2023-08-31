@@ -9,7 +9,7 @@ export class UsersTable {
       email: 'admin@ankabeta.com',
       authToken: 'auth-token-8f3ae836da744329a6f93bf20594b5cc',
       refreshToken: 'auth-token-f8c137a2c98743f48b643e71161d90aa',
-      roles: UserRoles.Admin, // Administrator
+      roles: CompanyTypes.ADMIN, // Administrator
       pic: './assets/media/avatars/300-1.jpg',
       fullname: 'Hasan Oruç',
       firstname: 'Hasan',
@@ -67,10 +67,10 @@ export class UsersTable {
       id: 2,
       username: 'kosgebAdmin',
       password: 'demo',
-      email: 'admin@kosgeb.com',
+      email: 'kosgebadmin@ankabeta.com',
       authToken: 'auth-token-6829bba69dd3421d8762-991e9e806dbf',
       refreshToken: 'auth-token-f8e4c61a318e4d618b6c199ef96b9e55',
-      roles: UserRoles.KosgebAdmin, // Manager
+      roles: CompanyTypes.KOSGEB, // Manager
       pic: './assets/media/avatars/300-6.jpg',
       fullname: 'Anka Beta',
       firstname: 'Anka',
@@ -125,12 +125,12 @@ export class UsersTable {
     },
     {
       id: 3,
-      username: 'KOSGEBUser',
+      username: 'KOSGEB Kullanıcı',
       password: 'demo',
-      email: 'user@kosgeb.com',
+      email: 'kosgebkurumsal@ankabeta.com',
       authToken: 'auth-token-d2dff7b82f784de584b60964abbe45b9',
       refreshToken: 'auth-token-c999ccfe74aa40d0aa1a64c5e620c1a5',
-      roles: UserRoles.KosgebUser, // Guest
+      roles: CompanyTypes.KOSGEBUSER, // Guest
       pic: './assets/media/avatars/300-20.jpg',
       fullname: 'Mehmet Yılmaz',
       firstname: 'Mehmet',
@@ -185,34 +185,25 @@ export class UsersTable {
     },
     {
       id: 4,
-      username: 'Kullanıcı',
+      username: 'BI Kullanıcı',
       password: 'demo',
-      email: 'kullanici@demo.com',
+      email: 'bi@ankabeta.com',
       authToken: 'auth-token-d2dff7b82f784de845b60964abbe45b9',
       refreshToken: 'auth-token-c999ccfe74aa60d0aa1a64c5e620c1a5',
-      roles:  UserRoles.User, // Guest
+      roles:  CompanyTypes.BI, // Guest
       pic: './assets/media/avatars/300-20.jpg',
-      fullname: 'Manu G',
-      firstname: 'Manu',
-      lastname: 'Ginobili',
+      fullname: 'Ahmet Yıkılmaz',
+      firstname: 'Ahmet',
+      lastname: 'Yıkılmaz',
       occupation: 'CFO',
       country:'Türkiye',
-      companyName: 'Keenthemes',
+      companyName: 'BI',
       phone: '456669067892',
-      userCompanies:[{
-        company: { id: 2, name: 'BMW',img : {url:'./assets/media/logos/bmw.png'}, type: CompanyTypes.BI},
+      userCompanies:[
+      {
+        company: { id: 2, name: 'ISUZU',img : {url:'./assets/media/logos/isuzu.png'}, type: CompanyTypes.BI},
         roles:[1],
         occupation: 'Genel Müdür',
-      },
-      {
-        company: { id: 1, name: 'Ankabeta',img : {url:'./assets/media/logos/ankabeta-logo.png'}, type: CompanyTypes.KOBI},
-        roles:[1],
-        occupation: 'CEO',
-      },
-      {
-        company: { id: 5, name: 'Odak Teknoloji',img : {url:'./assets/media/logos/logo1.png'}, type: CompanyTypes.KOBI},
-        roles:[3],
-        occupation: 'Pazarlama Uzmanı',
       }],
       language: 'en',
       timeZone: 'International Date Line West',
@@ -255,27 +246,23 @@ export class UsersTable {
     },
     {
       id: 5,
-      username: 'Kullanıcı2',
+      username: 'Kobi Kullanıcı',
       password: 'demo',
-      email: 'kullanici2@demo.com',
+      email: 'kobi@ankabeta.com',
       authToken: 'auth-token-d2dff7b82f7843e584b60964abbe45b9',
       refreshToken: 'auth-token-c999ccfe74aa6540aa1a64c5e620c1a5',
-      roles: UserRoles.User, // Guest
+      roles: CompanyTypes.KOBI, // Guest
       pic: './assets/media/avatars/300-20.jpg',
-      fullname: 'Manu G',
-      firstname: 'Manu',
-      lastname: 'Ginobili',
+      fullname: 'Ahmet Ulak',
+      firstname: 'Ahmet',
+      lastname: 'Ulak',
       occupation: 'CFO',
       country:'Türkiye',
       companyName: 'Keenthemes',
       phone: '456669067892',
       language: 'en',
       timeZone: 'International Date Line West',
-      userCompanies:[{
-        company: { id: 2, name: 'ISUZU',img : {url:'./assets/media/logos/isuzu.png'}, type: CompanyTypes.BI},
-        roles:[1],
-        occupation: 'Genel Müdür',
-      },
+      userCompanies:[
       {
         company: { id: 1, name: 'Ulak A.Ş',img : {url:'./assets/media/logos/logo2.png'}, type: CompanyTypes.KOBI},
         roles:[1],

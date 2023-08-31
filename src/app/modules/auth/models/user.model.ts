@@ -1,7 +1,7 @@
 import { AuthModel } from './auth.model';
 import { AddressModel } from './address.model';
 import { SocialNetworksModel } from './social-networks.model';
-import { UserCompany, UserRoles } from './user-company.model';
+import { CompanyTypes, UserCompany, UserRoles } from './user-company.model';
 
 export class UserModel extends AuthModel {
   id?: number;
@@ -10,7 +10,7 @@ export class UserModel extends AuthModel {
   fullname?: string;
   email?: string;
   pic?: string;
-  roles?: UserRoles[];
+  roles?: CompanyTypes;
   occupation?: string;
   companyName?: string;
   phone?: string;
@@ -60,7 +60,7 @@ export class UserModel extends AuthModel {
     this.email = user.email || '';
     this.selectedCompany = user.selectedCompany!;
     this.pic = user.pic || './assets/media/avatars/blank.png';
-    this.roles = user.roles || [];
+    this.roles = user.roles!;
     this.occupation = user.occupation || '';
     this.companyName = user.companyName || '';
     this.phone = user.phone || '';

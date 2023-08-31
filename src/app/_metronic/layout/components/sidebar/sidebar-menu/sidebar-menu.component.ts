@@ -16,24 +16,33 @@ export class SidebarMenuComponent implements OnInit {
 
 
   menuItems: MenuItem[] = [
-    { title: 'Gösterge Paneli', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN] },
+    { title: 'Anasayfa', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER] },
     { title: 'Rol Grupları', icon: 'element-4', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN] },
     { title: 'Kullanıcı Yönetimi', icon: 'element-6', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN] },
     { title: 'Şirket Yönetimi', icon: 'element-3', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN] },
-    { title: 'Tüm Çağrılar', icon: 'element-7', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN] },
-    { title: 'Tüm Çözümler', icon: 'element-3', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN] },
-    { title: 'Tüm Teklifler', icon: 'element-1', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN] },
-    { title: 'Tüm Başvurular', icon: 'element-5', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN] },
-    { title: 'Duyurular', icon: 'element-9', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN] },
+    { title: 'Tüm Çağrılar', icon: 'element-7', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER] },
+    { title: 'Tüm Çözümler', icon: 'element-3', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER] },
+    { title: 'Tüm Teklifler', icon: 'element-1', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER] },
+    { title: 'Tüm Başvurular', icon: 'element-5', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER] },
+    { title: 'Duyurular', icon: 'element-9', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER] },
 
 
 
-    { title: 'Gösterge Paneli', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI] },
-    { title: 'Başvuruya Açık Çözümler', icon: 'element-2', routerLink: '/kobi',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI] },
+    { title: 'Anasayfa', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI] },
+    { title: 'Kobiler', icon: 'element-2', routerLink: '/kobi',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI] },
     { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI]  },
     { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI] },
     { title: 'Görüşmelerim', icon: 'element-7', routerLink: '/conversations',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:true,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI] },
-    { title: 'Başvuruya Açık Çağrılar', icon: 'element-1', routerLink: '/buyukIsletmeler',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI] },
+    { title: 'Başvuruya Açık Çağrılar', icon: 'element-1', routerLink: '/apply-calls',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI] },
+    { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI,CompanyTypes.KOSGEB] },
+    {
+      title: 'Ürünlerim ve Hizmetlerim', icon: 'element-12', routerLink: '/catalog',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],
+      subMenu: [
+        { title: 'Kategoriler', icon: '', routerLink: 'catalog/kategoriler' },
+        { title: 'Ürünler ve Hizmetler', icon: '', routerLink: 'catalog/urunler' },
+        { title: 'Ürün veya Hizmet Ekle', icon: '', routerLink: 'catalog/urun-ekle' },
+      ]
+    },
     {
       title: 'Fonksiyonlar ve Modüller', icon: 'element-12', routerLink: '/catalog',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:true,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],
       subMenu: [
@@ -50,17 +59,7 @@ export class SidebarMenuComponent implements OnInit {
         { title: 'Proje Zekası', icon: '', routerLink: 'catalog/urun-ekle' },
       ]
     },
-    { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI,CompanyTypes.KOSGEB] },
-  {
-    title: 'Katalog', icon: '', routerLink: '/catalog',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],
-    subMenu: [
-      { title: 'Vitrin', icon: '', routerLink: 'catalog/vitrin' },
-      { title: 'Kategoriler', icon: '', routerLink: 'catalog/kategoriler' },
-      { title: 'Kategori Ekle', icon: '', routerLink: 'catalog/kategori-ekle' },
-      { title: 'Ürünler', icon: '', routerLink: 'catalog/urunler' },
-      { title: 'Ürün Ekle', icon: '', routerLink: 'catalog/urun-ekle' },
-    ]
-  },
+
   {
     title: 'Raporlar', icon: '', routerLink: 'crafted/widgets',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:true,
     subMenu: [
