@@ -5,7 +5,6 @@ import { Observable, Subscription } from 'rxjs';
 import { getCSSVariableValue } from 'src/app/_metronic/kt/_utils';
 import { AuthService,UserModel,UserType } from 'src/app/modules/auth';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

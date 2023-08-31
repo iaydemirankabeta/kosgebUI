@@ -15,7 +15,6 @@ export class UserModel extends AuthModel {
   companyName?: string;
   phone?: string;
   address?: AddressModel;
-  selectedCompany:'';
   socialNetworks?: SocialNetworksModel;
   selectedCompany?:UserCompany | null;
   userCompanies?:UserCompany[];
@@ -59,7 +58,7 @@ export class UserModel extends AuthModel {
     this.password = user.password || '';
     this.fullname = user.fullname || '';
     this.email = user.email || '';
-    this.selectedCompany = user.selectedCompany || '';
+    this.selectedCompany = user.selectedCompany!;
     this.pic = user.pic || './assets/media/avatars/blank.png';
     this.roles = user.roles || [];
     this.occupation = user.occupation || '';

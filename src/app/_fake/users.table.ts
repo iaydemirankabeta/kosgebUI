@@ -187,9 +187,9 @@ export class UsersTable {
       id: 4,
       username: 'Kullanıcı',
       password: 'demo',
-      email: 'user@demo.com',
-      authToken: 'auth-token-d2dff7b82f784de584b60964abbe45b9',
-      refreshToken: 'auth-token-c999ccfe74aa40d0aa1a64c5e620c1a5',
+      email: 'kullanici@demo.com',
+      authToken: 'auth-token-d2dff7b82f784de845b60964abbe45b9',
+      refreshToken: 'auth-token-c999ccfe74aa60d0aa1a64c5e620c1a5',
       roles:  UserRoles.User, // Guest
       pic: './assets/media/avatars/300-20.jpg',
       fullname: 'Manu G',
@@ -258,8 +258,8 @@ export class UsersTable {
       username: 'Kullanıcı2',
       password: 'demo',
       email: 'kullanici2@demo.com',
-      authToken: 'auth-token-d2dff7b82f784de584b60964abbe45b9',
-      refreshToken: 'auth-token-c999ccfe74aa40d0aa1a64c5e620c1a5',
+      authToken: 'auth-token-d2dff7b82f7843e584b60964abbe45b9',
+      refreshToken: 'auth-token-c999ccfe74aa6540aa1a64c5e620c1a5',
       roles: UserRoles.User, // Guest
       pic: './assets/media/avatars/300-20.jpg',
       fullname: 'Manu G',

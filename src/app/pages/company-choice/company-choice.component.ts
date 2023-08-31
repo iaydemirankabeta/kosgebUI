@@ -12,13 +12,12 @@ export class CompanyChoiceComponent {
   myCompanies : UserCompany[] = [];
   user: UserModel | undefined;
   constructor(private dataService: DataService,private auth:AuthService,private router: Router){
+    console.log( auth.currentUserValue)
+
     this.myCompanies = auth.currentUserValue?.userCompanies || [];
-    this.user = auth.currentUserValue
-    if(this.myCompanies.length < 2){
-      this.user ? this.user.selectedCompany = this.myCompanies[0] : null;
-      this.auth.currentUserSubject.next(this.user);
-      this.router.navigate(["dashboard"]);
-    }
+    console.log( auth.currentUserValue?.userCompanies, this.myCompanies )
+    this.user = auth.currentUserValue;
+
   }
 
   click(id:Number){

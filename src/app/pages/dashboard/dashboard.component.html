@@ -1,7 +1,7 @@
 <!--begin::Row-->
 <div class="dashboard" *ngIf="user$ | async as _user">
 
-<div class="row g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.roles[0] != 1">
+<div class="row g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.selectedCompany?.company?.type! != 3 && _user.selectedCompany?.company?.type! != 5 ">
   
   <!--begin::Col-->
   <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10">
@@ -83,7 +83,7 @@
   <!--<app-engage-widget10 class="col-xxl-6" cssClass="h-md-100"></app-engage-widget10>-->
   <!--end::Col-->
 </div>
-<div class=" g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.roles[0] == 1">
+<div class=" g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.selectedCompany?.company?.type! == 3 || _user.selectedCompany?.company?.type! == 5">
   <div class="row col-xs-12 mb-10">
     <div class="col-md-3 col-xs-6">
       <div class="card p-2 text-center ">

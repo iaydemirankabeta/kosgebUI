@@ -36,7 +36,7 @@ function appInitializer(authService: AuthService) {
 }
 
 @NgModule({
-  declarations: [AppComponent,   ReportsComponent, CreateCallComponent,CompanyChoiceComponent],
+  declarations: [AppComponent,   ReportsComponent,CompanyChoiceComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
