@@ -1,7 +1,7 @@
 <!--begin::Row-->
 <div class="dashboard" *ngIf="user$ | async as _user">
 
-<div class="g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.selectedCompany?.company?.type! != 3 && _user.selectedCompany?.company?.type! != 5 && _user.selectedCompany?.company?.type! != 4 "> 
+<div class="g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.roles! != 3 && _user.roles! != 6 && _user.roles! != 4 "> 
   
   <!--begin::Col-->
   
@@ -16,7 +16,7 @@
             <h5 class="card card-title">Faliyet Gösterilen Sektör</h5>
           </div>
           <div class="card-body">
-            <p><b>Ünvan</b>: {{selectedCompany && selectedCompany.title}} </p>
+            <p><b>Ünvan</b>: {{_user.userCompanies ? _user.userCompanies[0].company?.name! : "Ankabeta"}} </p>
             <p class="" style="color:chocolate;font-size: 14px;">Sektör Bilgisi</p>
             <hr/>
             <p> {{selectedCompany && selectedCompany.sectorInfo}}</p>
@@ -29,7 +29,7 @@
             <h5 class="card card-title">Adres Bilgisi</h5>
           </div>
           <div class="card-body">
-            <p><b>Ünvan</b>: {{selectedCompany && selectedCompany.title}} </p>
+            <p><b>Ünvan</b>:  {{_user.userCompanies ? _user.userCompanies[0].company?.name! : "Ankabeta"}} </p>
             <hr/>
             <ul>
               <li class="mb-5"><b>Ülke:</b> {{selectedCompany && selectedCompany.adress.country}}</li>
@@ -230,8 +230,8 @@
   <!--<app-engage-widget10 class="col-xxl-6" cssClass="h-md-100"></app-engage-widget10>-->
   <!--end::Col-->
 </div>
-<div class=" g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.selectedCompany?.company?.type! == 3 || _user.selectedCompany?.company?.type! == 5 || _user.selectedCompany?.company?.type! == 4">
-  <div class="row col-xs-12 mb-10" *ngIf="_user.selectedCompany?.company?.type! == 3 || _user.selectedCompany?.company?.type! == 5">
+<div class=" g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.roles! == 3 || _user.roles! == 6 || _user.roles! == 4">
+  <div class="row col-xs-12 mb-10" *ngIf="_user.roles! == 3 || _user.roles == 6">
     <div class="col-md-3 col-xs-6">
       <div class="card p-2 text-center ">
         <div class="card-header">
@@ -274,7 +274,7 @@
     </div>
   </div>
 
-  <div class="row col-xs-12 mb-10" *ngIf="_user.selectedCompany?.company?.type! == 4">
+  <div class="row col-xs-12 mb-10" *ngIf="_user.roles! == 4">
     <div class="col-md-4 col-xs-6">
       <div class="card p-2 text-center ">
         <div class="card-header">

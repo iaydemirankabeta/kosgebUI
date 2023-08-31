@@ -7,7 +7,8 @@ export interface MenuItem {
   subMenu?: subMenu[];
   roles: number[];
   disabled:boolean;
-  companyTypes?:CompanyTypes[]
+  companyTypes?:CompanyTypes[];
+  shown:boolean;
 }
 
 export interface subMenu{
