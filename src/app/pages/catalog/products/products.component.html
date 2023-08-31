@@ -16,7 +16,7 @@
             <input
             type="text"
             class="form-control form-control-solid w-250px ps-12"
-            placeholder="Ürün ara"
+            placeholder="Ürün/Hizmet Ara"
             (input)="onSearchInputChange($event)"
           />          </div>
           <!--end::Search-->
@@ -35,7 +35,7 @@
             <!--end::Select2-->
           </div>
           <!--begin::Add product-->
-          <a [routerLink]="['/catalog/urun-ekle']" class="btn btn-primary">+ Yeni Ürün</a>
+          <a [routerLink]="['/catalog/urun-ekle']" class="btn btn-primary">+ Yeni Ürün/Hizmet</a>
           <!--end::Add product-->
         </div>
         <!--end::Card toolbar-->
@@ -49,11 +49,11 @@
               <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
             </div>
           </th>
-          <th class="min-w-200px">Ürün</th>
-          <th class="text-end min-w-100px">SKU</th>
+          <th class="min-w-200px">Ürün/Hizmet</th>
+          <!--<th class="text-end min-w-100px">SKU</th>
           <th class="text-end min-w-70px">Adet</th>
           <th class="text-end min-w-100px">Fiyat</th>
-          <th class="text-end min-w-100px">Puan</th>
+          <th class="text-end min-w-100px">Puan</th>-->
           <th class="text-end min-w-100px">Durum</th>
           <th class="text-end min-w-70px">Aksiyon</th>
         </tr>
@@ -79,7 +79,7 @@
               </div>
             </div>
           </td>
-          <td class="text-end pe-0">
+         <!-- <td class="text-end pe-0">
             <span class="fw-bold">{{product.sku}}</span>
           </td>
           <td class="text-end pe-0" data-order="0">
@@ -106,7 +106,7 @@
                 <i class="ki-duotone ki-star fs-6"></i>
               </div>
             </div>
-          </td>
+          </td>-->
           <td class="text-end pe-0" data-order="Scheduled">
             <!--begin::Badges-->
             <div  [ngClass]="product.status == true ? 'badge badge-light-success': 'badge badge-light-danger'">{{product.status == true ? 'Aktif': 'Pasif' }}</div>

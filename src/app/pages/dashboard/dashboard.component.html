@@ -1,74 +1,221 @@
 <!--begin::Row-->
 <div class="dashboard" *ngIf="user$ | async as _user">
 
-<div class="row g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.selectedCompany?.company?.type! != 3 && _user.selectedCompany?.company?.type! != 5 ">
+<div class="g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.selectedCompany?.company?.type! != 3 && _user.selectedCompany?.company?.type! != 5 && _user.selectedCompany?.company?.type! != 4 "> 
   
   <!--begin::Col-->
-  <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10">
-    <app-cards-widget17 cssClass="h-md-35 mb-5 mb-xl-10"></app-cards-widget17>
+  
+  <div class="col-md-12 col-xs-12  ">
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
+        <app-cards-widget17 cssClass="h-md-35 mb-5 mb-xl-10"></app-cards-widget17>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+            <h5 class="card card-title">Faliyet Gösterilen Sektör</h5>
+          </div>
+          <div class="card-body">
+            <p><b>Ünvan</b>: {{selectedCompany && selectedCompany.title}} </p>
+            <p class="" style="color:chocolate;font-size: 14px;">Sektör Bilgisi</p>
+            <hr/>
+            <p> {{selectedCompany && selectedCompany.sectorInfo}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+            <h5 class="card card-title">Adres Bilgisi</h5>
+          </div>
+          <div class="card-body">
+            <p><b>Ünvan</b>: {{selectedCompany && selectedCompany.title}} </p>
+            <hr/>
+            <ul>
+              <li class="mb-5"><b>Ülke:</b> {{selectedCompany && selectedCompany.adress.country}}</li>
+              <li class="mb-5"><b>İl:</b>  {{selectedCompany && selectedCompany.adress.city}}</li>
+              <li class="mb-5"><b>Açık Adres:</b>{{selectedCompany && selectedCompany.adress.addressLine}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+            <h5 class="card card-title">Personel Bilgisi</h5>
+          </div>
+          <div class="card-body">
+            <p><b>Beyaz Yaka Personel</b>: {{selectedCompany && selectedCompany.personelInfo.office}}  </p>
+            <p><b>Mavi Yaka Personel</b>:  {{selectedCompany && selectedCompany.personelInfo.field}}  </p>
+            <hr/>
+            <p style="color:yellowgreen;"><b>Toplam Personel</b>: {{selectedCompany && +selectedCompany.personelInfo.field + +selectedCompany.personelInfo.office}}  </p>
+      
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+            <h5 class="card card-title">Çevre Skoru</h5>
+          </div>
+          <div class="card-body">
+            <p>Sahip Olunan Standartlar </p>
+            <p>Belge Numarası: 12831293712412</p>
+            <hr/>
+            <p style="color:yellowgreen;"><b>Son Geçerlilik Tarihi</b>: 28.12.2025  </p>
+      
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">Tamamlanan/Devam Eden Projeler</h5>
+          </div>
+          <div class="card-body">
+              <ul>
+                  <li>GİB</li>
+                  <li>KOSGEB</li>
+                  <li>TÜBİTAK</li>
+              </ul>
+              <hr />
+              <p style="color:yellowgreen;"><b>Son Geçerlilik Tarihi</b>: 28.12.2025 </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">Gelir Tablosu</h5>
+          </div>
+          <div class="card-body">
+              <p>VKN: 15747324657</p>
+              <p>Unvan: Yönetici</p>
+              <p>Yıl: 2023</p>
+              <hr />
+              <p style="color:yellowgreen;">Dönem Karı veya Zararı:</p>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">Finansal Veri</h5>
+          </div>
+          <div class="card-body">
+              <p>VKN: 5778913547</p>
+              <p>Unvan: Yönetici</p>
+              <hr />
+              <p style="color:yellowgreen;">Dönem Karı veya Zararı:</p>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">Türk Standartlarına Uygunluk Belgesi</h5>
+          </div>
+          <div class="card-body">
+              <p>TCKN / VKN: 5778913547</p>
+              <p>Adı Soyadı / Unvan: Selim Uygur</p>
+              <hr />
+              <p style="color:yellowgreen;"><b>Belge Numarası</b>: 154152646 </p>
+              <hr />
+              <p style="color:yellowgreen;"><b>Belge Türü</b>: -- </p>
+              <hr />
+              <p style="color:yellowgreen;"><b>Son Geçerlilik Tarihi</b>: 31.08.2023 </p>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">İşbirliği Bilgisi</h5>
+          </div>
+          <div class="card-body">
+              <p>Unvan: Yönetici </p>
+              <hr />
+              <p ><b>Referanslar</b>: <span style="color:yellowgreen;"> KOSGEB, TÜBİTAK, GİB </span></p>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">Yerli Malı Bilgisi</h5>
+          </div>
+          <div class="card-body">
+              <p>TCKN / VKN: 14475478743</p>
+              <p>Adı Soyadı / Unvan: Metin Kalem</p>
+              <hr />
+              <p style="color:yellowgreen;"><b>Belge Numarası</b>: 154152646 </p>
+              <hr />
+              <p style="color:yellowgreen;"><b>Yerli Katkı Oranı</b>: %30 </p>
+              <hr />
+              <p style="color:yellowgreen;"><b>Ürün Teknolojik Düzeyi</b>: %61 </p>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">İhrac Edilen Ülkeler</h5>
+          </div>
+          <div class="card-body">
+              <p>Ülkeler: </p>
+              <ul>
+                  <li>Türkiye</li>
+                  <li>Amerika</li>
+                  <li>Kanada</li>
+                  <li>Almanya</li>
+              </ul>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">Yurtiçi/Dışı Ticaret bilgisi</h5>
+          </div>
+          <div class="card-body">
+              <p>TCKN / VKN: 476511324</p>
+              <p>MERSİS NO: 957487776541</p>
+              <p>Adı Soyadı / Unvan: Meltem Aydın</p>
+              <hr />
+              <p style="color:yellowgreen;"><b>Yöneticilere Ait bilgiler</b>:</p>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">Üretimde Kullanılan Tehçizat</h5>
+          </div>
+          <div class="card-body">
+              <p>Tehçizat </p>
+              <ul>
+                  <li>Elektrikli</li>
+                  <li>Şarjlı</li>
+                  <li>Batarya</li>
+              </ul>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">Destek Kullanım Miktarı</h5>
+          </div>
+          <div class="card-body">
+              <p>Proje Başvuru Sayısı: 25</p>
+              <p>Proje Kabul Oranı: %70</p>
+              <p>Proje Tamamlama sayısı: 16</p>
+              <p>Yevmiye Numarası: 1540</p>
+          </div>
+      </div>
+      </div>
     
-      <div class="col-xxl-12 mb-12 mb-xl-12">
-        <app-charts-widget4 class="h-lg-50"></app-charts-widget4>
-      </div>
-     <!-- <div class="col-xxl-12 mb-12 mb-xl-12">
-        <app-new-charts-widget8 cssClass="h-xl-100" chartHeight="275px" [chartHeightNumber]="275"></app-new-charts-widget8>
-      </div>
-      -->
-
-    <!--<app-cards-widget7 cssClass="h-md-50 mb-5 mb-xl-10" [icon]="false" [stats]="357" description="Professionals"
-      labelColor="dark" textColor="gray-300"></app-cards-widget7>-->
-  </div>
-  <!--end::Col-->
-  <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10 ">
-    <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
-    <div class="card-header">
-      <h5 class="card card-title">Faliyet Gösterilen Sektör</h5>
     </div>
-    <div class="card-body">
-      <p><b>Ünvan</b>: {{selectedCompany && selectedCompany.title}} </p>
-      <p class="" style="color:chocolate;font-size: 14px;">Sektör Bilgisi</p>
-      <hr/>
-      <p> {{selectedCompany && selectedCompany.sectorInfo}}</p>
-    </div>
-  </div>
-  <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
-    <div class="card-header">
-      <h5 class="card card-title">Adres Bilgisi</h5>
-    </div>
-    <div class="card-body">
-      <p><b>Ünvan</b>: {{selectedCompany && selectedCompany.title}} </p>
-      <hr/>
-      <ul>
-        <li class="mb-5"><b>Ülke:</b> {{selectedCompany && selectedCompany.adress.country}}</li>
-        <li class="mb-5"><b>İl:</b>  {{selectedCompany && selectedCompany.adress.city}}</li>
-        <li class="mb-5"><b>Açık Adres:</b>{{selectedCompany && selectedCompany.adress.addressLine}}</li>
-      </ul>
-    </div>
-  </div>
-  <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
-    <div class="card-header">
-      <h5 class="card card-title">Personel Bilgisi</h5>
-    </div>
-    <div class="card-body">
-      <p><b>Beyaz Yaka Personel</b>: {{selectedCompany && selectedCompany.personelInfo.office}}  </p>
-      <p><b>Mavi Yaka Personel</b>:  {{selectedCompany && selectedCompany.personelInfo.field}}  </p>
-      <hr/>
-      <p style="color:yellowgreen;"><b>Toplam Personel</b>: {{selectedCompany && +selectedCompany.personelInfo.field + +selectedCompany.personelInfo.office}}  </p>
-
-    </div>
-  </div>
-  <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
-    <div class="card-header">
-      <h5 class="card card-title">Çevre Skoru</h5>
-    </div>
-    <div class="card-body">
-      <p>Sahip Olunan Standartlar </p>
-      <p>Belge Numarası: 12831293712412</p>
-      <hr/>
-      <p style="color:yellowgreen;"><b>Son Geçerlilik Tarihi</b>: 28.12.2025  </p>
-
-    </div>
-  </div>
    </div>
 
   <!--begin::Col-->
@@ -83,8 +230,8 @@
   <!--<app-engage-widget10 class="col-xxl-6" cssClass="h-md-100"></app-engage-widget10>-->
   <!--end::Col-->
 </div>
-<div class=" g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.selectedCompany?.company?.type! == 3 || _user.selectedCompany?.company?.type! == 5">
-  <div class="row col-xs-12 mb-10">
+<div class=" g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.selectedCompany?.company?.type! == 3 || _user.selectedCompany?.company?.type! == 5 || _user.selectedCompany?.company?.type! == 4">
+  <div class="row col-xs-12 mb-10" *ngIf="_user.selectedCompany?.company?.type! == 3 || _user.selectedCompany?.company?.type! == 5">
     <div class="col-md-3 col-xs-6">
       <div class="card p-2 text-center ">
         <div class="card-header">
@@ -125,6 +272,40 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="row col-xs-12 mb-10" *ngIf="_user.selectedCompany?.company?.type! == 4">
+    <div class="col-md-4 col-xs-6">
+      <div class="card p-2 text-center ">
+        <div class="card-header">
+          <h5>Yurtdışı Büyük İşletmeler</h5>
+        </div>
+        <div class="card-body card-text">
+          <p>70</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-6">
+      <div class="card p-2 text-center ">
+        <div class="card-header">
+          <h5>Yurtdışı Toplam Çağrı</h5>
+        </div>
+        <div class="card-body card-text">
+          <p>65</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-6">
+      <div class="card p-2 text-center ">
+        <div class="card-header">
+          <h5>Yurtdışı Toplam Görüşme </h5>
+        </div>
+        <div class="card-body card-text">
+          <p>560</p>
+        </div>
+      </div>
+    </div>
+
   </div>
   
   <div class="row">
@@ -219,23 +400,3 @@
 <!--end::Row-->
 </div>
 
-
-
-<!--<div class="row g-5 gx-xxl-8">
-  <div class="col-xxl-4">
-    <app-mixed-widget8 class="card card-xxl-stretch mb-xl-3" chartColor="success" chartHeight="150px">
-    </app-mixed-widget8>
-  </div>
-  <div class="col-xxl-8">
-    <app-tables-widget5 class="card card-xxl-stretch mb-5 mb-xxl-8"></app-tables-widget5>
-  </div>
-</div>-->
-
-<!-- begin:: Modal example -->
- <!--<app-modal #modal [modalConfig]="modalConfig">
-  <input type="text" placeholder="deneme"><hr/>
-  <button>Gönder</button>
-</app-modal>
-<button class="btn btn-primary" (click)="openModal()">Open modal</button> -->
-<!-- Note: Don't forget import ModalsModule (from _metronic/partials) into your module -->
-<!-- end:: Modal example -->
