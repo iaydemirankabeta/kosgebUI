@@ -67,6 +67,7 @@ isEnabledError: boolean;
     } else {
       // Form hatalı, kullanıcıya mesaj göster
       this.isEnabledError = true;
+      return this.modalComponent.open();
     }
   }
 

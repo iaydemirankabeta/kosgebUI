@@ -1,16 +1,19 @@
 <!--begin::Row-->
-<div class="row g-12 g-xl-12 mb-12 mb-xl-12">
+<div class="dashboard" *ngIf="user$ | async as _user">
+
+<div class="row g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.roles[0] != 1">
+  
   <!--begin::Col-->
   <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10">
     <app-cards-widget17 cssClass="h-md-35 mb-5 mb-xl-10"></app-cards-widget17>
-    <app-charts-widget2 cssClass="h-md-35 mb-5 mb-xl-10" description="son siparişler" color="#F1416C"
-      img="./assets/media/patterns/vector-1.png"> </app-charts-widget2>
+    
       <div class="col-xxl-12 mb-12 mb-xl-12">
         <app-charts-widget4 class="h-lg-50"></app-charts-widget4>
       </div>
-      <div class="col-xxl-12 mb-12 mb-xl-12">
+     <!-- <div class="col-xxl-12 mb-12 mb-xl-12">
         <app-new-charts-widget8 cssClass="h-xl-100" chartHeight="275px" [chartHeightNumber]="275"></app-new-charts-widget8>
       </div>
+      -->
 
     <!--<app-cards-widget7 cssClass="h-md-50 mb-5 mb-xl-10" [icon]="false" [stats]="357" description="Professionals"
       labelColor="dark" textColor="gray-300"></app-cards-widget7>-->
@@ -80,8 +83,141 @@
   <!--<app-engage-widget10 class="col-xxl-6" cssClass="h-md-100"></app-engage-widget10>-->
   <!--end::Col-->
 </div>
-<!--end::Row-->
+<div class=" g-12 g-xl-12 mb-12 mb-xl-12" *ngIf="_user.roles[0] == 1">
+  <div class="row col-xs-12 mb-10">
+    <div class="col-md-3 col-xs-6">
+      <div class="card p-2 text-center ">
+        <div class="card-header">
+          <h5>Toplam Kobi</h5>
+        </div>
+        <div class="card-body card-text">
+          <p>168</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-6">
+      <div class="card p-2 text-center ">
+        <div class="card-header">
+          <h5>Toplam Büyük İşletmeler</h5>
+        </div>
+        <div class="card-body card-text">
+          <p>95</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-6">
+      <div class="card p-2 text-center ">
+        <div class="card-header">
+          <h5>Toplam Çağrı </h5>
+        </div>
+        <div class="card-body card-text">
+          <p>250</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-6">
+      <div class="card p-2 text-center ">
+        <div class="card-header">
+          <h5>Toplam Teklif</h5>
+        </div>
+        <div class="card-body card-text">
+          <p>298</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    
+    <div class="col-md-3 col-xs-6">
+      <app-cards-widget7 cssClass="col-md-12 col-xs-12 "></app-cards-widget7>
+    </div>
+  <div class="col-md-4 col-xs-6">
+    <!--begin::Card widget 17-->
+    <div class="card card-flush" [ngClass]="cssClass">
+      <!--begin::Header-->
+      <div class="card-header pt-5">
+        <!--begin::Title-->
+        <div class="card-title d-flex flex-column">
+          <!--begin::Info-->
+          <div class="w-100 d-inline-block"><h3>Toplam Kobi ve Toplam Büyük İşletme</h3></div>
+          <hr/>
 
+
+        </div>
+        <!--end::Title-->
+      </div>
+      <!--end::Header-->
+
+      <!--begin::Card body-->
+      <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+        <!--begin::Chart-->
+        <div class="d-flex flex-center me-5 pt-2">
+          <div id="kt_card_widget_17_chart_admin"
+            [ngStyle]="{'min-width': chartSize + 'px', 'min-height': chartSize + 'px'}"
+            [attr.data-kt-size]="chartSize"
+            [attr.data-kt-line]="chartLine">
+          </div>
+        </div>
+        <!--end::Chart-->
+
+        <!--begin::Labels-->
+        <div class="d-flex flex-column content-justify-center flex-row-fluid">
+          <!--begin::Label-->
+          <div class="d-flex fw-semibold align-items-center">
+            <!--begin::Bullet-->
+            <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
+            <!--end::Bullet-->
+
+            <!--begin::Label-->
+            <div class="text-gray-500 flex-grow-1 me-4">Toplam Kobi</div>
+            <!--end::Label-->
+
+            <!--begin::Stats-->
+            <div class="fw-bolder text-gray-700 text-xxl-end">168</div>
+            <!--end::Stats-->
+          </div>
+          <!--end::Label-->
+
+          <!--begin::Label-->
+          <div class="d-flex fw-semibold align-items-center my-3">
+            <!--begin::Bullet-->
+            <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+            <!--end::Bullet-->
+
+            <!--begin::Label-->
+            <div class="text-gray-500 flex-grow-1 me-4">Toplam Büyük İşletme</div>
+            <!--end::Label-->
+
+            <!--begin::Stats-->
+            <div class="fw-bolder text-gray-700 text-xxl-end">95</div>
+            <!--end::Stats-->
+          </div>
+          <!--end::Label-->
+
+        </div>
+        <!--end::Labels-->
+      </div>
+      <!--end::Card body-->
+    </div>
+<!--end::Card widget 17-->
+  </div>
+  
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <app-charts-widget2 cssClass="h-md-35 mb-5 mb-xl-10" description="son siparişler" color="#F1416C"
+        img="./assets/media/patterns/vector-1.png"> </app-charts-widget2>
+    </div>
+    <!--<div class="col-md-6 col-xs-12">
+      <app-charts-widget4 class="h-lg-50"></app-charts-widget4>
+    </div>-->
+  </div>
+</div>
+
+<!--end::Row-->
+</div>
 
 
 

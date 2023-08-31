@@ -58,7 +58,7 @@ function getChartOptions() {
       curve: 'smooth',
     },
     xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+      categories: ['Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz','Ağustos'],
       axisBorder: {
         show: false,
       },
@@ -123,7 +123,7 @@ function getChartOptions() {
       },
       y: {
         formatter: function (val: number) {
-          return '$' + val + ' thousands';
+          return val;
         },
       },
     },
