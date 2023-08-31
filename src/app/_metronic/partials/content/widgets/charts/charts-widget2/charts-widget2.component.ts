@@ -24,11 +24,11 @@ function getChartOptions(height: number) {
   return {
     series: [
       {
-        name: 'Net Kazanç',
+        name: 'İş Birlikleri',
         data: [44, 55, 57, 56, 61, 58],
       },
       {
-        name: 'Hasılat',
+        name: 'Teklifler',
         data: [76, 85, 101, 98, 87, 105],
       },
     ],
@@ -59,7 +59,7 @@ function getChartOptions(height: number) {
       colors: ['transparent'],
     },
     xaxis: {
-      categories: ['Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz'],
+      categories: ['Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz','Ağustos'],
       axisBorder: {
         show: false,
       },
@@ -111,7 +111,7 @@ function getChartOptions(height: number) {
       },
       y: {
         formatter: function (val: number) {
-          return  + val + ' TL';
+          return  val ;
         },
       },
     },

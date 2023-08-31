@@ -22,6 +22,7 @@ import { FakeAPIService } from './_fake/fake-api.service';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { CreateCallComponent } from './pages/create-call/create-call.component';
 import { CompanyChoiceComponent } from './pages/company-choice/company-choice.component';
+import { ModalsModule } from "./_metronic/partials/layout/modals/modals.module";
 
 
 
@@ -56,6 +57,8 @@ function appInitializer(authService: AuthService) {
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
+    ModalsModule
+
   ],
   providers: [
     {

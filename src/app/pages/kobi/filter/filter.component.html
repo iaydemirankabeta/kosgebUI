@@ -42,15 +42,21 @@
 
         <!--begin::Link-->
         <div class="d-flex align-items-center mb-12">
-          <form action="" class="form" style="width: 100%;">
-            <select class="form-select  mb-5 " aria-label="Select example" *ngFor="let select of  kobiFilter">
-              <option>{{select.name}}</option>
-              <option *ngFor="let option of select.options" value="{{option.value}}">{{option.name}}</option>
-              
-            </select>
+          <form action="" class="form" style="width: 100%;" [formGroup]="form" >
+
+            <div class="filter-container">
+              <div *ngFor="let filterGroup of kobiFilter" class="filter-group">
+                <label>{{ filterGroup.label }}</label>
+                  <select  class="form-select  mb-5 " formControlName="selectedValue"  (change)="onFilterChange(filterGroup.name,$event)"  [(ngModel)]="selectedFilters[filterGroup.name]"  >
+                  <option value="0" disabled>Seçiniz</option>
+                  <option *ngFor="let option of filterGroup.options" [value]="option.value">{{ option.name }}</option>
+                </select>
+              </div>
+            </div>
             
-            <button class="btn btn-primary">Filtrele</button>
-            <button class="btn">Temizle</button>
+            
+           <!-- <input type="submit" class="btn btn-primary" placeholder="filtrele" (click)="closeModal()" value="Filtrele">-->
+            <a class="btn btn-primary" (click)="onReset()">Temizle</a>
           </form>
         </div>
         <!--end::Link-->

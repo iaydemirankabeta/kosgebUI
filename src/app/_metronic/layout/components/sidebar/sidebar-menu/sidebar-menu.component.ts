@@ -70,9 +70,10 @@ export class SidebarMenuComponent implements OnInit {
 
   ];
 
-  user$: Observable<UserType>;
-  private unsubscribe: Subscription[] = [];
 
+
+  user$: Observable<UserType>;
+   
   constructor(
     private auth: AuthService,
   ) {
@@ -82,8 +83,7 @@ export class SidebarMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.user$ = this.auth.currentUserSubject.asObservable();
-    
-    console.log(this.user$);
+  
   }
 
 

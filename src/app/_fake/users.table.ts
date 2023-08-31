@@ -25,6 +25,7 @@ export class UsersTable {
         occupation: 'Genel Müdür',
       }],
       website: 'https://ankabeta.com.tr',
+      selectedCompany:'',
       emailSettings: {
         emailNotification: true,
         sendCopyToPersonalEmail: false,

@@ -50,7 +50,6 @@ export class ProductAddComponent {
   
   public onChange(event: CKEditor4.EventInfo) {
     this.editorData = event.editor.getData();
-    console.log(this.editorData);
   }
 
   onFileSelected(event: any): void {
