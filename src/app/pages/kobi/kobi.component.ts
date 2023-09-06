@@ -49,15 +49,12 @@ filterOptions: any[];
     this.businessList = this.KobiService.fakeBusinesses.filter((business: any) => {
       for (let filterId in selectedFilters) {
         if (selectedFilters[filterId] !== null) {
-          console.log("if",selectedFilters)
           const selectedValue = +selectedFilters[filterId];
           if (business[filterId] !== selectedValue) {
-            console.log("if if" , filterId,typeof(selectedValue),typeof(business[filterId]))
             return false; 
           } else {
             // Seçili filtreleri listeye ekle
             const filterInfo = this.filters.find(filter => filter.id === parseInt(filterId));
-            console.log("if else",filterInfo,filterId,selectedValue,business[filterId])
             if (filterInfo) {
               this.selectedFiltersList.push({ filterName: filterInfo.name, selectedValue });
             }

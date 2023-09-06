@@ -2,13 +2,21 @@
 <div data-kt-search-element="wrapper">
 
   <!--begin::Form-->
-  <form data-kt-search-element="form" class="w-100 position-relative mb-3" autocomplete="off">
+  <div style="border-bottom:1px solid;border-color: #95a5a675;"
+  id="kt_header_search" class="header-search d-flex align-items-stretch" data-kt-search-keypress="true"
+    data-kt-search-min-length="2" data-kt-search-enter="enter" data-kt-search-layout="menu"
+    data-kt-menu-trigger="{default: 'hover'}" data-kt-menu-overflow="false" data-kt-menu-permanent="true"
+    data-kt-menu-placement="bottom-end" data-kt-search="true" data-kt-search-element="toggle" id="kt_header_search_toggle">
+    <form data-kt-search-element="form" class="w-100 position-relative mb-3" autocomplete="off">
     <!--begin::Icon-->
     <app-keenicon name="magnifier" class="fs-2 fs-lg-1 text-gray500 position-absolute top-50 translate-middle-y ms-0"></app-keenicon>
     <!--end::Icon-->
 
     <!--begin::Input-->
-    <input type="text" class="form-control form-control-flush ps-10" name="search" value="" placeholder="Ara..." data-kt-search-element="input" [ngModel]="keyword" (ngModelChange)="search($event)"/>
+    <div class="md-form active-pink active-pink-2">
+    <input type="text" class="form-control form-control-flush ps-10 w-100" aria-label="Search" mdbInput name="search" value="" (keydown.enter)="onEnterPressed()" placeholder="Ara..."  data-kt-search-element="input" [ngModel]="keyword" (ngModelChange)="search($event)"
+    />
+  </div>
     <!--end::Input-->
 
     <!--begin::Spinner-->
@@ -39,7 +47,10 @@
     </div>
     <!--end::Toolbar-->
   </form>
+  </div>
   <!--end::Form-->
+<div data-kt-search-element="content" data-kt-menu="true"
+class="menu menu-sub menu-sub-dropdown p-7 w-450px w-md-450px">
 
   <!--begin::Separator-->
   <div class="separator border-gray-200 mb-6"></div>
@@ -57,7 +68,7 @@
       <!--end::Category title-->
 
       <!--begin::Item-->
-      <a href="#" *ngFor="let item of filteredResults" class="d-flex text-dark text-hover-primary align-items-center mb-5">
+      <a href="/arama" *ngFor="let item of filteredResults" class="d-flex text-dark text-hover-primary align-items-center mb-5">
         <!--begin::Symbol-->
         <div class="symbol symbol-40px me-4">
           <img src="{{ item.image }}" alt=""/>
@@ -88,7 +99,7 @@
       <!--end::Category title-->
 
       <!--begin::Item-->
-      <a href="#" *ngFor="let item of recentlySearchedModels" class="d-flex text-dark text-hover-primary align-items-center mb-5">
+      <a href="/arama" *ngFor="let item of recentlySearchedModels" class="d-flex text-dark text-hover-primary align-items-center mb-5">
         <!--begin::Symbol-->
         <div class="symbol symbol-40px me-4">
           <img *ngIf="item.image" src="{{ item.image }}" alt=""/>
@@ -116,5 +127,6 @@
   </div>
   <!--end::Recently viewed-->
 
+</div>
 </div>
 <!--end::Wrapper-->

@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-
+import { ListsComponent } from '../modules/widgets-examples/lists/lists.component';
 import { CompanyChoiceComponent } from './company-choice/company-choice.component';
-import { ReportsComponent } from './reports/reports.component';
 
 
 const Routing: Routes = [
@@ -46,20 +45,18 @@ const Routing: Routes = [
     loadChildren: () =>
       import('./create-call/create-call.module').then((m) => m.createcallmodule),
       data:{layout:'dark-sidebar'}
-  },
-  /*{
-    path: 'builder',
-    loadChildren: () =>
-      import('./builder/builder.module').then((m) => m.BuilderModule),
-  },*/
-  
+  },  
   {
     path: 'crafted/account',
     loadChildren: () =>
       import('../modules/account/account.module').then((m) => m.AccountModule),
     data: { layout: 'dark-sidebar' },
   },
-
+  {
+    path: 'arama',
+    component: ListsComponent,
+    data: {layout:'dark-sidebar'}
+  },
 
   {
     path: 'crafted/widgets',
@@ -86,6 +83,7 @@ const Routing: Routes = [
     path: '',
     redirectTo: '/sirketler',
     pathMatch: 'full',
+    data:{layout:'empty'}
   },
   {
     path: 'sirketler',
@@ -94,7 +92,6 @@ const Routing: Routes = [
     data:{layout:'empty'}
   },
  
-  { path: 'raporlar', component: ReportsComponent },
   {
     path: '**',
     redirectTo: 'error/404',
