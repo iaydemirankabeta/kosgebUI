@@ -23,6 +23,8 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { CreateCallComponent } from './pages/create-call/create-call.component';
 import { CompanyChoiceComponent } from './pages/company-choice/company-choice.component';
 import { ModalsModule } from "./_metronic/partials/layout/modals/modals.module";
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 
@@ -57,7 +59,8 @@ function appInitializer(authService: AuthService) {
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
-    ModalsModule
+    ModalsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
 
   ],
   providers: [
