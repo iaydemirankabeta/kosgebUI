@@ -17,7 +17,7 @@ export class SidebarMenuComponent implements OnInit {
 
   menuItems: MenuItem[] = [
     { title: 'Anasayfa', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:true },
-    { title: 'Rol Grupları', icon: 'element-4', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:false },
+    { title: 'Rol Grupları', icon: 'element-4', routerLink: '/rol-gruplari',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:true },
     { title: 'Kullanıcı Yönetimi', icon: 'element-6', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:false },
     { title: 'Şirket Yönetimi', icon: 'element-3', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN],shown:false },
     { title: 'Tüm Çağrılar', icon: 'element-7', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },

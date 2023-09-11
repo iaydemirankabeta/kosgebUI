@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { CompanyChoiceComponent } from './company-choice/company-choice.component';
 import { ReportsComponent } from './reports/reports.component';
+import { RoleGroupsComponent } from './role-groups/role-groups.component';
 
 
 const Routing: Routes = [
@@ -59,7 +60,13 @@ const Routing: Routes = [
       import('../modules/account/account.module').then((m) => m.AccountModule),
     data: { layout: 'dark-sidebar' },
   },
-
+  {
+    path:'rol-gruplari',
+    loadChildren: () =>
+    import('../pages/role-groups/role-groups.module').then(
+      (m) => m.RoleGroupsModule
+    ),
+  data: { layout: 'dark-sidebar' }},
 
   {
     path: 'crafted/widgets',
@@ -99,6 +106,7 @@ const Routing: Routes = [
     path: '**',
     redirectTo: 'error/404',
   },
+
 ];
 
 export { Routing };
