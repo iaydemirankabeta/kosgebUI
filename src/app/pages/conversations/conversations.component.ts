@@ -265,7 +265,7 @@ export class ConversationsComponent {
       formData.append('link', this.form.value.link);
 
       this.isEnabledError=false;
-      this.form.reset();     
+      this.closeEditModal();     
       // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
       // Örnek: this.myApiService.submitFormData(formData).subscribe(response => { ... });
     } else {
