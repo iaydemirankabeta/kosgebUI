@@ -3,7 +3,7 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { CommonModule } from '@angular/common';  
+import { CommonModule, DatePipe } from '@angular/common';  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -23,6 +23,8 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { CreateCallComponent } from './pages/create-call/create-call.component';
 import { CompanyChoiceComponent } from './pages/company-choice/company-choice.component';
 import { ModalsModule } from "./_metronic/partials/layout/modals/modals.module";
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 
@@ -57,10 +59,12 @@ function appInitializer(authService: AuthService) {
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
-    ModalsModule
+    ModalsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
 
   ],
   providers: [
+    DatePipe,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,

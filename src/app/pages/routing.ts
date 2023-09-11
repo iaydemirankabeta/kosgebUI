@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { ListsComponent } from '../modules/widgets-examples/lists/lists.component';
 import { CompanyChoiceComponent } from './company-choice/company-choice.component';
+import { ReportsComponent } from './reports/reports.component';
+import { RoleGroupsComponent } from './role-groups/role-groups.component';
 
 
 const Routing: Routes = [
@@ -35,6 +37,30 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
+    path: 'kobi-cozumleri',
+    loadChildren: () =>
+      import('./kobi-cozumleri/kobi-cozumleri.module').then((m) => m.KobiCozumleriModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'conversations',
+    loadChildren: () =>
+      import('./conversations/conversations.module').then((m) => m.ConversationsModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'submitted-offers',
+    loadChildren: () =>
+      import('./submitted-offers/submitted-offers.module').then((m) => m.SubmittedOffersModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'submitted-offers',
+    loadChildren: () =>
+      import('./submitted-offers/submitted-offers.module').then((m) => m.SubmittedOffersModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
     path: 'apply-calls',
     loadChildren: () =>
       import('./apply-calls/apply-calls.module').then((m) => m.ApplyCallsModule),
@@ -57,6 +83,12 @@ const Routing: Routes = [
     component: ListsComponent,
     data: {layout:'dark-sidebar'}
   },
+    path:'rol-gruplari',
+    loadChildren: () =>
+    import('../pages/role-groups/role-groups.module').then(
+      (m) => m.RoleGroupsModule
+    ),
+  data: { layout: 'dark-sidebar' }},
 
   {
     path: 'crafted/widgets',
@@ -96,6 +128,7 @@ const Routing: Routes = [
     path: '**',
     redirectTo: 'error/404',
   },
+
 ];
 
 export { Routing };

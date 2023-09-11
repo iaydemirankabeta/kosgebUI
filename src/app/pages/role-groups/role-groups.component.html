@@ -1,0 +1,88 @@
+
+    <!-- begin::Header -->
+<div class="card-header border-0 pt-5 d-flex justify-content-between">
+    <h3 class="card-title align-items-start flex-column ">
+      <span class="card-label fw-bolder fs-3 mb-1">Rol Grupları</span>
+    </h3>
+
+      <!-- end::Menu -->
+  </div>
+  <!-- end::Header -->
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table align-middle gs-0 gy-5">
+        <!-- begin::Table head -->
+        <thead>
+          <tr>
+            <th class="max-w-70px"><span class="font-weight-bolder">Grup Adı</span></th>
+            <th class="max-w-70px"><span class="font-weight-bolder">Açıklama</span></th>
+            <th class="max-w-70px"><span class="font-weight-bolder">Oluşturan</span></th>
+            <th class="max-w-70px"><span class="font-weight-bolder">Oluşturma Tarihi</span></th>
+            <th class="max-w-40px"><span class="font-weight-bolder">Aktif Mi?</span></th>
+            <th class="max-w-40px"><span class="font-weight-bolder">Düzenle</span></th>
+            <th class="max-w-40px"><span class="font-weight-bolder">Sil</span></th>
+          </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+          <tr *ngFor="let item of roles">
+            <td>
+              <span
+                href="#"
+                class="text-dark fw-bolder mb-1"
+              >
+              {{item.name}}
+            </span>
+            </td>
+            <td class=" ">
+              <span class="me-1">{{item.description}}</span>
+            </td>
+            <td class=" ">
+              <span class="">{{item.createdBy}}</span>
+            </td>
+            <td class=" ">
+              <span
+                href="#"
+                class=""
+              >
+              {{item.createdDate}}
+            </span>
+            </td>
+            <td class=" ">
+                <span
+                  href="#"
+                  class=""
+                >
+                Evet
+              </span>
+              </td>
+              <td class=" ">
+                <button class="btn btn-success" (click)="openModal(item)">Düzenle</button>
+              </td>
+              <td class=" ">
+                <button class="btn btn-danger">Sil</button>
+              </td>
+          </tr>
+         
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+
+  <!-- end::Body -->
+    <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
+        <div  *ngIf="selectedRoleGroup != null" class="col-xs-12 text-center">
+          <div *ngFor="let role of selectedRoleGroup!.authority" class="d-flex">
+                <input class="checkbox-label" type="checkbox" [checked]="role.value">
+                <span>{{role.name}}</span>
+          </div>
+        </div>
+      </app-modal>
+  
