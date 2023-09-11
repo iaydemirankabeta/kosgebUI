@@ -71,14 +71,14 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../modules/wizards/wizards.module').then((m) => m.WizardsModule),
     data: { layout: 'light-header' },
-  },
+  },*/
   
   {
     path: 'apps/chat',
     loadChildren: () =>
       import('../modules/apps/chat/chat.module').then((m) => m.ChatModule),
-    data: { layout: 'light-sidebar' },
-  },*/
+    data: { layout: 'dark-sidebar' },
+  },
   {
     path: '',
     redirectTo: '/sirketler',

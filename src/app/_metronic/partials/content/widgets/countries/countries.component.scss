@@ -1,0 +1,39 @@
+/* Ülkelerin doldurulacak rengi */
+.world-map path {
+    fill: lightblue;
+  }
+  
+  /* Ülkelerin kenar çizgileri */
+  .world-map path {
+    stroke: white;
+    stroke-width: 1;
+  }
+  
+  /* Seçili ülkelerin rengi (örneğin, seçildiğinde kırmızı) */
+  .world-map path.selected {
+    fill: red;
+  }
+  
+  /* Hover (üzerine gelindiğinde) rengi */
+  .world-map path:hover {
+    fill: orange;
+    stroke: yellow;
+  }
+
+  /* countries.component.scss */
+
+/* SVG'nin arka plan rengini ayarla */
+svg {
+    background-color: #fff; /* Beyaz bir arka plan rengi */
+  }
+  
+  .world-map {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .country {
+    fill: lightblue;
+    stroke: white;
+    stroke-width: 0.5;
+  }

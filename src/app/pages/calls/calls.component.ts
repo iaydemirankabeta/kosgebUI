@@ -63,9 +63,12 @@ url:[
     this.modalConfig ={
       modalTitle : ''+this.tabs[index].label+'',
     } 
-    
     this.activeTabIndex = index;
-    
+  }
+  currentView = 'grid';
+
+  toggleView(view: string) {
+    this.currentView = view;
   }
   
 }

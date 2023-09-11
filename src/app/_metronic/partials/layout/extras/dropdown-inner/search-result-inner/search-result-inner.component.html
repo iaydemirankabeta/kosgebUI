@@ -63,12 +63,12 @@ class="menu menu-sub menu-sub-dropdown p-7 w-450px w-md-450px">
     <div class="scroll-y mh-200px mh-lg-325px">
       <!--begin::Category title-->
       <h3 class="fs-5 text-muted m-0 pb-5" data-kt-search-element="category-title">
-        Genel
+        Genel Arama
       </h3>
       <!--end::Category title-->
 
       <!--begin::Item-->
-      <a href="/arama" *ngFor="let item of filteredResults" class="d-flex text-dark text-hover-primary align-items-center mb-5">
+      <a routerLink="/arama" *ngFor="let item of filteredResults" class="d-flex text-dark text-hover-primary align-items-center mb-5">
         <!--begin::Symbol-->
         <div class="symbol symbol-40px me-4">
           <img src="{{ item.image }}" alt=""/>
@@ -99,7 +99,7 @@ class="menu menu-sub menu-sub-dropdown p-7 w-450px w-md-450px">
       <!--end::Category title-->
 
       <!--begin::Item-->
-      <a href="/arama" *ngFor="let item of recentlySearchedModels" class="d-flex text-dark text-hover-primary align-items-center mb-5">
+      <a routerLink="/arama" *ngFor="let item of recentlySearchedModels" class="d-flex text-dark text-hover-primary align-items-center mb-5">
         <!--begin::Symbol-->
         <div class="symbol symbol-40px me-4">
           <img *ngIf="item.image" src="{{ item.image }}" alt=""/>

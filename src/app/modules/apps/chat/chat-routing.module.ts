@@ -11,7 +11,7 @@ const routes: Routes = [
     component: ChatComponent,
     children: [
       {
-        path: 'private-chat',
+        path: 'mesajlar',
         component: PrivateChatComponent,
       },
       {
@@ -23,8 +23,8 @@ const routes: Routes = [
         component: DrawerChatComponent,
       },
 
-      { path: '', redirectTo: 'private-chat', pathMatch: 'full' },
-      { path: '**', redirectTo: 'private-chat', pathMatch: 'full' },
+      { path: '', redirectTo: 'mesajlar', pathMatch: 'full' },
+      { path: '**', redirectTo: 'mesajlar', pathMatch: 'full' },
     ],
   },
 ];

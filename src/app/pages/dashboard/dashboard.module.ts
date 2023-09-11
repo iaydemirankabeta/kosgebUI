@@ -4,9 +4,10 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { ModalsModule, WidgetsModule } from '../../_metronic/partials';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { CountriesComponent } from 'src/app/_metronic/partials/content/widgets/countries/countries.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent,CountriesComponent],
   imports: [
     CommonModule,
     NgApexchartsModule,

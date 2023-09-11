@@ -67,5 +67,11 @@ url:[
     this.activeTabIndex = index;
     
   }
+
+  currentView = 'grid';
+
+  toggleView(view: string) {
+    this.currentView = view;
+  }
   
 }
