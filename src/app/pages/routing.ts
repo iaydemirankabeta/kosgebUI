@@ -37,6 +37,30 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
+    path: 'kobi-cozumleri',
+    loadChildren: () =>
+      import('./kobi-cozumleri/kobi-cozumleri.module').then((m) => m.KobiCozumleriModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'conversations',
+    loadChildren: () =>
+      import('./conversations/conversations.module').then((m) => m.ConversationsModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'submitted-offers',
+    loadChildren: () =>
+      import('./submitted-offers/submitted-offers.module').then((m) => m.SubmittedOffersModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'submitted-offers',
+    loadChildren: () =>
+      import('./submitted-offers/submitted-offers.module').then((m) => m.SubmittedOffersModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
     path: 'apply-calls',
     loadChildren: () =>
       import('./apply-calls/apply-calls.module').then((m) => m.ApplyCallsModule),

@@ -1,0 +1,64 @@
+.title-sector{
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: #27ae60;
+    width: auto !important;
+    color: white;
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    max-width: 150px;
+}
+
+.tags{
+    color:#1abc9c;
+    margin: 5px 0;
+}
+.btn.btn-dark{
+    margin-bottom:10px;
+}
+.btn.btn-dark:hover:not(.btn-active){
+    background-color: #50cd89 !important;
+    
+}
+.list-group-item{
+    font-size: 12px;
+}
+.modal-content{
+    min-width: 720px !important;
+    max-width: 100%;
+    width: 100%;
+}
+.btn.btn-list{
+    width: 22%;
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+}
+.card-body.card-body-list{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    align-items: center;
+}
+.country-name{
+    font-size: 16px;
+    font-weight: bold;
+}
+.list-div{
+    display: flex;
+    width: 60px;
+    justify-content: space-between;
+}
+.fa-big{
+    font-size: 18px;
+}
+.card-header-list{
+    min-height: 20px;
+}
+.filter{
+    width: 30% !important;
+}
+.btn.btn-margin{
+    margin-right: 8px;
+}
