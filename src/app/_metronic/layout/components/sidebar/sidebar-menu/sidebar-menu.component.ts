@@ -37,6 +37,9 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
     { title: 'Görüşmelerim', icon: 'element-7', routerLink: '/conversations',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
     { title: 'Başvuruya Açık Çağrılar', icon: 'element-1', routerLink: '/apply-calls',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
+    { title: 'Arama', icon: 'element-11', routerLink: '/arama',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
+    { title: 'Mesajlar', icon: 'element-11', routerLink: '/apps/chat',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
+    
     { title: 'Başvuru Yapılan Çağrılar', icon: 'element-7', routerLink: '/submitted-offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:true,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
     { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI,CompanyTypes.KOSGEB],shown:true },
     {
@@ -65,6 +68,7 @@ export class SidebarMenuComponent implements OnInit {
       ],
       shown:true
     },
+    
 
   {
     title: 'Raporlar', icon: '', routerLink: 'crafted/widgets',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:true,

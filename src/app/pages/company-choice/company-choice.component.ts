@@ -12,10 +12,8 @@ export class CompanyChoiceComponent {
   myCompanies : UserCompany[] = [];
   user: UserModel | undefined;
   constructor(private dataService: DataService,private auth:AuthService,private router: Router){
-    console.log( auth.currentUserValue)
 
     this.myCompanies = auth.currentUserValue?.userCompanies || [];
-    console.log( auth.currentUserValue?.userCompanies, this.myCompanies )
     this.user = auth.currentUserValue;
 
   }

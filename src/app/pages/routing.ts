@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-
+import { ListsComponent } from '../modules/widgets-examples/lists/lists.component';
 import { CompanyChoiceComponent } from './company-choice/company-choice.component';
 import { ReportsComponent } from './reports/reports.component';
 import { RoleGroupsComponent } from './role-groups/role-groups.component';
@@ -71,13 +71,7 @@ const Routing: Routes = [
     loadChildren: () =>
       import('./create-call/create-call.module').then((m) => m.createcallmodule),
       data:{layout:'dark-sidebar'}
-  },
-  /*{
-    path: 'builder',
-    loadChildren: () =>
-      import('./builder/builder.module').then((m) => m.BuilderModule),
-  },*/
-  
+  },  
   {
     path: 'crafted/account',
     loadChildren: () =>
@@ -85,6 +79,10 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' },
   },
   {
+    path: 'arama',
+    component: ListsComponent,
+    data: {layout:'dark-sidebar'}
+  },
     path:'rol-gruplari',
     loadChildren: () =>
     import('../pages/role-groups/role-groups.module').then(
@@ -105,18 +103,19 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../modules/wizards/wizards.module').then((m) => m.WizardsModule),
     data: { layout: 'light-header' },
-  },
+  },*/
   
   {
     path: 'apps/chat',
     loadChildren: () =>
       import('../modules/apps/chat/chat.module').then((m) => m.ChatModule),
-    data: { layout: 'light-sidebar' },
-  },*/
+    data: { layout: 'dark-sidebar' },
+  },
   {
     path: '',
     redirectTo: '/sirketler',
     pathMatch: 'full',
+    data:{layout:'empty'}
   },
   {
     path: 'sirketler',
@@ -125,7 +124,6 @@ const Routing: Routes = [
     data:{layout:'empty'}
   },
  
-  { path: 'raporlar', component: ReportsComponent },
   {
     path: '**',
     redirectTo: 'error/404',

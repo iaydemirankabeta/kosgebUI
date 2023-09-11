@@ -9,17 +9,19 @@ import { MixedComponent } from './mixed/mixed.component';
 import { TablesComponent } from './tables/tables.component';
 import { FeedsComponent } from './feeds/feeds.component';
 import { WidgetsModule } from '../../_metronic/partials';
+import { ExtrasModule } from "../../_metronic/partials/layout/extras/extras.module";
+import { SharedModule } from "../../_metronic/shared/shared.module";
 
 @NgModule({
-  declarations: [
-    WidgetsExamplesComponent,
-    ListsComponent,
-    StatisticsComponent,
-    ChartsComponent,
-    MixedComponent,
-    TablesComponent,
-    FeedsComponent,
-  ],
-  imports: [CommonModule, WidgetsExamplesRoutingModule, WidgetsModule],
+    declarations: [
+        WidgetsExamplesComponent,
+        ListsComponent,
+        StatisticsComponent,
+        ChartsComponent,
+        MixedComponent,
+        TablesComponent,
+        FeedsComponent,
+    ],
+    imports: [CommonModule, WidgetsExamplesRoutingModule, WidgetsModule, ExtrasModule, SharedModule]
 })
 export class WidgetsExamplesModule {}
