@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { HighchartsChartModule } from 'highcharts-angular';
+
 // Advanced Tables
 import { AdvanceTablesWidget1Component } from './advance-tables/advance-tables-widget1/advance-tables-widget1.component';
 import { AdvanceTablesWidget2Component } from './advance-tables/advance-tables-widget2/advance-tables-widget2.component';
@@ -86,8 +88,11 @@ import { NewChartsWidget8Component } from './_new/charts/new-charts-widget8/new-
 import { CardsWidget18Component } from './_new/cards/cards-widget18/cards-widget18.component';
 import { SharedModule } from "../../../shared/shared.module";
 
+import { CountriesComponent } from './countries/countries.component';
+
 @NgModule({
   declarations: [
+    CountriesComponent,
     // Advanced Tables
     AdvanceTablesWidget1Component,
     AdvanceTablesWidget2Component,
@@ -170,6 +175,7 @@ import { SharedModule } from "../../../shared/shared.module";
   ],
   imports: [
     CommonModule,
+    HighchartsChartModule,
     DropdownMenusModule,
     InlineSVGModule,
     NgApexchartsModule,
