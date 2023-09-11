@@ -7,11 +7,12 @@ import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { registerLocaleData } from '@angular/common';
 import localeTr from '@angular/common/locales/tr';
+import { ModalsModule } from 'src/app/_metronic/partials';
 
 registerLocaleData(localeTr);
 
@@ -24,6 +25,8 @@ registerLocaleData(localeTr);
     FormsModule,
     NgbModalModule,
     FlatpickrModule.forRoot(),
+    ModalsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
           path: '',

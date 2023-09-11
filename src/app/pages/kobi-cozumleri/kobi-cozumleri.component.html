@@ -47,7 +47,7 @@
                     <p class="tags">{{item.tags}}</p>
                 </div>
                 <div>
-                    <button class="btn btn-primary">Teklif İste</button>
+                    <button class="btn btn-primary" (click)="openOfferModal()">Teklif İste</button>
                 </div>
             </div>
             <div class="card-footer d-flex flex-row justify-content-between">
@@ -92,13 +92,38 @@
         </div>
         </div>
       </app-modal>
-      <div *ngIf="showOfferModal" class="modal fade">
+      <app-modal #offermodal [modalConfig]="modalOfferConfig" aria-modal="true">
         <div class="container">
-          <div class="row">
-          
-          </div>
-          <div class="col-md-8">
-          </div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
+            <div class="mt-3">
+                <label>Firma Yetkilisi</label>
+                <input name="firmAuthority" class="form-control" [ngClass] = "form.get('firmAuthority')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="firmAuthority"/>
+            </div>
+            <div class="mt-3">
+                <label>Teklif Başlığı</label>
+                <input name="offerTitle" class="form-control" [ngClass] = "form.get('offerTitle')?.invalid ? 'border-danger' : 'border-primary'" type="text"  value="" formControlName="offerTitle"/>
+            </div>
+            <div class="mt-3">
+                <label>Açıklama</label>
+                <textarea name="offerDescription" class="form-control" [ngClass] = "form.get('offerDescription')?.invalid ? 'border-danger' : 'border-primary'" tabindex="2" value="" formControlName="offerDescription"></textarea>
+            </div>
+            <div class="mt-3">
+                <label>Öngörülen Görüşme Tarihi</label>
+                <input name="offerDate"  class="form-control" [ngClass] = "form.get('offerDate')?.invalid ? 'border-danger' : 'border-primary'" type="date" formControlName="offerDate"/>
+            </div>
+            <div *ngIf="isEnabledError">
+                <p class="error-message mt-3" style="text-align: right;font-size: 14px;">Lütfen Tüm Alanları Doldurun</p>
+               
+               </div>
+               <button class="btn btn-primary flex-grow-1 mt-3" style="float:right">Teklif İste</button>
+            </form>
         </div>
-    </div>
+      </app-modal>
+      <app-modal #success [modalConfig]="modalConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <i class="fa-solid fa-check call-tick"></i>
+          <h3>Tebrikler</h3>
+          <p>Teklif İsteğiniz Oluşturuldu</p>
+        </div>
+      </app-modal>
 </ng-container>

@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 
 @Component({
@@ -52,14 +53,45 @@ url:[
   };
   modalOfferConfig: ModalConfig = {
     modalTitle: "Teklif İste",
-    closeButtonLabel:'Teklif İste'
-
+    closeButtonLabel:'Teklif İste',
+    hideCloseButton:() => true
   };
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('offermodal') private modalOfferComponent: ModalComponent;
-
+  @ViewChild('success') private modalSuccessComponent: ModalComponent;
+  form: FormGroup;
   targetValue:number;
+  isEnabledError:boolean = false;
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      firmAuthority: ['', Validators.required],
+      offerTitle: ['', Validators.required],
+      offerDescription: ['', Validators.required],
+      offerDate: ['', Validators.required],
+    });
+  }
+  onSubmit() {
+    console.log(this.form.invalid,this.form.value)
+    if (this.form.valid) {
+      // Form gönderme işlemini burada gerçekleştir
+      const formData = new FormData();
   
+      formData.append('firmAuthority', this.form.value.firmAuthority);
+      formData.append('offerTitle', this.form.value.offerTitle);
+      formData.append('offerDescription', this.form.value.offerDescription);
+      formData.append('offerDate', this.form.value.offerDate);
+
+      this.isEnabledError=false;
+      this.modalOfferComponent.close(); 
+      this.form.reset();     
+      this.openSuccessModal()
+      // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
+      // Örnek: this.myApiService.submitFormData(formData).subscribe(response => { ... });
+    } else {
+      // Form hatalı, kullanıcıya mesaj göster
+      this.isEnabledError = true;
+    }
+  }
   async openModal(event:any) {
     this.targetValue = event ;  
     this.showTabContent(this.targetValue);
@@ -67,8 +99,13 @@ url:[
     
   }
 
-  async openOfferModal() {
-    this.showOfferModal = true
+  openSuccessModal(){
+    this.modalSuccessComponent.open();
+    return true;
+  }
+
+   openOfferModal() {
+    this.modalOfferComponent.open();
   }
 
 
