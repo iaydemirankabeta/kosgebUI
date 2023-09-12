@@ -6,13 +6,11 @@
   
   <div class="col-md-12 col-xs-12  ">
     <div class="row">
-      <div class="col-md-12 col-xs-12">
-
-      </div>
       <div class="col-md-6 col-xs-12">
         <app-cards-widget17 cssClass="h-md-35 mb-5 mb-xl-10"></app-cards-widget17>
       </div>
-      <div class="col-md-6 col-xs-12"> 
+      
+      <div class="col-md-6 col-xs-12">
         <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
           <div class="card-header">
             <h5 class="card card-title">Faliyet Gösterilen Sektör</h5>
@@ -24,6 +22,24 @@
             <p> {{selectedCompany && selectedCompany.sectorInfo}}</p>
           </div>
         </div>
+      </div>
+      <div class="col-md-12 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">İhrac Edilen Ülkeler</h5>
+          </div>
+          <div class="card-body">
+            <app-countries></app-countries>
+
+              <p>Ülkeler: </p>
+              <ul>
+                  <li>Amerika</li>
+                  <li>Çin</li>
+                  <li>Rusya</li>
+                  <li>Fransa</li>
+              </ul>
+          </div>
+         </div>
       </div>
       <div class="col-md-6 col-xs-12">
         <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
@@ -85,7 +101,20 @@
           </div>
         </div>
       </div>
-
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+              <h5 class="card card-title">Gelir Tablosu</h5>
+          </div>
+          <div class="card-body">
+              <p>VKN: 15747324657</p>
+              <p>Unvan: Yönetici</p>
+              <p>Yıl: 2023</p>
+              <hr />
+              <p style="color:yellowgreen;">Dönem Karı veya Zararı:</p>
+          </div>
+      </div>
+      </div>
       <div class="col-md-6 col-xs-12">
         <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
           <div class="card-header">
@@ -145,22 +174,7 @@
           </div>
       </div>
       </div>
-      <div class="col-md-6 col-xs-12">
-        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
-          <div class="card-header">
-              <h5 class="card card-title">İhrac Edilen Ülkeler</h5>
-          </div>
-          <div class="card-body">
-              <p>Ülkeler: </p>
-              <ul>
-                  <li>Türkiye</li>
-                  <li>Amerika</li>
-                  <li>Kanada</li>
-                  <li>Almanya</li>
-              </ul>
-          </div>
-      </div>
-      </div>
+      
       <div class="col-md-6 col-xs-12">
         <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
           <div class="card-header">

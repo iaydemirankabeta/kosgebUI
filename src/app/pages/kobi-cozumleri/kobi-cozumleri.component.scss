@@ -56,3 +56,16 @@
 .card-header-list{
     min-height: 20px;
 }
+.toggle-btn {
+    border: none;
+    background-color: transparent;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+.toggle-btn.active {
+    background-color: #3498db;
+    color: white;
+  }
+  .toggle-btn.active i{color: white;}

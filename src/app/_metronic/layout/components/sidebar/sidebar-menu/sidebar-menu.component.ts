@@ -31,7 +31,7 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Anasayfa', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
     { title: 'Kobiler', icon: 'element-2', routerLink: '/kobi',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
     { title: 'Kobi Çözümleri', icon: 'element-6', routerLink: '/kobi-cozumleri',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
-    { title: 'Başvuru Yapılan Çağrılar', icon: 'element-6', routerLink: '/submitted-offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
+    { title: 'Tekliflerim', icon: 'element-6', routerLink: '/submitted-offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
 
     { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true  },
     { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },

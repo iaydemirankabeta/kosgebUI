@@ -88,11 +88,9 @@ import { NewChartsWidget8Component } from './_new/charts/new-charts-widget8/new-
 import { CardsWidget18Component } from './_new/cards/cards-widget18/cards-widget18.component';
 import { SharedModule } from "../../../shared/shared.module";
 
-import { CountriesComponent } from './countries/countries.component';
 
 @NgModule({
   declarations: [
-    CountriesComponent,
     // Advanced Tables
     AdvanceTablesWidget1Component,
     AdvanceTablesWidget2Component,

@@ -1,10 +1,11 @@
+
 <ng-container >
     <div class="d-flex justify-content-end mb-4 ">
         <div class="justify-content-between list-div bg-white">
-            <div class="d-inline p-2" [ngClass]="isList ? 'bg-success' : 'bg-white'">
+            <div class="d-inline p-2 toggle-btn" [ngClass]="isList ? 'active' : 'bg-white'">
                 <i class="fa-solid fa-list fa-big"  (click)="listOrCard(true)"></i>
             </div>
-            <div class="d-inline p-2" [ngClass]="!isList ? 'bg-success' : 'bg-white'">
+            <div class="d-inline p-2 toggle-btn" [ngClass]="!isList ? 'active' : 'bg-white'">
                 <i class="fa-solid fa-table-cells-large fa-big"  (click)="listOrCard(false)"></i>
             </div>
         </div>

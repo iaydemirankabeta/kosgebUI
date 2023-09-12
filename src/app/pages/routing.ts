@@ -83,6 +83,7 @@ const Routing: Routes = [
     component: ListsComponent,
     data: {layout:'dark-sidebar'}
   },
+  {
     path:'rol-gruplari',
     loadChildren: () =>
     import('../pages/role-groups/role-groups.module').then(
