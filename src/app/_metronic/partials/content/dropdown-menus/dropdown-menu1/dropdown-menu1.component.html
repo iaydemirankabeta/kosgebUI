@@ -1,12 +1,12 @@
-<div class="px-7 py-5">
-  <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-</div>
+<!--<div class="px-7 py-5">
+  <div class="fs-5 text-dark fw-bolder">Güncelle</div>
+</div>-->
 
 <div class="separator border-gray-200"></div>
 
 <div class="px-7 py-5">
   <div class="mb-10">
-    <label class="form-label fw-bold">Status:</label>
+    <label class="form-label fw-bold">Statü</label>
 
     <div>
       <select
@@ -16,16 +16,17 @@
         data-allow-clear="true"
       >
         <option></option>
-        <option selected value="1">Approved</option>
-        <option value="2">Pending</option>
-        <option value="3">In Process</option>
-        <option value="4">Rejected</option>
+        <option selected value="1">Teklif Sürecinde</option>
+        <option value="2">Değerlendirme Aşamasında</option>
+        <option value="3">Onaylandı</option>
+        <option value="4">Teklif İptal Edildi</option>
+        <option value="4">Teklif Kapandı</option>
       </select>
     </div>
   </div>
 
-  <div class="mb-10">
-    <label class="form-label fw-bold">Member Type:</label>
+ <!-- <div class="mb-10">
+    <label class="form-label fw-bold">Member Type</label>
 
     <div class="d-flex">
       <label
@@ -47,10 +48,10 @@
         <span class="form-check-label">Customer</span>
       </label>
     </div>
-  </div>
+  </div>-->
 
   <div class="mb-10">
-    <label class="form-label fw-bold">Notifications:</label>
+    <label class="form-label fw-bold">Durum</label>
 
     <div
       class="
@@ -63,26 +64,36 @@
         value=""
         name="notifications"
         defaultChecked="{true}"
+        checked="checked"
       />
-      <label class="form-check-label">Enabled</label>
+      <label class="form-check-label">Pasif/Aktif</label>
     </div>
   </div>
+  
 
   <div class="d-flex justify-content-end">
     <button
+      type="submit"
+      class="btn btn-sm btn-primary me-2"
+      data-kt-menu-dismiss="true"
+    >
+      Güncelle
+    </button>
+   <!-- <button
       type="reset"
       class="btn btn-sm btn-light btn-active-light-primary me-2"
       data-kt-menu-dismiss="true"
     >
-      Reset
-    </button>
-
+      Sıfırla
+    </button>-->
     <button
-      type="submit"
-      class="btn btn-sm btn-primary"
+      type="reset"
+      class="btn btn-sm btn-danger btn-active-light-primary "
       data-kt-menu-dismiss="true"
     >
-      Apply
+    Çağrıyı Sil
     </button>
+
+    
   </div>
 </div>

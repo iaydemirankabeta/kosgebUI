@@ -9,6 +9,7 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 export class CallsComponent {
   trigClick = [
     {id:1, title:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
+    totalOffer:'50',offer:'22',
     badget:'Enerji ',badgetColor:'#27ae60',tags:'#ActiveNoiceCanelling #ANC #GürültüEngelleme #GürültüKontrolü',
     url:[
       {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
@@ -17,7 +18,9 @@ export class CallsComponent {
       {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
     ]
   },
-  {id:2, title:'Kozmetik Teknoloji Çözümler',badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
+  {id:2, title:'Kozmetik Teknoloji Çözümler',
+  totalOffer:'70',offer:'56',
+  badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
   url:[
     {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
     {name:'Teknoloji Tedarikçisinden Beklentisi'},
@@ -25,7 +28,9 @@ export class CallsComponent {
     {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
   ]
 },
-{id:3, title:'Tekstil Ürün İthalatı',badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
+{id:3, title:'Tekstil Ürün İthalatı',
+totalOffer:'40',offer:'7',
+badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
 url:[
   {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
   {name:'Teknoloji Tedarikçisinden Beklentisi'},
