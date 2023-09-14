@@ -7,9 +7,12 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
   styleUrls: ['./calls.component.scss']
 })
 export class CallsComponent {
+  
+  isBoolean: boolean = true; // Varsayılan değeri true olarak ayarlayabilirsiniz
+
   trigClick = [
     {id:1, title:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
-    totalOffer:'50',offer:'22',
+    totalOffer:'50',offer:'22',isBoolean:'true',
     badget:'Enerji ',badgetColor:'#27ae60',tags:'#ActiveNoiceCanelling #ANC #GürültüEngelleme #GürültüKontrolü',
     url:[
       {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
@@ -19,7 +22,7 @@ export class CallsComponent {
     ]
   },
   {id:2, title:'Kozmetik Teknoloji Çözümler',
-  totalOffer:'70',offer:'56',
+  totalOffer:'70',offer:'56',isBoolean:'false',
   badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
   url:[
     {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
@@ -29,7 +32,7 @@ export class CallsComponent {
   ]
 },
 {id:3, title:'Tekstil Ürün İthalatı',
-totalOffer:'40',offer:'7',
+totalOffer:'40',offer:'7',isBoolean:'false',
 badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
 url:[
   {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
@@ -45,6 +48,7 @@ url:[
     { id: '3', label: 'Aradığı Teknoloji Tedarikçisi Özellikleri', content: 'Üçüncü sekme içeriği burada yer alacak.' },
     { id: '4', label: 'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri', content: 'Dördüncü sekme içeriği burada yer alacak.' }
   ];
+  
 
   activeTabIndex = 0;
   modalTitle = '';

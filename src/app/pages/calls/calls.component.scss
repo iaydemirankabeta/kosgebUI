@@ -52,3 +52,10 @@
     color: white;
   }
   .toggle-btn.active i{color: white;}
+
+
+  @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
