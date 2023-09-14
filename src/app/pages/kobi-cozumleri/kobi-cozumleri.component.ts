@@ -52,8 +52,8 @@ url:[
 
   };
   modalOfferConfig: ModalConfig = {
-    modalTitle: "Teklif İste",
-    closeButtonLabel:'Teklif İste',
+    modalTitle: "Görüşme Talebi",
+    closeButtonLabel:'Gönder',
     hideCloseButton:() => true
   };
   @ViewChild('modal') private modalComponent: ModalComponent;
