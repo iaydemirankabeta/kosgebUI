@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ModalsModule, WidgetsModule } from '../../_metronic/partials';
 import { SharedModule } from "../../_metronic/shared/shared.module";
-
+import { CallsComponent } from '../calls/calls.component';
 
 @NgModule({
     declarations: [CreateCallComponent ],
@@ -18,10 +18,14 @@ import { SharedModule } from "../../_metronic/shared/shared.module";
                 path: '',
                 component: CreateCallComponent,
             },
+            { path: ':itemId', component: CreateCallComponent }
+
         ]),
         WidgetsModule,
         ModalsModule,
         SharedModule
-    ]
+    ],
+    providers: [CallsComponent], // Bağımlılıklar burada eklenir
+
 })
 export class createcallmodule{}

@@ -14,11 +14,13 @@
             <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
               <select class="form-select  mb-5 " aria-label="Select example" formControlName="sector">
                 <option value="" disabled selected>Sektör</option>
+                  <option *ngIf="result ? result.badget : 0">{{result ? result.badget : 0}}</option>
+
                 <option value="1">Gıda</option>
-                <option value="1">İnşaat</option>
-                <option value="1">Kozmetik</option>
-                <option value="1">Teknoloji</option>
-                <option value="1">Hububat (Tahıl)</option>
+                <option value="2">İnşaat</option>
+                <option value="3">Kozmetik</option>
+                <option value="4">Teknoloji</option>
+                <option value="5">Hububat (Tahıl)</option>
                 
               </select>
               <div *ngIf="form.get('sector')?.invalid && form.get('sector')?.touched" class="error-message">
@@ -34,7 +36,7 @@
                     class="form-control form-control-lg"
                     placeholder="Örn;cam, DC Motor"
                     name="keyword"
-                    value=""
+                    [value]="result ? result.tags : ''"
                     formControlName="keyword"
     />
     <div *ngIf="form.get('keyword')?.invalid && form.get('keyword')?.touched" class="error-message">
@@ -54,6 +56,7 @@
                     class="form-control form-control-lg"
                     placeholder="Konu Başlığı"
                     name="subject"
+                    [value]="result ? result.tags : ''"
                     formControlName="subject"
     />
     <div *ngIf="form.get('subject')?.invalid && form.get('subject')?.touched" class="error-message">
