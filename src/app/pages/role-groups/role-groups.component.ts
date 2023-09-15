@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 
 export interface roleValues{
@@ -21,7 +22,14 @@ export interface roleGroup{
 })
 export class RoleGroupsComponent {
 
+  constructor(private fb : FormBuilder){
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+    });
+  }
 
+  form:FormGroup
 
   kobi : roleValues[] = [
     {name:'Tüm Çağrıları Görüntüle',value:false},
@@ -233,11 +241,19 @@ export class RoleGroupsComponent {
 
   selectedRoleGroup:roleGroup = this.roles[0]
   modalConfig: ModalConfig = {
-    modalTitle: this.selectedRoleGroup.name + " Yetkilerini Düzenliyorsunuz",
+    modalTitle: this.selectedRoleGroup.name + " Rolünü Düzenliyorsunuz",
     closeButtonLabel:'Kapat'
 
   };
+  addUpdateModalConfig: ModalConfig = {
+    modalTitle: "Rol Grup Ekle/Düzenle",
+    closeButtonLabel:'Kapat',
+    hideCloseButton : () => true
+  };
   @ViewChild('modal') private modalComponent: ModalComponent;
+  @ViewChild('addUpdateModal') private addUpdateModalComponent:ModalComponent
+  @ViewChild('successModal') private successModal:ModalComponent;
+  isEnabledError:boolean = false;
   openModal(item:roleGroup){
     this.selectedRoleGroup = item;
     return this.modalComponent.open();
@@ -245,4 +261,39 @@ export class RoleGroupsComponent {
   closeModal(){
     return this.modalComponent.close();
   }
+  openAddUpdateModal(item:roleGroup | null = null){
+    if(item !== null){
+      this.selectedRoleGroup = item;
+      this.form = this.fb.group({
+        name: [item.name, Validators.required],
+        description: [item.description, Validators.required],
+      });
+    }
+    else{
+      this.form = this.fb.group({
+        name: ['', Validators.required],
+        description: ['', Validators.required],
+      });
+    }
+    this.addUpdateModalComponent.open();
+  }
+  onSubmit(){
+    if (this.form.valid) {
+      // Form gönderme işlemini burada gerçekleştir
+      const formData = new FormData();
+  
+      formData.append('name', this.form.value.name);
+      formData.append('description', this.form.value.description);
+
+      this.isEnabledError=false;
+      this.form.reset();      
+      this.addUpdateModalComponent.close();
+      return this.successModal.open();
+    } else {
+      // Form hatalı, kullanıcıya mesaj göster
+      this.isEnabledError = true;
+      
+    }
+  }
+
 }

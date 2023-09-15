@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RoleGroupsComponent } from './role-groups.component';
 import { ModalsModule } from 'src/app/_metronic/partials';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,6 +12,7 @@ import { RouterModule } from '@angular/router';
     RoleGroupsComponent
   ],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     RouterModule.forChild([
       {
