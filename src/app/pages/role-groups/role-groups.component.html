@@ -4,7 +4,7 @@
     <h3 class="card-title align-items-start flex-column ">
       <span class="card-label fw-bolder fs-3 mb-1">Rol Grupları</span>
     </h3>
-
+    <button class="btn btn-primary" (click)="openAddUpdateModal()" >Ekle</button>
       <!-- end::Menu -->
   </div>
   <!-- end::Header -->
@@ -22,8 +22,7 @@
             <th class="max-w-70px"><span class="font-weight-bolder">Oluşturan</span></th>
             <th class="max-w-70px"><span class="font-weight-bolder">Oluşturma Tarihi</span></th>
             <th class="max-w-40px"><span class="font-weight-bolder">Aktif Mi?</span></th>
-            <th class="max-w-40px"><span class="font-weight-bolder">Düzenle</span></th>
-            <th class="max-w-40px"><span class="font-weight-bolder">Sil</span></th>
+            <th class="max-w-40px"><span class="font-weight-bolder">Aksiyon</span></th>
           </tr>
         </thead>
         <!-- end::Table head -->
@@ -61,10 +60,9 @@
               </span>
               </td>
               <td class=" ">
-                <button class="btn btn-success" (click)="openModal(item)">Düzenle</button>
-              </td>
-              <td class=" ">
-                <button class="btn btn-danger">Sil</button>
+                <button class="btn btn-info" (click)="openModal(item)">Yetkiler</button>
+                <button class="btn btn-success btn-margin-left" (click)="openAddUpdateModal(item)">Düzenle</button>
+                <button class="btn btn-danger btn-margin-left">Sil</button>
               </td>
           </tr>
          
@@ -83,6 +81,30 @@
                 <input class="checkbox-label" type="checkbox" [checked]="role.value">
                 <span>{{role.name}}</span>
           </div>
+        </div>
+      </app-modal>
+
+      <app-modal #addUpdateModal [modalConfig]="addUpdateModalConfig" aria-modal="true">
+        <div class="container">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
+          <div class="mt-3">
+              <label>İsim</label>
+              <input name="name" class="form-control" [ngClass] = "form.get('name')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="name"/>
+          </div>
+          <div class="mt-3">
+              <label>Açıklama</label>
+              <textarea name="description" class="form-control" [ngClass] = "form.get('description')?.invalid ? 'border-danger' : 'border-primary'" tabindex="2" value="" formControlName="description"></textarea>
+          </div>
+             <button class="btn btn-primary flex-grow-1 mt-3" style="float:right">Gönder</button>
+          </form>
+      </div>
+      </app-modal>
+
+      <app-modal #successModal [modalConfig]="modalConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <i class="fa-solid fa-check call-tick"></i>
+          <h3>Tebrikler</h3>
+          <p>Rol Oluşturuldu.</p>
         </div>
       </app-modal>
   
