@@ -5,12 +5,11 @@ export interface ConversationElement {
   id:string,
   firm: string;
   firmAuthority: string;
-
+  solutionName:string;
 }
 const ELEMENT_DATA: ConversationElement[] = [
-  {id:"X Çağrısı",firm:"X şirketi", firmAuthority:"Tufan Yazıcı"},
-  {id:"Y Çağrısı",firm:"Y şirketi", firmAuthority:"Gizem Turanlı"},
-  {id:"Z Çağrısı",firm:"Z şirketi", firmAuthority:"Onur Yaşar"},
+  {id:"X Çağrısı",firm:"X şirketi", firmAuthority:"Tufan Yazıcı",solutionName:"Gürültü Engelleyici Malzeme Tedariği"},
+  {id:"Y Çağrısı",firm:"Y şirketi", firmAuthority:"Gizem Turanlı",solutionName:"Kozmetik Ürünlerin Tedariği"},
 ];
 
 @Component({
@@ -19,37 +18,22 @@ const ELEMENT_DATA: ConversationElement[] = [
   styleUrls: ['./submitted-offers.component.scss']
 })
 export class SubmittedOffersComponent {
-  displayedColumns: string[] = ['Cagri', 'GorusulecekFirma', 'GorusulecekFirmaYetkilisi',"Aksiyon"];
+  displayedColumns: string[] = ['TeklifId', 'CagrıAdi', 'FirmaAdi',"TeklifTarihi","TeklifStatusu"];
+  displayedColumns2: string[] = ['CozumId', 'CozumAdi', 'FirmaAdi',"FirmaYetkilisi","YetkiliAjandasi"];
   dataSource = ELEMENT_DATA;
   data = [
-    {id:1, title:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
-    badget:'Enerji ',badgetColor:'#27ae60',tags:'#ActiveNoiceCanelling #ANC #GürültüEngelleme #GürültüKontrolü',
-    url:[
-      {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-      {name:'Teknoloji Tedarikçisinden Beklentisi'},
-      {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-      {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-    ],
+    {id:1, callName:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
+    firmName:'X Firması ', offerDate:'23.09.2023',
     status:"Açık"
   },
-  {id:2, title:'Kozmetik Teknoloji Çözümler',badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
-  url:[
-    {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-    {name:'Teknoloji Tedarikçisinden Beklentisi'},
-    {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-    {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-  ],
-  status:"Teklif Sürecinde"
-  },
-  {id:3, title:'Tekstil Ürün İthalatı',badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
-  url:[
-  {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-  {name:'Teknoloji Tedarikçisinden Beklentisi'},
-  {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-  {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-  ],
-  status:"İptal Edildi"
-  }
+  {id:2, callName:'Kozmetik Teknoloji Çözümler',
+  firmName:'Y Firması ', offerDate:'27.09.2023',
+  status:"Değerlendirme Aşamasında"
+}, 
+{id:3, callName:'Tekstil Ürün İthalatı',
+firmName:'Z Firması ', offerDate:'24.09.2023',
+status:"Onaylandı"
+},
   ]
   trigClick = this.data;
   tabs = [
