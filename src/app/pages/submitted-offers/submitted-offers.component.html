@@ -9,33 +9,34 @@
             <!-- Position Column -->
             <ng-container matColumnDef="TeklifId">
               <th mat-header-cell *matHeaderCellDef> Çağrı </th>
-              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              <td mat-cell *matCellDef="let element" (click) = "element.status === 'Onaylandı' ? createMeeting(element) : null "> {{element.id}} </td>
             </ng-container>
           
             <!-- Name Column -->
             <ng-container matColumnDef="CagrıAdi">
               <th mat-header-cell *matHeaderCellDef> Çağrı Adı</th>
-              <td mat-cell *matCellDef="let element"> {{element.callName}} </td>
+              <td mat-cell *matCellDef="let element" (click) = "element.status === 'Onaylandı' ? createMeeting(element) : null "> {{element.callName}} </td>
             </ng-container>
             <ng-container matColumnDef="FirmaAdi">
               <th mat-header-cell *matHeaderCellDef> Firma Adı</th>
-              <td mat-cell *matCellDef="let element"> {{element.firmName}} </td>
+              <td mat-cell *matCellDef="let element" (click) = "element.status === 'Onaylandı' ? createMeeting(element) : null "> {{element.firmName}} </td>
             </ng-container>
             <!-- Weight Column -->
           
             <!-- Symbol Column -->
             <ng-container matColumnDef="TeklifTarihi">
               <th mat-header-cell *matHeaderCellDef> Teklif Tarihi </th>
-              <td mat-cell *matCellDef="let element"> {{element.offerDate}} </td>
+              <td mat-cell *matCellDef="let element" (click) = "element.status === 'Onaylandı' ? createMeeting(element) : null "> {{element.offerDate}} </td>
             </ng-container>
             <ng-container matColumnDef="TeklifStatusu">
                 <th mat-header-cell *matHeaderCellDef> Teklif Statüsü </th>
-                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                <td mat-cell *matCellDef="let element" (click) = "element.status === 'Onaylandı' ? createMeeting(element) : null "> {{element.status}} </td>
               </ng-container>
           
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
+          <h5 class="mt-4">! Statüsü "onaylandı" durumunda olan tekliflerin içinden toplantı oluşturabilirsiniz.</h5>
     </mat-tab>
         <mat-tab label="Görüşme Taleplerim">
           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -80,5 +81,37 @@
         <div class="col-xs-12 text-center">
           <p>Teklif Talebini Kabul Ettiniz. Teklif talebini B2B zekası modülü, Görüşmelerim sekmesinden görüntüleyebilirsiniz!</p>
         </div>
+      </app-modal>
+      <app-modal #meetingModal [modalConfig]="modalCreateMeetingConfig" aria-modal="true">
+        <div class="container row" >
+          <div class="col-12">
+            <div class="mt-4">
+              <h4 class="mt-4">Büyük İşletme Bilgisi</h4>
+              <div class="form-control mt-4 ">
+                <h5 class="mt-4">Isuzu</h5>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe assumenda autem deserunt adipisci sunt? Eveniet dolores neque saepe velit totam numquam possimus, doloremque distinctio, perspiciatis est voluptates ab quasi consectetur.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 mt-4">
+            <h4 class="mt-4">Çağrı</h4>
+            <h5 class="form-control mt-4">{{selectedOffer.callName}}</h5>
+
+            <h4 class="mt-4">Çağrı Detayı</h4>
+            <p class="form-control mt-4">{{selectedOffer.callName}} hakkında detaylı bilgi</p>
+          </div>
+          <div  class="col-6 mt-4">
+            <h4 class="mt-4">Firma Yetkilisi</h4>
+            <h6 class="form-control mt-4">Gizem Turanlı</h6>
+            <h4 class="mt-4">Teklif Başlığı</h4>
+            <h6 class="form-control mt-4">Teklif Başlığı</h6>
+          </div>
+
+          <div class="mt-4 d-flex justify-content-end">
+            <button class="btn btn-primary btn-margin" (click)="closeMeetingModal()">Toplantı Oluştur</button>
+            <button class="btn btn-danger" (click)="closeMeetingModal()" >Kapat</button>
+          </div>
+      </div>
       </app-modal>
 </ng-container>

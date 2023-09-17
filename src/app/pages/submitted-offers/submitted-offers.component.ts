@@ -68,13 +68,18 @@ status:"Onaylandı"
     modalTitle: "Teklif Talebi Detayı",
     closeButtonLabel:'Kapat'
   };
+  modalCreateMeetingConfig: ModalConfig = {
+    modalTitle : "Toplantı Oluştur",
+    hideCloseButton: () => true,
+    size:() => "lg"
+  }
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('detailmodal') private detailModalComponent: ModalComponent;
   @ViewChild('acceptmodal') private acceptModalComponent: ModalComponent;
-
+  @ViewChild('meetingModal') private meetingModal:ModalComponent
   
   targetValue:number;
-  
+  selectedOffer:any = this.data[2];
   async openModal(event:any) {
     this.targetValue = event ;  
     this.showTabContent(this.targetValue);
@@ -103,9 +108,18 @@ status:"Onaylandı"
     this.modalConfig ={
       modalTitle : ''+this.tabs[index].label+'',
     } 
-    
+
     this.activeTabIndex = index;
-    
   }
+
+  async createMeeting(item : any){
+    this.selectedOffer = item
+    this.meetingModal.open();
+  }
+
+  async closeMeetingModal(){
+    this.meetingModal.close();
+  }
+
 }
 
