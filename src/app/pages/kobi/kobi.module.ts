@@ -9,7 +9,7 @@ import { ModalsModule, WidgetsModule } from '../../_metronic/partials';
 import { SharedModule } from "../../_metronic/shared/shared.module";
 
 @NgModule({
-    declarations: [KobiComponent, FilterComponent],
+    declarations: [KobiComponent,FilterComponent],
     imports: [
         CommonModule,
         FormsModule,

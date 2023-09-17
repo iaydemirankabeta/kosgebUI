@@ -4,11 +4,15 @@ import { RouterModule } from '@angular/router';
 import { ApplyCallsComponent } from './apply-calls.component';
 import { ModalsModule, WidgetsModule } from '../../_metronic/partials';
 import { SharedModule } from "../../_metronic/shared/shared.module";
+import { FilterComponent } from './filter/filter.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [ApplyCallsComponent, ],
+    declarations: [ApplyCallsComponent,FilterComponent],
     imports: [
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -17,7 +21,7 @@ import { SharedModule } from "../../_metronic/shared/shared.module";
         ]),
         WidgetsModule,
         ModalsModule,
-        SharedModule
+        SharedModule,
     ]
 })
 export class ApplyCallsModule {}

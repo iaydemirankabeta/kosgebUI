@@ -21,6 +21,15 @@ fakeBusinesses: any = [
       group: true,
       users: false,
       pin: true,
+      call: {id:1, title:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
+      badget:'Enerji ',badgetColor:'#27ae60',tags:'#ActiveNoiceCanelling #ANC #GürültüEngelleme #GürültüKontrolü',
+      url:[
+        {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
+        {name:'Teknoloji Tedarikçisinden Beklentisi'},
+        {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
+        {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
+      ]
+    },
       companyInfo: [
         {
           name: "Hakkımızda",
@@ -50,6 +59,14 @@ fakeBusinesses: any = [
       group: false,
       users: true,
       pin: true,
+      cagri:{id:2, title:'Kozmetik Teknoloji Çözümler',badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
+      url:[
+        {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
+        {name:'Teknoloji Tedarikçisinden Beklentisi'},
+        {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
+        {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
+      ]
+    },
       companyInfo: [
         {
           name: "Hakkımızda",
@@ -79,6 +96,14 @@ fakeBusinesses: any = [
       group: false,
       users: false,
       pin: true,
+      call:{id:3, title:'Tekstil Ürün İthalatı',badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
+      url:[
+        {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
+        {name:'Teknoloji Tedarikçisinden Beklentisi'},
+        {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
+        {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
+      ]
+      },
       companyInfo: [
         {
           name: "Hakkımızda",
@@ -108,6 +133,14 @@ fakeBusinesses: any = [
       group: true,
       users: false,
       pin: true,
+      call:{id:4, title:'Yapay Zeka Yüz Tanıma Sistemi',badget:'Tekstil',badgetColor:'#c0392b',tags:'#yapayZeka,#product,#ithalat,#YuzTanima',
+      url:[
+        {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
+        {name:'Teknoloji Tedarikçisinden Beklentisi'},
+        {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
+        {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
+      ]
+      },
       companyInfo: [
         {
           name: "Hakkımızda",
@@ -137,6 +170,14 @@ fakeBusinesses: any = [
       group: false,
       users: false,
       pin: true,
+      call:{id:5, title:'Kozmetik Ürünleri Saklama Sistemi',badget:'Tekstil',badgetColor:'#c0392b',tags:'#kozmetik,#product,#ithalat,#ÜrünSaklama #Soğutma',
+url:[
+  {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
+  {name:'Teknoloji Tedarikçisinden Beklentisi'},
+  {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
+  {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
+]
+},
       companyInfo: [
         {
           name: "Hakkımızda",
@@ -253,6 +294,14 @@ fakeBusinesses: any = [
       group: false,
       users: false,
       pin: true,
+      call:{id:6, title:'CNC Makinesi Üretimi',badget:'İnşaat',badgetColor:'#c0392b',tags:'#inşaat,#product,#ithalat,#CNC',
+      url:[
+        {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
+        {name:'Teknoloji Tedarikçisinden Beklentisi'},
+        {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
+        {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
+      ]
+      },
       companyInfo: [
         {
           name: "Hakkımızda",

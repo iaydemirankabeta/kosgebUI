@@ -1,5 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DataService } from 'src/app/_fake/fake-data';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
+import { Company } from 'src/app/models/Company.model';
+import { AuthService, UserModel, UserType } from 'src/app/modules/auth';
+import { KobiService } from '../kobi/kobi.service';
+import { Business } from '../kobi/business.model';
+import { FilterService } from './filter/kobiFilter.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-apply-calls',
@@ -7,33 +15,23 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
   styleUrls: ['./apply-calls.component.scss']
 })
 export class ApplyCallsComponent {
-  trigClick = [
-    {id:1, title:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
-    badget:'Enerji ',badgetColor:'#27ae60',tags:'#ActiveNoiceCanelling #ANC #GürültüEngelleme #GürültüKontrolü',
-    url:[
-      {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-      {name:'Teknoloji Tedarikçisinden Beklentisi'},
-      {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-      {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-    ]
-  },
-  {id:2, title:'Kozmetik Teknoloji Çözümler',badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
-  url:[
-    {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-    {name:'Teknoloji Tedarikçisinden Beklentisi'},
-    {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-    {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-  ]
-},
-{id:3, title:'Tekstil Ürün İthalatı',badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
-url:[
-  {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-  {name:'Teknoloji Tedarikçisinden Beklentisi'},
-  {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-  {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-]
-}
-  ]
+  filterOptions: any[];
+  form: FormGroup;
+  selectedCompany:Company | null = null
+  user$: Observable<UserType>;
+  trigClick : Business[]
+  filters: any[] ;
+  selectedFilters: { [key: number]: any } = {};
+  selectedFiltersList: { filterName: string, selectedValue: any }[] = [];
+  constructor(private auth:AuthService,private dataService:DataService,private kobiService:KobiService,private filterService:FilterService,private fb: FormBuilder) {
+    this.user = auth.currentUserValue;
+    this.trigClick = kobiService.fakeBusinesses.filter((x:any) => x.call);
+    this.form = this.fb.group({
+      firmAuthority: ['', Validators.required],
+      offerTitle: ['', Validators.required],
+      offerDescription: ['', Validators.required],
+    });  }
+
   tabs = [
     { id: '1', label: 'Özel Sorun/İhtiyaç/Fırsat Alanı', content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry' },
     { id: '2', label: 'Teknoloji Tedarikçisinden Beklentisi', content: 'İkinci sekme içeriği burada yer alacak.' },
@@ -43,15 +41,53 @@ url:[
 
   activeTabIndex = 0;
   modalTitle = '';
-
+  user :UserModel|undefined
   modalConfig: ModalConfig = {
     modalTitle: this.modalTitle,
     closeButtonLabel:'Kapat'
 
   };
+  modalOfferConfig: ModalConfig = {
+    modalTitle: "Teklif Ver",
+    closeButtonLabel:'Gönder',
+    hideCloseButton:() => true
+  };
   @ViewChild('modal') private modalComponent: ModalComponent;
+  @ViewChild('success') private modalSuccessComponent: ModalComponent;
+  @ViewChild('offermodal') private modalOfferComponent: ModalComponent;
+  isEnabledError:boolean=false
   targetValue:number;
+  onSubmit() {
+    console.log(this.form.invalid,this.form.value)
+    if (this.form.valid) {
+      // Form gönderme işlemini burada gerçekleştir
+      const formData = new FormData();
   
+      formData.append('firmAuthority', this.form.value.firmAuthority);
+      formData.append('offerTitle', this.form.value.offerTitle);
+      formData.append('offerDescription', this.form.value.offerDescription);
+      formData.append('offerDate', this.form.value.offerDate);
+
+      this.isEnabledError=false;
+      this.modalOfferComponent.close(); 
+      this.form.reset();     
+      this.openSuccessModal()
+      // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
+      // Örnek: this.myApiService.submitFormData(formData).subscribe(response => { ... });
+    } else {
+      // Form hatalı, kullanıcıya mesaj göster
+      this.isEnabledError = true;
+    }
+  }
+
+  openSuccessModal(){
+    this.modalSuccessComponent.open();
+    return true;
+  }
+
+   openOfferModal() {
+    this.modalOfferComponent.open();
+  }
   async openModal(event:any) {
     this.targetValue = event ;  
     this.showTabContent(this.targetValue);
@@ -66,6 +102,46 @@ url:[
     
     this.activeTabIndex = index;
     
+  }
+  
+  ngOnInit(): void {    
+    this.filters = this.filterService.getKobiFilter();
+    this.initializeSelectedFilters();
+  }
+
+  initializeSelectedFilters(): void {
+    for (const filter of this.filters) {
+      this.selectedFilters[filter.id] = null;
+    }
+
+  }
+
+  emitFilterChanges(selectedFilters: any): void {
+    
+    // Seçili filtreleri sıfırla
+    this.selectedFiltersList = [];
+
+    this.trigClick = this.kobiService.fakeBusinesses.filter((business: any) => {  
+      for (let filterId in selectedFilters) {
+        if (selectedFilters[filterId] !== null && business.call) {
+          const selectedValue = +selectedFilters[filterId];
+          if (business[filterId] !== selectedValue && business.call) {
+            return false; 
+          } else {
+            // Seçili filtreleri listeye ekle
+            const filterInfo = this.filters.find(filter => filter.id === parseInt(filterId));
+            if (filterInfo && business.call) {
+              this.selectedFiltersList.push({ filterName: filterInfo.name, selectedValue });
+            }
+          }
+        }
+      }
+      if(business.call)
+        return true; // Include business if all selected filters match
+      else
+        return false;
+    });
+
   }
 
   currentView = 'grid';

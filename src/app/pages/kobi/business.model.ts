@@ -11,6 +11,7 @@ export interface Business {
     users: boolean;
     pin: boolean;
     companyInfo: CompanyInfo[];
+    call?:Call
   }
   
   export interface CompanyInfo {
@@ -23,3 +24,15 @@ export interface Business {
     description: string;
   }
   
+  export interface Call{
+    id:number;
+    title:string;
+    badget:string;
+    badgetColor:string;
+    tags:string;
+    url:urlModel[];
+  }
+
+  export interface urlModel{
+    name:string;
+  }

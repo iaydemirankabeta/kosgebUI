@@ -71,7 +71,6 @@ status:"Onaylandı"
   modalCreateMeetingConfig: ModalConfig = {
     modalTitle : "Toplantı Oluştur",
     hideCloseButton: () => true,
-    size:() => "lg"
   }
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('detailmodal') private detailModalComponent: ModalComponent;
