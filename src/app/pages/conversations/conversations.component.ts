@@ -113,7 +113,7 @@ export class ConversationsComponent {
   deleteParticipant(item:string){
     this.selectedConversation.participants = this.selectedConversation.participants.filter(x => x !== item)
   }
-  locale:"tr";
+  locale:string = "tr";
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
