@@ -1,6 +1,10 @@
 <ng-container>
     <mat-tab-group fitInkBarToContent>
       <mat-tab label="Tekliflerim">
+        <div *ngIf="callId !== null" class="w-20">
+          <button class="btn btn-info" (click) = "allOffers()">Tüm Teklifler</button>
+ 
+        </div>
         <table mat-table [dataSource]="trigClick" class="mat-elevation-z8">
 
             <!--- Note that these columns can be defined in any order.

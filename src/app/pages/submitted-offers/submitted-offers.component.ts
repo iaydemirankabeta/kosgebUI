@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 
 export interface ConversationElement {
@@ -22,15 +23,15 @@ export class SubmittedOffersComponent {
   displayedColumns2: string[] = ['CozumId', 'CozumAdi', 'FirmaAdi',"FirmaYetkilisi","YetkiliAjandasi"];
   dataSource = ELEMENT_DATA;
   data = [
-    {id:1, callName:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
+    {id:1,callId:1, callName:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
     firmName:'X Firması ', offerDate:'23.09.2023',
     status:"Açık"
   },
-  {id:2, callName:'Kozmetik Teknoloji Çözümler',
+  {id:2,callId:2, callName:'Kozmetik Teknoloji Çözümler',
   firmName:'Y Firması ', offerDate:'27.09.2023',
   status:"Değerlendirme Aşamasında"
 }, 
-{id:3, callName:'Tekstil Ürün İthalatı',
+{id:3,callId:3, callName:'Tekstil Ürün İthalatı',
 firmName:'Z Firması ', offerDate:'24.09.2023',
 status:"Onaylandı"
 },
@@ -48,6 +49,28 @@ status:"Onaylandı"
   modalTitle = '';
   showOfferModal = false;
   isList=true;
+  callId:string|null;
+  constructor(private route: ActivatedRoute){
+
+  }
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const callId = params['callId'];
+      // Fetch the product details using the product service
+      if (callId) {
+        this.callId = callId;
+         this.trigClick = this.data.filter((element) => element.callId == callId);
+        return this.trigClick
+      } else {
+        this.callId = null;
+        
+      }
+    });
+  }
+  allOffers(){
+    this.callId = null
+    this.trigClick = this.data;
+  }
   statuses = ["Açık","Teklif Sürecinde", "Değerlendirme Aşamasında","Müzakere Aşamasında","Onay Bekliyor","Tamamlandı","Reddedildi","İptal Edildi","Süresi Doldu"]
   modalConfig: ModalConfig = {
     modalTitle: this.modalTitle,
