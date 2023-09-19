@@ -48,7 +48,7 @@
             </div>
             <div class="card-footer">
               <a *ngIf="_user.roles! === 1" [routerLink]="['/create-call', item.id]" type="button" class="btn btn-warning" ><i class="fa-solid fa-pencil"></i> Düzenle</a>
-              <a  [routerLink]="['/submitted-offers', item.id]" class="btn btn-success btn-margin" >Gelen Teklifler</a>
+              <a  [routerLink]="['/offers', item.id]" class="btn btn-success btn-margin" >Gelen Teklifler</a>
 
             </div>
         </div>
@@ -92,7 +92,7 @@
               </div>
               <div *ngIf="_user.roles === 1">
                 <a  [routerLink]="['/create-call', item.id]" class="btn btn-warning" ><i class="fa-solid fa-pencil"></i>Düzenle</a>
-                <a  [routerLink]="['/submitted-offers', item.id]" class="btn btn-success" >Gelen Teklifler</a>
+                <a  [routerLink]="['/offers', item.id]" class="btn btn-success" >Gelen Teklifler</a>
               </div>
           </div>
         </li>
