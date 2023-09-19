@@ -1,0 +1,88 @@
+<div class="view-toggle w-100 d-inline-block p-3">
+    <div class="float-end ">
+  
+    <button class="toggle-btn" [class.active]="currentView === 'list'" (click)="toggleView('list')"><i class="fa fa-list"></i></button>
+    <button class="toggle-btn" [class.active]="currentView === 'grid'" (click)="toggleView('grid')"><i class="fa fa-th"></i></button>
+    </div>
+    
+  </div>
+  
+  <ng-container >
+      <div class="row" [ngStyle]="{ 'display': currentView === 'grid' ? 'flex' : 'none' }">
+      <div class="col-md-4 col-xs-12" *ngFor="let item of trigClick">
+          <div class="card p-2 text-center" >
+              <p class="col-xs-12 " style="color:white;background-color: #c0392b;" *ngIf="item.isBoolean === 'false'"><b>{{item.isBoolean === 'false' ? 'Pasif' : ''}}</b></p>
+            <hr/>
+              <div class="card-header">
+                  <div class="w-100"><p class="title-sector" style="background-color: {{item.badgetColor}};">{{item.badget}}</p></div>
+                  <h3 style="margin:0 auto;">{{item.title}}</h3>
+                  <p class="tags">{{item.tags}}</p>
+              </div>
+              <div class="card-body">
+                <span>{{item.description}}</span>
+              </div>
+              <div class="card-footer">
+                <a [routerLink]="['/create-solution', item.id]" type="button" class="btn btn-warning w-100 mb-10" ><i class="fa-solid fa-pencil"></i> Düzenle</a>
+  
+              </div>
+          </div>
+      </div>
+      </div>
+      <ul class="row list-group" [ngStyle]="{ 'display': currentView === 'list' ? 'flex' : 'none' }">
+        <li class="col-md-12 col-xs-12 list-group-item mb-5" *ngFor="let item of trigClick">
+            <div class="col-xs-12" style="display: flow-root;">
+              <p class="col-xs-12 " style="color:white;background-color: #c0392b;" *ngIf="item.isBoolean === 'false'">{{item.isBoolean === 'false' ? 'Pasif' : ''}}</p>
+            </div>
+            <div class="p-2 text-center " >
+                <div>
+                    <div class="w-100"><p class="title-sector" style="float:right;background-color: {{item.badgetColor}};">{{item.badget}}</p></div>
+                    <h3 style="margin:0 auto;">{{item.title}}</h3>
+                    <p class="tags">{{item.tags}}</p>
+                </div>
+                <div class="calls-content">
+                    <span>{{item.description}}</span>
+                </div>
+                <div>
+                  <a [routerLink]="['/create-solution', item.id]" class="btn btn-warning" ><i class="fa-solid fa-pencil"></i> Düzenle</a>
+  
+                </div>
+            </div>
+          </li>
+      </ul>
+      <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                  <a class="list-group-item list-group-item-action"
+                     *ngFor="let tab of tabs; let i = index"
+                     [class.active]="i === activeTabIndex"
+                     [id]="'list-' + tab.id + '-list'"
+                     data-toggle="list"
+                     role="tab"
+                     [attr.aria-controls]="tab.id"
+                     (click)="showTabContent(i)">
+                    {{ tab.label }}
+                  </a>
+                </div>
+          
+          </div>
+          <div class="col-md-8">
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade"
+                   *ngFor="let tab of tabs; let i = index"
+                   [class.show]="i === activeTabIndex"
+                   [class.active]="i === activeTabIndex"
+                   [id]="tab.id"
+                   role="tabpanel"
+                   [attr.aria-labelledby]="'list-' + tab.id + '-list'">
+                <p>{{ tab.content }}</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </app-modal>
+  </ng-container>
+  
