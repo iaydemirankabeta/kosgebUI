@@ -73,6 +73,24 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },  
   {
+    path: 'create-solution',
+    loadChildren: () =>
+      import('./create-solution/create-solution.module').then((m) => m.CreateSolutionModule),
+      data:{layout:'dark-sidebar'}
+  }, 
+  {
+    path: 'my-solutions',
+    loadChildren: () =>
+      import('./my-solutions/my-solutions.module').then((m) => m.MySolutionsModule),
+      data:{layout:'dark-sidebar'}
+  },   
+  {
+    path: 'application-examples',
+    loadChildren: () =>
+      import('./application-examples/application-examples.module').then((m) => m.ApplicationExamplesModule),
+      data:{layout:'dark-sidebar'}
+  },  
+  {
     path: 'crafted/account',
     loadChildren: () =>
       import('../modules/account/account.module').then((m) => m.AccountModule),
