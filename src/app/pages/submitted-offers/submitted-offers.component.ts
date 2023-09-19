@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
+import { AuthService, UserType } from 'src/app/modules/auth';
 
 export interface ConversationElement {
   id:string,
@@ -43,17 +45,17 @@ status:"Onaylandı"
     { id: '3', label: 'Aradığı Teknoloji Tedarikçisi Özellikleri', content: 'Üçüncü sekme içeriği burada yer alacak.' },
     { id: '4', label: 'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri', content: 'Dördüncü sekme içeriği burada yer alacak.' }
   ];
-  
-
+  user$: Observable<UserType>;
   activeTabIndex = 0;
   modalTitle = '';
   showOfferModal = false;
   isList=true;
   callId:string|null;
-  constructor(private route: ActivatedRoute){
-
+  constructor(private route: ActivatedRoute,private auth:AuthService){
+    this.user$ = this.auth.currentUserSubject.asObservable();
   }
   ngOnInit(): void {
+    this.user$ = this.auth.currentUserSubject.asObservable();
     this.route.params.subscribe(params => {
       const callId = params['callId'];
       // Fetch the product details using the product service

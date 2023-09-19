@@ -49,13 +49,7 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
-    path: 'submitted-offers',
-    loadChildren: () =>
-      import('./submitted-offers/submitted-offers.module').then((m) => m.SubmittedOffersModule),
-      data:{layout:'dark-sidebar'}
-  },
-  {
-    path: 'submitted-offers',
+    path: 'offers',
     loadChildren: () =>
       import('./submitted-offers/submitted-offers.module').then((m) => m.SubmittedOffersModule),
       data:{layout:'dark-sidebar'}
