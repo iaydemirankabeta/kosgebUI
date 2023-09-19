@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
+import { AuthService, UserType } from 'src/app/modules/auth';
 
 @Component({
   selector: 'app-calls',
@@ -9,6 +11,7 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 export class CallsComponent {
   
   isBoolean: boolean = true; // Varsayılan değeri true olarak ayarlayabilirsiniz
+  user$: Observable<UserType>;
 
   trigClick = [
     {id:1, title:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
@@ -52,7 +55,14 @@ url:[
 
   activeTabIndex = 0;
   modalTitle = '';
+  constructor(private auth:AuthService) {
+    this.user$ = this.auth.currentUserSubject.asObservable();
+  }
 
+  ngOnInit(): void {
+    this.user$ = this.auth.currentUserSubject.asObservable();
+    console.log(this.user$)
+  }
   modalConfig: ModalConfig = {
     modalTitle: this.modalTitle,
     closeButtonLabel:'Kapat'
