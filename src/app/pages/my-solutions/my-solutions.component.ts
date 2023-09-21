@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
+import { AuthService, UserType } from 'src/app/modules/auth';
 
 @Component({
   selector: 'app-my-solutions',
@@ -57,7 +59,15 @@ isActive:false,
     { id: '3', label: 'Aradığı Teknoloji Tedarikçisi Özellikleri', content: 'Üçüncü sekme içeriği burada yer alacak.' },
     { id: '4', label: 'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri', content: 'Dördüncü sekme içeriği burada yer alacak.' }
   ];
-  
+  user$: Observable<UserType>;
+  constructor(private auth:AuthService) {
+    this.user$ = this.auth.currentUserSubject.asObservable();
+  }
+
+  ngOnInit(): void {
+    this.user$ = this.auth.currentUserSubject.asObservable();
+    console.log(this.user$)
+  }
 
   activeTabIndex = 0;
   modalTitle = '';

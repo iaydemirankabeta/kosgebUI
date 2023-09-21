@@ -7,7 +7,7 @@
     
   </div>
   
-  <ng-container >
+  <ng-container *ngIf="user$ | async as _user"  >
       <div class="row" [ngStyle]="{ 'display': currentView === 'grid' ? 'flex' : 'none' }">
       <div class="col-md-4 col-xs-12" *ngFor="let item of trigClick">
           <div class="card p-2 text-center" >
@@ -21,7 +21,7 @@
               <div class="card-body">
                 <span>{{item.description}}</span>
               </div>
-              <div class="card-footer">
+              <div *ngIf="_user.roles === 2" class="card-footer">
                 <a [routerLink]="['/create-solution', item.id]" type="button" class="btn btn-warning w-100 mb-10" ><i class="fa-solid fa-pencil"></i> Düzenle</a>
   
               </div>
