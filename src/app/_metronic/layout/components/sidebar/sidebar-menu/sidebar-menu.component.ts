@@ -18,10 +18,10 @@ export class SidebarMenuComponent implements OnInit {
   menuItems: MenuItem[] = [
     { title: 'Anasayfa', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:true },
     { title: 'Rol Grupları', icon: 'element-4', routerLink: '/rol-gruplari',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:true },
-    { title: 'Kullanıcı Yönetimi', icon: 'element-6', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:false },
-    { title: 'Şirket Yönetimi', icon: 'element-3', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN],shown:false },
+    { title: 'Kullanıcı Yönetimi', icon: 'element-6', routerLink: '/user-management',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:false },
+    { title: 'Şirket Yönetimi', icon: 'element-3', routerLink: '/company-management',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN],shown:false },
     { title: 'Tüm Çağrılar', icon: 'element-7', routerLink: '/calls',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
-    { title: 'Tüm Çözümler', icon: 'element-3', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
+    { title: 'Tüm Çözümler', icon: 'element-3', routerLink: '/solutions',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
     { title: 'Tüm Teklifler', icon: 'element-1', routerLink: '/offers',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
     { title: 'Tüm Başvurular', icon: 'element-5', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
     { title: 'Duyurular', icon: 'element-9', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
