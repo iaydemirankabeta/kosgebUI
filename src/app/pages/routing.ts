@@ -49,6 +49,18 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
+    path: 'user-management',
+    loadChildren: () =>
+      import('./user-management/user-management.module').then((m) => m.UserManagementModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'company-management',
+    loadChildren: () =>
+      import('./company-management/company-management.module').then((m) => m.CompanyManagementModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
     path: 'offers',
     loadChildren: () =>
       import('./submitted-offers/submitted-offers.module').then((m) => m.SubmittedOffersModule),
@@ -74,6 +86,12 @@ const Routing: Routes = [
   }, 
   {
     path: 'my-solutions',
+    loadChildren: () =>
+      import('./my-solutions/my-solutions.module').then((m) => m.MySolutionsModule),
+      data:{layout:'dark-sidebar'}
+  },   
+  {
+    path: 'solutions',
     loadChildren: () =>
       import('./my-solutions/my-solutions.module').then((m) => m.MySolutionsModule),
       data:{layout:'dark-sidebar'}
