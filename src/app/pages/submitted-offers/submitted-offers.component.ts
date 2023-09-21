@@ -140,6 +140,7 @@ status:"Onaylandı"
   @ViewChild('meet') private meet: ModalComponent;
   @ViewChild('acceptmodal') private acceptModalComponent: ModalComponent;
   @ViewChild('meetingModal') private meetingModal:ModalComponent
+  @ViewChild('successRandevu') private successRandevuModal:ModalComponent
   
   targetValue:number;
   selectedOffer:any = this.data[2];
@@ -187,8 +188,20 @@ status:"Onaylandı"
     hideCloseButton:() => true
   }; 
 
+  
+
   async acRandevuModal() {
     this.meet.open()
+  }
+
+  modalsuccesRandevu: ModalConfig = {
+    modalTitle: "Randevu Oluşturuldu",
+    closeButtonLabel:'Kapat',
+    hideCloseButton:() => true
+  }; 
+
+  async successRandevu(){
+    this.successRandevuModal.open();
   }
 
 
@@ -213,38 +226,13 @@ status:"Onaylandı"
     const clickedDate = day.date; // Tıklanan günün tarihini alın
 
     // Tıklanan tarih bugünden önceyse tıklamayı engelle
-    if (clickedDate < today || this.isDateBooked(clickedDate)) {
+    if (clickedDate < today ) {
       return;
     }
 
     this.openModalMeet(clickedDate);
   }
 
-  isDateBooked(date: Date): boolean {
-    const randevuVerileri = this.randevuService.getRandevuVerileri();
-
-    // Tıklanan tarihi karşılaştırın ve dolu olup olmadığını kontrol edin
-    const booked = randevuVerileri.some((randevu) => {
-      // Randevu tarihi ve tıklanan tarih arasında bir eşleşme varsa ve randevu dolu ise true döndürün
-      return isSameDay(randevu.tarih, date) && randevu.dolu;
-    });
-  
-    return booked;
-  }
-
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
-    }
-  }
   
 
   openModalMeet(selectedDate: Date) {

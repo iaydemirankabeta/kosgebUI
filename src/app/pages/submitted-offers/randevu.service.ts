@@ -4,16 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RandevuService {
-
+  
   randevular: any[] = [];
 
   getRandevuVerileri(): any[] {
     // Örnek randevu verileri oluşturun
     const randevuVerileri = [
-      { tarih: new Date(2023, 9, 23), saat: '10:00', dolu: true },
-      { tarih: new Date(2023, 9, 23), saat: '11:00', dolu: true },
-      { tarih: new Date(2023, 9, 23), saat: '12:00', dolu: true },
-      { tarih: new Date(2023, 9, 24), saat: '14:00', dolu: true },
+      { tarih: new Date(2023, 8, 23), saat: '10:00', dolu: false },
+      { tarih: new Date(2023, 8, 23), saat: '11:00', dolu: true },
+      { tarih: new Date(2023, 8, 23), saat: '12:00', dolu: false },
+      { tarih: new Date(2023, 8, 23), saat: '14:00', dolu: true },
       // Daha fazla randevu verisi ekleyebilirsiniz
     ];
   
