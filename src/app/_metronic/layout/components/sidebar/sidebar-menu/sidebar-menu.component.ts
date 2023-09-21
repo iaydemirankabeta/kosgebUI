@@ -29,8 +29,8 @@ export class SidebarMenuComponent implements OnInit {
 
 
     { title: 'Anasayfa', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
-    { title: 'Kobiler', icon: 'element-2', routerLink: '/kobi',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
-    { title: 'Kobi Çözümleri', icon: 'element-6', routerLink: '/kobi-cozumleri',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
+    { title: "KOBİ'LER", icon: 'element-2', routerLink: '/kobi',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
+    { title: 'KOBİ Çözümleri', icon: 'element-6', routerLink: '/kobi-cozumleri',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
     { title: 'Tekliflerim / Görüşme Taleplerim', icon: 'element-6', routerLink: '/offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI,CompanyTypes.BI],shown:true },
     { title: 'Uygulama Örnekleri', icon: 'element-8', routerLink: '/application-examples',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
     { title: 'Çözüm Oluştur', icon: 'element-3', routerLink: '/create-solution',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },

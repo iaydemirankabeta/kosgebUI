@@ -1,8 +1,33 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { AuthService, UserType } from 'src/app/modules/auth';
+import { RandevuService } from './randevu.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AppModalComponent } from './meet-modal.component';
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours,
+} from 'date-fns';
+import { Subject } from 'rxjs';
+import {
+  CalendarEvent,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent,
+  CalendarView,
+  DAYS_OF_WEEK,
+} from 'angular-calendar';
+import { MonthViewDay } from 'calendar-utils'; // İmport MonthViewDay sınıfını içe aktarın
+
+
+
 
 export interface ConversationElement {
   id:string,
@@ -37,6 +62,19 @@ export class SubmittedOffersComponent {
 firmName:'Z Firması ', offerDate:'24.09.2023',
 status:"Onaylandı"
 },
+{id:2,callId:2, callName:'Kozmetik Teknoloji Çözümler',
+  firmName:'Y Firması ', offerDate:'27.09.2023',
+  status:"Değerlendirme Aşamasında"
+}, 
+{id:3,callId:3, callName:'Tekstil Ürün İthalatı',
+firmName:'Z Firması ', offerDate:'24.09.2023',
+status:"Onaylandı"
+},
+{id:2,callId:2, callName:'Kozmetik Teknoloji Çözümler',
+  firmName:'Y Firması ', offerDate:'27.09.2023',
+  status:"Değerlendirme Aşamasında"
+}, 
+
   ]
   trigClick = this.data;
   tabs = [
@@ -51,7 +89,8 @@ status:"Onaylandı"
   showOfferModal = false;
   isList=true;
   callId:string|null;
-  constructor(private route: ActivatedRoute,private auth:AuthService){
+  constructor(private route: ActivatedRoute,private auth:AuthService,
+    private randevuService: RandevuService,private modalService: NgbModal){
     this.user$ = this.auth.currentUserSubject.asObservable();
   }
   ngOnInit(): void {
@@ -98,7 +137,7 @@ status:"Onaylandı"
     hideCloseButton: () => true,
   }
   @ViewChild('modal') private modalComponent: ModalComponent;
-  @ViewChild('detailmodal') private detailModalComponent: ModalComponent;
+  @ViewChild('meet') private meet: ModalComponent;
   @ViewChild('acceptmodal') private acceptModalComponent: ModalComponent;
   @ViewChild('meetingModal') private meetingModal:ModalComponent
   
@@ -111,10 +150,6 @@ status:"Onaylandı"
     
   }
 
-
-  async openDetailModal(){
-    this.detailModalComponent.open()
-  }
   async openAcceptModal(){
     this.acceptModalComponent.open()
   }
@@ -144,6 +179,80 @@ status:"Onaylandı"
   async closeMeetingModal(){
     this.meetingModal.close();
   }
+
+
+  modalMeetConfig: ModalConfig = {
+    modalTitle: "Randevu",
+    closeButtonLabel:'Kapat',
+    hideCloseButton:() => true
+  }; 
+
+  async acRandevuModal() {
+    this.meet.open()
+  }
+
+
+  locale:string = "tr";
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+  view: CalendarView = CalendarView.Month;
+
+  CalendarView = CalendarView;
+  weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
+  refresh = new Subject<void>();
+  activeDayIsOpen: boolean = true;
+
+  viewDate: Date = new Date();
+  events: any[] = [];
+
+  setView(view: CalendarView) {
+    this.view = view;
+  }
+
+  onDayClick(day: MonthViewDay): void {
+    const today = new Date(); // Bugünkü tarihi alın
+    const clickedDate = day.date; // Tıklanan günün tarihini alın
+
+    // Tıklanan tarih bugünden önceyse tıklamayı engelle
+    if (clickedDate < today || this.isDateBooked(clickedDate)) {
+      return;
+    }
+
+    this.openModalMeet(clickedDate);
+  }
+
+  isDateBooked(date: Date): boolean {
+    const randevuVerileri = this.randevuService.getRandevuVerileri();
+
+    // Tıklanan tarihi karşılaştırın ve dolu olup olmadığını kontrol edin
+    const booked = randevuVerileri.some((randevu) => {
+      // Randevu tarihi ve tıklanan tarih arasında bir eşleşme varsa ve randevu dolu ise true döndürün
+      return isSameDay(randevu.tarih, date) && randevu.dolu;
+    });
+  
+    return booked;
+  }
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+    }
+  }
+  
+
+  openModalMeet(selectedDate: Date) {
+    console.log(selectedDate);
+    const modalRef = this.modalService.open(AppModalComponent);
+    modalRef.componentInstance.selectedDate = selectedDate;
+  }
+  
 
 }
 

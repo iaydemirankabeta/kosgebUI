@@ -4,13 +4,15 @@ import { KobiCozumleriComponent } from './kobi-cozumleri.component';
 import { RouterModule } from '@angular/router';
 import { ModalsModule } from 'src/app/_metronic/partials';
 import { SharedModule } from 'src/app/_metronic/shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FilterComponent } from './filter/filter.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    KobiCozumleriComponent
+    KobiCozumleriComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
           component: KobiCozumleriComponent,
       },
   ]),
+  FormsModule,
     ModalsModule,
     SharedModule
   ]

@@ -1,6 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
+import { DataService } from 'src/app/_fake/fake-data';
+import { Company } from 'src/app/models/Company.model';
+import { AuthService, UserModel, UserType } from 'src/app/modules/auth';
+import { KobiService } from '../kobi/kobi.service';
+import { Business } from '../kobi/business.model';
+import { FilterService } from './filter/kobiFilter.service';
 
 @Component({
   selector: 'app-kobi-cozumleri',
@@ -8,39 +15,21 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
   styleUrls: ['./kobi-cozumleri.component.scss']
 })
 export class KobiCozumleriComponent {
-  trigClick = [
-    {id:1, title:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
-    badget:'Enerji ',badgetColor:'#27ae60',tags:'#ActiveNoiceCanelling #ANC #GürültüEngelleme #GürültüKontrolü',
-    url:[
-      {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-      {name:'Teknoloji Tedarikçisinden Beklentisi'},
-      {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-      {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-    ]
-  },
-  {id:2, title:'Kozmetik Teknoloji Çözümler',badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
-  url:[
-    {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-    {name:'Teknoloji Tedarikçisinden Beklentisi'},
-    {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-    {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-  ]
-},
-{id:3, title:'Tekstil Ürün İthalatı',badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
-url:[
-  {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-  {name:'Teknoloji Tedarikçisinden Beklentisi'},
-  {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-  {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-]
-}
-  ]
+  
   tabs = [
     { id: '1', label: 'Özel Sorun/İhtiyaç/Fırsat Alanı', content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry' },
     { id: '2', label: 'Teknoloji Tedarikçisinden Beklentisi', content: 'İkinci sekme içeriği burada yer alacak.' },
     { id: '3', label: 'Aradığı Teknoloji Tedarikçisi Özellikleri', content: 'Üçüncü sekme içeriği burada yer alacak.' },
     { id: '4', label: 'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri', content: 'Dördüncü sekme içeriği burada yer alacak.' }
   ];
+
+  filterOptions: any[];
+  filters: any[] ;
+  trigClick : Business[]
+
+  selectedFilters: { [key: number]: any } = {};
+  selectedFiltersList: { filterName: string, selectedValue: any }[] = [];
+  user$: Observable<UserType>;
 
   activeTabIndex = 0;
   modalTitle = '';
@@ -62,7 +51,12 @@ url:[
   form: FormGroup;
   targetValue:number;
   isEnabledError:boolean = false;
-  constructor(private fb: FormBuilder) {
+  user :UserModel|undefined
+
+  constructor(private fb: FormBuilder,private auth:AuthService,private dataService:DataService,private kobiService:KobiService,private filterService:FilterService) {
+    this.user = auth.currentUserValue;
+    this.trigClick = kobiService.fakeBusinesses.filter((x:any) => x.call);
+
     this.form = this.fb.group({
       firmAuthority: ['', Validators.required],
       offerTitle: ['', Validators.required],
@@ -70,6 +64,48 @@ url:[
       offerDate: ['', Validators.required],
     });
   }
+
+  ngOnInit(): void {    
+    this.filters = this.filterService.getKobiFilter();
+    this.initializeSelectedFilters();
+  }
+
+  initializeSelectedFilters(): void {
+    for (const filter of this.filters) {
+      this.selectedFilters[filter.id] = null;
+    }
+
+  }
+
+
+  emitFilterChanges(selectedFilters: any): void {
+    
+    // Seçili filtreleri sıfırla
+    this.selectedFiltersList = [];
+
+    this.trigClick = this.kobiService.fakeBusinesses.filter((business: any) => {  
+      for (let filterId in selectedFilters) {
+        if (selectedFilters[filterId] !== null && business.call) {
+          const selectedValue = +selectedFilters[filterId];
+          if (business[filterId] !== selectedValue && business.call) {
+            return false; 
+          } else {
+            // Seçili filtreleri listeye ekle
+            const filterInfo = this.filters.find(filter => filter.id === parseInt(filterId));
+            if (filterInfo && business.call) {
+              this.selectedFiltersList.push({ filterName: filterInfo.name, selectedValue });
+            }
+          }
+        }
+      }
+      if(business.call)
+        return true; // Include business if all selected filters match
+      else
+        return false;
+    });
+
+  }
+
   onSubmit() {
     console.log(this.form.invalid,this.form.value)
     if (this.form.valid) {
