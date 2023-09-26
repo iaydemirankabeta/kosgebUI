@@ -3,6 +3,7 @@ import { ListsComponent } from '../modules/widgets-examples/lists/lists.componen
 import { CompanyChoiceComponent } from './company-choice/company-choice.component';
 import { ReportsComponent } from './reports/reports.component';
 import { RoleGroupsComponent } from './role-groups/role-groups.component';
+import { KeeniconComponent } from '../_metronic/shared/keenicon/keenicon.component';
 
 
 const Routing: Routes = [
@@ -153,6 +154,12 @@ const Routing: Routes = [
     component: CompanyChoiceComponent,
     pathMatch:'full',
     data:{layout:'empty'}
+  },
+  {
+    path: 'keen',
+    component: KeeniconComponent,
+    pathMatch:'full',
+    data:{layout:'dark-sidebar'}
   },
  
   {

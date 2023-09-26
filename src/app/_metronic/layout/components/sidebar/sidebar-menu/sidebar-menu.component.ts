@@ -16,36 +16,41 @@ export class SidebarMenuComponent implements OnInit {
 
 
   menuItems: MenuItem[] = [
-    { title: 'Anasayfa', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:true },
+    { title: 'Anasayfa', icon: 'home', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:true },
     { title: 'Rol Grupları', icon: 'element-4', routerLink: '/rol-gruplari',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:true },
-    { title: 'Kullanıcı Yönetimi', icon: 'element-6', routerLink: '/user-management',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:false },
-    { title: 'Şirket Yönetimi', icon: 'element-3', routerLink: '/company-management',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN],shown:false },
-    { title: 'Tüm Çağrılar', icon: 'element-7', routerLink: '/calls',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
-    { title: 'Tüm Çözümler', icon: 'element-3', routerLink: '/solutions',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
+    { title: 'Kullanıcı Yönetimi', icon: 'user', routerLink: '/user-management',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:false },
+    { title: 'Şirket Yönetimi', icon: 'compass', routerLink: '/company-management',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN],shown:false },
+    { title: 'Tüm Çağrılar', icon: 'call', routerLink: '/calls',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
+    { title: 'Tüm Çözümler', icon: 'abstract-27', routerLink: '/solutions',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
     { title: 'Tüm Teklifler', icon: 'element-1', routerLink: '/offers',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
-    { title: 'Tüm Başvurular', icon: 'element-5', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
-    { title: 'Duyurular', icon: 'element-9', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
+    { title: 'Tüm Başvurular', icon: 'toggle-on', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
+    { title: 'Duyurular', icon: 'notification-circle', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
 
 
 
-    { title: 'Anasayfa', icon: 'element-11', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
-    { title: "KOBİ'LER", icon: 'element-2', routerLink: '/kobi',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
-    { title: 'KOBİ Çözümleri', icon: 'element-6', routerLink: '/kobi-cozumleri',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
-    { title: 'Tekliflerim / Görüşme Taleplerim', icon: 'element-6', routerLink: '/offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI,CompanyTypes.BI],shown:true },
+    { title: 'Anasayfa', icon: 'home', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
+    { title: 'KOBİ Çözümleri', icon: 'sort', routerLink: '/kobi-cozumleri',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
+    { title: 'Tekliflerim / Görüşme Taleplerim', icon: 'paper-clip', routerLink: '/offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI,CompanyTypes.BI],shown:true },
     { title: 'Uygulama Örnekleri', icon: 'element-8', routerLink: '/application-examples',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
     { title: 'Çözüm Oluştur', icon: 'element-3', routerLink: '/create-solution',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
     { title: 'Çözümlerim', icon: 'element-5', routerLink: '/my-solutions',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
 
 
     { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true  },
-    { title: 'Çağrılarım', icon: 'element-5', routerLink: '/calls',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
-    { title: 'Takvimim', icon: 'element-7', routerLink: '/conversations',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
+    { title: 'Çağrılarım', icon: 'call', routerLink: '/calls',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
+    { title: 'Takvimim', icon: 'calendar-add', routerLink: '/conversations',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
     { title: 'Başvuruya Açık Çağrılar', icon: 'element-1', routerLink: '/apply-calls',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
-    { title: 'Arama', icon: 'element-11', routerLink: '/arama',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
-    { title: 'Mesajlar', icon: 'element-11', routerLink: '/apps/chat',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
+    { title: 'Arama', icon: 'search-list', routerLink: '/arama',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
+    { title: 'Mesajlar', icon: 'message-notif', routerLink: '/apps/chat',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
     
     { title: 'Başvuru Yapılan Çağrılar', icon: 'element-7', routerLink: '/offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:true,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
-    { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI,CompanyTypes.KOSGEB],shown:true },
+    { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI,CompanyTypes.KOSGEB],shown:true,
+    subMenu: [
+      { title: 'Profilim', icon: '', routerLink: 'catalog/vitrin' },
+      { title: 'Kullanıcı Yönetimi', icon: '', routerLink: 'catalog/kategoriler' },
+      { title: 'Hesap Ayarları', icon: '', routerLink: '/crafted/account/overview' },
+    ],
+  },
     {
       title: 'Ürünlerim ve Hizmetlerim', icon: 'element-12', routerLink: '/catalog',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],
       subMenu: [

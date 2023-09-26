@@ -69,13 +69,15 @@
                 <div>
                     <p class="tags">{{item.call?.tags}}</p>
                 </div>
-                <div>
-                    <button class="btn btn-primary" (click)="openOfferModal()">Görüşme Talebi</button>
-                </div>
+                
             </div>
             <div class="card-footer d-flex flex-row justify-content-between">
-                <a class="btn btn-dark btn-active-bg-success btn-list" *ngFor="let listItem of item.call?.url;let i = index"   href="javascript:;" (click)="openModal(i)">{{listItem.name}} -></a>
+                <a class="btn btn-dark btn-active-bg-success btn-list"  href="javascript:;" (click)="openModal(0)">Beklentileri</a>
+                <div>
+                  <button class="btn btn-primary" (click)="openOfferModal()">Görüşme Talebi</button>
+              </div>
             </div>
+            
          </div> 
     </div>
       

@@ -140,7 +140,6 @@ status:"Onaylandı"
   @ViewChild('meet') private meet: ModalComponent;
   @ViewChild('acceptmodal') private acceptModalComponent: ModalComponent;
   @ViewChild('meetingModal') private meetingModal:ModalComponent
-  @ViewChild('successRandevu') private successRandevuModal:ModalComponent
   
   targetValue:number;
   selectedOffer:any = this.data[2];
@@ -191,18 +190,11 @@ status:"Onaylandı"
   
 
   async acRandevuModal() {
+    
     this.meet.open()
   }
 
-  modalsuccesRandevu: ModalConfig = {
-    modalTitle: "Randevu Oluşturuldu",
-    closeButtonLabel:'Kapat',
-    hideCloseButton:() => true
-  }; 
-
-  async successRandevu(){
-    this.successRandevuModal.open();
-  }
+  
 
 
   locale:string = "tr";
