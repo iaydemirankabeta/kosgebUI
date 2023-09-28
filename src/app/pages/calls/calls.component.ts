@@ -15,8 +15,9 @@ export class CallsComponent {
 
   trigClick = [
     {id:1, title:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
-    totalOffer:'50',offer:'22',isBoolean:'true',
+    totalOffer:'50',offer:'22',status:'Başvuru Toplama Aşamasında', 
     badget:'Enerji ',badgetColor:'#27ae60',tags:'#ActiveNoiceCanelling #ANC #GürültüEngelleme #GürültüKontrolü',
+    piece:"200",
     url:[
       {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
       {name:'Teknoloji Tedarikçisinden Beklentisi'},
@@ -25,7 +26,7 @@ export class CallsComponent {
     ]
   },
   {id:2, title:'Kozmetik Teknoloji Çözümler',
-  totalOffer:'70',offer:'56',isBoolean:'false',
+  totalOffer:'70',offer:'56',status:'Revize Gerekli',piece:"500",
   badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
   url:[
     {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
@@ -35,14 +36,15 @@ export class CallsComponent {
   ]
 },
 {id:3, title:'Tekstil Ürün İthalatı',
-totalOffer:'40',offer:'7',isBoolean:'false',
+totalOffer:'40',offer:'7',status:'KOSGEB Onayı Bekleniyor',piece:"1000",
 badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
 url:[
   {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
   {name:'Teknoloji Tedarikçisinden Beklentisi'},
   {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
   {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-]
+],
+
 }
   ]
   tabs = [
