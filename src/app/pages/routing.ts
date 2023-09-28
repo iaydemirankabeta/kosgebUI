@@ -68,6 +68,12 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
+    path: 'apply-request',
+    loadChildren: () =>
+      import('./apply-request/apply-request.module').then((m) => m.ApplyRequestModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
     path: 'apply-calls',
     loadChildren: () =>
       import('./apply-calls/apply-calls.module').then((m) => m.ApplyCallsModule),
@@ -77,6 +83,18 @@ const Routing: Routes = [
     path: 'create-call',
     loadChildren: () =>
       import('./create-call/create-call.module').then((m) => m.createcallmodule),
+      data:{layout:'dark-sidebar'}
+  }, 
+  {
+    path: 'pending-calls',
+    loadChildren: () =>
+      import('./pending-calls/pending-calls.module').then((m) => m.PendingCallsModule),
+      data:{layout:'dark-sidebar'}
+  },   
+  {
+    path: 'request-collection',
+    loadChildren: () =>
+      import('./request-collection/request-collection.module').then((m) => m.RequestCollectionModule),
       data:{layout:'dark-sidebar'}
   },  
   {
