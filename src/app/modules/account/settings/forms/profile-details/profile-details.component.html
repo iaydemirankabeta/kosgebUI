@@ -44,7 +44,7 @@
                     form-control form-control-lg form-control-solid
                     mb-3 mb-lg-0
                   "
-                  placeholder="First name"
+                  placeholder="Ad"
                   name="fName"
                   value="{{_user.firstname}}"
                 />
@@ -53,7 +53,7 @@
                 <input
                   type="text"
                   class="form-control form-control-lg form-control-solid"
-                  placeholder="Last name"
+                  placeholder="Soyad"
                   name="lName"
                   value="{{_user.lastname}}"
                 />
@@ -69,7 +69,7 @@
             <input
               type="text"
               class="form-control form-control-lg form-control-solid"
-              placeholder="Company name"
+              placeholder="Şirket Adı"
               name="company"
               value="{{_user.companyName}}"
             />
@@ -83,7 +83,7 @@
             <input
               type="tel"
               class="form-control form-control-lg form-control-solid"
-              placeholder="Phone number"
+              placeholder="Telefon"
               name="contactPhone"
               value="{{_user.phone}}"
             />
@@ -97,7 +97,7 @@
             <input *ngIf="_user.selectedCompany"
               type="text"
               class="form-control form-control-lg form-control-solid"
-              placeholder="Company website"
+              placeholder="Şirket Web Sitesi"
               name="companySite"
               value="{{_user.selectedCompany.company.name}}"
             />
@@ -112,7 +112,7 @@
               class="form-select form-select-solid form-select-lg fw-bold"
               name="country" value="TR"
             >
-              <option value="">Select a Country...</option>
+              <option value="">Ülke Seç...</option>
               <option value="AF">Afghanistan</option>
               <option value="AX">Aland Islands</option>
               <option value="AL">Albania</option>

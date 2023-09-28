@@ -42,7 +42,13 @@
         <a href="javascript:;" *ngIf="business.chart">
           <i class="fa fa-map-pin"></i>
         </a>
-        
+        <a href="javascript:;" class="compare" (click)="toggleSelected(i)" [ngClass]="{'active': isSelected(i)}">
+          
+          <i class="ki-duotone ki-copy fs-3 ms-4 color-black" style="margin-right: 5px;margin-left: 0 !important;"></i>
+
+          <span style="position: relative;top:-3px;font-weight: bold;">Karşılaştır</span>
+
+        </a>
       </div>
     
     
@@ -56,6 +62,17 @@
       <a href="javascript:;" class="btn btn-primary float-right" aria-disabled="true" style="float:right;">İletişime Geç</a>
     </div>
   </div>
+
+  <app-modal #compare [modalConfig]="modalCompareConfig" aria-modal="true" >
+    <div class="col-xs-12 text-center">
+      <app-compare
+        [firm1]="{ name: 'Firma A', country: 'Türkiye', revenue: '1 Milyar TL' }"
+        [firm2]="{ name: 'Firma B', country: 'ABD', revenue: '5 Milyar USD' }"
+      ></app-compare>
+      
+    </div>
+  </app-modal>
+
     <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
       <div class="col-12">
         <ul class="nav">

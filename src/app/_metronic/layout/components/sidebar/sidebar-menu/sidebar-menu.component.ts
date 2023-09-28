@@ -29,7 +29,6 @@ export class SidebarMenuComponent implements OnInit {
 
 
     { title: 'Anasayfa', icon: 'home', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
-    { title: 'KOBİ Çözümleri', icon: 'sort', routerLink: '/kobi-cozumleri',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI],shown:true },
     { title: 'Tekliflerim / Görüşme Taleplerim', icon: 'paper-clip', routerLink: '/offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI,CompanyTypes.BI],shown:true },
     { title: 'Uygulama Örnekleri', icon: 'element-8', routerLink: '/application-examples',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
     { title: 'Çözüm Oluştur', icon: 'element-3', routerLink: '/create-solution',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
@@ -46,8 +45,8 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Başvuru Yapılan Çağrılar', icon: 'element-7', routerLink: '/offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:true,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
     { title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI,CompanyTypes.KOSGEB],shown:true,
     subMenu: [
-      { title: 'Profilim', icon: '', routerLink: 'catalog/vitrin' },
-      { title: 'Kullanıcı Yönetimi', icon: '', routerLink: 'catalog/kategoriler' },
+      { title: 'Profilim', icon: '', routerLink: '/crafted/account/profilim' },
+      { title: 'Kullanıcı Yönetimi', icon: '', routerLink: '/crafted/account/kullanici-yonetimi' },
       { title: 'Hesap Ayarları', icon: '', routerLink: '/crafted/account/overview' },
     ],
   },

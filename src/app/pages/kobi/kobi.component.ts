@@ -14,12 +14,11 @@ import { filter } from 'rxjs';
 export class KobiComponent {
 
 filterOptions: any[];
-  constructor(private filterService: FilterService,private KobiService:KobiService) {} // Servisi enjekte edin
+  constructor(private filterService: FilterService,private KobiService:KobiService) {
+  } // Servisi enjekte edin
 
   selectedFiltersList: { filterName: string, selectedValue: any }[] = [];
   businessList:any = [];
-
-
 
   filters: any[] ;
   selectedFilters: { [key: number]: any } = {};
@@ -67,10 +66,6 @@ filterOptions: any[];
   }
   
 
-  
-
-
-
   modalConfig: ModalConfig = {
     modalTitle: "Şirket Bilgileri",
     closeButtonLabel:'Kapat'
@@ -82,7 +77,43 @@ filterOptions: any[];
   async openModal() {
     return await this.modalComponent.open();
   }
-  
 
+  modalCompareConfig: ModalConfig = {
+    modalTitle : "Karşılaştırma",
+    hideCloseButton: () => true,
+  }
+
+  @ViewChild('compare') private compare:ModalComponent
+
+  selectedItems: number[] = [];
+
+  isSelected(item: number): boolean {
+    return this.selectedItems.includes(item);
+  }
+
+  toggleSelected(item: number) {
+
+    if (this.isSelected(item)) {
+      // Öğe zaten seçili, bu yüzden seçimden kaldır
+      this.selectedItems = this.selectedItems.filter(selectedItem => selectedItem !== item);
+        
+    } 
+    else if (this.selectedItems.length < 2) {
+      // Maksimum 2 öğe seçilebilir, eğer şu an 2 öğe seçili değilse seçimi ekle
+      this.selectedItems.push(item);
+        if (this.selectedItems.length == 2)
+      {
+        this.compare.open();
+        return false;
+      }  
+    }else{
+      alert("Karşılaştırmak için maksimum 2 KOBİ seçilebilir")
+
+    }
+  }
+
+  closeModal(){
+    return this.modalComponent.close();
+  }
 
 }
