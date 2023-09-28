@@ -50,6 +50,12 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
+    path: 'pool',
+    loadChildren: () =>
+      import('./poll/poll.module').then((m) => m.PollModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
     path: 'user-management',
     loadChildren: () =>
       import('./user-management/user-management.module').then((m) => m.UserManagementModule),

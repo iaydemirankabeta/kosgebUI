@@ -124,7 +124,6 @@ export class ApplyRequestComponent {
   }
   counterUpdate() {
     this.counter.push(this.counter.length+1);
-    console.log(this.counter)
 }
   announceSortChange(sortState: Sort) {
     // This example uses English messages. If your application supports
