@@ -40,7 +40,8 @@ export class PollComponent {
     onDismiss: () => {
       this.counter = [1];
       return true;
-    }
+    },
+    hideCloseButton: () => true
   }
 
   successModalConfig: ModalConfig={

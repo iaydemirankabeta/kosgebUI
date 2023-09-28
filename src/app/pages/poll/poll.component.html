@@ -1,4 +1,11 @@
 <ng-container>
+    <div class="card-header border-0 pt-5 d-flex justify-content-between">
+        <h3 class="card-title align-items-start flex-column ">
+          <span class="card-label fw-bolder fs-3 mb-1">Anketler</span>
+        </h3>
+        <button class="btn btn-primary" (click)="openCreateModal()" >Ekle</button>
+          <!-- end::Menu -->
+      </div>
     <table mat-table [dataSource]="Pools" class="mat-elevation-z8" matSort>
 
         <!--- Note that these columns can be defined in any order.
@@ -6,15 +13,15 @@
       
         <!-- Position Column -->
         <ng-container matColumnDef="Id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ürün</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
             <td mat-cell *matCellDef="let element" > {{element.id}} </td>
           </ng-container>
         <ng-container matColumnDef="Title">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Kaç BI Talep Etti? </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Anket Başlığı </th>
           <td mat-cell *matCellDef="let element"> {{element.title}} </td>
         </ng-container>
         <ng-container matColumnDef="LastDate">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Toplam Kaç Adet Talep Edildi? </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Son Tarih </th>
             <td mat-cell *matCellDef="let element"> {{element.lastDate.toLocaleDateString()}} </td>
           </ng-container>
           <ng-container matColumnDef="Action">
@@ -29,14 +36,14 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <app-modal #createModal [modalConfig]="createModalConfig" aria-modal="true">
-        <button *ngIf="counter.length < 5" class="btn btn-success" (click) = "counterUpdate()">Ürün Ekle</button>
+        <button *ngIf="counter.length < 5" class="btn btn-success" (click) = "counterUpdate()">Soru Ekle</button>
         <div class="col-xs-12 text-center">
-            <div *ngFor="let value of counter">
+            <div *ngFor="let value of counter ; index as i">
                 <div class="row">
-                    <div class="row col-6">
-                        <label class="col-lg-4 col-form-label fw-bold fs-6">Soru</label>
+                    <div class="row col-12">
+                        <label class="col-lg-4 col-form-label fw-bold fs-6">Soru {{i+1}}</label>
                         <div class="col-lg-12 ">
-                            <input type="text" class="form-control" id="adet" placeholder="Adet">
+                            <input type="text" class="form-control" id="question" placeholder="Soru giriniz">
                         </div>
                       </div>
                 </div>
