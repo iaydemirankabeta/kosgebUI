@@ -1,4 +1,28 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="startDatePicker" placeholder="Başlangıç Tarihi" [(ngModel)]="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="endDatePicker" placeholder="Bitiş Tarihi" [(ngModel)]="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="searchMeetingsByDateRange()">Ara</button>
+    </div>
+  </div>
+</div>
+
 <div class="container mt-4" *ngIf="user$ | async as _user">
+  
     <table class="table">
       <thead>
         <tr>
