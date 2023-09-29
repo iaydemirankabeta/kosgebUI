@@ -48,6 +48,12 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
+    path: 'kosgeb-destek',
+    loadChildren: () =>
+      import('./kosgeb-destek/kosgeb-destek.module').then((m) => m.KosgebDestekModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
     path: 'conversations',
     loadChildren: () =>
       import('./conversations/conversations.module').then((m) => m.ConversationsModule),
