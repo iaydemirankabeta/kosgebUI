@@ -5,6 +5,9 @@ import { DatePipe } from '@angular/common';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { Observable } from 'rxjs';
 import { AuthService, UserType } from 'src/app/modules/auth';
+import { MeetingNotesService } from './meeting-notes/meeting-notes.service';
+
+
 
 
 @Component({
@@ -27,9 +30,25 @@ export class MeetingsComponent {
 
   constructor(private meetingService: MeetingService,
     private datePipe: DatePipe,
-    private auth: AuthService
+    private auth: AuthService,
+    private meetingNoteService: MeetingNotesService
+
 
     ) {}
+
+  startDate: Date | null = null;
+  endDate: Date | null = null;
+
+  searchMeetingsByDateRange() {
+    if (this.startDate && this.endDate) {
+      // Başlangıç ve bitiş tarihlerini kullanarak toplantıları filtrelemek için MeetingService'i kullanın
+      this.meetings = this.meetingService.getMeetingsByDateRange(this.startDate, this.endDate);
+    } else {
+      // Başlangıç ve bitiş tarihleri eksikse, tüm toplantıları gösterin veya bir hata mesajı gösterin.
+      this.meetings = this.meetingService.getMeetings();
+    }
+  }
+  
 
   formatMeetingDate(meetingDate: Date): string | null | undefined {
     // Türkiye saat dilimini kullanmak için 'tr-TR' locale'ini kullanıyoruz.
