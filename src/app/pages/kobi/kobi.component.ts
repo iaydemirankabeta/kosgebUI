@@ -44,18 +44,20 @@ filterOptions: any[];
     
     // Seçili filtreleri sıfırla
     this.selectedFiltersList = [];
-
+    
     this.businessList = this.KobiService.fakeBusinesses.filter((business: any) => {
       for (let filterId in selectedFilters) {
-        if (selectedFilters[filterId] !== null) {
-          const selectedValue = +selectedFilters[filterId];
-          if (business[filterId] !== selectedValue) {
-            return false; 
-          } else {
-            // Seçili filtreleri listeye ekle
-            const filterInfo = this.filters.find(filter => filter.id === parseInt(filterId));
-            if (filterInfo) {
-              this.selectedFiltersList.push({ filterName: filterInfo.name, selectedValue });
+        if (filterId != 'konum'){
+          if (selectedFilters[filterId] !== null) {
+            const selectedValue = +selectedFilters[filterId];
+            if (business[filterId] !== selectedValue) {
+              return false; 
+            } else {
+              // Seçili filtreleri listeye ekle
+              const filterInfo = this.filters.find(filter => filter.id === parseInt(filterId));
+              if (filterInfo) {
+                this.selectedFiltersList.push({ filterName: filterInfo.name, selectedValue });
+              }
             }
           }
         }
@@ -71,11 +73,20 @@ filterOptions: any[];
     closeButtonLabel:'Kapat'
 
   };
+  raporModalConfig: ModalConfig = {
+    modalTitle: "Rapor Bilgileri",
+    closeButtonLabel:'Kapat'
+  };
 
   
   @ViewChild('modal') private modalComponent: ModalComponent;
+  @ViewChild('raporModal') private raporModalComponent: ModalComponent;
+
   async openModal() {
     return await this.modalComponent.open();
+  }
+  async openRaporModal(){
+    return await this.raporModalComponent.open();
   }
 
   modalCompareConfig: ModalConfig = {

@@ -54,6 +54,18 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
+    path: 'gorusme-talepleri',
+    loadChildren: () =>
+      import('./gorusme-talepleri/gorusme-talepleri.module').then((m) => m.GorusmeTalepleriModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'kobi-profile',
+    loadChildren: () =>
+      import('./kobi-profile/kobi-profile.module').then((m) => m.KobiProfileModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
     path: 'pool',
     loadChildren: () =>
       import('./poll/poll.module').then((m) => m.PollModule),
