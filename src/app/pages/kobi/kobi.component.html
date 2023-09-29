@@ -99,19 +99,30 @@
                       <td><b>Sektör:</b> {{companyItem.sektor}}</td>  
                     </tr>
                     <tr><td><b>Konum:</b> {{companyItem.location}}</td></tr>
+                    <tr>
+                      <td class="mt-4">
+                        <button class="btn btn-primary" (click)="openRaporModal()">IDR Raporu Görüntüle</button>
+                        <button class="btn btn-secondary btn-margin"  (click)="openRaporModal()">D3A Raporu Görüntüle</button>
+                      </td>
+                    </tr>
                   </table>
                 </div>
               </div>
-              </div>
-    
+            </div>
           </div>
-          </li>
-    
-        </ul>
-      </div>
-      
-    </app-modal>
-    
+        </li>
+
+      </ul>
+    </div>
+
+  </app-modal>
+  <app-modal #raporModal [modalConfig]="raporModalConfig" aria-modal="true">
+    <div class="row">
+        <label class="col-12 mt-3"><b>Rapor Alınma Tarihi :</b> 22.08.2020</label>
+        <label class="col-12 mt-3"><b>Son Geçerlilk Tarihi :</b> 12.02.2025</label>
+        <button class="btn btn-info col-4 mt-3">Raporu İndir</button>
+    </div>
+  </app-modal>
   </div>
 </div>
   
