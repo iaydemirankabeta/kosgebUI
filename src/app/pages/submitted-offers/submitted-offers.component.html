@@ -1,41 +1,10 @@
 <ng-container *ngIf="user$ | async as _user">
-    <mat-tab-group fitInkBarToContent *ngIf="(_user.roles !== 3 && _user.roles !== 6)" >
-     <!-- <mat-tab label="Tekliflerim">
-        <div *ngIf="callId !== null" class="w-20">
-          <button class="btn btn-info" (click) = "allOffers()">Tüm Teklifler</button>
- 
-        </div>
-        <table mat-table [dataSource]="trigClick" class="mat-elevation-z8">
-            <ng-container matColumnDef="TeklifId">
-              <th mat-header-cell *matHeaderCellDef> Çağrı </th>
-              <td mat-cell *matCellDef="let element" [ngClass]="element.status == 'Onaylandı' ? 'greenBG' : '' "> {{element.id}} </td>
-            </ng-container>
+<div>
 
-            <ng-container matColumnDef="CagrıAdi">
-              <th mat-header-cell *matHeaderCellDef> Çağrı Adı</th>
-              <td mat-cell *matCellDef="let element" [ngClass]="element.status == 'Onaylandı' ? 'greenBG' : '' "> {{element.callName}} </td>
-            </ng-container>
-            <ng-container matColumnDef="FirmaAdi">
-              <th mat-header-cell *matHeaderCellDef> Firma Adı</th>
-              <td mat-cell *matCellDef="let element" [ngClass]="element.status == 'Onaylandı' ? 'greenBG' : '' "> {{element.firmName}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="TeklifTarihi">
-              <th mat-header-cell *matHeaderCellDef> Teklif Tarihi </th>
-              <td mat-cell *matCellDef="let element" [ngClass]="element.status == 'Onaylandı' ? 'greenBG' : '' "> {{element.offerDate}} </td>
-            </ng-container>
-            <ng-container matColumnDef="TeklifStatusu">
-                <th mat-header-cell *matHeaderCellDef> Teklif Statüsü </th>
-                <td mat-cell *matCellDef="let element" [ngClass]="element.status == 'Onaylandı' ? 'greenBG' : '' " > {{element.status}} <button type="submit" class="btn btn-info ml-10" (click)="createMeeting(element)" *ngIf="element.status === 'Onaylandı'">Toplantı Oluştur</button></td>
-              </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-          <h5 class="mt-4">! Statüsü "onaylandı" durumunda olan tekliflerin içinden toplantı oluşturabilirsiniz.</h5>
-    </mat-tab>-->
-    <mat-tab label="Çağrıya Gelen Başvurular">
-      <table mat-table [dataSource]="trigClick" class="mat-elevation-z8">
+  <button type="button"  (click)="acRandevuModal()" class="btn btn-success btn-margin">KOSGEB'ten Görüşme Talep Et</button>
+  <button type="button" class="btn btn-danger btn-margin">Reddet</button>
+</div>
+      <table mat-table [dataSource]="trigClick" class="mat-elevation-z8" *ngIf="(_user.roles !== 3 && _user.roles !== 6)">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
@@ -43,7 +12,9 @@
         <!-- Position Column -->
         <ng-container matColumnDef="TeklifId">
           <th mat-header-cell *matHeaderCellDef> Çağrı </th>
-          <td mat-cell *matCellDef="let element" > {{element.id}} </td>
+          <td mat-cell *matCellDef="let element" >
+            <input type="checkbox" class="form-check-input">
+            {{element.id}} </td>
         </ng-container>
       
         <!-- Name Column -->
@@ -66,8 +37,8 @@
             <th mat-header-cell *matHeaderCellDef> Teklif Statüsü </th>
             <td mat-cell *matCellDef="let element" > 
 
-              <button type="button" class="btn btn-success ml-10">KOSGEB onayına gönder</button>
-              <button type="button" class="btn btn-danger ml-10">Reddet</button>
+              <button type="button"  (click)="acRandevuModal()" class="btn btn-success btn-margin">KOSGEB'ten Görüşme Talep Et</button>
+              <button type="button" class="btn btn-danger btn-margin">Reddet</button>
 
             </td>
           </ng-container>
@@ -75,46 +46,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-    </mat-tab>
-        <mat-tab label="Görüşme Taleplerim">
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          
-            <!-- Position Column -->
-            <ng-container matColumnDef="CozumId">
-              <th mat-header-cell *matHeaderCellDef> Çağrı </th>
-              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-            </ng-container>
-          
-            <!-- Name Column -->
-            <ng-container matColumnDef="CozumAdi">
-              <th mat-header-cell *matHeaderCellDef> Çözüm Adı</th>
-              <td mat-cell *matCellDef="let element"> {{element.solutionName}} </td>
-            </ng-container>
-            <ng-container matColumnDef="FirmaAdi">
-              <th mat-header-cell *matHeaderCellDef> Firma </th>
-              <td mat-cell *matCellDef="let element"> {{element.solutionName}} </td>
-            </ng-container>
-            <ng-container matColumnDef="FirmaYetkilisi">
-              <th mat-header-cell *matHeaderCellDef> Firma Yetkilisi</th>
-              <td mat-cell *matCellDef="let element"> {{element.firmAuthority}} </td>
-            </ng-container>
-            <!-- Weight Column -->
-          
-            <!-- Symbol Column -->
-
-            <ng-container matColumnDef="YetkiliAjandasi">
-                <th mat-header-cell *matHeaderCellDef> Yetki Ajandası </th>
-                <td mat-cell *matCellDef="let element"> <button class="btn btn-primary" (click)="acRandevuModal()">Randevu Oluştur</button> </td>
-              </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
-          </table>
-        </mat-tab>
-    </mat-tab-group>
+        
       <app-modal #acceptmodal [modalConfig]="modalAcceptConfig" aria-modal="true">
         <div class="col-xs-12 text-center">
           <p>Teklif Talebini Kabul Ettiniz. Teklif talebini B2B zekası modülü, Görüşmelerim sekmesinden görüntüleyebilirsiniz!</p>
@@ -155,7 +87,7 @@
       
       <app-modal #meet [modalConfig]="modalMeetConfig" aria-modal="true">
         <div class="col-xs-12 text-center">
-          <p>Lütfen uygun tarihe göre randevu oluşturunuz</p>
+          <p>Lütfen uygun tarihlerinizi seçiniz</p>
           <div class="calendar-container">
             <div class="row text-center mt-5">
               <div class="col-md-8">
@@ -221,6 +153,9 @@
               </mwl-calendar-day-view>
             </div>
           </div>
+        </div>
+        <div>
+          <button class="btn btn-secondary" (click)="selectHour()">Devam</button>
         </div>
       </app-modal>
       

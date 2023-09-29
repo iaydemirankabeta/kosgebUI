@@ -21,6 +21,7 @@ import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
+  CalendarMonthViewDay,
   CalendarView,
   DAYS_OF_WEEK,
 } from 'angular-calendar';
@@ -205,29 +206,44 @@ status:"Onaylandı"
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
   refresh = new Subject<void>();
   activeDayIsOpen: boolean = true;
-
+  selectedDates : Date[] = [];
   viewDate: Date = new Date();
   events: any[] = [];
 
   setView(view: CalendarView) {
     this.view = view;
   }
-
+  selectedDayViewDate: Date;
+  selectedMonthViewDay: CalendarMonthViewDay;
   onDayClick(day: MonthViewDay): void {
     const today = new Date(); // Bugünkü tarihi alın
     const clickedDate = day.date; // Tıklanan günün tarihini alın
-
+    this.selectedMonthViewDay = day;
+    const selectedDateTime = this.selectedMonthViewDay.date.getTime();
+    const dateIndex = this.selectedDates.findIndex(
+      (selectedDay) => selectedDay.getTime() === selectedDateTime
+    );
+    if (dateIndex > -1) {
+      delete this.selectedMonthViewDay.cssClass;
+      this.selectedDates.splice(dateIndex, 1);
+    } else {
+      day.cssClass = 'cal-day-selected';
+      this.selectedMonthViewDay = day;
+      this.selectedDates.push(clickedDate);
+    }
     // Tıklanan tarih bugünden önceyse tıklamayı engelle
     if (clickedDate < today ) {
       return;
     }
-
-    this.openModalMeet(clickedDate);
   }
 
+  selectHour(){
+    this.meet.close();
+    this.openModalMeet(this.selectedDates);
+  }
   
 
-  openModalMeet(selectedDate: Date) {
+  openModalMeet(selectedDate: Date[]) {
     console.log(selectedDate);
     const modalRef = this.modalService.open(AppModalComponent);
     modalRef.componentInstance.selectedDate = selectedDate;

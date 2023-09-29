@@ -13,3 +13,10 @@
 
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
+.cal-day-selected, .cal-day-selected:hover {
+    background-color: green !important;
+  }
+
+.cal-day-sel{
+background-color: black !important;
+}

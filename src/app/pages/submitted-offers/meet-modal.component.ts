@@ -19,19 +19,37 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
   }
   </style>
     <div class="modal-header">
-      <h4 class="modal-title">Randevu Oluştur</h4>
+      <h4 class="modal-title">Müsaitlik Durumu</h4>
       <button type="button" class="close" (click)="closeModal()">
         <span>&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <p>Seçilen Tarih: {{ selectedDate | date }}</p>
-      <p>Boş Saatler:</p>
+      <p>Seçilen Tarih: <span *ngFor="let selected of selectedDate">{{selected.toLocaleDateString()}} </span></p>
+      <div class="mt-4">
+        <label>Görüşme Şekli</label>
+        <select class="form-control">
+          <option>Online</option>
+          <option>Yüz yüze</option>
+        </select>
+      </div>
+      
+      <div class="mt-4">
+        <label>Temsilciler</label>
+        <div class="mt-4">
+          <button class="btn btn-primary" (click) = "counterUpdate()">Katılımcı Ekle</button>
+        </div>
+        <div  *ngFor="let counter of counters" class="mt-2">
+          <input class="form-control" type=input />
+        </div>
+      </div>
+
+      <p class="mt-4">Boş Saatler:</p>
       <div class="radio-buttons">
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let emptyHour of emptyHours">
             <label class="radio-label">
-              <input type="radio" name="selectedHour" [value]="emptyHour" [(ngModel)]="selectedHour">
+              <input type="checkbox" [value]="emptyHour">
               {{ emptyHour }}
             </label>
           </li>
@@ -46,28 +64,29 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
         <div class="col-xs-12 text-center">
           <i class="fa-solid fa-check call-tick"></i>
           <h3>Tebrikler</h3>
-          <p>Randevunuz oluştu</p>
+          <p>KOSGEB'e Görüşme Talebiniz iletildi</p>
           
         </div>
       </app-modal>
   `,
 })
 export class AppModalComponent {
-  @Input() selectedDate: Date;
+  @Input() selectedDate: Date[];
   emptyHours: string[] = [];
-  selectedHour: string;
+  selectedHour: string[];
+  counters:number[]=[1];
   constructor(public activeModal: NgbActiveModal, public randevuService: RandevuService
-    
-    ) {}
 
-    @ViewChild('successRandevu') private successRandevuModal:ModalComponent
+  ) { }
 
-    modalsuccesRandevu: ModalConfig = {
-      modalTitle: "Randevu Oluşturuldu",
-      closeButtonLabel:'Kapat',
-      hideCloseButton:() => true
-    }; 
-  
+  @ViewChild('successRandevu') private successRandevuModal: ModalComponent
+
+  modalsuccesRandevu: ModalConfig = {
+    modalTitle: "Randevu Oluşturuldu",
+    closeButtonLabel: 'Kapat',
+    hideCloseButton: () => true
+  };
+
 
   ngOnInit() {
     this.findEmptyHours();
@@ -78,17 +97,25 @@ export class AppModalComponent {
   }
 
   createAppointment() {
-    if (this.selectedHour) {
-      const randevuTarihi = new Date(this.selectedDate);
-      randevuTarihi.setHours(parseInt(this.selectedHour.split(':')[0], 10));
-      randevuTarihi.setMinutes(parseInt(this.selectedHour.split(':')[1], 10));
-      this.randevuService.randevuOlustur(randevuTarihi);
-      this.successRandevuModal.open();
-    }
+    // if (this.selectedHour) {
+    //   this.selectedHour.forEach((hour) => {
+    //     this.selectedDate.forEach((date) => {
+    //       const randevuTarihi = new Date(date);
+    //       randevuTarihi.setHours(parseInt(hour.split(':')[0], 10));
+    //       randevuTarihi.setMinutes(parseInt(hour.split(':')[1], 10));
+    //       this.randevuService.randevuOlustur(randevuTarihi);
+    //     });
+    //   });
+    //   this.successRandevuModal.open();
+    // }
 
-   
+    this.successRandevuModal.open();
     this.closeModal();
 
+  }
+
+  counterUpdate(){
+    this.counters.push(this.counters.length+1);
   }
 
   findEmptyHours() {
@@ -102,12 +129,7 @@ export class AppModalComponent {
 
     for (let hour = startHour; hour <= endHour; hour++) {
       const formattedHour = hour.toString().padStart(2, '0') + ':00';
-      const tarihString = this.selectedDate.toDateString();
-      const isHourOccupied = doluTarihler.includes(tarihString + ' ' + formattedHour);
-
-      if (!isHourOccupied) {
-        this.emptyHours.push(formattedHour);
-      }
+      this.emptyHours.push(formattedHour);
     }
   }
 }

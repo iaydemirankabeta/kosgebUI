@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import {MatSelectModule} from '@angular/material/select';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { SubmittedOffersComponent } from './submitted-offers.component';
@@ -24,7 +24,6 @@ registerLocaleData(localeTr);
   ],
   imports: [
     CommonModule,
-    FlatpickrModule.forRoot(),
     RouterModule.forChild([
       {
           path: '',
@@ -39,8 +38,11 @@ registerLocaleData(localeTr);
     }),
     FormsModule,
     MatTabsModule,
+    MatSelectModule,
     MatTableModule,
-    ModalsModule
+    ModalsModule,
+    FlatpickrModule.forRoot(),
+
   ],
   providers: [CallsComponent], // Bağımlılıklar burada eklenir
 
