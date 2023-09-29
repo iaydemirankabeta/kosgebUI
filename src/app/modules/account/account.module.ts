@@ -19,6 +19,7 @@ import {SharedModule} from "../../_metronic/shared/shared.module";
 import { ProfileComponent } from './profile/profile.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { ModalsModule } from "../../_metronic/partials/layout/modals/modals.module";
+import { CompanyAdressesComponent } from './company-adresses/company-adresses.component';
 
 @NgModule({
     declarations: [
@@ -33,11 +34,13 @@ import { ModalsModule } from "../../_metronic/partials/layout/modals/modals.modu
         SignInMethodComponent,
         ProfileComponent,
         UserManagementComponent,
+        CompanyAdressesComponent,
     ],
     imports: [
         CommonModule,
         AccountRoutingModule,
         FormsModule,
+        ReactiveFormsModule,
         MatTabsModule,
         MatTableModule,
         ReactiveFormsModule,

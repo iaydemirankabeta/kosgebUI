@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CallsComponent } from '../calls/calls.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
+import { Adress } from 'src/app/modules/account/company-adresses/company-adresses.component';
 @Injectable({
   providedIn: 'root', // veya belirli bir modül
 })
@@ -34,10 +35,17 @@ isEnabledError: boolean;
 
   };
   @ViewChild('modal') private modalComponent: ModalComponent;
+  adresses: Adress[] = [
+    { id: 1, title: "Merkez", longAdress: "İstanbul", city: "İstanbul", type: "Merkez" },
+    { id: 2, title: "İzmit Fabrika", longAdress: "İstanbul", city: "Kocaeli", type: "Fabrika" },
+    { id: 3, title: "İnegöl Fabrika", longAdress: "İstanbul", city: "Bursa", type: "Fabrika" },
+    { id: 4, title: "Maslak Ofis", longAdress: "İstanbul", city: "İstanbul", type: "Ofis" },
 
+  ];
   constructor(private fb: FormBuilder,private route: ActivatedRoute,private data: CallsComponent) {
     var formGroupInfo = {};
     (formGroupInfo as any)['name'] = ['', Validators.required];
+    (formGroupInfo as any)['adress'] = ['', Validators.required];
     (formGroupInfo as any)['piece'] = ['', Validators.required];
     this.filters = this.getKobiFilter();
     this.getKobiFilter().forEach((item) => {
@@ -46,7 +54,7 @@ isEnabledError: boolean;
     (formGroupInfo as any)['files'] = [];
     (formGroupInfo as any)['expectationDescription'] = ['', Validators.required];
     this.form = this.fb.group(formGroupInfo);
-  }
+  } 
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -59,17 +67,17 @@ isEnabledError: boolean;
          var patchValue = {};
          (patchValue as any)['files'] = [];
          (patchValue as any)['name'] = this.result.title || '';
-
+         (patchValue as any)['adress'] = this.result.adress || '';
          (patchValue as any)['expectationDescription'] = this.result.expectationDescription || '';
          Object.keys(this.result).forEach((key) => {
           (patchValue as any)[key] = this.result[key] || '';
          })
         
         this.form.patchValue(patchValue);
-        this.form.controls['expectationDescription'].markAsDirty();
-        this.form.controls['name'].markAsDirty();
-        this.form.controls['piece'].markAsDirty();
-        this.form.controls['ihracgtip'].markAsDirty();
+        this.form.controls['expectationDescription'].markAsPristine();
+        this.form.controls['name'].markAsPristine();
+        this.form.controls['piece'].markAsPristine();
+        this.form.controls['ihracgtip'].markAsPristine();
         return this.result;
       } else {
         this.itemId = null;
@@ -96,8 +104,6 @@ isEnabledError: boolean;
       this.isEnabledError=false;
       this.form.reset();      
        return this.modalComponent.open();
-
-  
       // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
       // Örnek: this.myApiService.submitFormData(formData).subscribe(response => { ... });
     } else {

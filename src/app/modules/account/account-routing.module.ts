@@ -5,6 +5,7 @@ import { AccountComponent } from './account.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { CompanyAdressesComponent } from './company-adresses/company-adresses.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'kullanici-yonetimi',
         component: UserManagementComponent,
+      },
+      {
+        path:'adreslerim',
+        component:CompanyAdressesComponent
       },
 
       { path: '', redirectTo: 'overview', pathMatch: 'full' },

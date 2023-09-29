@@ -21,7 +21,7 @@
           <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
             Ürün ismi gerekli.
           </div>
-          <div *ngIf="form.get('name')?.dirty" class="text-danger mt-2">Revize Gerekli</div>
+          <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
 
         </div>
       </div>
@@ -33,9 +33,21 @@
           <div *ngIf="form.get('piece')?.invalid && form.get('piece')?.touched" class="error-message">
             Adet Bilgisi gerekli.
           </div>
-          <div *ngIf="form.get('piece')?.dirty" class="text-danger mt-2">Revize Gerekli</div>
+          <div *ngIf="itemId &&form.get('piece')?.pristine && form.get('piece')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
+
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">Konum Seç</label>
+        <div class="col-lg-8">
+          <select class="form-select  mb-5 " aria-label="Select example" formControlName="adress">
+            <option *ngFor="let option of adresses" value="{{option.title}}"
+             >{{option.title}}</option>
+          </select>
+          <div *ngIf="itemId && form.get('adress')?.pristine && form.get('adress')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
+        </div>
+      </div>
+
       <div *ngFor="let item of filters" class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">{{item.label}}</label>
         <div class="col-lg-8">
@@ -43,7 +55,7 @@
             <option *ngFor="let option of item.options" value="{{option.value}}"
               [selected]="result ? option.value == result[item.name] : null">{{option.name}}</option>
           </select>
-          <div *ngIf="form.get(item.name)?.dirty" class="text-danger mt-2">Revize Gerekli</div>
+          <div *ngIf="itemId &&form.get(item.name)?.pristine && form.get(item.name)?.value !== '' " class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
 
@@ -59,7 +71,7 @@
             class="error-message">
             Lütfen en az {{minLength}} karakter, en fazla {{maxLength}} karakter girişi yapın.
           </div>
-          <div *ngIf="form.get('expectationDescription')?.dirty" class="text-danger mt-2">Revize Gerekli</div>
+          <div *ngIf="itemId && form.get('expectationDescription')?.pristine && form.get('expectationDescription')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
 
