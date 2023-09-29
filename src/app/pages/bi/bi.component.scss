@@ -1,0 +1,59 @@
+.business-container {
+    border: 1px solid #ccc;
+    padding: 20px 15px;
+    margin: 10px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+  }
+  .business-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .business-company {
+    font-size: 16px;
+    font-weight:300;
+  }
+  
+  .business-address {
+    font-size: 14px;
+    color: #666;
+  }
+  .business-button{
+    margin-top:15px;
+    
+  }
+
+  .businessTop-icon{
+    right: 10px;
+    top:10px;
+    margin-bottom: 10px;
+  }
+  .businessTop-icon a{margin:0 7px;}
+  .businessTop-icon a i{font-size: 21px; color:#0000008c;}
+  .ki-duotone.color-black{color:black !important;}
+  .compare{
+    float: right;border: 1px solid #e74c3c;;padding: 5px; border-radius: 10px;color:black;
+  }
+  .compare.active{
+    background-color: #e74c3c;
+  }
+  .compare.active span, .compare.active .ki-copy{
+    color:white !important;
+  }
+
+  .call-tick{
+    font-size: 55px;
+    width: 80px;
+    height: 80px;
+    padding-top: 10px;
+    background-color: #27ae60;
+    border-radius: 45px;
+    color:white;
+    margin-bottom:10px;
+  }
+  
+  
+  .btn.btn-margin{
+    margin-left: 10px;
+  }
+  

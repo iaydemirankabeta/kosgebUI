@@ -6,6 +6,7 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { Observable } from 'rxjs';
 import { AuthService, UserType } from 'src/app/modules/auth';
 import { MeetingNotesService } from './meeting-notes/meeting-notes.service';
+import localeTr from '@angular/common/locales/tr'; // Türkçe yerelleştirme
 
 
 
@@ -26,6 +27,7 @@ export class MeetingsComponent {
     hideCloseButton: () => true,
   }
 
+  
   @ViewChild('modal') private modal:ModalComponent
 
   constructor(private meetingService: MeetingService,

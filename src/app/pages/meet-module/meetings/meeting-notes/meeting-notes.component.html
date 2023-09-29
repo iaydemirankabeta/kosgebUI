@@ -3,6 +3,8 @@
     <div *ngIf="meeting" class="col">
       <h2>{{ meeting.name }}</h2>
       <p>Tarih: {{ meeting.date | date:'dd.MM.yyyy HH:mm' }}</p>
+      <p>Şehir: {{ meeting.city }}</p>
+
       <p>Yeri: {{ meeting.location }}</p>
       
       <h3>Katılımcılar:</h3>
