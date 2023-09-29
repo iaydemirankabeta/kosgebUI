@@ -37,6 +37,12 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
+      title: 'Finans Modülü', icon: 'element-5', routerLink: '/finans-modulu', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
+      subMenu: [
+        { title: 'Finans', icon: '', routerLink: '/finans-modulu' },
+      ],
+    },
+    {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/offers', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
       subMenu: [
         { title: 'Başvurduğum Çağrılar', icon: '', routerLink: '/offers' },

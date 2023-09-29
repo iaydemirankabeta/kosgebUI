@@ -194,7 +194,7 @@
         <ng-container matColumnDef="TeklifStatusu">
             <th mat-header-cell *matHeaderCellDef> Teklif Statüsü </th>
 
-            <td mat-cell *matCellDef="let element" (click) = "element.status === 'Onaylandı' ? createMeeting(element) : null "> {{element.status}}</td>
+            <td mat-cell *matCellDef="let element" [class]="element.status === 'Onaylandı' ? 'green':0" (click) = "element.status === 'Onaylandı' ? createMeeting(element) : null "> {{element.status}}</td>
           </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
