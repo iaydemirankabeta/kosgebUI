@@ -9,4 +9,7 @@ export interface Product {
     qty:number;
     rating:number;
     status:boolean;
+    priceTRY:number;
+    priceUSD:number;
+    priceEURO:number;
   }

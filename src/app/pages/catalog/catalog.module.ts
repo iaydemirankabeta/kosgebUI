@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { FormsModule } from '@angular/forms';
 
 import { ExtrasModule } from '../../_metronic/partials';
 import { PaginationService } from '../service/pagination.service';
@@ -13,13 +14,15 @@ import { ModalsModule, WidgetsModule } from '../../_metronic/partials';
 import { ProductAddComponent } from './products/product-add/product-add.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { SearchComponent } from '../../pages/components/search/search.component';
+import { CurrencyComponent } from './currency/currency.component';
 
 
 @NgModule({
-  declarations: [CatalogComponent,ProductsComponent,CategoriesComponent,PaginationComponent, ProductAddComponent, ShowcaseComponent,SearchComponent],
+  declarations: [CatalogComponent,ProductsComponent,CategoriesComponent,PaginationComponent, ProductAddComponent, ShowcaseComponent,SearchComponent, CurrencyComponent],
   imports: [
     ExtrasModule,
     CKEditorModule,
+    FormsModule,
     CommonModule,
     
     RouterModule.forChild([

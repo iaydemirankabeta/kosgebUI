@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 import { ListsComponent } from '../modules/widgets-examples/lists/lists.component';
 import { CompanyChoiceComponent } from './company-choice/company-choice.component';
-import { ReportsComponent } from './reports/reports.component';
-import { RoleGroupsComponent } from './role-groups/role-groups.component';
 import { KeeniconComponent } from '../_metronic/shared/keenicon/keenicon.component';
 
 
@@ -11,6 +9,12 @@ const Routing: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+      data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'toplanti',
+    loadChildren: () =>
+      import('./meet-module/meet-module.module').then((m) => m.MeetModuleModule),
       data:{layout:'dark-sidebar'}
   },
   {

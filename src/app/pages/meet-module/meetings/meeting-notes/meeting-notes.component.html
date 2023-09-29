@@ -1,0 +1,89 @@
+<div class="container mt-3" *ngIf="user$ | async as _user">
+  <div class="row">
+    <div *ngIf="meeting" class="col">
+      <h2>{{ meeting.name }}</h2>
+      <p>Tarih: {{ meeting.date | date:'dd.MM.yyyy HH:mm' }}</p>
+      <p>Yeri: {{ meeting.location }}</p>
+      
+      <h3>Katılımcılar:</h3>
+      <ul>
+        <li *ngFor="let participant of meeting.participants">{{ participant }}</li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <mat-tab-group fitInkBarToContent>
+        <mat-tab *ngIf="_user.roles == 3" label="Yapılacaklar">
+          <div class="form-group">
+            <span  *ngFor="let note of fakeNotes['Yapılacaklar']">
+              <button  (click)="removeMeetingNote('Yapılacaklar', note.id)" class="btn btn-link remove-button">
+                <span class="text-danger">&times;</span>
+              </button>
+              {{ note.content }}
+            </span>
+                     
+            <textarea
+              id="noteContentYapilacaklar"
+              class="form-control"
+              rows="3"
+              cols="10"
+              [(ngModel)]="newNote['Yapılacaklar']"
+              (keyup.enter)="addMeetingNote('Yapılacaklar')"
+
+            ></textarea>
+            <button class="btn btn-primary mt-2" (click)="addMeetingNote('Yapılacaklar')">
+              Not Ekle
+            </button>
+          </div>
+        </mat-tab>
+        <mat-tab *ngIf="_user.roles == 3" label="Yapılabilecekler">
+          <div class="form-group">
+            <span  *ngFor="let note of fakeNotes['Yapılabilecekler']">
+              <button  (click)="removeMeetingNote('Yapılabilecekler', note.id)" class="btn btn-link remove-button">
+                <span class="text-danger">&times;</span>
+              </button>
+              {{ note.content }}
+            </span>
+                      <textarea
+              id="noteContentYapilabilecekler"
+              class="form-control"
+              rows="3"
+              cols="10"
+              (keyup.enter)="addMeetingNote('Yapılabilecekler')"
+              [(ngModel)]="newNote['Yapılabilecekler']"
+              
+            ></textarea>
+            <button  class="btn btn-primary mt-2" (click)="addMeetingNote('Yapılabilecekler')">
+              Not Ekle
+            </button>
+          </div>
+        </mat-tab>
+        <mat-tab label="Bilgi">
+          <div class="form-group">
+              <span  *ngFor="let note of fakeNotes['Bilgi']">
+                <button *ngIf="_user.roles == 3" (click)="removeMeetingNote('Bilgi', note.id)" class="btn btn-link remove-button">
+                  <span class="text-danger">&times;</span>
+                </button>
+                {{ note.content }}
+              </span>
+            <textarea
+              id="noteContentBilgi"
+              class="form-control"
+              rows="3"
+              cols="10"
+              [(ngModel)]="newNote['Bilgi']"
+              (keyup.enter)="addMeetingNote('Bilgi')"
+
+              *ngIf="_user.roles == 3"
+            ></textarea>
+            <button class="btn btn-primary mt-2" *ngIf="_user.roles == 3" (click)="addMeetingNote('Bilgi')">
+              Not Ekle
+            </button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

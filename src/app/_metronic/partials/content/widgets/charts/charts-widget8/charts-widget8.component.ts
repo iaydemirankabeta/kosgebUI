@@ -32,15 +32,15 @@ function getChartOptions(height: number) {
   return {
     series: [
       {
-        name: 'Net Profit',
+        name: 'İşletme',
         data: [30, 30, 50, 50, 35, 35],
       },
       {
-        name: 'Revenue',
+        name: 'Sektör Ortalaması - İBBS1',
         data: [55, 20, 20, 20, 70, 70],
       },
       {
-        name: 'Expenses',
+        name: 'Sektör Ortalaması - Türkiye',
         data: [60, 60, 40, 40, 30, 30],
       },
     ],
@@ -78,7 +78,7 @@ function getChartOptions(height: number) {
     xaxis: {
       offsetX: 0,
       offsetY: 0,
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+      categories: ['2018', '2019', '2020', '2021', '2022', '2023'],
       axisBorder: {
         show: false,
       },
@@ -146,7 +146,7 @@ function getChartOptions(height: number) {
       },
       y: {
         formatter: function (val: number) {
-          return '$' + val + ' thousands';
+          return '' + val + ' Milyon TL';
         },
       },
     },

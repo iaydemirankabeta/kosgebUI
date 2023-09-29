@@ -24,8 +24,8 @@ function getChartOptions(height: number) {
   return {
     series: [
       {
-        name: 'Net Profit',
-        data: [30, 40, 40, 90, 90, 70, 70],
+        name: 'Toplam Kazanç',
+        data: [30, 40, 40, 90, 90, 70, 100],
       },
     ],
     chart: {
@@ -54,7 +54,7 @@ function getChartOptions(height: number) {
       colors: [baseColor],
     },
     xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+      categories: ['2017', '2018', '2019', '2020', '2021', '2022', '2023'],
       axisBorder: {
         show: false,
       },
@@ -119,7 +119,7 @@ function getChartOptions(height: number) {
       },
       y: {
         formatter: function (val: number) {
-          return '$' + val + ' thousands';
+          return '' + val + ' Milyon TL';
         },
       },
     },

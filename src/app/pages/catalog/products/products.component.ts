@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -20,10 +21,13 @@ export class ProductsComponent implements OnInit {
   searchTerm: string ;
   reload: EventEmitter<boolean> = new EventEmitter();
   recordsPerPage: number = 5;
-
+  @Input() selectedCurrency: string = '₺';
   nextButtonDisabled = false;
   dataTotalItems = 0; 
   
+  onCurrencySelected(currency: string) {
+    this.selectedCurrency = currency;
+  }
 
 
   constructor(

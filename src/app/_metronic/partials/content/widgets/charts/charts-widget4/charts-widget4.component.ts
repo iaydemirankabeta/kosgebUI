@@ -58,7 +58,7 @@ function getChartOptions() {
       curve: 'smooth',
     },
     xaxis: {
-      categories: ['Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz','Ağustos'],
+      categories: ['2018', '2019', '2020', '2021', '2022','2023'],
       axisBorder: {
         show: false,
       },

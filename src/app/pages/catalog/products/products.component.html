@@ -22,6 +22,7 @@
           <!--end::Search-->
         </div>
         <!--end::Card title-->
+        <app-currency (currencySelected)="onCurrencySelected($event)"></app-currency>
         <!--begin::Card toolbar-->
         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
           <div class="w-100 mw-150px">
@@ -50,10 +51,10 @@
             </div>
           </th>
           <th class="min-w-200px">Ürün/Hizmet</th>
-          <!--<th class="text-end min-w-100px">SKU</th>
+          <th class="text-end min-w-100px">SKU</th>
           <th class="text-end min-w-70px">Adet</th>
           <th class="text-end min-w-100px">Fiyat</th>
-          <th class="text-end min-w-100px">Puan</th>-->
+          <th class="text-end min-w-100px">Puan</th>
           <th class="text-end min-w-100px">Durum</th>
           <th class="text-end min-w-70px">Aksiyon</th>
         </tr>
@@ -79,7 +80,7 @@
               </div>
             </div>
           </td>
-         <!-- <td class="text-end pe-0">
+          <td class="text-end pe-0">
             <span class="fw-bold">{{product.sku}}</span>
           </td>
           <td class="text-end pe-0" data-order="0">
@@ -87,7 +88,7 @@
             <span *ngIf="product.qty < 4 && product.qty > 0 "  class="badge badge-light-warning">Son</span>
             <span [ngClass]="product.qty < 3 ?'text-danger':'' " class="fw-bold ms-3"> {{product.qty}}</span>
           </td>
-          <td class="text-end pe-0">{{product.price}} TL</td>
+          <td class="text-end pe-0">{{selectedCurrency == '₺' ? product.price : '' }} {{selectedCurrency == '$' ? product.priceUSD : ''}} {{selectedCurrency == '€' ? product.priceEURO : '' }} {{selectedCurrency}}</td>
           <td class="text-end pe-0" data-order="rating-5">
             <div class="rating justify-content-end">
               <div class="rating-label" [ngClass]="product.rating >= 1 ? 'checked': ''">
@@ -106,7 +107,7 @@
                 <i class="ki-duotone ki-star fs-6"></i>
               </div>
             </div>
-          </td>-->
+          </td>
           <td class="text-end pe-0" data-order="Scheduled">
             <!--begin::Badges-->
             <div  [ngClass]="product.status == true ? 'badge badge-light-success': 'badge badge-light-danger'">{{product.status == true ? 'Aktif': 'Pasif' }}</div>

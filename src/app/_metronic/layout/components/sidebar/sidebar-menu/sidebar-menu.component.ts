@@ -20,6 +20,12 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Rol Grupları', icon: 'element-4', routerLink: '/rol-gruplari',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:true },
     { title: 'Kullanıcı Yönetimi', icon: 'user', routerLink: '/user-management',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.ADMIN],shown:false },
     { title: 'Şirket Yönetimi', icon: 'compass', routerLink: '/company-management',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN],shown:false },
+    { title: 'Toplantı Modülü', icon: 'tablet-book', routerLink: '/company-management',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN],shown:false,
+    subMenu: [
+      { title: 'Toplantı Planla', icon: '', routerLink: '/toplanti/toplanti-planla' },
+      { title: 'Toplantılarım', icon: '', routerLink: '/toplanti/toplantilarim' },
+    ],
+  },
     { title: 'Tüm Çağrılar', icon: 'call', routerLink: '/calls',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
     { title: 'Tüm Çözümler', icon: 'abstract-27', routerLink: '/solutions',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
     { title: 'Tüm Teklifler', icon: 'element-1', routerLink: '/offers',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
@@ -29,6 +35,7 @@ export class SidebarMenuComponent implements OnInit {
 
 
     { title: 'Anasayfa', icon: 'home', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
+    { title: 'Toplantılarım', icon: 'tablet-book', routerLink: '/toplanti/toplantilarim',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.BI,CompanyTypes.KOBI],shown:true },
     { title: 'Tekliflerim / Görüşme Taleplerim', icon: 'paper-clip', routerLink: '/offers',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI,CompanyTypes.BI],shown:true },
     { title: 'Uygulama Örnekleri', icon: 'element-8', routerLink: '/application-examples',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
     { title: 'Çözüm Oluştur', icon: 'element-3', routerLink: '/create-solution',roles:[UserRoles.KosgebAdmin,UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOBI],shown:true },
@@ -47,7 +54,7 @@ export class SidebarMenuComponent implements OnInit {
     subMenu: [
       { title: 'Profilim', icon: '', routerLink: '/crafted/account/profilim' },
       { title: 'Kullanıcı Yönetimi', icon: '', routerLink: '/crafted/account/kullanici-yonetimi' },
-      { title: 'Hesap Ayarları', icon: '', routerLink: '/crafted/account/overview' },
+      { title: 'Hesap Ayarları', icon: '', routerLink: '/crafted/account/settings' },
     ],
   },
     {

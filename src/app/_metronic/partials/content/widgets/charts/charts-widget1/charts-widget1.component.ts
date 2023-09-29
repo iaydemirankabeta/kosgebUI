@@ -23,11 +23,11 @@ function getChartOptions(height: number) {
   return {
     series: [
       {
-        name: 'Net Profit',
+        name: 'Mavi Yaka',
         data: [44, 55, 57, 56, 61, 58],
       },
       {
-        name: 'Revenue',
+        name: 'Beyaz Yaka',
         data: [76, 85, 101, 98, 87, 105],
       },
     ],
@@ -58,7 +58,7 @@ function getChartOptions(height: number) {
       colors: ['transparent'],
     },
     xaxis: {
-      categories: ['Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz'],
+      categories: ['2018', '2019', '2020', '2021', '2022', '2023'],
       axisBorder: {
         show: false,
       },
@@ -110,7 +110,7 @@ function getChartOptions(height: number) {
       },
       y: {
         formatter: function (val: number) {
-          return  + val + ' TL';
+          return  + val + ' Çalışan Sayısı';
         },
       },
     },

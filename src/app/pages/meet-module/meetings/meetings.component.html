@@ -1,0 +1,34 @@
+<div class="container mt-4" *ngIf="user$ | async as _user">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Toplantı Adı</th>
+          <th scope="col">Toplantı Tarihi</th>
+          <th scope="col">Katılımcılar</th>
+          <th scope="col" >Toplantı Notları</th>
+          <th scope="col">Link Güncelle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let meeting of meetings">
+          <td>{{ meeting.name }}</td>
+          <td>
+            <span class="meeting-time">{{ formatMeetingDate(meeting.date) }}</span>
+
+          </td>
+          <td>{{ meeting.participants }}</td>
+          <td  >
+            <button class="btn btn-primary" (click)="viewMeetingNotes(meeting)">Toplantı Notları</button>
+          </td>
+          <td>
+            <input type="text" [disabled]="_user.roles == 2 || _user.roles == 4" class="form-control form-control-sm form-control-solid ps-10" value="{{meeting.url}}">
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <app-modal #modal [modalConfig]="modalCompareConfig" aria-modal="true" >
+    <app-meeting-notes [meeting]="selectedMeeting"></app-meeting-notes>
+  </app-modal>
+  

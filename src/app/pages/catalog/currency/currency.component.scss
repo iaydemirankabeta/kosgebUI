@@ -1,0 +1,15 @@
+select.form-select::-ms-value {
+    color: #000;
+    background-color: transparent;
+}
+
+select.form-select::placeholder {
+    color: #6e707e;
+    opacity: 1;
+}
+
+/* Seçilen öğenin arka plan rengini belirgin hale getirme */
+select.form-select {
+    background-color: #fff;
+    color: #000;
+}
