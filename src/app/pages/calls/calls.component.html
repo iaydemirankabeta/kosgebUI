@@ -40,7 +40,7 @@
             </div>
             <div class="card-footer">
               <a *ngIf="_user.roles! === 1 && item.status === 'Revize Gerekli'"  [routerLink]="['/create-call', item.id]" type="button" class="btn btn-warning" ><i class="fa-solid fa-pencil"></i> Düzenle</a>
-              <a  *ngIf="item.status === 'Başvuru Toplama Aşamasında'"  [routerLink]="['/offers', item.id]" class="btn btn-success btn-margin" >Gelen Teklifler</a>
+              <a  *ngIf="item.status === 'Başvuru Toplama Aşamasında'"  [routerLink]="['/offers', item.id]" class="btn btn-success btn-margin" >Gelen Başvurular</a>
 
             </div>
         </div>
@@ -72,7 +72,7 @@
               </div>
               <div *ngIf="_user.roles === 1">
                 <a  *ngIf="item.status === 'Revize Gerekli'" [routerLink]="['/create-call', item.id]" class="btn btn-warning" ><i class="fa-solid fa-pencil"></i>Düzenle</a>
-                <a *ngIf="item.status === 'Başvuru Toplama Aşamasında'" [routerLink]="['/offers', item.id]" class="btn btn-success" >Gelen Teklifler</a>
+                <a *ngIf="item.status === 'Başvuru Toplama Aşamasında'" [routerLink]="['/offers', item.id]" class="btn btn-success" >Gelen Başvurular</a>
               </div>
           </div>
         </li>
