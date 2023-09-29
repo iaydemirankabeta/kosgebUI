@@ -25,6 +25,7 @@ import { CompanyChoiceComponent } from './pages/company-choice/company-choice.co
 import { ModalsModule } from "./_metronic/partials/layout/modals/modals.module";
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FinansComponent } from './pages/finans/finans.component';
 
 
 
@@ -38,7 +39,7 @@ function appInitializer(authService: AuthService) {
 }
 
 @NgModule({
-  declarations: [AppComponent,   ReportsComponent,CompanyChoiceComponent],
+  declarations: [AppComponent,   ReportsComponent,CompanyChoiceComponent, FinansComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

@@ -30,6 +30,7 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Tüm Çözümler', icon: 'abstract-27', routerLink: '/solutions',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
     { title: 'Tüm Teklifler', icon: 'element-1', routerLink: '/offers',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
     { title: 'Tüm Başvurular', icon: 'toggle-on', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
+    { title: 'Raporlar', icon: 'archive', routerLink: '/raporlar',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
     { title: 'Duyurular', icon: 'notification-circle', routerLink: '/dashboard',roles:[UserRoles.User],disabled:false,companyTypes:[CompanyTypes.KOSGEB,CompanyTypes.Muadil,CompanyTypes.ADMIN,CompanyTypes.KOSGEBUSER],shown:false },
 
 

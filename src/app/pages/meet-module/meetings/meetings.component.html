@@ -28,6 +28,7 @@
         <tr>
           <th scope="col">Toplantı Adı</th>
           <th scope="col">Toplantı Tarihi</th>
+          <th scope="col">Şehir</th>
           <th scope="col">Katılımcılar</th>
           <th scope="col" >Toplantı Notları</th>
           <th scope="col">Link Güncelle</th>
@@ -40,6 +41,7 @@
             <span class="meeting-time">{{ formatMeetingDate(meeting.date) }}</span>
 
           </td>
+          <td>{{meeting.city}}</td>
           <td>{{ meeting.participants }}</td>
           <td  >
             <button class="btn btn-primary" (click)="viewMeetingNotes(meeting)">Toplantı Notları</button>

@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { ListsComponent } from '../modules/widgets-examples/lists/lists.component';
 import { CompanyChoiceComponent } from './company-choice/company-choice.component';
 import { KeeniconComponent } from '../_metronic/shared/keenicon/keenicon.component';
+import { ReportsComponent } from '../_metronic/layout/components/toolbar/reports/reports.component';
+import { FinansComponent } from './finans/finans.component';
 
 
 const Routing: Routes = [
@@ -30,9 +32,9 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
-    path: 'buyukIsletmeler',
+    path: 'buyuk-isletmeler',
     loadChildren: () =>
-      import('./kobi/kobi.module').then((m) => m.kobiModule),
+      import('./bi/bi.module').then((m) => m.biModule),
       data:{layout:'dark-sidebar'}
   },
   {
@@ -194,6 +196,16 @@ const Routing: Routes = [
     component: CompanyChoiceComponent,
     pathMatch:'full',
     data:{layout:'empty'}
+  },
+  {
+    path: 'raporlar',
+    component: ReportsComponent,
+    data:{layout:'dark-sidebar'}
+  },
+  {
+    path: 'finans-modulu',
+    component: FinansComponent,
+    data:{layout:'dark-sidebar'}
   },
   {
     path: 'keen',
