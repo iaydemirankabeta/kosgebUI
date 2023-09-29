@@ -20,6 +20,8 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Rol Grupları', icon: 'element-4', routerLink: '/rol-gruplari', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.ADMIN], shown: true },
     { title: 'Kullanıcı Yönetimi', icon: 'user', routerLink: '/user-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.ADMIN], shown: false },
     { title: 'Şirket Yönetimi', icon: 'compass', routerLink: '/company-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN], shown: false },
+    { title: 'Anketler', icon: 'compass', routerLink: '/poll', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false },
+
 
     { title: 'Tüm Çağrılar', icon: 'call', routerLink: '/calls', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN, CompanyTypes.KOSGEBUSER], shown: false },
     { title: 'Tüm Başvurular', icon: 'toggle-on', routerLink: '/offers', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN, CompanyTypes.KOSGEBUSER], shown: false },
@@ -50,10 +52,18 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
+      title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/kosgeb-destek', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB,CompanyTypes.KOSGEBUSER], shown: false,
+      subMenu: [
+        { title: 'KOSGEB Destek Çağrıları', icon: '', routerLink: '/kosgeb-destek' },
+        { title: 'Talep Toplama', icon: '', routerLink: '/request-collection' },
+      ],
+    },
+    {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/calls', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
       subMenu: [
         { title: 'Çağrılarıma Gelen Başvurular', icon: 'paper-clip', routerLink: '/offers' },
         { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call' },
+        { title: 'KOSGEB Talep Toplama', icon: '', routerLink: '/apply-request' },
         { title: 'Çağrılarım', icon: 'call', routerLink: '/calls' },
       ],
     },

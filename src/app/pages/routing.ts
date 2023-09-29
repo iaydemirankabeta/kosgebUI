@@ -74,7 +74,7 @@ const Routing: Routes = [
       data:{layout:'dark-sidebar'}
   },
   {
-    path: 'pool',
+    path: 'poll',
     loadChildren: () =>
       import('./poll/poll.module').then((m) => m.PollModule),
       data:{layout:'dark-sidebar'}

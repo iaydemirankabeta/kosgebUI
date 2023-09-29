@@ -54,8 +54,7 @@ export class RequestCollectionComponent {
   };
   createModalConfig: ModalConfig = {
     modalTitle: "Talep Oluştur",
-    closeButtonLabel: 'Gönder',
-    hideCloseButton: () => true
+    closeButtonLabel: 'Talep Oluştur',
   };
   @ViewChild('detailModal') private modalComponent: ModalComponent;
   @ViewChild('createModal') private createModalComponent: ModalComponent;
