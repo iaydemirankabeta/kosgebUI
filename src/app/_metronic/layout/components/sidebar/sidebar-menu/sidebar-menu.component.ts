@@ -87,7 +87,7 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
-      title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI, CompanyTypes.KOSGEB], shown: true,
+      title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: true,
       subMenu: [
         { title: 'Profilim', icon: '', routerLink: '/crafted/account/profilim' },
         { title: 'Kullanıcı Yönetimi', icon: '', routerLink: '/crafted/account/kullanici-yonetimi' },
