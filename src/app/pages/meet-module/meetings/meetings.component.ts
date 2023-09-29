@@ -11,7 +11,6 @@ import localeTr from '@angular/common/locales/tr'; // Türkçe yerelleştirme
 
 
 
-
 @Component({
   selector: 'app-meetings',
   templateUrl: './meetings.component.html',
