@@ -5,6 +5,8 @@ import { CallsComponent } from '../calls/calls.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { Adress } from 'src/app/modules/account/company-adresses/company-adresses.component';
+import { Observable } from 'rxjs';
+import { UserType } from 'src/app/modules/auth';
 @Injectable({
   providedIn: 'root', // veya belirli bir modül
 })
@@ -18,6 +20,7 @@ export class CreateCallComponent{
   form: FormGroup;
   yuklenenDosyalar: File[] = [];
   filters : any = [];
+  user$: Observable<UserType>;
 isEnabledError: boolean;
   minLength = 20;
   maxLength = 200;

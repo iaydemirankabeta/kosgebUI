@@ -48,7 +48,7 @@ export class ApplyCallsComponent {
 
   };
   modalOfferConfig: ModalConfig = {
-    modalTitle: "Teklif Ver",
+    modalTitle: "Başvur",
     closeButtonLabel:'Gönder',
     hideCloseButton:() => true
   };

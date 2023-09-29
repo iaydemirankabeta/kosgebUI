@@ -29,21 +29,23 @@
 <ng-container >
     <div class="row" *ngIf="currentView === 'grid';">
     <div class="col-md-4 col-xs-12" *ngFor="let item of trigClick">
-        <div class="card p-2 text-center" >
-            <div class="card-header">
-                <div class="w-100"><p class="title-sector" style="background-color: {{item.call?.badgetColor}};">{{item.call?.badget}}</p></div>
-                <h3 style="margin:0 auto;">{{item.call?.title}}</h3>
-                <p class="tags">{{item.call?.tags}}</p>
-            </div>
-            <div class="card-body">
-                <h5 class="text-upperCase"><b>{{item.call?.badget}} Kullanıcısı Şirketin;</b></h5>
-                <div *ngIf="item.call" >
-                    <a class="btn btn-dark btn-active-bg-success col-12" *ngFor="let listItem of item.call.url; let i = index"   href="javascript:;" (click)="openModal(i)">{{listItem.name}}</a>
-                   
-                </div>
-            </div>
+        <div class="card p-2 text-center mt-4" >
+          <div class="card-header">
+            <div class="w-100"><p class="title-sector" style="background-color: {{item.call?.badgetColor}};">{{item.call?.badget}}</p></div>
+            <h3 style="margin:0 auto;">{{item.call?.title}}</h3>
+            <p class="tags">{{item.call?.tags}}</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex risus. Proin lobortis lacus diam, sit amet dignissim elit sodales ac. Fusce eu hendrerit arcu, et sodales augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent cursus interdum diam vitae luctus. Phasellus consequat eget tellus sed blandit. Sed bibendum vehicula lorem ac finibus. Pellentesque eget faucibus felis. Ut sagittis neque eu felis faucibus ullamcorper. Nunc a auctor risus, sit amet lobortis neque. Curabitur nisl eros, egestas eu vestibulum vitae, aliquam at elit. Nullam id efficitur libero, sed vehicula mi.
+            </p>
+        </div>
+        <div class="card-body">
+          <h5 class="text-upperCase"><b>{{item.call?.badget}} Kullanıcısı Şirketin;</b></h5>
+          <div>
+              <a class="btn btn-dark btn-active-bg-success col-12"   href="javascript:;" (click)="openModal(0)">Beklentileri</a>
+             
+          </div>
+      </div>
             <div class="card-footer">
-              <button class="btn btn-primary float-right w-100" (click)="openOfferModal()">{{ user!.roles === 2 ? 'Teklif Ver' : 'Teklif İste'}}</button>
+              <button class="btn btn-primary float-right w-100" (click)="openOfferModal()">{{ user!.roles === 2 ? 'Başvur' : 'Teklif İste'}}</button>
             </div>
         </div>
     </div>
@@ -64,7 +66,7 @@
                   </div>
               </div>
               <div>
-                <button class="btn btn-primary float-right w-200px" (click)="openOfferModal()">{{ user!.roles === 2 ? 'Teklif Ver' : 'Teklif İste'}}</button>
+                <button class="btn btn-primary float-right w-200px" (click)="openOfferModal()">{{ user!.roles === 2 ? 'Başvur' : 'Teklif İste'}}</button>
               </div>
           </div>
         </li>

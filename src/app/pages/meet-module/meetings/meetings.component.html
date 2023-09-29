@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" *ngIf="user$ | async as _user">
   <div class="row">
     <div class="col">
       <mat-form-field appearance="fill">
@@ -30,7 +30,8 @@
           <th scope="col">Toplantı Tarihi</th>
           <th scope="col">Katılımcılar</th>
           <th scope="col" >Toplantı Notları</th>
-          <th scope="col">Link Güncelle</th>
+
+          <th scope="col">{{_user.roles == 2 || _user.roles == 4 ? 'Görüşme Linki' : 'Link Güncelle'}}</th>
         </tr>
       </thead>
       <tbody>
