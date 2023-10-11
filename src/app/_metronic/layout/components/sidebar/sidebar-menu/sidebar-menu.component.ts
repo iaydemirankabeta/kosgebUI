@@ -61,10 +61,10 @@ export class SidebarMenuComponent implements OnInit {
     {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/calls', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
       subMenu: [
-        { title: 'Çağrılarıma Gelen Başvurular', icon: 'paper-clip', routerLink: '/offers' },
         { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call' },
-        { title: 'KOSGEB Talep Toplama', icon: '', routerLink: '/apply-request' },
         { title: 'Çağrılarım', icon: 'call', routerLink: '/calls' },
+        { title: 'Çağrılarıma Gelen Başvurular', icon: 'paper-clip', routerLink: '/offers' },
+        { title: 'KOSGEB Talep Toplama', icon: '', routerLink: '/apply-request' },
       ],
     },
     {

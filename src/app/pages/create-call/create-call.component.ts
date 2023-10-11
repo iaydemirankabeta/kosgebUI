@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { ActivatedRoute } from '@angular/router';
 import { CallsComponent } from '../calls/calls.component';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { Adress } from 'src/app/modules/account/company-adresses/company-adresses.component';
 import { Observable } from 'rxjs';
@@ -27,6 +27,15 @@ isEnabledError: boolean;
   item = [];
   result:any;
   tabs:any;
+  searchTerm = new FormControl('');
+
+
+  get filteredAdresses() {
+    const searchTermValue = this.searchTerm.value as string;
+    return this.adresses.filter((option) => {
+      return option.title.toLowerCase().includes(searchTermValue.toLowerCase());
+    });
+  }
 
   itemId: string | null;
 
@@ -56,6 +65,9 @@ isEnabledError: boolean;
     });
     (formGroupInfo as any)['files'] = [];
     (formGroupInfo as any)['expectationDescription'] = ['', Validators.required];
+    (formGroupInfo as any)['isQuestionable'] = [''];
+    (formGroupInfo as any)['showFAQ'] = [''];
+    
     this.form = this.fb.group(formGroupInfo);
   } 
 

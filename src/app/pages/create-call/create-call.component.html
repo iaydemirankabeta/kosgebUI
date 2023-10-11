@@ -40,13 +40,14 @@
       <div class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">Konum Seç</label>
         <div class="col-lg-8">
-          <select class="form-select  mb-5 " aria-label="Select example" formControlName="adress">
-            <option *ngFor="let option of adresses" value="{{option.title}}"
-             >{{option.title}}</option>
+          <input type="text" class="form-control mb-2" placeholder="Arama..." [formControl]="searchTerm">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="adress">
+            <option *ngFor="let option of filteredAdresses" [value]="option.title">{{ option.title }}</option>
           </select>
           <div *ngIf="itemId && form.get('adress')?.pristine && form.get('adress')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
+      
 
       <div *ngFor="let item of filters" class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">{{item.label}}</label>
