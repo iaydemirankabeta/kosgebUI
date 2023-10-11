@@ -1,133 +1,164 @@
 <ng-container>
-    
-    <!-- begin::Header -->
-<div class="card-header border-0 pt-5 d-flex justify-content-between">
-    <h3 class="card-title align-items-start flex-column ">
+  <!-- begin::Header -->
+  <div class="card-header border-0 pt-5 d-flex justify-content-between">
+    <h3 class="card-title align-items-start flex-column">
       <span class="card-label fw-bolder fs-3 mb-1">Şirket Yönetimi</span>
     </h3>
-      <!-- end::Menu -->
+    <!-- end::Menu -->
   </div>
   <div class="row col-3">
-    <input class="form-control mt-3" class="form-control mt-3" placeholder="Şirket Ara" (change) = "search($event)">
+    <input
+      class="form-control mt-3"
+      class="form-control mt-3 ms-3"
+      placeholder="Şirket Ara"
+      (change)="search($event)"
+    />
   </div>
   <!-- end::Header -->
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <!--- Note that these columns can be defined in any order.
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="Name">
-          <th mat-header-cell *matHeaderCellDef>Ad Soyad</th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="CompanyType">
-          <th mat-header-cell *matHeaderCellDef>Şirket Tipi</th>
-          <td mat-cell *matCellDef="let element" > {{element.companyType}} </td>
-        </ng-container>
-        <ng-container matColumnDef="Personel">
-          <th mat-header-cell *matHeaderCellDef>Çalışan Sayısı</th>
-          <td mat-cell *matCellDef="let element" > {{element.personel}} </td>
-        </ng-container>
-        <!-- Weight Column -->
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="Income">
-          <th mat-header-cell *matHeaderCellDef>Ciro</th>
-          <td mat-cell *matCellDef="let element" > {{element.income}} </td>
-        </ng-container>
-        <ng-container matColumnDef="Region">
-            <th mat-header-cell *matHeaderCellDef>Bölge</th>
-            <td mat-cell *matCellDef="let element" > {{element.region}} </td>
-          </ng-container>
-          <ng-container matColumnDef="Sector">
-            <th mat-header-cell *matHeaderCellDef>Sektör</th>
-            <td mat-cell *matCellDef="let element" > {{element.sector}} </td>
-          </ng-container>
-          <ng-container matColumnDef="Details">
-            <th mat-header-cell *matHeaderCellDef>Şirket Detayı</th>
-            <td mat-cell *matCellDef="let element" >
-                <button class="btn btn-info btn-margin" (click) = "openAddUpdateModal(element)">Detay</button>
-            </td>
-          </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
 
-      <app-modal #addUpdateModal [modalConfig]="modalAddUpdateConfig" aria-modal="true">
-        <div *ngIf="selectedCompany !== null" class="container">
-            <div  >
-                <label>Faaliyet Gösterilen Sektör</label>
-                <select
-                class="form-select form-select-solid form-control bg-white mt-3"
-                data-kt-select2="true"
-                data-placeholder="Select option"
-                data-allow-clear="true"
-                disabled="true"
-              >
-                <option *ngFor="let item of sectors" [selected]="selectedCompany.sector === item.name ? true : false " value="">{{item.name}}</option>
-              </select>
-            </div>
-            <div class="mt-5">
-                <label >Tamamlanan/Devam eden proje</label>
-                <input class="form-control mt-3" disabled="true" value="2">
-            </div>
-            <div class="mt-5">
-                <label class="">Gelir Tablosu</label>
-                <input class="form-control mt-3" disabled="true" value="xxx">
-            </div>
-            <div class="mt-5">
-                <label>Finansal veri</label>
-                <input class="form-control mt-3" disabled="true" value="xxx">
-            </div>
-            <div class="mt-5">
-                <label>İş Birliği Bilgisi</label>
-                <input class="form-control mt-3" disabled="true" value="xxx">
-            </div>
-            <div class="mt-5">
-                <label>Çevre Skoru</label>
-                <input class="form-control mt-3" disabled="true" value="14001 Belgesi">
-            </div>
-            <div class="mt-5">
-                <label>TSE Uygunluk Belgesi</label>
-                <input class="form-control mt-3" disabled="true" value="9001 Belgesi">
-            </div>
-            <div class="mt-5">
-                <label>Toplam Personel Sayısı</label>
-                <input class="form-control mt-3" disabled="true" value="selectedCompany.personel">
-            </div >
-            <div class="mt-5">
-                <label>Yurt içi/ Yurt dışı ticaret bilgisi</label>
-                <input class="form-control mt-3" disabled="true" value="xxxx">
-            </div>
-            <div class="mt-5">
-                <label>İhracat Hedefi</label>
-                <input class="form-control mt-3" disabled="true" value="xxxx">
-            </div >
-            <div class="mt-5">
-                <label>İhracat yapılan ülkeler</label>
-                <input class="form-control mt-3" disabled="true" value="Avrupa">
-            </div>
-            <div class="mt-5">
-                <label>Destek kullanım miktarı (outsource)</label>
-                <input class="form-control mt-3" disabled="true" value="var">
-            </div>
-            <div class="mt-5">
-                <label>Şirket Tipi</label>
-                <select
-                class="form-select form-select-solid form-control bg-white mt-3"
-                data-kt-select2="true"
-                data-placeholder="Select option"
-                data-allow-clear="true"
-                disabled="true"
-              >
-              <option *ngFor="let item of companyTypes" [selected]="selectedCompany.companyType === item ? true : false " value="">{{item}}</option>
-              </select>
-            </div>
+    <!-- Position Column -->
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef>Ad Soyad</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="CompanyType">
+      <th mat-header-cell *matHeaderCellDef>Şirket Tipi</th>
+      <td mat-cell *matCellDef="let element">{{ element.companyType }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Personel">
+      <th mat-header-cell *matHeaderCellDef>Çalışan Sayısı</th>
+      <td mat-cell *matCellDef="let element">{{ element.personel }}</td>
+    </ng-container>
+    <!-- Weight Column -->
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Income">
+      <th mat-header-cell *matHeaderCellDef>Ciro</th>
+      <td mat-cell *matCellDef="let element">{{ element.income }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Region">
+      <th mat-header-cell *matHeaderCellDef>Bölge</th>
+      <td mat-cell *matCellDef="let element">{{ element.region }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Sector">
+      <th mat-header-cell *matHeaderCellDef>Sektör</th>
+      <td mat-cell *matCellDef="let element">{{ element.sector }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Details">
+      <th mat-header-cell *matHeaderCellDef>Şirket Detayı</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          class="btn btn-info btn-margin"
+          (click)="openAddUpdateModal(element)"
+        >
+          Detay
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <app-modal
+    #addUpdateModal
+    [modalConfig]="modalAddUpdateConfig"
+    aria-modal="true"
+  >
+    <div *ngIf="selectedCompany !== null" class="container">
+      <div>
+        <label>Faaliyet Gösterilen Sektör</label>
+        <select
+          class="form-select form-select-solid form-control bg-white mt-3"
+          data-kt-select2="true"
+          data-placeholder="Select option"
+          data-allow-clear="true"
+          disabled="true"
+        >
+          <option
+            *ngFor="let item of sectors"
+            [selected]="selectedCompany.sector === item.name ? true : false"
+            value=""
+          >
+            {{ item.name }}
+          </option>
+        </select>
       </div>
-      </app-modal>
-
+      <div class="mt-5">
+        <label>Tamamlanan/Devam eden proje</label>
+        <input class="form-control mt-3" disabled="true" value="2" />
+      </div>
+      <div class="mt-5">
+        <label class="">Gelir Tablosu</label>
+        <input class="form-control mt-3" disabled="true" value="xxx" />
+      </div>
+      <div class="mt-5">
+        <label>Finansal veri</label>
+        <input class="form-control mt-3" disabled="true" value="xxx" />
+      </div>
+      <div class="mt-5">
+        <label>İş Birliği Bilgisi</label>
+        <input class="form-control mt-3" disabled="true" value="xxx" />
+      </div>
+      <div class="mt-5">
+        <label>Çevre Skoru</label>
+        <input
+          class="form-control mt-3"
+          disabled="true"
+          value="14001 Belgesi"
+        />
+      </div>
+      <div class="mt-5">
+        <label>TSE Uygunluk Belgesi</label>
+        <input class="form-control mt-3" disabled="true" value="9001 Belgesi" />
+      </div>
+      <div class="mt-5">
+        <label>Toplam Personel Sayısı</label>
+        <input
+          class="form-control mt-3"
+          disabled="true"
+          value="selectedCompany.personel"
+        />
+      </div>
+      <div class="mt-5">
+        <label>Yurt içi/ Yurt dışı ticaret bilgisi</label>
+        <input class="form-control mt-3" disabled="true" value="xxxx" />
+      </div>
+      <div class="mt-5">
+        <label>İhracat Hedefi</label>
+        <input class="form-control mt-3" disabled="true" value="xxxx" />
+      </div>
+      <div class="mt-5">
+        <label>İhracat yapılan ülkeler</label>
+        <input class="form-control mt-3" disabled="true" value="Avrupa" />
+      </div>
+      <div class="mt-5">
+        <label>Destek kullanım miktarı (outsource)</label>
+        <input class="form-control mt-3" disabled="true" value="var" />
+      </div>
+      <div class="mt-5">
+        <label>Şirket Tipi</label>
+        <select
+          class="form-select form-select-solid form-control bg-white mt-3"
+          data-kt-select2="true"
+          data-placeholder="Select option"
+          data-allow-clear="true"
+          disabled="true"
+        >
+          <option
+            *ngFor="let item of companyTypes"
+            [selected]="selectedCompany.companyType === item ? true : false"
+            value=""
+          >
+            {{ item }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </app-modal>
 </ng-container>
