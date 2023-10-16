@@ -30,6 +30,8 @@
                 <p class="tags">{{item.tags}}</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex risus. Proin lobortis lacus diam, sit amet dignissim elit sodales ac. Fusce eu hendrerit arcu, et sodales augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent cursus interdum diam vitae luctus. Phasellus consequat eget tellus sed blandit. Sed bibendum vehicula lorem ac finibus. Pellentesque eget faucibus felis. Ut sagittis neque eu felis faucibus ullamcorper. Nunc a auctor risus, sit amet lobortis neque. Curabitur nisl eros, egestas eu vestibulum vitae, aliquam at elit. Nullam id efficitur libero, sed vehicula mi.
                 </p>
+                <a href="javascript:;" (click)="sss()">Sık Sorulan Sorular</a>
+                <a href="javascript:;" (click)="aboutss()">Çağrı Hakkında Sorular</a>
             </div>
             <div class="card-body">
                 <h5 class="text-upperCase"><b>{{item.badget}} Kullanıcısı Şirketin;</b></h5>
@@ -77,6 +79,56 @@
           </div>
         </li>
     </ul>
+    <app-modal #modalSSS [modalConfig]="modalConfig" aria-label="true">
+      <div class="container">
+        <h3>Sık Sorulan Sorular</h3>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <p>GET isteği nedir?</p>
+            <p>GET, bir web sunucusundan kaynakları (verileri) almak için kullanılan bir HTTP yöntemidir. Genellikle tarayıcılar, bir web sayfasını indirmek için GET istekleri gönderir. Bu istek, sunucudan veri almak için kullanılır ve genellikle URL'deki parametrelerle iletilen bilgilere dayanır.</p>
+          </li>
+          <li class="list-group-item">
+            <p>POST isteği ne işe yarar?</p>
+            <p>POST, bir web sunucusuna yeni veriler göndermek için kullanılan bir HTTP yöntemidir. Genellikle form verilerini veya yüksek hacimli verileri sunucuya göndermek için kullanılır. Veriler, isteğin gövdesinde taşınır ve genellikle JSON veya form verisi olarak kodlanır.</p>
+          </li>
+          <li class="list-group-item">
+            <p>PUT ve PATCH istekleri arasındaki fark nedir?</p>
+            <p>PUT: Tüm kaynağı (resource) tamamen değiştirmek için kullanılır. Yani, var olan kaynağın tüm bilgileri yeniden gönderilir.</p>
+             <p> PATCH: Sadece belirli alanlarda güncelleme yapmak için kullanılır. Yani, sadece değiştirilmesi gereken verileri göndermek yeterlidir, diğer veriler değişmez.</p>
+          </li>
+
+        </ul>
+      </div>
+    </app-modal>
+
+    <app-modal #aboutSS [modalConfig]="modalaboutSSConfig" aria-label="true">
+      <div class="container">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <p style="font-weight: bold;font-size: 18px;">Bu çağrı nedir?</p>
+            <div class="row mb-12">
+              <label class="col-lg-4 col-form-label required fs-6">Cevapla</label>
+              <div class="col-lg-8 fv-row">
+                <input type="text" class="form-control form-control-lg" placeholder="cevap" name="name"
+                  formControlName="name" />
+                
+      
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <p style="font-weight: bold;font-size: 18px;">Bu çağrı ile ilgili detay verir misiniz ?</p>
+            <div class="row mb-12">
+              <label class="col-lg-4 col-form-label required fs-6">Cevapla</label>
+              <div class="col-lg-8 fv-row">
+                <input type="text" class="form-control form-control-lg" placeholder="cevap" name="name"
+                  formControlName="name" />
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </app-modal>
     <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
       <div class="container">
         <div class="row">

@@ -53,6 +53,30 @@ url:[
     { id: '3', label: 'Aradığı Teknoloji Tedarikçisi Özellikleri', content: 'Üçüncü sekme içeriği burada yer alacak.' },
     { id: '4', label: 'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri', content: 'Dördüncü sekme içeriği burada yer alacak.' }
   ];
+
+  modalSSSConfig: ModalConfig = {
+    modalTitle: 'Sıkça Sorulan Sorular',
+    closeButtonLabel:'Kapat'
+
+  };
+
+  @ViewChild('modalSSS') private modalSSSComponent: ModalComponent;
+
+  sss(){
+      this.modalSSSComponent.open();
+  }
+
+  modalaboutSSConfig: ModalConfig = {
+    modalTitle: 'Çağrı Hakkında Sorular',
+    closeButtonLabel:'Kapat'
+
+  };
+
+  @ViewChild('aboutSS') private modalaboutssComponent: ModalComponent;
+
+  aboutss(){
+      this.modalaboutssComponent.open();
+  }
   
 
   activeTabIndex = 0;
@@ -71,6 +95,7 @@ url:[
 
   };
   @ViewChild('modal') private modalComponent: ModalComponent;
+
   targetValue:number;
   
   async openModal(event:any) {

@@ -35,8 +35,6 @@
 </div>
 <!-- end::Row-->
       
-      
-      
       <div class="col-md-12 col-xs-12">
         <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
           <div class="card-header">
@@ -55,21 +53,11 @@
           </div>
          </div>
       </div>
+      
       <div class="col-md-6 col-xs-12">
-        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
-          <div class="card-header">
-            <h5 class="card card-title">Adres Bilgisi</h5>
-          </div>
-          <div class="card-body">
-            <p><b>Ünvan</b>:  {{_user.userCompanies ? _user.userCompanies[0].company?.name! : "Ankabeta"}} </p>
-            <hr/>
-            <ul>
-              <li class="mb-5"><b>Ülke:</b> {{selectedCompany && selectedCompany.adress.country}}</li>
-              <li class="mb-5"><b>İl:</b>  {{selectedCompany && selectedCompany.adress.city}}</li>
-              <li class="mb-5"><b>Açık Adres:</b>{{selectedCompany && selectedCompany.adress.addressLine}}</li>
-            </ul>
-          </div>
-        </div>
+        <app-charts-widget6 *ngIf="_user.roles! == 2" 
+      class="card card-xxl-stretch mb-5 mb-xl-10"
+    ></app-charts-widget6>
       </div>
       <div class="col-md-6 col-xs-12">
         <app-charts-widget1
@@ -92,6 +80,22 @@
         </div>
       </div>
       -->
+      <div class="col-md-6 col-xs-12">
+        <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
+          <div class="card-header">
+            <h5 class="card card-title">Adres Bilgisi</h5>
+          </div>
+          <div class="card-body">
+            <p><b>Ünvan</b>:  {{_user.userCompanies ? _user.userCompanies[0].company?.name! : "Ankabeta"}} </p>
+            <hr/>
+            <ul>
+              <li class="mb-5"><b>Ülke:</b> {{selectedCompany && selectedCompany.adress.country}}</li>
+              <li class="mb-5"><b>İl:</b>  {{selectedCompany && selectedCompany.adress.city}}</li>
+              <li class="mb-5"><b>Açık Adres:</b>{{selectedCompany && selectedCompany.adress.addressLine}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <div class="col-md-6 col-xs-12">
         <div class="card card-custom card-border h-md-35 mb-5 mb-xl-10" style="background-color: white;">
           <div class="card-header">

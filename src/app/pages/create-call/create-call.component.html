@@ -78,14 +78,29 @@
 
       <div class="row mb-6">
         <div class="col-5 form-check">
-          <input class="form-check-input" type="checkbox" name="isQuestionable" formControlName="isQuestionable"
+          <input class="form-check-input" type="checkbox" name="isQuestionable" formControlName="isQuestionable" (click)="isQuestionable()"
             id="isQuestionable" />
           <label class="form-check-label text-black" for="isQuestionable">KOBI'ler soru sorabilsin</label>
         </div>
         <div class="col-5 form-check">
-          <input class="form-check-input" type="checkbox" name="showFAQ" formControlName="showFAQ" id="showFAQ" />
+          <input class="form-check-input" type="checkbox" name="showFAQ" formControlName="showFAQ" id="showFAQ" (change)="toggleFAQ()" />
           <label class="form-check-label text-black" for="showFAQ">Sık Sorulan Sorular Gösterilsin</label>
         </div>
+        
+        <div class="mt-3" *ngIf="showFAQ">
+          <div *ngFor="let question of faqQuestions; let i = index" class="faq-item">
+            <div class="form-group">
+              <input [(ngModel)]="faqQuestions[i].question" class="form-control" placeholder="Soru" required />
+            </div>
+            <div class="form-group">
+              <textarea [(ngModel)]="faqQuestions[i].answer" class="form-control" placeholder="Cevap" required></textarea>
+            </div>
+            <button (click)="removeFAQ(i)" class="btn btn-danger">Sil</button>
+          </div>
+          <button (click)="addFAQ()" class="btn btn-primary mt-3">+</button>
+        </div>
+        
+        
       </div>
       <hr />
       <p> İşle ilgili varsa, örnek görsel ve metin eklemen tedarikçilerin işi daha rahat anlamalarını sağlar.</p>
@@ -118,6 +133,23 @@
       <h3>Tebrikler</h3>
       <p>Çağrınız oluştu</p>
       <a routerLink="/calls" (click)="closeModal()">Çağrılarım -></a>
+    </div>
+  </app-modal>
+
+  <app-modal #kobiSoru [modalConfig]="modalConfig" aria-modal="true">
+    <div class="col-xs-12 text-center">
+      <div class="row mb-12">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">Soru Giriniz</label>
+        <div class="col-lg-8 fv-row">
+          <input type="text" class="form-control form-control-lg" placeholder="Soru" name="name"
+            [value]="result ? result.tags : ''" formControlName="name" />
+          <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
+            Soru Gerekli
+          </div>
+          <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
+
+        </div>
+      </div>
     </div>
   </app-modal>
 

@@ -57,7 +57,6 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn" style="float:left;" ngModel="randevuBoolean" (click)="goBack()">Geri</button>
       <button type="button" class="btn btn-primary" (click)="createAppointment()">Randevu Oluştur</button>
       <button type="button" class="btn btn-secondary" (click)="closeModal()">Kapat</button>
     </div>
@@ -76,7 +75,6 @@ export class AppModalComponent {
   emptyHours: string[] = [];
   selectedHour: string[];
   counters:number[]=[1];
-  randevuBoolean: boolean = false;
   constructor(public activeModal: NgbActiveModal, public randevuService: RandevuService
 
   ) { }
@@ -145,11 +143,6 @@ export class AppModalComponent {
     }
   
     this.emptyHours = emptyHours;
-  }
-
-  goBack() {
-    // Önceki bileşeni açma işlemini servis aracılığıyla başlatın
-    this.randevuBoolean = true;
   }
   
 }

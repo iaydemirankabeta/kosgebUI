@@ -155,6 +155,38 @@ isEnabledError: boolean;
     }
   }
 
+  showFAQ: boolean = false;
+  faqQuestions: { question: string, answer: string }[] = [];
+
+  toggleFAQ() {
+    this.showFAQ = !this.showFAQ;
+    if(this.showFAQ){
+      this.faqQuestions = [];
+      this.addFAQ();
+    }
+  }
+
+  modalTitleKobi = 'Çağrı hakkında soru sor';
+  modalKobiConfig: ModalConfig = {
+    modalTitle: this.modalTitleKobi,
+    closeButtonLabel:'Kapat'
+
+  };
+  @ViewChild('kobiSoru') private modalKobiComponent: ModalComponent;
+
+
+  isQuestionable(){
+    this.modalKobiComponent.open();
+  }
+
+  addFAQ() {
+    this.faqQuestions.push({ question: '', answer: '' });
+  }
+
+  removeFAQ(index: number) {
+    this.faqQuestions.splice(index, 1);
+  }
+
   dosyaSecManuel(): void {
     const dosyaInput = document.querySelector('.drop-zone input') as HTMLElement;
     dosyaInput.click();

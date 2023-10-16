@@ -31,7 +31,7 @@ function getChartOptions(height: number) {
     chart: {
       fontFamily: 'inherit',
       type: 'area',
-      height: 350,
+      height: 300,
       toolbar: {
         show: false,
       },

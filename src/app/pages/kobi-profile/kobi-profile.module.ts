@@ -6,6 +6,11 @@ import { ModalsModule, WidgetsModule } from 'src/app/_metronic/partials';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CountriesComponent } from './countries/countries.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -17,6 +22,11 @@ import { CountriesComponent } from './countries/countries.component';
     CommonModule,
     NgApexchartsModule,
     HighchartsChartModule,
+    MatIconModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatListModule,
+    MatCardModule,
     RouterModule.forChild([
       {
           path: '',
