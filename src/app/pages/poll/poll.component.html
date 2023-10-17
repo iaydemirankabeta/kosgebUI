@@ -1,94 +1,138 @@
 <ng-container>
-    <div class="card-header border-0 pt-5 d-flex justify-content-between">
-        <h3 class="card-title align-items-start flex-column ">
-          <span class="card-label fw-bolder fs-3 mb-1">Anketler</span>
-        </h3>
-        <button class="btn btn-primary" (click)="openCreateModal()" >Ekle</button>
-          <!-- end::Menu -->
-      </div>
-    <table mat-table [dataSource]="Pools" class="mat-elevation-z8" matSort>
+  <div class="card-header border-0 pt-5 d-flex justify-content-between">
+    <h3 class="card-title align-items-start flex-column ">
+      <span class="card-label fw-bolder fs-3 mb-1">Anketler</span>
+    </h3>
+    <button class="btn btn-primary" (click)="openCreateModal()">Ekle</button>
+    <!-- end::Menu -->
+  </div>
+  <table mat-table [dataSource]="Pools" class="mat-elevation-z8" matSort>
 
-        <!--- Note that these columns can be defined in any order.
+    <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="Id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-            <td mat-cell *matCellDef="let element" > {{element.id}} </td>
-          </ng-container>
-        <ng-container matColumnDef="Title">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Anket Başlığı </th>
-          <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-        </ng-container>
-        <ng-container matColumnDef="LastDate">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Son Tarih </th>
-            <td mat-cell *matCellDef="let element"> {{element.lastDate.toLocaleDateString()}} </td>
-          </ng-container>
-          <ng-container matColumnDef="Action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Aksiyon</th>
-            <td mat-cell *matCellDef="let element"> 
-                <button class="btn btn-secondary" (click)="openDetailModal(element)">Detay</button>
-                <button class="btn btn-danger btn-margin" (click) = "openDeleteModal()">Sil</button>
-            </td>
-          </ng-container>
-        <!-- Weight Column -->
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      <app-modal #createModal [modalConfig]="createModalConfig" aria-modal="true">
-        <button *ngIf="counter.length < 5" class="btn btn-success" (click) = "counterUpdate()">Soru Ekle</button>
-        <div class="col-xs-12 text-center">
-            <div *ngFor="let value of counter ; index as i">
-                <div class="row">
-                    <div class="row col-12">
-                        <label class="col-lg-4 col-form-label fw-bold fs-6">Soru {{i+1}}</label>
-                        <div class="col-lg-12 ">
-                            <input type="text" class="form-control" id="question" placeholder="Soru giriniz">
-                        </div>
-                      </div>
-                </div>
-            </div>
-            <button class="btn btn-primary mt-4" (click)="openSuccessModal()">Gönder</button>
-        </div>
-    </app-modal>
 
-    <app-modal #detailModal [modalConfig]="detailModalConfig" aria-modal="true">
-        <div *ngIf="selectedPool !== null" class="col-xs-12 text-center">
-            <div *ngFor="let question of selectedPool.questions">
-                <label>{{question.title}}</label>
-                <div class="row d-flex mt-4">
-                    <label class="fw-bold">Evet (%60)</label>
-                    <div class="col-6 justify-content-center align-items-center">
-                        <mat-progress-bar color="primary"
-                        mode="determinate" value="60"></mat-progress-bar>
-                    </div>
-                </div>
-                <div class="row d-flex mt-4">
-                    <label class="fw-bold">Hayır (%40)</label>
-                    <div class="col-6 justify-content-center align-items-center">
-                        <mat-progress-bar color="primary"
-                        mode="determinate" value="40"></mat-progress-bar>
-                    </div>
-                </div>
+    <!-- Position Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Anket Başlığı </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="LastDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Son Tarih </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastDate.toLocaleDateString()}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Aksiyon</th>
+      <td mat-cell *matCellDef="let element">
+        <button class="btn btn-secondary" (click)="openDetailModal(element)">Detay</button>
+        <button class="btn btn-danger btn-margin" (click)="openDeleteModal()">Sil</button>
+      </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <app-modal #createModal [modalConfig]="createModalConfig" aria-modal="true">
+    <!-- <button *ngIf="counter.length < 5" class="btn btn-success" (click) = "counterUpdate()">Soru Ekle</button> -->
+    <div class="col-xs-12 text-center">
+      <div *ngFor="let value of counter ; index as i">
+        <div class="row">
+          <div class="row col-12">
+            <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Anket Başlığı</label>
+            <div class="col-lg-12 ">
+              <input type="text" class="form-control" id="question" placeholder="Anket Başlığı giriniz">
             </div>
-        </div>
-    </app-modal>
+            <div class="col-lg-12 ">
+              <div class="text-start ">
+                <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Tarih</label>
+                <input class="form-control" type="date" name="endDate" (change) = "endDateChange($event)">
+              </div>
+          </div>
+            <!-- <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Başlığı</label> -->
+           
+            <br><br><br><br><br>
+            <!-- <div class="row col-12 "> -->
+              <label for="sektorSelect"class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Seçiniz:</label>
+              <select  id="sektorSelect" (change)="changesektor($event)" class="text-center mx-2" style="width: 97% ">
+                <option value="Gıda"Selected>Gıda</option>
+                <option value="İnşaat">İnşaat</option>
+                <option value="Tekstil">Tekstil</option>
+                <option value="Kozmetik">Kozmetik</option>
+                <option value="Teknoloji">Teknoloji</option>
+                <option value="Hububat (Tahıl)">Hububat (Tahıl)</option>
+            </select>
 
-    <app-modal #successModal [modalConfig]="successModalConfig" aria-modal="true">
-        <div class="col-xs-12 text-center">
-          <i class="fa-solid fa-check call-tick"></i>
-          <h3>Tebrikler</h3>
-          <p>Anket Oluşturuldu.</p>
-        </div>
-      </app-modal>
-      <app-modal #deleteModal [modalConfig]="deleteModalConfig" aria-modal="true">
-        <div class="col-xs-12 text-center">
-          <i class="fa-solid fa-check call-tick"></i>
-          <h3>Silmek istediğinize emin misiniz?</h3>
-          <div class="row d-flex mt-5 justify-content-center">
-            <button class="btn btn-primary col-4" (click)="closeDeleteModal()">İptal Et</button>
-            <button class="btn btn-danger btn-margin col-4" (click) = "closeDeleteModal()">Sil</button>
+            <label for="ulkeSelect"class="col-lg-4 col-form-label fw-bold fs-6 text-start">Ülke Seçiniz:</label>
+              <select  id="ulkeSelect" (change)="changeulke($event)" class="text-center mx-2" style="width: 97% " >
+                <option value="Türkiye"selected>Türkiye</option>
+                <option value="Amerika">Amerika</option>
+                <option value="Çin">Çin</option>
+                <option value="Rusya">Rusya</option>
+                <option value="Fransa">Fransa</option>
+            </select>
+            <label for="oranSelect"class="col-lg-6 col-form-label fw-bold fs-6 text-start">Destek Oranı Seçiniz:</label>
+              <select  id="oranSelect" (change)="changeoran($event)" class="text-center mx-2" style="width: 97% " >
+                <option value="%30"selected>%30</option>
+                <option value="%40">%40</option>
+                <option value="%50">%50</option>
+                <option value="%60">%60</option>
+                <option value="%70">%70</option>
+                <option value="%80">%80</option>
+                <option value="%90">%90</option>
+                <option value="%100">%100</option>
+
+            </select>
+            <!-- </div> -->
+  <p>Seçilen Sektör: {{ selectedSektor }}</p>
+  <p>Seçilen ülke: {{ selectedUlke }}</p>
+  <p>Seçilen Oran: {{ selectedOran }}</p>
+
+
           </div>
         </div>
-      </app-modal>
+      </div>
+      <button class="btn btn-primary mt-4" (click)="openSuccessModal()">Gönder</button>
+    </div>
+  </app-modal>
+
+  <app-modal #detailModal [modalConfig]="detailModalConfig" aria-modal="true">
+    <div *ngIf="selectedPool !== null" class="col-xs-12 text-center">
+      <div *ngFor="let question of selectedPool.questions">
+        <label>{{question.title}}</label>
+        <div class="row d-flex mt-4">
+          <label class="fw-bold">Evet (%60)</label>
+          <div class="col-6 justify-content-center align-items-center">
+            <mat-progress-bar color="primary" mode="determinate" value="60"></mat-progress-bar>
+          </div>
+        </div>
+        <div class="row d-flex mt-4">
+          <label class="fw-bold">Hayır (%40)</label>
+          <div class="col-6 justify-content-center align-items-center">
+            <mat-progress-bar color="primary" mode="determinate" value="40"></mat-progress-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-modal>
+
+  <app-modal #successModal [modalConfig]="successModalConfig" aria-modal="true">
+    <div class="col-xs-12 text-center">
+      <i class="fa-solid fa-check call-tick"></i>
+      <h3>Tebrikler</h3>
+      <p>Anket Oluşturuldu.</p>
+    </div>
+  </app-modal>
+  <app-modal #deleteModal [modalConfig]="deleteModalConfig" aria-modal="true">
+    <div class="col-xs-12 text-center">
+      <i class="fa-solid fa-check call-tick"></i>
+      <h3>Silmek istediğinize emin misiniz?</h3>
+      <div class="row d-flex mt-5 justify-content-center">
+        <button class="btn btn-primary col-4" (click)="closeDeleteModal()">İptal Et</button>
+        <button class="btn btn-danger btn-margin col-4" (click)="closeDeleteModal()">Sil</button>
+      </div>
+    </div>
+  </app-modal>
 </ng-container>
