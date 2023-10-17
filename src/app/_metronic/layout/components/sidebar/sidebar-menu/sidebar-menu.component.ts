@@ -17,17 +17,6 @@ export class SidebarMenuComponent implements OnInit {
 
   menuItems: MenuItem[] = [
     { title: 'Anasayfa', icon: 'home', routerLink: '/dashboard', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN, CompanyTypes.KOSGEBUSER], shown: true },
-    { title: 'Rol Grupları', icon: 'element-4', routerLink: '/rol-gruplari', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.ADMIN], shown: true },
-    { title: 'Kullanıcı Yönetimi', icon: 'user', routerLink: '/user-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.ADMIN], shown: false },
-    { title: 'Şirket Yönetimi', icon: 'compass', routerLink: '/company-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN], shown: false },
-    { title: 'Anketler', icon: 'compass', routerLink: '/poll', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false },
-
-
-    { title: 'Tüm Çağrılar', icon: 'call', routerLink: '/calls', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN, CompanyTypes.KOSGEBUSER], shown: false },
-    { title: 'Tüm Başvurular', icon: 'toggle-on', routerLink: '/offers', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN, CompanyTypes.KOSGEBUSER], shown: false },
-
-
-
     { title: 'Anasayfa', icon: 'home', routerLink: '/dashboard', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI], shown: true },
     { title: 'Tedarik Zekası', icon: 'search-list', routerLink: '/arama', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI], shown: true },
     {
@@ -51,12 +40,16 @@ export class SidebarMenuComponent implements OnInit {
       subMenu: [
         { title: 'KOSGEB Destek Çağrıları', icon: '', routerLink: '/kosgeb-destek' },
         { title: 'Talep Toplama', icon: '', routerLink: '/request-collection' },
+        { title: 'Tüm Çağrılar', icon: '', routerLink: '/calls' },
+
       ],
     },
     {
       title: 'I2 Modülü', icon: 'element-5', routerLink: '/gorusme-talepleri', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
       subMenu: [
         { title: 'Görüşme Talepleri', icon: '', routerLink: '/gorusme-talepleri' },
+        { title: 'Tüm Başvurular', icon: '', routerLink: '/offers' },
+
       ],
     },
     {
@@ -75,9 +68,9 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
-      title: 'Global Zeka', icon: 'tablet-book', routerLink: '/company-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI, CompanyTypes.BI], shown: false,
+      title: 'Global Zeka', icon: 'tablet-book', routerLink: '/company-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
       subMenu: [
-        { title: 'Anketler', icon: '', routerLink: '/anketler' },
+        { title: 'Anketler', icon: '', routerLink: '/poll' },
       ],
     },
     {
@@ -107,7 +100,9 @@ export class SidebarMenuComponent implements OnInit {
       shown: true
     },
 
-  
+    { title: 'Rol Grupları', icon: 'element-4', routerLink: '/rol-gruplari', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.ADMIN], shown: true },
+    { title: 'Kullanıcı Yönetimi', icon: 'user', routerLink: '/user-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.ADMIN], shown: false },
+    { title: 'Şirket Yönetimi', icon: 'compass', routerLink: '/company-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN], shown: false },
     { title: 'Uygulama Örnekleri', icon: 'element-8', routerLink: '/application-examples', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: true },
     { title: 'Mesajlar', icon: 'message-notif', routerLink: '/apps/chat', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI], shown: true },
     
