@@ -31,29 +31,6 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Anasayfa', icon: 'home', routerLink: '/dashboard', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI], shown: true },
     { title: 'Tedarik Zekası', icon: 'search-list', routerLink: '/arama', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI], shown: true },
     {
-      title: 'Çağrı Zekası ve Yerlileştirme Modülü', icon: 'element-5', routerLink: '/offers', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
-      subMenu: [
-        { title: 'Başvurduğum Çağrılar', icon: '', routerLink: '/offers' },
-        { title: 'Başvuruya Açık Çağrılar', icon: '', routerLink: '/apply-calls' },
-      ],
-    },
-    {
-      title: 'Çağrı Zekası ve Yerlileştirme Modülü', icon: 'element-5', routerLink: '/kosgeb-destek', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB,CompanyTypes.KOSGEBUSER], shown: false,
-      subMenu: [
-        { title: 'KOSGEB Destek Çağrıları', icon: '', routerLink: '/kosgeb-destek' },
-        { title: 'Talep Toplama', icon: '', routerLink: '/request-collection' },
-      ],
-    },
-    {
-      title: 'Çağrı Zekası', icon: 'element-5', routerLink: '/calls', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
-      subMenu: [
-        { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call' },
-        { title: 'Çağrılarım', icon: 'call', routerLink: '/calls' },
-        { title: 'Çağrılarıma Gelen Başvurular', icon: 'paper-clip', routerLink: '/offers' },
-        { title: 'KOSGEB Talep Toplama', icon: '', routerLink: '/apply-request' },
-      ],
-    },
-    {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/calls', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
       subMenu: [
         { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call' },
@@ -62,23 +39,26 @@ export class SidebarMenuComponent implements OnInit {
         { title: 'KOSGEB Talep Toplama', icon: '', routerLink: '/apply-request' },
       ],
     },
-
-
-    { title: 'Uygulama Örnekleri', icon: 'element-8', routerLink: '/application-examples', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: true },
-    { title: 'Mesajlar', icon: 'message-notif', routerLink: '/apps/chat', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI], shown: true },
+    {
+      title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/offers', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
+      subMenu: [
+        { title: 'Başvurduğum Çağrılar', icon: '', routerLink: '/offers' },
+        { title: 'Başvuruya Açık Çağrılar', icon: '', routerLink: '/apply-calls' },
+      ],
+    },
+    {
+      title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/kosgeb-destek', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB,CompanyTypes.KOSGEBUSER], shown: false,
+      subMenu: [
+        { title: 'KOSGEB Destek Çağrıları', icon: '', routerLink: '/kosgeb-destek' },
+        { title: 'Talep Toplama', icon: '', routerLink: '/request-collection' },
+      ],
+    },
     {
       title: 'I2 Modülü', icon: 'element-5', routerLink: '/gorusme-talepleri', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
       subMenu: [
         { title: 'Görüşme Talepleri', icon: '', routerLink: '/gorusme-talepleri' },
       ],
     },
-    {
-      title: 'Finans Modülü', icon: 'element-5', routerLink: '/finans-modulu', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
-      subMenu: [
-        { title: 'Finans', icon: '', routerLink: '/finans-modulu' },
-      ],
-    },
-    
     {
       title: 'Toplantı Modülü', icon: 'tablet-book', routerLink: '/company-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN], shown: false,
       subMenu: [
@@ -88,21 +68,33 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
-      title: 'Raporlama Modülü', icon: 'tablet-book', routerLink: '/raporlar', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
-      subMenu: [
-        { title: 'Raporlar', icon: '', routerLink: '/raporlar' },
-       
-      ],
-    },
-    {
       title: 'Toplantı Modülü', icon: 'tablet-book', routerLink: '/company-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI, CompanyTypes.BI], shown: false,
       subMenu: [
         { title: 'Toplantılarım', icon: '', routerLink: '/toplanti/toplantilarim' },
         { title: 'Takvimim', icon: 'calendar-add', routerLink: '/conversations' },
       ],
     },
+    {
+      title: 'Global Zeka', icon: 'tablet-book', routerLink: '/company-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI, CompanyTypes.BI], shown: false,
+      subMenu: [
+        { title: 'Anketler', icon: '', routerLink: '/anketler' },
+      ],
+    },
+    {
+      title: 'Raporlama Modülü', icon: 'tablet-book', routerLink: '/raporlar', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
+      subMenu: [
+        { title: 'Raporlar', icon: '', routerLink: '/raporlar' },
+       
+      ],
+    },
 
-    { title: 'Ürünler ve Hizmetler', icon: 'message-notif', routerLink: 'catalog/vitrin', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: true },
+    {
+      title: 'E-Ticaret Modülü', icon: 'tablet-book', routerLink: '/', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
+      subMenu: [
+        { title: 'Ürünler ve Hizmetler', icon: '', routerLink: 'catalog/vitrin' },
+       
+      ],
+    },
 
     {
       title: 'E-Ticaret Modülü', icon: 'element-12', routerLink: '/catalog', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI],
@@ -114,6 +106,20 @@ export class SidebarMenuComponent implements OnInit {
       ],
       shown: true
     },
+
+  
+    { title: 'Uygulama Örnekleri', icon: 'element-8', routerLink: '/application-examples', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: true },
+    { title: 'Mesajlar', icon: 'message-notif', routerLink: '/apps/chat', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI], shown: true },
+    
+    {
+      title: 'Finans Modülü', icon: 'element-5', routerLink: '/finans-modulu', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
+      subMenu: [
+        { title: 'Finans', icon: '', routerLink: '/finans-modulu' },
+      ],
+    },
+    
+
+    
     {
       title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '/crafted/account/overview', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI, CompanyTypes.KOSGEB], shown: true,
       subMenu: [
