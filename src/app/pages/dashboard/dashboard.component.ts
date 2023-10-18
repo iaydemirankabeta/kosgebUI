@@ -4,6 +4,9 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { getCSSVariableValue } from 'src/app/_metronic/kt/_utils';
 import { AuthService,UserModel,UserType } from 'src/app/modules/auth';
+import {environment} from '../../../environments/environment'
+
+
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +14,7 @@ import { AuthService,UserModel,UserType } from 'src/app/modules/auth';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  envInfo = environment;
   selectedCompany:Company | null = null
   user$: Observable<UserType>;
   chartOptions: any = {};
