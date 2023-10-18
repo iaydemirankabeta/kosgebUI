@@ -48,49 +48,56 @@
             <div class="col-lg-12 ">
               <div class="text-start ">
                 <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Tarih</label>
-                <input class="form-control" type="date" name="endDate" (change) = "endDateChange($event)">
+                <input class="form-control" type="date" name="endDate" (change)="endDateChange($event)">
               </div>
-          </div>
+            </div>
             <!-- <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Başlığı</label> -->
-           
+
             <br><br><br><br><br>
             <!-- <div class="row col-12 "> -->
-              <label for="sektorSelect"class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Seçiniz:</label>
-              <select  id="sektorSelect" (change)="changesektor($event)" class="text-center mx-2" style="width: 97% ">
-                <option value="Gıda"Selected>Gıda</option>
-                <option value="İnşaat">İnşaat</option>
-                <option value="Tekstil">Tekstil</option>
-                <option value="Kozmetik">Kozmetik</option>
-                <option value="Teknoloji">Teknoloji</option>
-                <option value="Hububat (Tahıl)">Hububat (Tahıl)</option>
+            <label for="sektorSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Seçiniz:</label>
+            <select id="sektorSelect" (change)="changesektor($event)" class="text-center mx-2" style="width: 97% ">
+              <option value="Gıda" Selected>Gıda</option>
+              <option value="İnşaat">İnşaat</option>
+              <option value="Tekstil">Tekstil</option>
+              <option value="Kozmetik">Kozmetik</option>
+              <option value="Teknoloji">Teknoloji</option>
+              <option value="Hububat (Tahıl)">Hububat (Tahıl)</option>
             </select>
 
-            <label for="ulkeSelect"class="col-lg-4 col-form-label fw-bold fs-6 text-start">Ülke Seçiniz:</label>
-              <select  id="ulkeSelect" (change)="changeulke($event)" class="text-center mx-2" style="width: 97% " >
-                <option value="Türkiye"selected>Türkiye</option>
-                <option value="Amerika">Amerika</option>
-                <option value="Çin">Çin</option>
-                <option value="Rusya">Rusya</option>
-                <option value="Fransa">Fransa</option>
+            <label for="ulkeSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Ülke Seçiniz:</label>
+            <select id="ulkeSelect" (change)="changeulke($event)" class="text-center mx-2" style="width: 97% ">
+              <option value="Türkiye" selected>Türkiye</option>
+              <option value="Amerika">Amerika</option>
+              <option value="Çin">Çin</option>
+              <option value="Rusya">Rusya</option>
+              <option value="Fransa">Fransa</option>
             </select>
-            <label for="oranSelect"class="col-lg-6 col-form-label fw-bold fs-6 text-start">Destek Oranı Seçiniz:</label>
-              <select  id="oranSelect" (change)="changeoran($event)" class="text-center mx-2" style="width: 97% " >
-                <option value="%30"selected>%30</option>
-                <option value="%40">%40</option>
-                <option value="%50">%50</option>
-                <option value="%60">%60</option>
-                <option value="%70">%70</option>
-                <option value="%80">%80</option>
-                <option value="%90">%90</option>
-                <option value="%100">%100</option>
-
+            <label for="sirketSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Şirket Seçiniz:</label>
+            <select id="sirketSelect" (change)="changesirket($event)" class="text-center mx-2" style="width: 97% ">
+              <option value="X" selected>X</option>
+              <option value="Y">Y</option>
+              <option value="Z">Z</option>
             </select>
-            <!-- </div> -->
-  <p>Seçilen Sektör: {{ selectedSektor }}</p>
-  <p>Seçilen ülke: {{ selectedUlke }}</p>
-  <p>Seçilen Oran: {{ selectedOran }}</p>
-
-
+            <label for="oranSelect" class="col-lg-6 col-form-label fw-bold fs-6 text-start">Destek Oranı
+              Seçiniz:</label>
+            <select id="oranSelect" (change)="changeoran($event)" class="text-center mx-2" style="width: 97% ">
+              <option value="%30" selected>%30</option>
+              <option value="%40">%40</option>
+              <option value="%50">%50</option>
+              <option value="%60">%60</option>
+              <option value="%70">%70</option>
+              <option value="%80">%80</option>
+              <option value="%90">%90</option>
+              <option value="%100">%100</option>
+            </select>
+            <div>
+              <br>
+            <label class="fw-bold">{{ selectedUlke }}' da {{ selectedSektor }} sektöründe faliyet gösteren {{
+              selectedSirket }}
+              şirketi için düzenlenen {{ selectedOran }} KOSGEB destekli iş gezisine katılım sağlamak ister
+              misiniz?</label>
+              </div>
           </div>
         </div>
       </div>

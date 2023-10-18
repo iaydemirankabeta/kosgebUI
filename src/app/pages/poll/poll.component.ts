@@ -38,6 +38,11 @@ export class PollComponent {
     { id: 4, tip: "Rusya" },
     { id: 5, tip: "Fransa" },
   ])
+  sirketler = new MatTableDataSource([
+    { id: 1, tip: "X" },
+    { id: 2, tip: "Y" },
+    { id: 3, tip: "z" },
+  ])
   oranlar = new MatTableDataSource([
     { id: 1, tip: "%30" },
     { id: 2, tip: "%40" },
@@ -51,6 +56,7 @@ export class PollComponent {
   selectedSektor: string = 'Gıda';
   selectedUlke: string = 'Türkiye';
   selectedOran: string = '%30';
+  selectedSirket: string = 'X';
 
   endDateChange(item: any) {
     this.startDate = new Date(item.target.value)
@@ -66,6 +72,9 @@ export class PollComponent {
   changeulke(event: any) {
     this.selectedUlke = event.target.value; // Seçilen değeri değişkene ata
   }
+  changesirket(event: any) {
+    this.selectedSirket = event.target.value; // Seçilen değeri değişkene ata
+  }
   changeoran(event: any) {
     this.selectedOran = event.target.value; // Seçilen değeri değişkene ata
   }
@@ -77,7 +86,7 @@ export class PollComponent {
       lastDate: new Date("2021-09-23"),
       questions: [
         {
-          id: 1, title: "Almanya Frankfurt bölgesine teknik gezi yapılması durumunda katılır mıydınız?"
+          id: 1, title: "Almanya' da Gıda sektöründe faliyet gösteren X şirketi için düzenlenen %30 KOSGEB destekli iş gezisine katılım sağlamak ister misiniz?"
         },
       ]
     }
