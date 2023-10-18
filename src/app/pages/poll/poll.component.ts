@@ -32,11 +32,12 @@ export class PollComponent {
     { id: 6, tip: "Hububat (Tahıl)" },
   ])
   ulkeler = new MatTableDataSource([
-    { id: 1, tip: "Türkiye" },
-    { id: 2, tip: "Amerika" },
-    { id: 3, tip: "Çin" },
-    { id: 4, tip: "Rusya" },
-    { id: 5, tip: "Fransa" },
+    { id: 1, tip: "Almanya" },
+    { id: 2, tip: "Türkiye" },
+    { id: 3, tip: "Amerika" },
+    { id: 4, tip: "Çin" },
+    { id: 5, tip: "Rusya" },
+    { id: 6, tip: "Fransa" },
   ])
   sirketler = new MatTableDataSource([
     { id: 1, tip: "X" },
@@ -54,7 +55,7 @@ export class PollComponent {
     { id: 8, tip: "%100" },
   ])
   selectedSektor: string = 'Gıda';
-  selectedUlke: string = 'Türkiye';
+  selectedUlke: string = 'Almanya';
   selectedOran: string = '%30';
   selectedSirket: string = 'X';
 
