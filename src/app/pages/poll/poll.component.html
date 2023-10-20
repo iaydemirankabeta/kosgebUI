@@ -56,7 +56,7 @@
             <br><br><br><br><br>
             <!-- <div class="row col-12 "> -->
             <label for="sektorSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Seçiniz:</label>
-            <select id="sektorSelect" (change)="changesektor($event)" class="text-center mx-2" style="width: 97% ">
+            <select id="sektorSelect" (change)="changesektor($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
               <option value="Gıda" Selected>Gıda</option>
               <option value="İnşaat">İnşaat</option>
               <option value="Tekstil">Tekstil</option>
@@ -66,7 +66,7 @@
             </select>
 
             <label for="ulkeSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Ülke Seçiniz:</label>
-            <select id="ulkeSelect" (change)="changeulke($event)" class="text-center mx-2" style="width: 97% ">
+            <select id="ulkeSelect" (change)="changeulke($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
               <option value="Almanya" selected>Almanya</option>
               <option value="Türkiye" >Türkiye</option>
               <option value="Amerika">Amerika</option>
@@ -75,14 +75,14 @@
               <option value="Fransa">Fransa</option>
             </select>
             <label for="sirketSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Şirket Seçiniz:</label>
-            <select id="sirketSelect" (change)="changesirket($event)" class="text-center mx-2" style="width: 97% ">
+            <select id="sirketSelect" (change)="changesirket($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
               <option value="X" selected>X</option>
               <option value="Y">Y</option>
               <option value="Z">Z</option>
             </select>
             <label for="oranSelect" class="col-lg-6 col-form-label fw-bold fs-6 text-start">Destek Oranı
               Seçiniz:</label>
-            <select id="oranSelect" (change)="changeoran($event)" class="text-center mx-2" style="width: 97% ">
+            <select id="oranSelect" (change)="changeoran($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
               <option value="%30" selected>%30</option>
               <option value="%40">%40</option>
               <option value="%50">%50</option>
