@@ -13,3 +13,10 @@ export interface Product {
     priceUSD:number;
     priceEURO:number;
   }
+
+  export interface Comment {
+    id: number;
+    author: string;
+    text: string;
+    date: Date;
+  }

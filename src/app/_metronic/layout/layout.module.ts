@@ -41,6 +41,9 @@ import { ExtendedComponent } from './components/toolbar/extended/extended.compon
 import { ReportsComponent } from './components/toolbar/reports/reports.component';
 import { SaasComponent } from './components/toolbar/saas/saas.component';
 import {SharedModule} from "../shared/shared.module";
+import { FormsModule } from '@angular/forms';
+
+import { AddToCartComponent } from 'src/app/pages/catalog/add-to-cart/add-to-cart.component';
 
 const routes: Routes = [
   {
@@ -56,6 +59,7 @@ const routes: Routes = [
     AsideComponent,
     HeaderComponent,
     ContentComponent,
+    AddToCartComponent,
     FooterComponent,
     ScriptsInitComponent,
     ToolbarComponent,
@@ -83,6 +87,7 @@ const routes: Routes = [
     NgbDropdownModule,
     NgbProgressbarModule,
     ExtrasModule,
+    FormsModule,
     ModalsModule,
     DrawersModule,
     EngagesModule,

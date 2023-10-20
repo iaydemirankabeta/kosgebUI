@@ -1,0 +1,118 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header ">
+            <h2>Ürün Detay</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ product.img.url }}" alt="{{ product.name }}" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h3>{{ product.name }}</h3>
+                    
+                    <p>{{ product.description }}</p>
+                    <p><strong>SKU:</strong> {{ product.sku }}</p>
+                    <p><strong>Adet:</strong> {{ product.qty }}</p>
+                    <p><strong>Fiyat :</strong> {{ product.price }} TL</p>
+                    <p><strong>Oylama:</strong></p>
+                    <div class="rating ">
+                        <div class="rating-label" [ngClass]="product.rating >= 1 ? 'checked': ''">
+                          <i class="ki-duotone ki-star fs-6"></i>
+                        </div>
+                        <div class="rating-label" [ngClass]="product.rating >= 2 ? 'checked': ''">
+                          <i class="ki-duotone ki-star fs-6"></i>
+                        </div>
+                        <div class="rating-label " [ngClass]="product.rating >= 3 ? 'checked': ''">
+                          <i class="ki-duotone ki-star fs-6"></i>
+                        </div>
+                        <div class="rating-label " [ngClass]="product.rating >= 4 ? 'checked': ''">
+                          <i class="ki-duotone ki-star fs-6"></i>
+                        </div>
+                        <div class="rating-label " [ngClass]="product.rating >= 5 ? 'checked': ''">
+                          <i class="ki-duotone ki-star fs-6"></i>
+                        </div>
+                      </div>
+                    <p><strong>Durum: </strong> <span [ngClass]="product.status == true ? 'text-success' : 'text-danger'">{{ product.status == true ? 'Aktif' : 'Pasif' }}</span></p>
+                    <!-- comment.component.html -->  
+                    <!-- Add to Cart Section -->
+                    <div class="add-to-cart">
+                        <p><strong>Adet Ekle:</strong></p>
+                        <div class="quantity-controls" style="margin-bottom: 10px;">
+                            <button class="btn btn-secondary" (click)="decrementQuantity(index)" [disabled]="cartQuantity === 1">-</button>
+                            <input type="number" [(ngModel)]="cartQuantity" min="1" [max]="product.qty" (focusout)="qualityInput(index)" class="form-control" style="width: 60px;display:inline-block">
+                            <button class="btn btn-secondary" (click)="incrementQuantity(index)" [disabled]="cartQuantity === product.qty">+</button>
+                        </div>
+                        <button class="btn btn-success" (click)="addToCart()" [disabled]="cartQuantity > product.qty">Sepete Ekle</button>
+                    </div>
+                </div>
+            </div>
+            <!-- product-detail.component.html -->
+
+<div class="container mt-5">
+    <mat-tab-group>
+      <!-- Ürün Bilgisi Tab -->
+      <mat-tab label="Ürün Bilgisi">
+        <h3>Ürün Bilgisi</h3>
+        <p>Product details go here.</p>
+      </mat-tab>
+  
+      <!-- Taksit Tab -->
+      <mat-tab label="Taksit">
+        <h3>Taksit</h3>
+        <p>Installment information goes here.</p>
+      </mat-tab>
+  
+      <!-- Yorumlar Tab -->
+      <mat-tab label="Yorumlar">
+        <h3>Yorumlar</h3>
+        <!-- Include your comments component here or integrate it -->
+        <div class="container mt-5">
+            <div class="card">
+              <div class="card-body">
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let comment of comments">
+                    <div class="font-weight-bold">{{ comment.author }} <span class="text-muted"> {{ comment.date | date: 'medium' }}</span></div>
+                    <div class="star-rating">
+                        <span *ngFor="let star of [1, 2, 3, 4, 5]"
+                              [ngClass]="{'star-filled': star <= rating, 'star-unfilled': star > rating}"
+                              (click)="setRating(star)">
+                          &#9733;
+                        </span>
+                      </div>
+                    {{ comment.text }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          
+            <div class="card mt-3">
+              <div class="card-body">
+                <h3>Yorum Ekle</h3>
+                <form (ngSubmit)="addComment()">
+                  <div class="form-group">
+                    <label for="author">İsim:</label>
+                    <input type="text" id="author" name="author" [(ngModel)]="newComment.author" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="text">Yorumunuz:</label>
+                    <textarea id="text" name="text" [(ngModel)]="newComment.text" class="form-control"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Gönder</button>
+                </form>
+              </div>
+            </div>
+          </div>
+      </mat-tab>
+  
+      <!-- Teslimat ve İade Tab -->
+      <mat-tab label="Teslimat ve İade">
+        <h3>Teslimat ve İade</h3>
+        <p>26458 sayılı yönetmelikte yapılan degişiklik sonrasinda, bu üründe kredi kartına taksitli satış yapılamamaktadır.</p>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  
+        </div>
+    </div>
+</div>

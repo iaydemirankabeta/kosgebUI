@@ -82,7 +82,7 @@ export class SidebarMenuComponent implements OnInit {
     },
 
     {
-      title: 'E-Ticaret Modülü', icon: 'tablet-book', routerLink: '/', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
+      title: 'E-Ticaret Modülü', icon: 'element-12', routerLink: '/', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
       subMenu: [
         { title: 'Ürünler ve Hizmetler', icon: '', routerLink: 'catalog/vitrin' },
        
@@ -92,6 +92,7 @@ export class SidebarMenuComponent implements OnInit {
     {
       title: 'E-Ticaret Modülü', icon: 'element-12', routerLink: '/catalog', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI],
       subMenu: [
+        { title: 'Vitrin', icon: '', routerLink: 'catalog/vitrin' },
         { title: 'Kategoriler', icon: '', routerLink: 'catalog/kategoriler' },
         { title: 'Ürünler ve Hizmetler', icon: '', routerLink: 'catalog/urunler' },
         { title: 'Ürün veya Hizmet Ekle', icon: '', routerLink: 'catalog/urun-ekle' },
