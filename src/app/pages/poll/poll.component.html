@@ -1,6 +1,7 @@
 <ng-container>
   <div class="card-header border-0 pt-5 d-flex justify-content-between">
-    <h3 class="card-title align-items-start flex-column ">
+    <h3 class="card-title align-items-start flex-column">
+
       <span class="card-label fw-bolder fs-3 mb-1">Anketler</span>
     </h3>
     <button class="btn btn-primary" (click)="openCreateModal()">Ekle</button>
@@ -14,25 +15,30 @@
     <!-- Position Column -->
     <ng-container matColumnDef="Id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
     <ng-container matColumnDef="Title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Anket Başlığı </th>
-      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Anket Başlığı</th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
     </ng-container>
     <ng-container matColumnDef="LastDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Son Tarih </th>
-      <td mat-cell *matCellDef="let element"> {{element.lastDate.toLocaleDateString()}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Son Tarih</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.lastDate.toLocaleDateString() }}
+      </td>
+
     </ng-container>
     <ng-container matColumnDef="Action">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Aksiyon</th>
       <td mat-cell *matCellDef="let element">
+
         <button class="btn btn-secondary" (click)="openDetailModal(element)">Detay</button>
         <button class="btn btn-danger btn-margin" (click)="openDeleteModal()">Sil</button>
       </td>
     </ng-container>
     <!-- Weight Column -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <app-modal #createModal [modalConfig]="createModalConfig" aria-modal="true">
@@ -109,6 +115,7 @@
   <app-modal #detailModal [modalConfig]="detailModalConfig" aria-modal="true">
     <div *ngIf="selectedPool !== null" class="col-xs-12 text-center">
       <div *ngFor="let question of selectedPool.questions">
+
         <label>{{question.title}}</label>
         <div class="row d-flex mt-4">
           <label class="fw-bold">Evet (%60)</label>
@@ -182,6 +189,7 @@
       <i class="fa-solid fa-check call-tick"></i>
       <h3>Silmek istediğinize emin misiniz?</h3>
       <div class="row d-flex mt-5 justify-content-center">
+
         <button class="btn btn-primary col-4" (click)="closeDeleteModal()">İptal Et</button>
         <button class="btn btn-danger btn-margin col-4" (click)="closeDeleteModal()">Sil</button>
       </div>
