@@ -171,18 +171,48 @@
                 </select>
             </div>
           </div>
-          <div class="col-lg-6" *ngIf="_user.roles == 1">
-            <label class="col-lg-4 col-form-label required fw-bold fs-6">Maksimum Görüşme Talebi</label>
-            <div class="col-lg-12 fv-row">
-            <input
-                type="text"
-                class="form-control form-control-lg form-control-solid"
-                placeholder="Şirket Adı"
-                name="company"
-                value="200"
-            />
-            </div>
-        </div>
+          <div class="row mb-6">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-lg-4 col-form-label required fw-bold fs-6">Teşvikt Bölge</label>
+
+                <input
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Şirket Adı"
+                    name="company"
+                    value="2. Bölge"
+                    disabled
+                />
+                </div>
+                <div class="col-lg-6">
+                  <div class="col-lg-12 fv-row">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Laboratuvar Bilgisi</label>
+      
+                  <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      placeholder=""
+                      name="company"
+                    
+                  />
+                  </div>
+              </div>
+              <p>  IDR,D3A,FINDEKS,TSE Büyük işletmeler için daha rahat anlamalarını sağlar.</p>
+      <div class="drop-zone" (drop)="dosyaBirak($event)" (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)">
+        <input type="file" (change)="dosyaSec($event)" style="display: none">
+        <p><a href="javascript:void(0);" (click)="dosyaSecManuel()">Dosyayı buraya sürükleyip bırakın veya tıklayarak
+            dosya seçin</a>.</p>
+      </div>
+
+
+      <div *ngIf="yuklenenDosyalar.length > 0">
+        <h3>Yüklenen Dosyalar</h3>
+        <ul>
+          <li *ngFor="let dosya of yuklenenDosyalar">{{ dosya.name }}</li>
+        </ul>
+      </div>
+          </div>
          
         </div>
         <div class="card-footer d-flex justify-content-end py-6 px-9">

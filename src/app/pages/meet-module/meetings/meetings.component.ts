@@ -23,7 +23,7 @@ export class MeetingsComponent {
   selectedMeeting: Meeting; // selectedMeeting özelliğini tanımlayın
 
   modalCompareConfig: ModalConfig = {
-    modalTitle : "Karşılaştırma",
+    modalTitle : "Toplantım",
     hideCloseButton: () => true,
   }
 

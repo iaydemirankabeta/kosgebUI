@@ -20,10 +20,12 @@
         <mat-tab *ngIf="_user.roles == 3" label="Yapılacaklar">
           <div class="form-group">
             <span  *ngFor="let note of fakeNotes['Yapılacaklar']">
-              <button  (click)="removeMeetingNote('Yapılacaklar', note.id)" class="btn btn-link remove-button">
-                <span class="text-danger">&times;</span>
-              </button>
-              {{ note.content }}
+              
+              <p>
+                <button  (click)="removeMeetingNote('Yapılacaklar', note.id)" class="btn btn-link remove-button">
+                  <span class="text-danger">&times;</span>
+                </button>
+                {{ note.content }}</p>
             </span>
                      
             <textarea
@@ -43,10 +45,12 @@
         <mat-tab *ngIf="_user.roles == 3" label="Yapılabilecekler">
           <div class="form-group">
             <span  *ngFor="let note of fakeNotes['Yapılabilecekler']">
-              <button  (click)="removeMeetingNote('Yapılabilecekler', note.id)" class="btn btn-link remove-button">
-                <span class="text-danger">&times;</span>
-              </button>
-              {{ note.content }}
+              <p>
+                <button  (click)="removeMeetingNote('Yapılabilecekler', note.id)" class="btn btn-link remove-button">
+                  <span class="text-danger">&times;</span>
+                </button>
+                {{ note.content }}
+              </p>
             </span>
                       <textarea
               id="noteContentYapilabilecekler"
@@ -65,10 +69,12 @@
         <mat-tab label="Bilgi">
           <div class="form-group">
               <span  *ngFor="let note of fakeNotes['Bilgi']">
+               <p>
                 <button *ngIf="_user.roles == 3" (click)="removeMeetingNote('Bilgi', note.id)" class="btn btn-link remove-button">
                   <span class="text-danger">&times;</span>
                 </button>
                 {{ note.content }}
+               </p>
               </span>
             <textarea
               id="noteContentBilgi"

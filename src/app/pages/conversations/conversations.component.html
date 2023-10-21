@@ -120,7 +120,7 @@
                 <label>Katılımcılar</label>
                 <div class="mt-2">
                     <input class="form-control add-participant" name="participant" (change)="changeInputParticipant($event)" value="">
-                    <button class="btn btn-primary btn-margin-left" type="button" (click)="addParticipant()">Katılımcı ekle</button>
+                    <button class="btn btn-primary btn-margin-left" type="button" (click)="addParticipant()">Temsilci ekle</button>
                 </div>
                 <div class="mt-2">
                     <span class="form-control justify-content-between d-flex mt-2" *ngFor="let item of selectedConversation.participants">{{item}} <span (click) = "deleteParticipant(item)"> X</span></span>

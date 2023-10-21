@@ -3,6 +3,7 @@ import { KobiProfileService } from './kobi-profile.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 
+
 @Component({
   selector: 'app-kobi-profile',
   templateUrl: './kobi-profile.component.html',

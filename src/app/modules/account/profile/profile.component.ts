@@ -14,6 +14,8 @@ export class ProfileComponent {
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isLoading: boolean;
   cities: any[] = [];
+  yuklenenDosyalar: File[] = [];
+
   selectedCity: any;
 
   user$: Observable<UserType>;
@@ -56,4 +58,37 @@ export class ProfileComponent {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 
+
+  dosyaBirak(event: DragEvent): void {
+    event.preventDefault();
+    const dosyalar = event.dataTransfer?.files;
+
+    if (dosyalar) {
+      for (let i = 0; i < dosyalar.length; i++) {
+        this.yuklenenDosyalar.push(dosyalar[i]);
+      }
+    }
+  }
+
+  dosyaSec(event: Event): void {
+    const dosyaInput = event.target as HTMLInputElement;
+    const dosyalar = dosyaInput.files;
+
+    if (dosyalar) {
+      for (let i = 0; i < dosyalar.length; i++) {
+        this.yuklenenDosyalar.push(dosyalar[i]);
+      }
+    }
+  }
+  dosyaSecManuel(): void {
+    const dosyaInput = document.querySelector('.drop-zone input') as HTMLElement;
+    dosyaInput.click();
+  }
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+  }
+
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+  }
 }

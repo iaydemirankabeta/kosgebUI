@@ -37,7 +37,7 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
       <div class="mt-4">
         <label>Temsilciler</label>
         <div class="mt-4">
-          <button class="btn btn-primary" (click) = "counterUpdate()">Katılımcı Ekle</button>
+          <button class="btn btn-primary" (click) = "counterUpdate()">Temsilci Ekle</button>
         </div>
         <div  *ngFor="let counter of counters" class="mt-2">
           <input class="form-control" type=input />
@@ -122,14 +122,27 @@ export class AppModalComponent {
     const randevuVerileri = this.randevuService.getRandevuVerileri();
     const startHour = 9;
     const endHour = 18;
-
+    const emptyHours: string[] = [];
+  
+    // Dolu tarihleri alın
     const doluTarihler = randevuVerileri
       .filter((appointment) => appointment.dolu)
-      .map((appointment) => appointment.tarih.toDateString());
-
-    for (let hour = startHour; hour <= endHour; hour++) {
-      const formattedHour = hour.toString().padStart(2, '0') + ':00';
-      this.emptyHours.push(formattedHour);
+      .map((appointment) => appointment.tarih);
+  
+    // Boş saat aralıklarını hesaplayın
+    for (let hour = startHour; hour < endHour; hour++) {
+      for (let minute = 0; minute < 60; minute += 60) {
+        const currentHour = new Date().setHours(hour, minute, 0, 0);
+  
+        // Dolu tarihlerle çakışmayan saatleri ekleyin
+        if (!doluTarihler.some((doluTarih) => doluTarih.getTime() === currentHour)) {
+          const formattedHour = hour.toString().padStart(2, '0');
+          emptyHours.push(`${formattedHour}:00 - ${formattedHour}:59`);
+        }
+      }
     }
+  
+    this.emptyHours = emptyHours;
   }
+  
 }

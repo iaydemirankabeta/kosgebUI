@@ -26,17 +26,17 @@ function getChartOptions() {
   return {
     series: [
       {
-        name: 'Net Profit',
+        name: 'İşten Çıkma Oranı',
         type: 'bar',
         data: [40, 50, 65, 70, 50, 30],
       },
       {
-        name: 'Revenue',
+        name: 'Ortalama Çalışma Süresi',
         type: 'bar',
         data: [20, 20, 25, 30, 30, 20],
       },
       {
-        name: 'Expenses',
+        name: 'Personel Devir Hızı',
         type: 'area',
         data: [50, 80, 60, 90, 50, 70],
       },
@@ -69,7 +69,7 @@ function getChartOptions() {
       colors: ['transparent'],
     },
     xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+      categories: ['2018', '2019', '2020', '2021', '2022', '2023'],
       axisBorder: {
         show: false,
       },
@@ -122,7 +122,7 @@ function getChartOptions() {
       },
       y: {
         formatter: function (val: number) {
-          return '$' + val + ' thousands';
+          return  val + ' %';
         },
       },
     },
