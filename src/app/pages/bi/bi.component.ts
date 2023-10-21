@@ -89,7 +89,7 @@ export class BiComponent {
     closeButtonLabel:'Kapat'
   }
   successModalConfig: ModalConfig = {
-    modalTitle: "atkafası",
+    modalTitle: "",
     closeButtonLabel:'Kapat',
     onClose:() => this.closeMeetingModal(),
   }
@@ -110,8 +110,6 @@ export class BiComponent {
   }
    denemeModal() {
     return  this.meetingModalComponent.close();
-
-    // return  this.routerr.navigate(['/buyuk-isletmeler']);
   }
   async openRaporModal(){
     return await this.raporModalComponent.open();
@@ -159,5 +157,12 @@ export class BiComponent {
 
   closeModal(){
     return this.modalComponent.close();
+  }
+  characterCount: number = 0;
+  updateCharacterCount() {
+    const meetingDescriptionControl = this.form.get('meetingdescription');
+    if (meetingDescriptionControl) {
+      this.characterCount = meetingDescriptionControl.value.length;
+    }
   }
 }

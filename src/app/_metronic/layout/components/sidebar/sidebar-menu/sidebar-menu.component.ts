@@ -71,7 +71,7 @@ export class SidebarMenuComponent implements OnInit {
       title: 'B2B Görüşmeler', icon: 'element-5', routerLink: '/b2b', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
       subMenu: [
         { title: 'Büyük İşletmeler', icon: '', routerLink: '/buyuk-isletmeler' },
-        { title: 'Büyük İşletmeye Gönderilen Görüşme Talepleri', icon: '', routerLink: '/b2b' },
+        { title: 'Büyük İşletmeye Gönderilen Görüşme Talepleri', icon: '', routerLink: '/bi-gonderilen-gorusmeler' },
       ],
     },
     {

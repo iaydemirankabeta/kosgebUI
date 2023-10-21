@@ -1,0 +1,177 @@
+<ng-container *ngIf="user$ | async as _user">
+    <!-- <div class="card-header border-0 pt-5 d-flex justify-content-between">
+        <h3 class="card-title align-items-start flex-column ">
+            <span *ngIf="_user.roles !== 2" class="card-label fw-bolder fs-3 mb-1">KOSGEB Destek Programları Yönetimi</span>
+            <span *ngIf="_user.roles === 2" class="card-label fw-bolder fs-3 mb-1">KOSGEB Destek Programları</span>
+
+        </h3>
+        <button *ngIf="_user.roles !== 2" class="btn btn-primary" (click)="openFirstModal()">Ekle</button> -->
+    <!-- end::Menu -->
+    <!-- </div> -->
+
+    <table mat-table [dataSource]="destekler" class="mat-elevation-z8">
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="IsletmeAdı">
+            <th mat-header-cell *matHeaderCellDef>İşletme Adı</th>
+            <td mat-cell  *matCellDef="let element" [routerLink]="['/kobi-profile/3']"> {{element.isletmeAdi}} </td>
+        </ng-container>
+        <ng-container matColumnDef="GonderilenGorusmeTarihi">
+            <th mat-header-cell *matHeaderCellDef>Gönderilenler Görüşme Tarihi </th>
+            <td mat-cell *matCellDef="let element" [routerLink]="['/kobi-profile/3']"> {{element.gorumeTarihi}} </td>
+        </ng-container>
+        <ng-container matColumnDef="GorusmeAcıklaması">
+            <th mat-header-cell *matHeaderCellDef>Görüşme Açıklması</th>
+            <td mat-cell *matCellDef="let element" [routerLink]="['/kobi-profile/3']"> {{element.gorusmeAciklamasi}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Durum">
+            <th mat-header-cell *matHeaderCellDef>Durum </th>
+            <td mat-cell *matCellDef="let element" [routerLink]="['/kobi-profile/3']"> {{element.durum}} </td>
+        </ng-container>
+       
+        <!-- Weight Column -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- <app-modal #secondModal [modalConfig]="secondModalConfig" aria-modal="true">
+        <div *ngIf="selectedType === 'ARGE'">
+            <form>
+                <div class="mt-4">
+                    <label>Proje Teklif Çağrısının Amacı</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Proje Başvuru Tarihleri</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Proje Başvuru Koşulları</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Proje Süresi</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Destek Üst Limiti</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Destek Oranı</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>GTIP</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="drop-zone" (drop)="dosyaBirak($event)" (dragover)="onDragOver($event)"
+                (dragleave)="onDragLeave($event)">
+                <input type="file" (change)="dosyaSec($event)" style="display: none">
+                <p><a href="javascript:void(0);" (click)="dosyaSecManuel()">Dosyayı buraya sürükleyip bırakın veya tıklayarak
+                    dosya seçin</a>.</p>
+              </div>
+              <div *ngIf="yuklenenDosyalar.length > 0">
+                <h3>Yüklenen Dosyalar</h3>
+                <ul>
+                  <li *ngFor="let dosya of yuklenenDosyalar">{{ dosya.name }}</li>
+                </ul>
+              </div>
+            </form>
+        </div>
+        <div *ngIf="selectedType === 'KOBIGEL'">
+            <form>
+                <div class="mt-4">
+                    <label>Proje teklif çağrısının amacı</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Projenin Konusu</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Proje başvuru tarihleri</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Nace Kodu (Birden fazla nace kodu seçilebilir)</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Destek Üst limiti</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Destek Oranı</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Proje süresi</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="drop-zone" (drop)="dosyaBirak($event)" (dragover)="onDragOver($event)"
+                (dragleave)="onDragLeave($event)">
+                <input type="file" (change)="dosyaSec($event)" style="display: none">
+                <p><a href="javascript:void(0);" (click)="dosyaSecManuel()">Dosyayı buraya sürükleyip bırakın veya tıklayarak
+                    dosya seçin</a>.</p>
+              </div>
+              <div *ngIf="yuklenenDosyalar.length > 0">
+                <h3>Yüklenen Dosyalar</h3>
+                <ul>
+                  <li *ngFor="let dosya of yuklenenDosyalar">{{ dosya.name }}</li>
+                </ul>
+              </div>
+            </form>
+        </div>
+        <div *ngIf="selectedType === 'İleri Girişimci Destek Programı'">
+            <form>
+                <div class="mt-4">
+                    <label>Proje Teklif Çağrısının Amacı</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Proje Başvuru Tarihleri</label>
+                    <input class="form-control"/>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Destek Oranı</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Süreç Zaman Planı</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Değerlendirme Kriterleri</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Nace Kodu</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="drop-zone mt-4" (drop)="dosyaBirak($event)" (dragover)="onDragOver($event)"
+                (dragleave)="onDragLeave($event)">
+                <input type="file" (change)="dosyaSec($event)" style="display: none">
+                <p><a href="javascript:void(0);" (click)="dosyaSecManuel()">Dosyayı buraya sürükleyip bırakın veya tıklayarak
+                    dosya seçin</a>.</p>
+              </div>
+              <div *ngIf="yuklenenDosyalar.length > 0">
+                <h3>Yüklenen Dosyalar</h3>
+                <ul>
+                  <li *ngFor="let dosya of yuklenenDosyalar">{{ dosya.name }}</li>
+                </ul>
+              </div>
+            </form>
+        </div>
+    </app-modal>      </div>
+                <div class="mt-4">
+                    <label>Uygun İş Fikri Konuları</label>
+                    <input class="form-control"/>
+                </div>
+                <div class="mt-4">
+                    <label>Destek Üst Limiti</label>
+           -->
+</ng-container>

@@ -86,9 +86,13 @@
                       <tr><td><b>Konum:</b> {{companyItem.location}}</td></tr>
                       <tr>
                         <td class="mt-4">
+                          <div class="mt-4">
+                            <a class="btn btn-info btn-margin col-12" [routerLink]="['/kobi-profile/3']">Büyük İşletme Profiline Git</a>
+                          </div>
+                          <div class="mt-4">
                           <button class="btn btn-dark" (click)="openRaporModal()">IDR Raporu Görüntüle</button>
                           <button class="btn btn-secondary btn-margin"  (click)="openRaporModal()">D3A Raporu Görüntüle</button>
-                          <button class="btn btn-primary btn-margin col-xs-12" style="width: 100%;margin-top:10px;" (click)="openMeetingModal()" >Görüşme Talep Et</button>
+                        </div>
                         </td>
                       </tr>
                     </table>
@@ -113,7 +117,8 @@
 
     <app-modal #meetingModal [modalConfig]="meetingModalConfig" aria-modal="true">
       <div class="row">
-        <textarea class="form-control" formControlName="meetingdescription" [ngClass] = "form.get('meetingdescription')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Görüşme açıklaması giriniz..."></textarea>
+        <div class="character-count">Kalan Karakter Sayısı: {{ characterCount }} / 300</div>
+        <textarea class="form-control" formControlName="meetingdescription" [ngClass]="form.get('meetingdescription')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Görüşme açıklaması giriniz..." (input)="updateCharacterCount()"></textarea>
         <button [disabled]="!form.valid" class="btn btn-primary btn-margin col-xs-12" style="width: 100%;margin-top:10px;" (click)="openSuccessModal()" >Gönder</button>
       </div>
     </app-modal>
