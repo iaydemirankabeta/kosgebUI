@@ -28,6 +28,13 @@ export class SidebarMenuComponent implements OnInit {
         { title: 'KOSGEB Talep Toplama', icon: '', routerLink: '/apply-request' },
       ],
     },
+    // {
+    //   title: 'B2B', icon: 'element-5', routerLink: '/offers', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
+    //   subMenu: [
+    //     { title: 'Büyük İşletmeler', icon: '', routerLink: '/buyuk-isletmeler' },
+    //     { title: 'Büyük İşletmeye Gönderilen Görüşme Talepleri', icon: '', routerLink: '/apply-calls' },
+    //   ],
+    // },
     {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/offers', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
       subMenu: [
@@ -58,6 +65,13 @@ export class SidebarMenuComponent implements OnInit {
         { title: 'Toplantı Planla', icon: '', routerLink: '/toplanti/toplanti-planla' },
         { title: 'Toplantılarım', icon: '', routerLink: '/toplanti/toplantilarim' },
         { title: 'Takvimim', icon: 'calendar-add', routerLink: '/conversations' },
+      ],
+    },
+    {
+      title: 'B2B Görüşmeler', icon: 'element-5', routerLink: '/b2b', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
+      subMenu: [
+        { title: 'Büyük İşletmeler', icon: '', routerLink: '/buyuk-isletmeler' },
+        { title: 'Büyük İşletmeye Gönderilen Görüşme Talepleri', icon: '', routerLink: '/bi-gonderilen-gorusmeler' },
       ],
     },
     {

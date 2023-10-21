@@ -4,6 +4,8 @@ import { FilterService } from './filter/kobiFilter.service';
 import { KobiService } from './kobi.service';
 import { FilterComponent } from './filter/filter.component';
 import { filter } from 'rxjs';
+import { Router, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-bi',
@@ -11,8 +13,15 @@ import { filter } from 'rxjs';
   styleUrls: ['./bi.component.scss']
 })
 export class BiComponent {
+  form: FormGroup;
+
   filterOptions: any[];
-  constructor(private filterService: FilterService,private KobiService:KobiService) {
+  router: any;
+  constructor(private filterService: FilterService,private KobiService:KobiService,private routerr: Router,private fb: FormBuilder) {
+
+    this.form = this.fb.group({
+      meetingdescription: ['', Validators.required],
+    });  
   } // Servisi enjekte edin
 
   selectedFiltersList: { filterName: string, selectedValue: any }[] = [];
@@ -75,16 +84,41 @@ export class BiComponent {
     modalTitle: "Rapor Bilgileri",
     closeButtonLabel:'Kapat'
   };
-
+  meetingModalConfig: ModalConfig = {
+    modalTitle: "Görüşme Açıklaması",
+    closeButtonLabel:'Kapat'
+  }
+  successModalConfig: ModalConfig = {
+    modalTitle: "",
+    closeButtonLabel:'Kapat',
+    onClose:() => this.closeMeetingModal(),
+  }
+ 
   
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('raporModal') private raporModalComponent: ModalComponent;
+  @ViewChild('meetingModal') private meetingModalComponent: ModalComponent;
+  @ViewChild('success') private modalSuccessComponent: ModalComponent;
 
+  closeMeetingModal(){
+    this.meetingModalComponent.close();
+    this.form.reset();
+    return true;
+  }
   async openModal() {
     return await this.modalComponent.open();
   }
+   denemeModal() {
+    return  this.meetingModalComponent.close();
+  }
   async openRaporModal(){
     return await this.raporModalComponent.open();
+  }
+  async openMeetingModal(){
+    return await this.meetingModalComponent.open();
+  }
+ async openSuccessModal(){
+  return await this.modalSuccessComponent.open();
   }
 
   modalCompareConfig: ModalConfig = {
@@ -123,5 +157,12 @@ export class BiComponent {
 
   closeModal(){
     return this.modalComponent.close();
+  }
+  characterCount: number = 0;
+  updateCharacterCount() {
+    const meetingDescriptionControl = this.form.get('meetingdescription');
+    if (meetingDescriptionControl) {
+      this.characterCount = meetingDescriptionControl.value.length;
+    }
   }
 }

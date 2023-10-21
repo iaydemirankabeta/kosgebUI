@@ -53,6 +53,7 @@
   
       <div class="business-button">
         <a href="javascript:;" class="btn btn-dark" (click)="openModal()">Şirketi İncele</a>
+        <a class="btn btn-primary btn-margin"  (click)="openMeetingModal()">Görüşme Talep Et </a>
       </div>
     </div>
   
@@ -85,9 +86,13 @@
                       <tr><td><b>Konum:</b> {{companyItem.location}}</td></tr>
                       <tr>
                         <td class="mt-4">
+                          <div class="mt-4">
+                            <a class="btn btn-info btn-margin col-12" [routerLink]="['/kobi-profile/3']">Büyük İşletme Profiline Git</a>
+                          </div>
+                          <div class="mt-4">
                           <button class="btn btn-dark" (click)="openRaporModal()">IDR Raporu Görüntüle</button>
                           <button class="btn btn-secondary btn-margin"  (click)="openRaporModal()">D3A Raporu Görüntüle</button>
-                          <button class="btn btn-primary btn-margin col-xs-12" style="width: 100%;margin-top:10px;"  >Görüşme Talep Et</button>
+                        </div>
                         </td>
                       </tr>
                     </table>
@@ -106,6 +111,22 @@
           <label class="col-12 mt-3"><b>Rapor Alınma Tarihi :</b> 22.08.2020</label>
           <label class="col-12 mt-3"><b>Son Geçerlilk Tarihi :</b> 12.02.2025</label>
           <button class="btn btn-info col-4 mt-3">Raporu İndir</button>
+      </div>
+    </app-modal>
+    <form [formGroup]="form"  style="width: 100%;">
+
+    <app-modal #meetingModal [modalConfig]="meetingModalConfig" aria-modal="true">
+      <div class="row">
+        <div class="character-count">Kalan Karakter Sayısı: {{ characterCount }} / 300</div>
+        <textarea class="form-control" formControlName="meetingdescription" [ngClass]="form.get('meetingdescription')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Görüşme açıklaması giriniz..." (input)="updateCharacterCount()"></textarea>
+        <button [disabled]="!form.valid" class="btn btn-primary btn-margin col-xs-12" style="width: 100%;margin-top:10px;" (click)="openSuccessModal()" >Gönder</button>
+      </div>
+    </app-modal>
+  </form>
+    <app-modal #success [modalConfig]="successModalConfig" aria-modal="true">
+      <div class="col-xs-12 text-center">
+        <i class="fa-solid fa-check call-tick"></i>
+        <p>Görüşme Talebiniz Gönderildi</p>
       </div>
     </app-modal>
     </div>
