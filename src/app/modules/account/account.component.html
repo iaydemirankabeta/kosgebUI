@@ -216,7 +216,7 @@
 
 <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
     <div class="p-2">
-      <label class="fw-bold">Almanya Frankfurt bölgesine teknik gezi yapılması durumunda katılır mıydınız?</label>
+      <label class="fw-bold">Almanya' da Gıda sektöründe faliyet gösteren X şirketi için düzenlenen %30 KOSGEB destekli iş gezisine katılım sağlamak ister misiniz?</label>
       <div class="mt-4 row">
         <div class="form-check col-3">
           <input type="radio" name="cevap" class="form-check-input">
@@ -226,6 +226,17 @@
           <input type="radio" name="cevap" class="form-check-input">
           <label class="form-check-label">Hayır</label>
         </div>
+      <div>
+        <label for="ulkeSelect" class="col-lg-8 col-form-label fw-bold fs-6 text-start">Gitmek İstediğiniz Diğer Ülkeyi Seçiniz:</label>
+        <select id="ulkeSelect" (change)="changeulke($event)" class="text-center mx-2"  >
+          <option value="Almanya" selected>Almanya</option>
+          <option value="Türkiye" >Türkiye</option>
+          <option value="Amerika">Amerika</option>
+          <option value="Çin">Çin</option>
+          <option value="Rusya">Rusya</option>
+          <option value="Fransa">Fransa</option>
+        </select>
+      </div>
       </div>
     </div>
 </app-modal>

@@ -28,7 +28,7 @@
 
 <!--begin::Search-->
 
-<div class="app-navbar-item col-md-9" [ngClass]="itemClass">
+<div class="app-navbar-item col-md-8" [ngClass]="itemClass">
   <!--begin::Search-->
   <app-search-result-inner data-kt-search-element="content" data-kt-menu="true"
       class="p-7 w-400px w-md-400px"></app-search-result-inner>
@@ -61,6 +61,15 @@
 </div>
 <!--end::Chat-->
 
+
+<div class="app-navbar-item" [ngClass]="itemClass">
+  <div [ngClass]="btnClass" class="position-relative" id="kt_basket_toggle">
+        <i class="fa-solid fa-basket-shopping"></i>  
+          <span style="background-color: #c0392b;position: absolute;bottom:3px;right:3px;width: 15px;height: 15px;border-radius: 45px;padding-top: 2px;color:white;font-size: 11px;">2</span>
+
+  </div>
+</div>
+
 <!--begin::Notifications-->
 <div class="app-navbar-item " [ngClass]="itemClass">
   <!--begin::Menu- wrapper-->
@@ -84,6 +93,8 @@
   <!--end::Menu wrapper-->
 </div>
 <!--end::User menu-->
+
+
 
 <!--begin::Header menu toggle-->
 <ng-container *ngIf="appHeaderDefaulMenuDisplay">

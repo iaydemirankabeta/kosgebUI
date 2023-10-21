@@ -17,50 +17,52 @@ import { ShowcaseComponent } from './showcase/showcase.component';
 import { SearchComponent } from '../../pages/components/search/search.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { MarketplacesComponent } from './marketplaces/marketplaces.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { SharedModule } from "../../_metronic/shared/shared.module";
 
 
 @NgModule({
-  declarations: [CatalogComponent,ProductsComponent,CategoriesComponent,PaginationComponent, ProductAddComponent, ShowcaseComponent,SearchComponent, CurrencyComponent, MarketplacesComponent],
-  imports: [
-    ExtrasModule,
-    CKEditorModule,
-    FormsModule,
-    MatTableModule,
-    MatTabsModule,
-    CommonModule,
-    
-    RouterModule.forChild([
-      {
-        path: 'katalog',
-        component: CatalogComponent,
-      },
-      {
-        path: 'vitrin',
-        component: ShowcaseComponent,
-      },
-      {
-        path: 'urunler',
-        component: ProductsComponent,
-      },
-      {
-        path: 'urun-ekle',
-        component: ProductAddComponent,
-      },
-      {
-        path: 'kategoriler',
-        component: CategoriesComponent,
-      },
-      {
-        path: 'pazar-yerleri',
-        component: MarketplacesComponent,
-      },
-      { path: 'urunler/:categoryId', component: ProductsComponent },
-      { path: 'urun-ekle/:productId', component: ProductAddComponent }
-
-    ]),
-    WidgetsModule,
-    ModalsModule,
-  ],
-  providers: [PaginationService],
+    declarations: [CatalogComponent, ProductsComponent, CategoriesComponent, PaginationComponent, ProductAddComponent, ShowcaseComponent, SearchComponent, CurrencyComponent, MarketplacesComponent, ProductDetailComponent],
+    providers: [PaginationService],
+    imports: [
+        ExtrasModule,
+        CKEditorModule,
+        FormsModule,
+        MatTableModule,
+        MatTabsModule,
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: 'katalog',
+                component: CatalogComponent,
+            },
+            {
+                path: 'vitrin',
+                component: ShowcaseComponent,
+            },
+            {
+                path: 'urunler',
+                component: ProductsComponent,
+            },
+            {
+                path: 'urun-ekle',
+                component: ProductAddComponent,
+            },
+            {
+                path: 'kategoriler',
+                component: CategoriesComponent,
+            },
+            {
+                path: 'pazar-yerleri',
+                component: MarketplacesComponent,
+            },
+            { path: 'urunler/:categoryId', component: ProductsComponent },
+            { path: 'urun-ekle/:productId', component: ProductAddComponent },
+            { path: 'urun-detay/:productId', component: ProductDetailComponent }
+        ]),
+        WidgetsModule,
+        ModalsModule,
+        SharedModule
+    ]
 })
 export class catalogModule {}
