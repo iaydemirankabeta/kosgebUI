@@ -198,7 +198,7 @@ const Routing: Routes = [
       import('./bi-gonderilen-gorusmeler/bi-gonderilen-gorusmeler.module').then((m) => m.BiGonderilenGorusmelerModule),
     data: { layout: 'dark-sidebar' }
   },
-  {//Büyük işletmeler B2B  Kobilerden Gelen Görüşme Talepleri Sayfası
+  {//TODO sol menüye eklenecek Büyük işletmeler kullanıcısı => B2B-modülü =>  Kobilerden Gelen Görüşme Talepleri Sayfası 
     path: 'kobilerden-gelen-gorusmeler',
     loadChildren: () =>
       import('./kobilerden-gelen-gorusmeler/kobilerden-gelen-gorusmeler.module').then((m) => m.KobilerdenGeleneGorusmelerModule),

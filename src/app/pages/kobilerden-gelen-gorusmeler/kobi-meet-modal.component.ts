@@ -27,11 +27,17 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
     <div class="modal-body">
       <p>Seçilen Tarih: <span *ngFor="let selected of selectedDate">{{selected.toLocaleDateString()}} </span></p>
       <div class="mt-4">
-        <label>Görüşme Şekli</label>
-        <select class="form-control">
-          <option>Online</option>
-          <option>Yüz yüze</option>
-        </select>
+      <label>Görüşme Şekli</label>
+      <select [(ngModel)]="gorusmeSekli" class="form-control" (change)="onGorusmeSekliChange()">
+        <option value="Online">Online</option>
+        <option value="Hibrit">Hibrit</option>
+        <option value="yuz-yuze">Yüz yüze</option>
+      </select>
+      
+    </div>
+    <div class="mt-4" *ngIf="gorusmeSekli === 'Online'|| gorusmeSekli === 'Hibrit'">
+        <label>Görüşme Linki</label>
+        <input type="text" class="form-control">
       </div>
       
       <div class="mt-4">
@@ -43,6 +49,16 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
           <input class="form-control" type=input />
         </div>
       </div>
+      <div class="row">
+      <div class="col-md-6">
+        <label>Mola Sayısı</label>
+        <input type="number" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label>Mola Süresi (Dakika)</label>
+        <input type="number" class="form-control">
+      </div>
+    </div>
 
       <p class="mt-4">Boş Saatler:</p>
       <div class="radio-buttons">
@@ -144,5 +160,8 @@ export class AppModalComponent {
   
     this.emptyHours = emptyHours;
   }
-  
+  gorusmeSekli: string = 'Online';
+  onGorusmeSekliChange() {
+    // Görüşme Şekli seçimi değiştikçe bu fonksiyon çalışır
+  }
 }
