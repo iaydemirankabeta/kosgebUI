@@ -8,6 +8,79 @@
         <button *ngIf="_user.roles !== 2" class="btn btn-primary" (click)="openFirstModal()">Ekle</button> -->
     <!-- end::Menu -->
     <!-- </div> -->
+    <app-modal #meet [modalConfig]="modalMeetConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <p>Lütfen uygun tarihlerinizi seçiniz</p>
+          <div class="calendar-container">
+            <div class="row text-center mt-5">
+              <div class="col-md-8">
+                <div class="btn-group">
+                  <div
+                    class="btn btn-primary"
+                    mwlCalendarPreviousView
+                    [view]="view"
+                    [(viewDate)]="viewDate"
+                  >
+                    Önceki
+                  </div>
+                  <div
+                    class="btn btn-outline-secondary"
+                    mwlCalendarToday
+                    [(viewDate)]="viewDate"
+                  >
+                    Bugün
+                  </div>
+                  <div
+                    class="btn btn-primary"
+                    mwlCalendarNextView
+                    [view]="view"
+                    [(viewDate)]="viewDate"
+                  >
+                    Sonraki
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <h3>
+                  {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }}
+                </h3>
+              </div>
+            </div>
+            <div [ngSwitch]="view">
+              <mwl-calendar-month-view
+                *ngSwitchCase="'month'"
+                [viewDate]="viewDate"
+                [events]="events"
+                [locale]="locale"
+                [weekStartsOn]="weekStartsOn"
+                [weekendDays]="weekendDays"
+                [activeDayIsOpen]="activeDayIsOpen"
+                (dayClicked)="onDayClick($event.day)"
+              >
+              </mwl-calendar-month-view>
+              <mwl-calendar-week-view
+                *ngSwitchCase="'week'"
+                [viewDate]="viewDate"
+                [events]="events"
+                [locale]="locale"
+                [weekStartsOn]="weekStartsOn"
+                [weekendDays]="weekendDays"
+              >
+              </mwl-calendar-week-view>
+              <mwl-calendar-day-view
+                *ngSwitchCase="'day'"
+                [viewDate]="viewDate"
+                [events]="events"
+                [locale]="locale"
+              >
+              </mwl-calendar-day-view>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-secondary" (click)="selectHour()">Devam</button>
+        </div>
+      </app-modal>
 
     <table mat-table [dataSource]="destekler" class="mat-elevation-z8">
         <!--- Note that these columns can be defined in any order.
@@ -30,7 +103,7 @@
         <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-                <button class="btn btn-success">KOSGEG'den Görüşme Talep Et</button>
+                <button class="btn btn-success" (click)="acRandevuModal()">KOSGEG'den Görüşme Talep Et</button>
                 <button class="btn btn-danger">Reddet</button>
             </td>
           </ng-container>

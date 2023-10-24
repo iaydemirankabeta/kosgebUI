@@ -192,10 +192,16 @@ const Routing: Routes = [
       import('../modules/apps/chat/chat.module').then((m) => m.ChatModule),
     data: { layout: 'dark-sidebar' },
   },
-  {
+   {//Kobi-B2b Görüşmeler-Büyük İşletmeye Gönderilen Görüşme Talepleri sayfası
     path: 'bi-gonderilen-gorusmeler',
     loadChildren: () =>
       import('./bi-gonderilen-gorusmeler/bi-gonderilen-gorusmeler.module').then((m) => m.BiGonderilenGorusmelerModule),
+    data: { layout: 'dark-sidebar' }
+  },
+  {//Büyük işletmeler B2B  Kobilerden Gelen Görüşme Talepleri Sayfası
+    path: 'kobilerden-gelen-gorusmeler',
+    loadChildren: () =>
+      import('./kobilerden-gelen-gorusmeler/kobilerden-gelen-gorusmeler.module').then((m) => m.KobilerdenGeleneGorusmelerModule),
     data: { layout: 'dark-sidebar' }
   },
   {
