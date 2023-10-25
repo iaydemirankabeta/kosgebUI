@@ -149,5 +149,30 @@ export class ApplyCallsComponent {
   toggleView(view: string) {
     this.currentView = view;
   }
+
+
+  modalSSSConfig: ModalConfig = {
+    modalTitle: 'Sıkça Sorulan Sorular',
+    closeButtonLabel:'Kapat'
+
+  };
+
+  @ViewChild('modalSSS') private modalSSSComponent: ModalComponent;
+
+  sss(){
+      this.modalSSSComponent.open();
+  }
+
+  modalaboutSSConfig: ModalConfig = {
+    modalTitle: 'Çağrı Hakkında Sorular',
+    closeButtonLabel:'Kapat'
+
+  };
+
+  @ViewChild('aboutSS') private modalaboutssComponent: ModalComponent;
+
+  aboutss(){
+      this.modalaboutssComponent.open();
+  }
   
 }

@@ -20,6 +20,13 @@
     data-bs-trigger="hover">
     Filtrele ->
   </button>
+  <div class="pull-right" style="float: right;">
+    <select class="form-select  mb-5 " (change)="onSortChange($event)">
+      <option value="recommended" >Sırala </option>
+      <option value="az">A-Z Sırala</option>
+      <option value="za">Z-A Sırala</option>
+    </select>
+  </div>
   
 </div>
 <!--end::Secondary button-->

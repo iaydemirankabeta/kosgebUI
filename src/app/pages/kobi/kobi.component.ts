@@ -127,4 +127,26 @@ filterOptions: any[];
     return this.modalComponent.close();
   }
 
+  selectedSortOption = 'recommended'; // Başlangıçta önerilenler sıralı olsun.
+
+  // Sıralama işlevi
+  sortBusinessListAlphabetically() {
+    this.businessList.sort((a: any, b: any) => {
+      if (this.selectedSortOption === 'az') {
+        return a.name.localeCompare(b.name);
+      } else if (this.selectedSortOption === 'za') {
+        return b.name.localeCompare(a.name);
+      }
+
+      // Diğer sıralama seçenekleri burada eklenebilir.
+    });
+  }
+
+  // Açılır listedeki seçenek değiştikçe tetiklenecek olay işleyicisi
+  onSortChange(event: any) {
+    this.selectedSortOption = event.target.value;
+
+    this.sortBusinessListAlphabetically();
+  }
+
 }

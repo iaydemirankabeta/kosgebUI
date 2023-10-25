@@ -41,6 +41,7 @@ const ELEMENT_DATA: ConversationElement[] = [
   {id:"Y Çağrısı",firm:"Y şirketi", firmAuthority:"Gizem Turanlı",solutionName:"Kozmetik Ürünlerin Tedariği"},
 ];
 
+
 @Component({
   selector: 'app-submitted-offers',
   templateUrl: './submitted-offers.component.html',
@@ -50,6 +51,7 @@ export class SubmittedOffersComponent {
   displayedColumns: string[] = ['TeklifId', 'CagrıAdi', 'FirmaAdi',"TeklifTarihi","TeklifStatusu"];
   displayedColumns2: string[] = ['CozumId', 'CozumAdi', 'FirmaAdi',"FirmaYetkilisi","YetkiliAjandasi"];
   dataSource = ELEMENT_DATA;
+
   data = [
     {id:1,callId:1, callName:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
     firmName:'X Firması ', offerDate:'23.09.2023',
@@ -75,7 +77,6 @@ status:"Onaylandı"
   firmName:'Y Firması ', offerDate:'27.09.2023',
   status:"Değerlendirme Aşamasında"
 }, 
-
   ]
   trigClick = this.data;
   tabs = [
@@ -248,7 +249,30 @@ status:"Onaylandı"
     const modalRef = this.modalService.open(AppModalComponent);
     modalRef.componentInstance.selectedDate = selectedDate;
   }
+
+
+  dataViews = [
+    {
+      id:1,
+      companyName:'X İşletmesi',
+      sektor:'Otomotiv',
+      date:'20.11.2023',
+    },
+    {
+      id:2,
+      companyName:'Y İşletmesi',
+      sektor:'Otomotiv',
+      date:'24.11.2023',
+    },
+    {
+      id:3,
+      companyName:'Z İşletmesi',
+      sektor:'Üretim',
+      date:'25.11.2023',
+    }
+  ]
   
+
 
 }
 

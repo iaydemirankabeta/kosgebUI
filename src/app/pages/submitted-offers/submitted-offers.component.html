@@ -52,6 +52,39 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       </mat-tab>
+      <mat-tab label="Çağrıyı Görüntüleyenler">
+        <mat-table [dataSource]="dataViews" class="mat-elevation-z8">
+          <!-- İşletme Adı Sütunu -->
+          <ng-container matColumnDef="companyName">
+            <mat-header-cell *matHeaderCellDef> İşletme Adı </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.companyName }}</mat-cell>
+          </ng-container>
+        
+          <!-- Sektör Sütunu -->
+          <ng-container matColumnDef="sektor">
+            <mat-header-cell *matHeaderCellDef> Sektör </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.sektor }}</mat-cell>
+          </ng-container>
+        
+          <!-- Tarih Sütunu -->
+          <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef> Tarih </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.date }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> İşlemler </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-button class="btn btn-primary">Başvurmaya Davet Et</button>
+            </mat-cell>
+          </ng-container>
+        
+          <!-- Sütun Tanımlamaları -->
+          <mat-header-row *matHeaderRowDef="['companyName', 'sektor', 'date','actions']"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: ['companyName', 'sektor', 'date','actions']"></mat-row>
+        </mat-table>
+      </mat-tab>
+      
       <mat-tab  label="Onaya Gönderilenler">
         <table mat-table [dataSource]="trigClick" class="mat-elevation-z8" *ngIf="(_user.roles !== 3 && _user.roles !== 6)">
 
