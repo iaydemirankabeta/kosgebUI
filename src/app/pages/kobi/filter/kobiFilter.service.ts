@@ -249,6 +249,7 @@ export class FilterService {
           { id: 2, name: 'Hayır', value: 2, category: 'Ar-Ge Projesi Tamamlamış Olma Durumu' },
         ],
       },
+      
       {
         id: 18,
         label: 'Hâlihazırda Ar-Ge Projesi Yürütme Durumu',
@@ -323,6 +324,73 @@ export class FilterService {
           { id: 25, name: '8517.24.00.00', value: 25, category: 'GTİP Bilgisi' },
         ],
       },
+      {
+        id: 20,
+        label: 'E-Ticaret',
+        name: 'eticaret',
+        options: [
+          { id: 1, name: 'Evet', value: 1, category: 'E-ticaret' },
+          { id: 2, name: 'Hayır', value: 2, category: 'E-ticaret' },
+        ],
+      },
+      {
+        id: 21,
+        label: 'Laboratuvar Bilgisi',
+        name: 'Laboratuvar Bilgisi',
+        options: [
+          { id: 1, name: 'Sanayi Laboratuvarı', value: 1, category: 'Laboratuvar Bilgisi' },
+          { id: 2, name: 'Bilim Laboratuvarı', value: 2, category: 'Laboratuvar Bilgisi' },
+          { id: 3, name: 'Yaş Kimya Laboratuvarı', value: 2, category: 'Laboratuvar Bilgisi' },
+          { id: 4, name: 'Kuru Kimya Laboratuvarı', value: 2, category: 'Laboratuvar Bilgisi' },
+          { id: 5, name: 'Biyoloji Laboratuvarı', value: 2, category: 'Laboratuvar Bilgisi' },
+          { id: 6, name: 'Eğitim Laboratuvarı', value: 2, category: 'Laboratuvar Bilgisi' },
+          { id: 7, name: 'Araştırma Laboratuvarı', value: 2, category: 'Laboratuvar Bilgisi' },
+          { id: 8, name: 'Üretim Laboratuvarı', value: 2, category: 'Laboratuvar Bilgisi' },
+        ],
+      },
+      {
+        id: 22,
+        label: 'Üretimde Kullanılan Makine',
+        name: 'eticaret',
+        options: [
+          
+        ],
+      },
+      {
+        id: 23,
+        label: 'Teşvik Bölgesi',
+        name: 'Teşvik Bölgesi',
+        options: [
+          { id: 1, name: '1. Bölge', value: 1, category: 'Teşvik Bölgesi' },
+          { id: 2, name: '2. Bölge', value: 2, category: 'Teşvik Bölgesi' },
+          { id: 3, name: '3. Bölge', value: 3, category: 'Teşvik Bölgesi' },
+          { id: 4, name: '4. Bölge', value: 4, category: 'Teşvik Bölgesi' },
+          { id: 5, name: '5. Bölge', value: 5, category: 'Teşvik Bölgesi' },
+          { id: 6, name: '6. Bölge', value: 6, category: 'Teşvik Bölgesi' },
+        ],
+      },
+      {
+        id: 24,
+        label: 'KOSGEB Önerisi',
+        name: 'KOSGEB Önerisi',
+        options: [
+          { id: 1, name: 'Evet', value: 1, category: 'KOSGEB Önerisi' },
+          { id: 2, name: 'Hayır', value: 2, category: 'KOSGEB Önerisi' },
+        ],
+      },
+      {
+        id: 25,
+        label: 'Üye Olunan Birlik/Dernek/Meclis',
+        name: 'Üye Olunan Birlik/Dernek/Meclis',
+        options: [
+          { id: 1, name: 'A Derneği', value: 1, category: 'Üye Olunan Birlik/Dernek/Meclis' },
+          { id: 2, name: 'B Derneği', value: 2, category: 'Üye Olunan Birlik/Dernek/Meclis' },
+          { id: 3, name: 'C Birlik', value: 2, category: 'Üye Olunan Birlik/Dernek/Meclis' },
+          { id: 4, name: 'D Meclis', value: 2, category: 'Üye Olunan Birlik/Dernek/Meclis' },
+        ],
+      },
+      
+      
 
     ];
   }

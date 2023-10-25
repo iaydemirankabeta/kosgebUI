@@ -88,6 +88,13 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
+      title: 'Proje Zekası', icon: 'tablet-book', routerLink: '/proje-zekasi', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB,CompanyTypes.BI,CompanyTypes.KOBI], shown: false,
+      subMenu: [
+        { title: 'Bildirimler', icon: '', routerLink: '/proje-zekasi/bildirimler' },
+       
+      ],
+    },
+    {
       title: 'Raporlama Modülü', icon: 'tablet-book', routerLink: '/raporlar', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
       subMenu: [
         { title: 'Raporlar', icon: '', routerLink: '/raporlar' },

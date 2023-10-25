@@ -26,6 +26,12 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' }
   },
   {
+    path: 'proje-zekasi',
+    loadChildren: () =>
+      import('./project/project.module').then((m) => m.ProjectModule),
+    data: { layout: 'dark-sidebar' }
+  },
+  {
     path: 'kobi',
     loadChildren: () =>
       import('./kobi/kobi.module').then((m) => m.kobiModule),
@@ -58,7 +64,7 @@ const Routing: Routes = [
   {
     path: 'conversations',
     loadChildren: () =>
-      import('./conversations/conversations.module').then((m) => m.ConversationsModule),
+      import('./meet-module/conversations/conversations.module').then((m) => m.ConversationsModule),
     data: { layout: 'dark-sidebar' }
   },
   {
@@ -218,12 +224,6 @@ const Routing: Routes = [
   {
     path: 'finans-modulu',
     component: FinansComponent,
-    data: { layout: 'dark-sidebar' }
-  },
-  {
-    path: 'keen',
-    component: KeeniconComponent,
-    pathMatch: 'full',
     data: { layout: 'dark-sidebar' }
   },
 
