@@ -140,7 +140,7 @@ status:"Onaylandı"
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('meet') private meet: ModalComponent;
   @ViewChild('acceptmodal') private acceptModalComponent: ModalComponent;
-  @ViewChild('meetingModal') private meetingModal:ModalComponent
+  @ViewChild('meetingModal') private meetingModal:ModalComponent;
   
   targetValue:number;
   selectedOffer:any = this.data[2];

@@ -18,14 +18,14 @@ export class DataService {
   ];
 
   private products: Product[] = [
-    { id: 1, name: 'Tablet', price: 500, description: 'Lorem Ipsum Comfortable sneakers for everyday wear.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/tablet.png' }, sku: 10022, qty: 7, rating: 4, status: true,priceTRY:500,priceUSD: 50,priceEURO:45 },
-    { id: 2, name: 'Klavye', price: 50, description: 'Lorem Ipsum Comfortable sneakers for everyday wear.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/klavye.jpg' }, sku: 10023, qty: 10, rating: 4, status: true,priceTRY:50,priceUSD: 5,priceEURO:4 },
-    { id: 5, name: 'AI Robot', price: 1500, description: 'Lorem Ipsum Comfortable sneakers for everyday wear.', categoryId: 5, img: { url: './assets/media/stock/ecommerce/hdd.png' }, sku: 10026, qty: 3, rating: 5, status: true,priceTRY:1500,priceUSD: 150,priceEURO:140 },
-    { id: 8, name: 'Yazılım Kütüphanesi', price: 120, description: 'Lorem Ipsum Comfortable sneakers for everyday wear.', categoryId: 3, img: { url: './assets/media/stock/ecommerce/yazilim.png' }, sku: 10029, qty: 20, rating: 4, status: true,priceTRY:120,priceUSD: 12,priceEURO:10 },
-    { id: 22, name: 'USB Fan', price: 10, description: 'Bilgisayarınıza takabileceğiniz minyatür bir USB vantilatör.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/usbfan.jpg' }, sku: 10032, qty: 15, rating: 3, status: true,priceTRY:10,priceUSD: 1,priceEURO:0.8 },
-    { id: 23, name: 'Güneş Gözlüğü', price: 15, description: 'Şık ve ucuz güneş gözlüğü.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/gunesgozlugu.jpg' }, sku: 10033, qty: 30, rating: 4, status: true,priceTRY:15,priceUSD: 1.5,priceEURO:1.2 },
-    { id: 24, name: 'Ofis Koltuğu', price: 80, description: 'Rahat bir ofis koltuğu.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/ofiskoltugu.png' }, sku: 10034, qty: 10, rating: 4, status: true,priceTRY:80,priceUSD: 8,priceEURO:6 },
-    { id: 26, name: 'Klavye', price: 20, description: 'Masa üstü kullanım için LED lamba.', categoryId: 3, img: { url: './assets/media/stock/ecommerce/klavye.jpg' }, sku: 10036, qty: 25, rating: 4, status: true,priceTRY:20,priceUSD: 2,priceEURO:1},
+    { id: 1, name: 'Tablet', price: 500, description: 'Lorem Ipsum Comfortable sneakers for everyday wear.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/tablet.png' }, sku: 10022, qty: 7,offerQty:52, rating: 4, status: true,priceTRY:500,priceUSD: 50,priceEURO:45 },
+    { id: 2, name: 'Klavye', price: 50, description: 'Lorem Ipsum Comfortable sneakers for everyday wear.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/klavye.jpg' }, sku: 10023, qty: 10,offerQty:1000, rating: 4, status: true,priceTRY:50,priceUSD: 5,priceEURO:4 },
+    { id: 5, name: 'AI Robot', price: 1500, description: 'Lorem Ipsum Comfortable sneakers for everyday wear.', categoryId: 5, img: { url: './assets/media/stock/ecommerce/hdd.png' }, sku: 10026, qty: 3,offerQty:5, rating: 5, status: true,priceTRY:1500,priceUSD: 150,priceEURO:140 },
+    { id: 8, name: 'Yazılım Kütüphanesi', price: 120, description: 'Lorem Ipsum Comfortable sneakers for everyday wear.', categoryId: 3, img: { url: './assets/media/stock/ecommerce/yazilim.png' }, sku: 10029, qty: 20,offerQty:2, rating: 4, status: true,priceTRY:120,priceUSD: 12,priceEURO:10 },
+    { id: 22, name: 'USB Fan', price: 10, description: 'Bilgisayarınıza takabileceğiniz minyatür bir USB vantilatör.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/usbfan.jpg' }, sku: 10032, qty: 15,offerQty:1, rating: 3, status: true,priceTRY:10,priceUSD: 1,priceEURO:0.8 },
+    { id: 23, name: 'Güneş Gözlüğü', price: 15, description: 'Şık ve ucuz güneş gözlüğü.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/gunesgozlugu.jpg' }, sku: 10033, qty: 30,offerQty:0, rating: 4, status: true,priceTRY:15,priceUSD: 1.5,priceEURO:1.2 },
+    { id: 24, name: 'Ofis Koltuğu', price: 80, description: 'Rahat bir ofis koltuğu.', categoryId: 1, img: { url: './assets/media/stock/ecommerce/ofiskoltugu.png' }, sku: 10034, qty: 10,offerQty:0, rating: 4, status: true,priceTRY:80,priceUSD: 8,priceEURO:6 },
+    { id: 26, name: 'Klavye', price: 20, description: 'Masa üstü kullanım için LED lamba.', categoryId: 3, img: { url: './assets/media/stock/ecommerce/klavye.jpg' }, sku: 10036, qty: 25,offerQty:0, rating: 4, status: true,priceTRY:20,priceUSD: 2,priceEURO:1},
     
 ];
 
