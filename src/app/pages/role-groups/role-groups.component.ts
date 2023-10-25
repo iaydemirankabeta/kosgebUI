@@ -256,6 +256,7 @@ export class RoleGroupsComponent {
   isEnabledError:boolean = false;
   openModal(item:roleGroup){
     this.selectedRoleGroup = item;
+    this.modalConfig.modalTitle = this.selectedRoleGroup.name + " Rolünü Düzenliyorsunuz";     
     return this.modalComponent.open();
   }
   closeModal(){
