@@ -83,7 +83,7 @@
             <span [ngClass]="product.qty < 3 ?'text-danger':'' " class="fw-bold ms-3"> {{product.qty}}</span>
           </td>
           <td class="text-end pe-0">{{selectedCurrency == '₺' ? product.price : '' }} {{selectedCurrency == '$' ? product.priceUSD : ''}} {{selectedCurrency == '€' ? product.priceEURO : '' }} {{selectedCurrency}}</td>
-          <td class="text-end pe-0">
+          <td class="text-end pe-0" *ngIf="_user.roles! == 3">
             <span class="fw-bold">{{product.offerQty}}</span>
           </td>
           <td class="text-end pe-0" data-order="rating-5">
@@ -126,7 +126,7 @@
               </app-modal>
               <!--begin::Menu item-->
               <div class="menu-item px-3">
-                <a href="javascript:;" class="menu-link px-3 badge badge-light-danger" (click)="openModal()" o data-kt-ecommerce-product-filter="delete_row">Pasif'e al</a>
+                <a href="javascript:;" class="menu-link px-3 badge badge-light-danger" (click)="openModal()" o data-kt-ecommerce-product-filter="delete_row">{{product.status != true ? 'Aktif': 'Pasif' }}'e al</a>
               </div>
               <!--end::Menu item-->
             </div>
