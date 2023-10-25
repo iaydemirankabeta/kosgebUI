@@ -21,9 +21,9 @@ export class BiGonderilenGorusmelerComponent {
   yuklenenDosyalar: File[] = [];
   displayedColumns: string[] = ['IsletmeAdı','GonderilenGorusmeTarihi','GorusmeAcıklaması','Durum'];
   destekler= new MatTableDataSource([
-    {isletmeAdi:'X Şirketi',gorumeTarihi:'23.09.2023',gorusmeAciklamasi:'Görüşme Açıklama 1',durum:'Kosgeb den Görüşme Talep Edildi'},
-    {isletmeAdi:'Y Şirketi',gorumeTarihi:'24.09.2023',gorusmeAciklamasi:'Görüşme Açıklama 2',durum:'Değerlendirme Aşamasında'},
-    {isletmeAdi:'Z Şirketi',gorumeTarihi:'23.09.2023',gorusmeAciklamasi:'Görüşme Açıklama 3',durum:'Reddedildi'},
+    {isletmeAdi:'X Şirketi',gorusmeTarihi:'23.09.2023',gorusmeAciklamasi:'Görüşme Açıklama 1',durum:'Kosgeb den Görüşme Talep Edildi'},
+    {isletmeAdi:'Y Şirketi',gorusmeTarihi:'24.09.2023',gorusmeAciklamasi:'Görüşme Açıklama 2',durum:'Değerlendirme Aşamasında'},
+    {isletmeAdi:'Z Şirketi',gorusmeTarihi:'23.09.2023',gorusmeAciklamasi:'Görüşme Açıklama 3',durum:'Reddedildi'},
   ])
   
  

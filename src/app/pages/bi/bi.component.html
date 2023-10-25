@@ -3,132 +3,132 @@
   <p><strong>Seçilen Filtreler:</strong><span *ngFor="let item of selectedFiltersList">{{item.filterName}}</span></p>
 </div>-->
 <div class="col-xs-12 full-width d-inline-block">
-    <ng-container *ngFor="let filter of filters">
-      <app-filter [kobiFilter]="filter"
-    [filterOptions]="filterOptions"
-    (filterChanged)="emitFilterChanges($event)"></app-filter>
-    </ng-container>
-    
-    <button
-      id="kt_help_toggle"
-      class="btn engage-help-toggle btn btn-flex h-35px bg-body btn-color-gray-700 btn-active-color-gray-900 shadow-sm px-5 rounded-top-0"
-      title="Learn & Get Inspired"
-      data-bs-toggle="tooltip"
-      data-bs-placement="left"
-      data-bs-dismiss="click"
-      style="margin-bottom: 10px;"
-      data-bs-trigger="hover">
-      Filtrele ->
-    </button>
-    
-  </div>
-  <!--end::Secondary button-->
-  <div class="row">
-    <div *ngFor="let business of businessList,let i = index" class="col-md-4 mb-5 col-xs-6">
-      <div class="card p-5">
-        <div class="businessTop-icon">
-          <a href="javascript:;">
-            <i class="fa fa-file-text"></i>
-          </a>
-          <a href="javascript:;" *ngIf="business.chart">
-            <i class="fa fa-line-chart"></i>
-          </a>
-          <a href="javascript:;" *ngIf="business.group">
-            <i class="fa fa-group"></i>
-          </a>
-          <a href="javascript:;" *ngIf="business.users">
-            <i class="fa fa-users"></i>
-          </a>
-          <a href="javascript:;" *ngIf="business.chart">
-            <i class="fa fa-map-pin"></i>
-          </a>
-         
-        </div>
-      
-      
-      <div class="business-name">{{ business.name }}</div>
-      <div class="business-company" >{{ business.location }}</div>
-      
-      <div class="business-address">{{ business.category }}</div>
+  <ng-container *ngFor="let filter of filters">
+    <app-filter [kobiFilter]="filter"
+  [filterOptions]="filterOptions"
+  (filterChanged)="emitFilterChanges($event)"></app-filter>
+  </ng-container>
   
-      <div class="business-button">
-        <a href="javascript:;" class="btn btn-dark" (click)="openModal()">Şirketi İncele</a>
-        <a class="btn btn-primary btn-margin"  (click)="openMeetingModal()">Görüşme Talep Et </a>
+  <button
+    id="kt_help_toggle"
+    class="btn engage-help-toggle btn btn-flex h-35px bg-body btn-color-gray-700 btn-active-color-gray-900 shadow-sm px-5 rounded-top-0"
+    title="Learn & Get Inspired"
+    data-bs-toggle="tooltip"
+    data-bs-placement="left"
+    data-bs-dismiss="click"
+    style="margin-bottom: 10px;"
+    data-bs-trigger="hover">
+    Filtrele ->
+  </button>
+  
+</div>
+<!--end::Secondary button-->
+<div class="row">
+  <div *ngFor="let business of businessList,let i = index" class="col-md-4 mb-5 col-xs-6">
+    <div class="card p-5">
+      <div class="businessTop-icon">
+        <a href="javascript:;">
+          <i class="fa fa-file-text"></i>
+        </a>
+        <a href="javascript:;" *ngIf="business.chart">
+          <i class="fa fa-line-chart"></i>
+        </a>
+        <a href="javascript:;" *ngIf="business.group">
+          <i class="fa fa-group"></i>
+        </a>
+        <a href="javascript:;" *ngIf="business.users">
+          <i class="fa fa-users"></i>
+        </a>
+        <a href="javascript:;" *ngIf="business.chart">
+          <i class="fa fa-map-pin"></i>
+        </a>
+       
       </div>
+    
+    
+    <div class="business-name">{{ business.name }}</div>
+    <div class="business-company" >{{ business.location }}</div>
+    
+    <div class="business-address">{{ business.category }}</div>
+
+    <div class="business-button">
+      <a href="javascript:;" class="btn btn-dark" (click)="openModal()">İşletmeyi İncele</a>
+      <a class="btn btn-primary btn-margin"  (click)="openMeetingModal()">Görüşme Talep Et </a>
     </div>
-  
-  
-      <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
-        <div class="col-12">
-          <ul class="nav">
-            <li class="nav-item" *ngFor="let companyItem of business.companyInfo">
-            <div class="col-12">
-              <div class="card-body py-3">
-                <div class="tab-content">
-                  <!-- begin::Tap pane -->
-                  <div
-                    class=""
-                    id="{{companyItem.code+i}}">
-                    <h5>{{business.company}}</h5>
-                  
-  
-                    <table class="">
-                      <p>{{companyItem.description}}</p>
-                      <tr class="ph-0 w-100">
-                        <td><b>Ciro:</b> {{companyItem.ciro}}</td>
-                      </tr>
-                      <tr>
-                        <td><b>Çalışan:</b> {{companyItem.worker}}</td>
-                      </tr>
-                      <tr>
-                        <td><b>Sektör:</b> {{companyItem.sektor}}</td>  
-                      </tr>
-                      <tr><td><b>Konum:</b> {{companyItem.location}}</td></tr>
-                      <tr>
-                        <td class="mt-4">
-                          <div class="mt-4">
-                            <a class="btn btn-info btn-margin col-12" [routerLink]="['/kobi-profile/3']">Büyük İşletme Profiline Git</a>
-                          </div>
-                          <div class="mt-4">
-                          <button class="btn btn-dark" (click)="openRaporModal()">IDR Raporu Görüntüle</button>
-                          <button class="btn btn-secondary btn-margin"  (click)="openRaporModal()">D3A Raporu Görüntüle</button>
+  </div>
+
+
+    <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
+      <div class="col-12">
+        <ul class="nav">
+          <li class="nav-item" *ngFor="let companyItem of business.companyInfo">
+          <div class="col-12">
+            <div class="card-body py-3">
+              <div class="tab-content">
+                <!-- begin::Tap pane -->
+                <div
+                  class=""
+                  id="{{companyItem.code+i}}">
+                  <h5>{{business.company}}</h5>
+                
+
+                  <table class="">
+                    <p>{{companyItem.description}}</p>
+                    <tr class="ph-0 w-100">
+                      <td><b>Ciro:</b> {{companyItem.ciro}}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Çalışan:</b> {{companyItem.worker}}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Sektör:</b> {{companyItem.sektor}}</td>  
+                    </tr>
+                    <tr><td><b>Konum:</b> {{companyItem.location}}</td></tr>
+                    <tr>
+                      <td class="mt-4">
+                        <div class="mt-4">
+                          <a class="btn btn-info btn-margin col-12" [routerLink]="['/kobi-profile/3']">Büyük İşletme Profiline Git</a>
                         </div>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
+                        <!-- <div class="mt-4">
+                        <button class="btn btn-dark" (click)="openRaporModal()">IDR Raporu Görüntüle</button>
+                        <button class="btn btn-secondary btn-margin"  (click)="openRaporModal()">D3A Raporu Görüntüle</button>
+                      </div> -->
+                      </td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
-          </li>
-  
-        </ul>
-      </div>
-  
-    </app-modal>
-    <app-modal #raporModal [modalConfig]="raporModalConfig" aria-modal="true">
-      <div class="row">
-          <label class="col-12 mt-3"><b>Rapor Alınma Tarihi :</b> 22.08.2020</label>
-          <label class="col-12 mt-3"><b>Son Geçerlilk Tarihi :</b> 12.02.2025</label>
-          <button class="btn btn-info col-4 mt-3">Raporu İndir</button>
-      </div>
-    </app-modal>
-    <form [formGroup]="form"  style="width: 100%;">
+          </div>
+        </li>
 
-    <app-modal #meetingModal [modalConfig]="meetingModalConfig" aria-modal="true">
-      <div class="row">
-        <div class="character-count">Kalan Karakter Sayısı: {{ characterCount }} / 300</div>
-        <textarea class="form-control" formControlName="meetingdescription" [ngClass]="form.get('meetingdescription')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Görüşme açıklaması giriniz..." (input)="updateCharacterCount()"></textarea>
-        <button [disabled]="!form.valid" class="btn btn-primary btn-margin col-xs-12" style="width: 100%;margin-top:10px;" (click)="openSuccessModal()" >Gönder</button>
-      </div>
-    </app-modal>
-  </form>
-    <app-modal #success [modalConfig]="successModalConfig" aria-modal="true">
-      <div class="col-xs-12 text-center">
-        <i class="fa-solid fa-check call-tick"></i>
-        <p>Görüşme Talebiniz Gönderildi</p>
-      </div>
-    </app-modal>
+      </ul>
     </div>
+
+  </app-modal>
+  <app-modal #raporModal [modalConfig]="raporModalConfig" aria-modal="true">
+    <div class="row">
+        <label class="col-12 mt-3"><b>Rapor Alınma Tarihi :</b> 22.08.2020</label>
+        <label class="col-12 mt-3"><b>Son Geçerlilk Tarihi :</b> 12.02.2025</label>
+        <button class="btn btn-info col-4 mt-3">Raporu İndir</button>
+    </div>
+  </app-modal>
+  <form [formGroup]="form"  style="width: 100%;">
+
+  <app-modal #meetingModal [modalConfig]="meetingModalConfig" aria-modal="true">
+    <div class="row">
+      <div class="character-count">Kalan Karakter Sayısı: {{ characterCount }} / 300</div>
+      <textarea class="form-control" formControlName="meetingdescription" [ngClass]="form.get('meetingdescription')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Görüşme açıklaması giriniz..." (input)="updateCharacterCount()"></textarea>
+      <button [disabled]="!form.valid" class="btn btn-primary btn-margin col-xs-12" style="width: 100%;margin-top:10px;" (click)="openSuccessModal()" >Gönder</button>
+    </div>
+  </app-modal>
+</form>
+  <app-modal #success [modalConfig]="successModalConfig" aria-modal="true">
+    <div class="col-xs-12 text-center">
+      <i class="fa-solid fa-check call-tick"></i>
+      <p>Görüşme Talebiniz Gönderildi</p>
+    </div>
+  </app-modal>
   </div>
-    
+</div>
+  
