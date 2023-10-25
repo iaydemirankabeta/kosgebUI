@@ -9,13 +9,28 @@
   <!-- end::Menu -->
 
   <!-- end::Header -->
-  <div class="row col-3" *ngIf="tabLabel === 'Şirket Yönetimi'">
-    <input class="form-control mt-3" class="form-control mt-3 ms-3" placeholder="Şirket Ara"
-      (change)="search($event)" />
+  <div class="card mb-5 mb-xl-10" *ngIf="user$ | async as _user">
+
+  <div>
+    <div class="d-flex justify-content-between">
+      <div class="row col-3">
+        <input *ngIf="tabLabel === 'İşletme Yönetimi'" class="form-control mt-3 ms-3" placeholder="İşletme Ara"
+          (change)="search($event)" />
+      </div>
+      <div class="d-flex">
+        <div class="ms-auto">
+          <button class="btn btn-primary" *ngIf="_user.roles === 4 "(click)="openCreateModal()">Ekle</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- <div style="text-align: right;">
+    <button class="btn btn-primary">Ekle</button>
+  </div> -->
   <mat-tab-group fitInkBarToContent (selectedTabChange)="onSearch($event)">
 
-    <mat-tab label="Şirket Yönetimi">
+    <mat-tab label="İşletme Yönetimi">
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -28,7 +43,7 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="CompanyType">
-          <th mat-header-cell *matHeaderCellDef>Şirket Tipi</th>
+          <th mat-header-cell *matHeaderCellDef>İşletme Tipi</th>
           <td mat-cell *matCellDef="let element">{{ element.companyType }}</td>
         </ng-container>
         <ng-container matColumnDef="Personel">
@@ -63,7 +78,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </mat-tab>
-    <mat-tab label="Kayıt Onayı">
+    <mat-tab label="Kayıt Onayı" *ngIf="_user.roles != 4 ">
       <table mat-table [dataSource]="dataSourceRegister" class="mat-elevation-z8">
 
 
@@ -106,6 +121,7 @@
       </table>
     </mat-tab>
   </mat-tab-group>
+  </div>
   <app-modal #addUpdateModal [modalConfig]="modalAddUpdateConfig" aria-modal="true">
     <div *ngIf="selectedCompany !== null" class="container">
       <div>
@@ -172,6 +188,66 @@
           </option>
         </select>
       </div>
+    </div>
+  </app-modal>
+  <app-modal #createModal [modalConfig]="createModalConfig" aria-modal="true">
+    <!-- <button *ngIf="counter.length < 5" class="btn btn-success" (click) = "counterUpdate()">Soru Ekle</button> -->
+    <div class="col-xs-12 text-center">
+      <div *ngFor="let value of counter ; index as i">
+        <div class="row">
+          <div class="row col-12">
+            <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">İşletme Adı</label>
+            <div class="col-lg-12 ">
+              <input type="text" class="form-control" id="question" placeholder="Şirket Adı giriniz">
+            </div>
+
+
+            <label for="sektorSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">İşletme Tipi
+              Seçiniz:</label>
+            <select id="sektorSelect" (change)="changeCompanyType($event)"
+              class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
+              <option value="Büyük İşletme" Selected>Büyük İşletme</option>
+              <option value="Kobi">Kobi</option>
+            </select>
+            <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Ciro</label>
+            <div class="col-lg-12 ">
+              <input type="number" class="form-control" id="question" placeholder="Ciro Giriniz">
+            </div>
+            <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Çalışan Sayısı</label>
+            <div class="col-lg-12 ">
+              <input type="number" class="form-control" id="question" placeholder="Çalışan Sayısı Giriniz">
+            </div>
+            <label for="CitySelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Bölge Seçiniz:</label>
+            <select id="CitySelect" (change)="changeCity($event)" class="text-center mx-2 form-select form-select-solid"
+              style="width: 97% ">
+              <option value="İstanbul">İstanbul</option>
+              <option value="Ankara">Ankara</option>
+              <option value="Trabzon" selected>Trabzon</option>
+              <option value="İzmir">İzmir</option>
+              <option value="Gebze">Gebze</option>
+            </select>
+            <label for="sektorSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Seçiniz:</label>
+            <select id="sektorSelect" (change)="changesektor($event)"
+              class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
+              <option value="Gıda" Selected>Gıda</option>
+              <option value="İnşaat">İnşaat</option>
+              <option value="Tekstil">Tekstil</option>
+              <option value="Kozmetik">Kozmetik</option>
+              <option value="Teknoloji">Teknoloji</option>
+              <option value="Hububat (Tahıl)">Hububat (Tahıl)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-4" (click)="openSuccessModal()">Kaydet</button>
+    </div>
+  </app-modal>
+
+  <app-modal #successModal [modalConfig]="successModalConfig" aria-modal="true">
+    <div class="col-xs-12 text-center">
+      <i class="fa-solid fa-check call-tick"></i>
+      <h3>Tebrikler</h3>
+      <p>İşletme Oluşturuldu.</p>
     </div>
   </app-modal>
 </ng-container>
