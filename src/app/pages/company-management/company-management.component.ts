@@ -9,7 +9,16 @@ export interface CompaniesModel {
   personel:number;
   income:string;
   region:string;
-  sector:string
+  sector:string;
+  
+}
+export interface CompaniesModelRegister {
+  name:string,
+  fullName:string,
+  companyType:string;
+  region:string;
+  sector:string;
+  
 }
 const ELEMENT_DATA: CompaniesModel[] = [
   {name:"BMC",companyType:"Büyük İşletme",personel:300,income:"350M+",region:"İstanbul",sector:"Teknoloji"},
@@ -18,6 +27,15 @@ const ELEMENT_DATA: CompaniesModel[] = [
   {name:"Fark Gıda",companyType:"KOBİ",personel:35,income:"500K+",region:"Ankara",sector:"Gıda"},
   {name:"Pek Holding",companyType:"Büyük İşletme",personel:4520,income:"500M+",region:"İzmir",sector:"Gıda"},
   {name:"Palan Tekstil",companyType:"KOBİ",personel:23,income:"350K+",region:"Gaziantep",sector:"Tekstil"},
+];
+
+const ELEMENT_DATARegister: CompaniesModelRegister[] = [
+  {fullName:"Ender Berk",name:"BMC",companyType:"Büyük İşletme",region:"İstanbul",sector:"Teknoloji"},
+  {fullName:"Emrah Orhan",name:"Ulak A.Ş",companyType:"KOBİ",region:"İstanbul",sector:"Teknoloji"},
+  {fullName:"Mehmet Öz",name:"Tek Holding",companyType:"Büyük İşletme",region:"Ankara",sector:"Tekstil"},
+  {fullName:"Doğukan Şahin",name:"Fark Gıda",companyType:"KOBİ",region:"Ankara",sector:"Gıda"},
+  {fullName:"Gizem Aslan",name:"Pek Holding",companyType:"Büyük İşletme",region:"İzmir",sector:"Gıda"},
+  {fullName:"Tufan Yaz",name:"Palan Tekstil",companyType:"KOBİ",region:"Gaziantep",sector:"Tekstil"},
 ];
 
 @Component({
@@ -38,9 +56,13 @@ export class CompanyManagementComponent {
     "Büyük İşletme","KOBİ"
   ]
   displayedColumns: string[] = ['Name', 'CompanyType', "Income",'Personel',"Region","Sector","Details"];
+  displayedColumnsRegister: string[] = ['Name', 'CompanyType', 'Personel',"Region","Sector","Action"];
+
   dataSource = ELEMENT_DATA;
+  dataSourceRegister=ELEMENT_DATARegister;
   selectedCompany:CompaniesModel|null = null
   isEnabledError : boolean = false
+  tabLabel: string = 'Şirket Yönetimi'; 
   
   constructor() {
 
@@ -80,5 +102,8 @@ export class CompanyManagementComponent {
       this.dataSource = ELEMENT_DATA
     }
   }
-
+  
+  onSearch(event: any) {
+    this.tabLabel = event.tab.textLabel;
+  }
 }
