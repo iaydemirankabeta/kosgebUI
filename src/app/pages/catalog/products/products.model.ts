@@ -7,6 +7,7 @@ export interface Product {
     img:{ url: string };
     sku:number;
     qty:number;
+    offerQty:number;
     rating:number;
     status:boolean;
     priceTRY:number;

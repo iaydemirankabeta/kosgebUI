@@ -9,6 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../../_fake/fake-data';
 import { Product } from './products.model';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
+import { AuthService, UserType } from 'src/app/modules/auth';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-products',
@@ -29,15 +32,19 @@ export class ProductsComponent implements OnInit {
     this.selectedCurrency = currency;
   }
 
+  user$: Observable<UserType>;
 
   constructor(
     private route: ActivatedRoute,
+    private auth: AuthService,
     private dataService: DataService,
   ) {
     this.categoryId = null;
   }
 
   ngOnInit(): void {
+    this.user$ = this.auth.currentUserSubject.asObservable();
+
     this.loadData();
     
   }
@@ -77,16 +84,30 @@ export class ProductsComponent implements OnInit {
       );
     }
   }
-  modalConfig: ModalConfig = {
+  modalcancelConfig: ModalConfig = {
     modalTitle: "Ürün'ü Pasife Alıyorsunuz!",
     dismissButtonLabel: 'Evet',
     closeButtonLabel: 'İptal',
 
   };
+
+  modalReviseConfig: ModalConfig = {
+    modalTitle: "Reddetme Sebebi!",
+    dismissButtonLabel: 'Gönder',
+    closeButtonLabel: 'İptal',
+
+  };
   
-  @ViewChild('modal') private modalComponent: ModalComponent;
+  @ViewChild('modalCancel') private modalCancelComponent: ModalComponent;
+  @ViewChild('ReviseComponent') private ReviseModalComponent: ModalComponent;
+  
   async openModal() {
-    return await this.modalComponent.open();
+    return await this.modalCancelComponent.open();
+  }
+
+  async reviseModal(){
+    return await this.ReviseModalComponent.open();
+
   }
 
   

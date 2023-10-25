@@ -1,6 +1,6 @@
-import { Component, HostBinding, OnDestroy, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem, subMenu } from './sidebar.interface';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { AuthService, UserType } from 'src/app/modules/auth';
 import { CompanyTypes, UserRoles } from 'src/app/modules/auth/models/user-company.model';
@@ -99,6 +99,13 @@ export class SidebarMenuComponent implements OnInit {
       title: 'E-Ticaret Modülü', icon: 'element-12', routerLink: '/', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
       subMenu: [
         { title: 'Ürünler ve Hizmetler', icon: '', routerLink: 'catalog/vitrin' },
+       
+      ],
+    },
+    {
+      title: 'E-Ticaret Modülü', icon: 'element-12', routerLink: '/', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
+      subMenu: [
+        { title: 'Ürünler ve Hizmetler', icon: '', routerLink: 'catalog/urunler' },
        
       ],
     },
