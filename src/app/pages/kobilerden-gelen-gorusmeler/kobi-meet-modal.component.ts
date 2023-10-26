@@ -1,10 +1,10 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { RandevuService } from './randevu.service';
+import { RandevuService } from './kobi-randevu.service';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 
 @Component({
-  selector: 'meet-modal',
+  selector: 'kobi-meet-modal',
   template: `
   <style>
     .call-tick{
@@ -27,17 +27,19 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
     <div class="modal-body">
       <p>Seçilen Tarih: <span *ngFor="let selected of selectedDate">{{selected.toLocaleDateString()}} </span></p>
       <div class="mt-4">
-        <label>Görüşme Şekli</label>
-        <select [(ngModel)]="gorusmeSekli" class="form-control" (change)="onGorusmeSekliChange()">
+      <label>Görüşme Şekli</label>
+      <select [(ngModel)]="gorusmeSekli" class="form-control" (change)="onGorusmeSekliChange()">
         <option value="Online">Online</option>
         <option value="Hibrit">Hibrit</option>
         <option value="yuz-yuze">Yüz yüze</option>
       </select>
-      </div>
-      <div class="mt-4" *ngIf="gorusmeSekli === 'Online'|| gorusmeSekli === 'Hibrit'">
-      <label>Görüşme Linki</label>
-      <input type="text" class="form-control">
+      
     </div>
+    <div class="mt-4" *ngIf="gorusmeSekli === 'Online'|| gorusmeSekli === 'Hibrit'">
+        <label>Görüşme Linki</label>
+        <input type="text" class="form-control">
+      </div>
+      
       <div class="mt-4">
         <label>Temsilciler</label>
         <div class="mt-4">
@@ -160,5 +162,6 @@ export class AppModalComponent {
   }
   gorusmeSekli: string = 'Online';
   onGorusmeSekliChange() {
+    // Görüşme Şekli seçimi değiştikçe bu fonksiyon çalışır
   }
 }

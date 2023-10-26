@@ -1,11 +1,12 @@
 <ng-container *ngIf="user$ | async as _user">
   <mat-tab-group fitInkBarToContent>
     <mat-tab  label="Gelen Başvurular">
-      <div>
+      <!-- TODO -->
+      <!-- <div>
 
         <button *ngIf="_user.roles === 1" type="button"  (click)="acRandevuModal()" class="btn btn-success btn-margin">KOSGEB'ten Görüşme Talep Et</button>
         <button *ngIf="_user.roles === 1" type="button" class="btn btn-danger btn-margin">Reddet</button>
-      </div>
+      </div> -->
       <table mat-table [dataSource]="trigClick" class="mat-elevation-z8" *ngIf="(_user.roles !== 3 && _user.roles !== 6)">
 
         <!--- Note that these columns can be defined in any order.
