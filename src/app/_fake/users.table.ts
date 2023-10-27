@@ -72,9 +72,9 @@ export class UsersTable {
       refreshToken: 'auth-token-f8e4c61a318e4d618b6c199ef96b9e55',
       roles: CompanyTypes.KOSGEB, // Manager
       pic: './assets/media/logos/kosgeb.png',
-      fullname: 'Anka Beta',
-      firstname: 'Anka',
-      lastname: 'Beya',
+      fullname: 'Küçük ve Orta Ölçekli İşletmeleri Geliştirme ve Destekleme İdaresi Başkanlığı',
+      firstname: 'KOSGEB',
+      lastname: '',
       occupation: 'KOSGEB Müdürü',
       companyName: 'KOSGEB',
       country:'Türkiye',
