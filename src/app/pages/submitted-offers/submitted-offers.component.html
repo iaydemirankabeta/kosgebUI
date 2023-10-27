@@ -1,6 +1,6 @@
 <ng-container *ngIf="user$ | async as _user">
   <mat-tab-group fitInkBarToContent>
-    <mat-tab  label="Gelen Başvurular">
+    <mat-tab  label="Gelen Başvurular" >
       <!-- TODO -->
       <!-- <div>
 
@@ -53,7 +53,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       </mat-tab>
-      <mat-tab label="Çağrıyı Görüntüleyenler">
+      <mat-tab label="Çağrıyı Görüntüleyenler" *ngIf="(_user.roles !== 3 && _user.roles !== 6)">
         <mat-table [dataSource]="dataViews" class="mat-elevation-z8">
           <!-- İşletme Adı Sütunu -->
           <ng-container matColumnDef="companyName">

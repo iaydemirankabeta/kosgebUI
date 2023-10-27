@@ -20,14 +20,13 @@
               <div
                 class="image-input image-input-outline"
                 data-kt-image-input="true"
-                [style.background-image]="'url(./assets/media/avatars/blank.png'"
+                [style.background-image]="_user.pic"
               >
                 <div
                   class="image-input-wrapper w-125px h-125px"
                   style="background-size: contain; background-position: center;"
                   
-                  [style.background-image]="
-                    'url(./assets/media/logos/isuzu.png)'
+                  [style.background-image]="'url('+_user.pic+')'
                   "
                 ></div>
               </div>
@@ -47,7 +46,7 @@
                     "
                     placeholder="web adresi"
                     name="fName"
-                    value="ISUZU"
+                    [value]="_user.fullname"
                   />
                 </div>
               </div>
@@ -62,7 +61,7 @@
                     class="form-control form-control-lg form-control-solid"
                     placeholder="Şirket Adı"
                     name="company"
-                    value="xxx.xxx.com"
+                    [value]="_user.website"
                 />
                 </div>
             </div>
@@ -74,7 +73,7 @@
                     class="form-control form-control-lg form-control-solid"
                     placeholder="Şirket Adı"
                     name="company"
-                    value="+90 (111) 111 1111"
+                    [value]="_user.phone"
                 />
                 </div>
             </div>

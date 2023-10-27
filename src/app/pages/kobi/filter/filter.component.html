@@ -26,7 +26,16 @@
       </div>
     </div>
     <!--end::Header-->
-
+    <app-modal #filterModal [modalConfig]="modalFilterConfig" aria-modal="true" >
+      <div class="col-xs-12 text-center">
+        <div class="col-xs-12 filter-group">
+          <label for="" style="width: 100%;display: inline-block ;">Favori Filtreleme Adı</label>
+          <input type="text" class="form-control col-xs-12" placeholder="">
+          <button type="submit" class="btn btn-primary">Kaydet</button>
+          </div>
+        
+      </div>
+    </app-modal>
     <!--begin::Body-->
     <div class="card-body" id="kt_help_body">
       <!--begin::Content-->
@@ -45,6 +54,7 @@
           <form action="" class="form" style="width: 100%;" [formGroup]="form" >
 
             <div class="filter-container">
+
               <div *ngFor="let filterGroup of kobiFilter" class="filter-group">
                 <label>{{ filterGroup.label }}</label>
                   <select  class="form-select  mb-5 " formControlName="selectedValue"  (change)="onFilterChange(filterGroup.name,$event)"  [(ngModel)]="selectedFilters[filterGroup.name]"  >
@@ -64,11 +74,12 @@
             
             
            <!-- <input type="submit" class="btn btn-primary" placeholder="filtrele" (click)="closeModal()" value="Filtrele">-->
-           <div class="col-md-12 ">
-            <a  class="btn btn-secondary btn-sm" id="kt_help_close">
+           <div class="col-lg-12 ">
+            <a  class="btn btn-outline-secondary btn-sm" id="kt_help_close">
               Kapat
             </a>
             <a class="btn btn-primary btn-sm" (click)="onReset()">Temizle</a>
+            <a class="btn btn-secondary" (click)="onFilterModal()">Filtreyi Kaydet</a>
            </div>
           </form>
         </div>
