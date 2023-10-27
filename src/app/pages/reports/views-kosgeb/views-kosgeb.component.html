@@ -1,0 +1,81 @@
+<div class="container">
+    <h2>KOSGEB Raporlama Modülü</h2>
+  
+    <form>
+      <div class="form-group">
+        <label for="selectType">KOBİ veya Bİ Seçin</label>
+        <select class="form-select" id="selectType" name="selectedType" [(ngModel)]="selectedType">
+          <option value="kobi">KOBİ</option>
+          <option value="bi">Bİ</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="selectedName">KOBİ/Bİ Seçin</label>
+        <select class="form-select" id="selectedName" name="selectedName" [(ngModel)]="selectedName">
+          <option [value]="'default'" disabled selected>Seçiniz</option>
+          <option *ngFor="let option of (selectedType === 'kobi' ? kobiOptions : biOptions)" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="selectedDateRange">Tarih Aralığı Seçin</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="bi bi-calendar"></i>
+            </span>
+          </div>
+          <input type="date" class="form-control" id="startDate" name="startDate" placeholder="Başlangıç Tarihi" [(ngModel)]="startDate">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="bi bi-arrow-right"></i> <!-- İsterseniz başka bir ok simgesi de kullanabilirsiniz -->
+            </span>
+          </div>
+          <input type="date" class="form-control" id="endDate" name="endDate" placeholder="Bitiş Tarihi" [(ngModel)]="endDate">
+        </div>
+      </div>
+      
+      
+  
+      <div class="form-group">
+        <label for="selectedSector">Sektör Seçin</label>
+        <select class="form-select" id="selectedSector" name="selectedSector" [(ngModel)]="selectedSector">
+          <option [value]="'default'" disabled selected>Seçiniz</option>
+          <option value="sektor1">Sektor 1</option>
+          <option value="sektor2">Sektor 2</option>
+          <option value="sektor3">Sektor 3</option>
+        </select>
+      </div>
+  
+      <button class="btn btn-primary" (click)="generateReport()">Raporu Oluştur</button>
+    </form>
+  
+    <div class="card mt-4" *ngIf="reportData.length > 0">
+        <div class="card-header">Rapor</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sıra</th>
+                <th scope="col">İşlem Türü</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Detay</th>
+                <!-- Daha fazla sütun başlığı ekleyebilirsiniz -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reportData; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ item.operationType }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.details }}</td>
+                <!-- Daha fazla sütun ekleyebilirsiniz -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+  </div>
+  
