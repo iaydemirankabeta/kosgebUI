@@ -18,7 +18,6 @@ import { NotificationComponent } from './notification/notification.component';
           path: 'bildirimler',
           component: NotificationComponent,
       },
-     
   ]),
   ]
 })

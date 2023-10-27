@@ -27,6 +27,17 @@
     </div>
     <!--end::Header-->
 
+    <app-modal #filterModal [modalConfig]="modalFilterConfig" aria-modal="true" >
+      <div class="col-xs-12 text-center">
+        <div class="col-xs-12 filter-group">
+          <label for="" style="width: 100%;display: inline-block ;">Favori Filtreleme Adı</label>
+          <input type="text" class="form-control col-xs-12" placeholder="">
+          <button type="submit" class="btn btn-primary">Kaydet</button>
+          </div>
+        
+      </div>
+    </app-modal>
+
     <!--begin::Body-->
     <div class="card-body" id="kt_help_body">
       <!--begin::Content-->
@@ -60,6 +71,8 @@
               Kapat
             </button>
             <a class="btn btn-primary btn-sm m-5" (click)="onReset()">Temizle</a>
+            <a class="btn btn-secondary" (click)="onFilterModal()">Filtreyi Kaydet</a>
+
           </form>
         </div>
         <!--end::Link-->

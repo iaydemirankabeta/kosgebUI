@@ -32,6 +32,12 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' }
   },
   {
+    path: 'raporlar',
+    loadChildren: () =>
+      import('./reports/reports.module').then((m) => m.ReportsModule),
+    data: { layout: 'dark-sidebar' }
+  },
+  {
     path: 'kobi',
     loadChildren: () =>
       import('./kobi/kobi.module').then((m) => m.kobiModule),
@@ -223,7 +229,7 @@ const Routing: Routes = [
     data: { layout: 'empty' }
   },
   {
-    path: 'raporlar',
+    path: 'rapor',
     component: ReportsComponent,
     data: { layout: 'dark-sidebar' }
   },

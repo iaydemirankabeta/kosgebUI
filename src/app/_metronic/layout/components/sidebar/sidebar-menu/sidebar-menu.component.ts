@@ -97,7 +97,16 @@ export class SidebarMenuComponent implements OnInit {
     {
       title: 'Raporlama Modülü', icon: 'tablet-book', routerLink: '/raporlar', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
       subMenu: [
-        { title: 'Raporlar', icon: '', routerLink: '/raporlar' },
+        { title: 'Raporlar', icon: '', routerLink: '/rapor' },
+        { title: 'Profil Görüntülemeleri', icon: '', routerLink: '/raporlar/kosgeb-goruntuleme' },
+       
+      ],
+    },  
+
+    {
+      title: 'Raporlama Modülü', icon: 'tablet-book', routerLink: '/raporlar', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI,CompanyTypes.KOBI], shown: false,
+      subMenu: [
+        { title: 'Profili Görüntüleyenler', icon: '', routerLink: '/raporlar/profil-goruntuleme' },
        
       ],
     },

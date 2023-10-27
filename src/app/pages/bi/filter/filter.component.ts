@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {environment} from 'src/environments/environment';
 import { FilterService } from './kobiFilter.service';
-import { ModalComponent } from 'src/app/_metronic/partials';
+import { ModalComponent,ModalConfig } from 'src/app/_metronic/partials';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 
@@ -63,9 +63,16 @@ form: FormGroup<any>;
     return this.ngOnInit();
   }
 
-  
-  
+  @ViewChild('filterModal') private modalFilterComponent: ModalComponent;
 
-  
+  modalFilterConfig: ModalConfig = {
+    modalTitle: "Favori Filtrelerim",
+    closeButtonLabel:'Kapat'
+  };
 
+  onFilterModal(){
+    return this.modalFilterComponent.open();
+
+  }
+  
 }
