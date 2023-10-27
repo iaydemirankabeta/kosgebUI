@@ -30,7 +30,6 @@ export class GorusmeTalepleriComponent {
     { id: 3, RequestMeetiingBI: "BI-3", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
     { id: 4, RequestMeetiingBI: "BI-4", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
  ];
-  IsClose = false;
   startHour: string = "";
   endHour: string = "";
   request: request | null = null;
@@ -50,9 +49,16 @@ export class GorusmeTalepleriComponent {
     closeButtonLabel: 'Kapat',
     hideCloseButton: () => true
   };
+  modalConfigKobi: ModalConfig = {
+    modalTitle: "",
+    closeButtonLabel: 'Kapat'
+    // hideCloseButton: () => true
+  };
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('kobimodal') private kobiModalComponent: ModalComponent;
   @ViewChild('success') private modalSuccessComponent: ModalComponent;
+  @ViewChild('kobi') private modalKobiComponent: ModalComponent;
+
 
   availableDays: any[] = [
     "30/09/2023", "01/10/2023", "02/10/2023"]
@@ -71,6 +77,7 @@ export class GorusmeTalepleriComponent {
     this.modalComponent.close()
     this.kobiModalComponent.open();
   }
+  
   kapatKobiModal() {
     this.kobiModalComponent.close();
   }
@@ -80,9 +87,13 @@ export class GorusmeTalepleriComponent {
   }
   getKobies(item: any) {
     this.request = item;
-    this.IsClose=false;
+
+    this.modalComponent.close()
+    this.modalKobiComponent.open();
   }
-  isClose() {
-    this.IsClose = true;
+  agetKobies(item: any) {
+    this.request = item;
+    this.modalComponent.open();
   }
+  
 }

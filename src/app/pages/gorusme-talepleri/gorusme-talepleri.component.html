@@ -71,7 +71,7 @@
       </table>
       <ng-container >
        
-        <div *ngIf="request !== null&&!IsClose" >
+        <!-- <div *ngIf="request !== null&&!IsClose" >
           <div class="row">
             <div class="col-md-12 text-center">
           <h3 class="mt-4">{{request.RequestMeetiingBI}} İşletmesiyle Görüşecek  Kobiler</h3>
@@ -81,17 +81,24 @@
           <button class="btn btn-danger btn-margin"(click) = "isClose()" >Kapat</button>
       </div>
     </div>
-
-  </div>
+  </div> -->
 
     
         </ng-container>
       <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
         <div *ngIf="request !== null">
-            <!-- <h3>{{request.callName}}</h3> -->
-            <div *ngFor="let application of request?.applications" class="mt-4">
+           <div *ngFor="let application of request?.applications" class="mt-4">
                 <label>{{request?.RequestMeetiingBI !== null ? request.RequestMeetiingBI : ''}} && {{application.KOBI}}</label>
                 <button class="btn btn-primary btn-margin" (click) = "acKobiModal(application)">Seç</button>
+            </div>
+        </div>
+        
+      </app-modal>
+      <app-modal #kobi [modalConfig]="modalConfigKobi" aria-modal="true">
+        <div *ngIf="request !== null">
+          <h3 >{{request.RequestMeetiingBI}} İşletmesiyle Görüşecek  Kobiler</h3>
+            <div *ngFor="let application of request?.applications" class="mt-4">
+                <label> {{application.KOBI}}</label>
             </div>
         </div>
         
