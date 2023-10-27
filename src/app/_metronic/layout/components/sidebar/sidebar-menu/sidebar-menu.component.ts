@@ -45,9 +45,17 @@ export class SidebarMenuComponent implements OnInit {
     {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/kosgeb-destek', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB,CompanyTypes.KOSGEBUSER], shown: false,
       subMenu: [
-        { title: 'KOSGEB Destek Çağrıları', icon: '', routerLink: '/kosgeb-destek' },
+        // { title: 'KOSGEB Destek Çağrıları', icon: '', routerLink: '/kosgeb-destek' },
         { title: 'Talep Toplama', icon: '', routerLink: '/request-collection' },
         { title: 'Tüm Çağrılar', icon: '', routerLink: '/calls' },
+
+      ],
+    },
+    {
+      title: 'Çağrı Zekası', icon: 'element-5', routerLink: '/kosgeb-destek', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB,CompanyTypes.KOSGEBUSER], shown: false,
+      subMenu: [
+        { title: 'KOSGEB Destek Çağrıları', icon: '', routerLink: '/kosgeb-destek' },
+       
 
       ],
     },
@@ -68,10 +76,17 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
-      title: 'B2B Görüşmeler', icon: 'element-5', routerLink: '/b2b', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
+      title: 'B2B', icon: 'element-5', routerLink: '/b2b', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
       subMenu: [
         { title: 'Büyük İşletmeler', icon: '', routerLink: '/buyuk-isletmeler' },
         { title: 'Büyük İşletmeye Gönderilen Görüşme Talepleri', icon: '', routerLink: '/bi-gonderilen-gorusmeler' },
+      ],
+    },
+    {
+      title: 'B2B', icon: 'element-5', routerLink: '/b2b', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
+      subMenu: [
+        { title: 'Kobiler', icon: '', routerLink: '/kobi' },
+        { title: 'Kobilerden Gelen Görüşme Talepleri', icon: '', routerLink: '/kobilerden-gelen-gorusmeler' },
       ],
     },
     {
@@ -79,6 +94,15 @@ export class SidebarMenuComponent implements OnInit {
       subMenu: [
         { title: 'Toplantılarım', icon: '', routerLink: '/toplanti/toplantilarim' },
         { title: 'Takvimim', icon: 'calendar-add', routerLink: '/conversations' },
+      ],
+    },
+    {
+      title: 'Kobi Penceresi', icon: 'element-5', routerLink: '/b2b', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
+      subMenu: [
+        { title: 'Kobiler', icon: '', routerLink: '/kobi' },
+        { title: 'Proje Ortaklığı Talep Ettiğim Kobiler', icon: '', routerLink: '/dashboard' },
+        { title: 'Proje Ortaklığı Teklif Eden  Kobiler', icon: '', routerLink: '/dashboard' },
+
       ],
     },
     {
