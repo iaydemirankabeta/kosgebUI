@@ -104,8 +104,25 @@
               selectedSirket }}
               şirketi için düzenlenen {{ selectedOran }} KOSGEB destekli iş gezisine katılım sağlamak ister
               misiniz?</label>
-              </div>
-          </div>
+            </div>
+            <!-- <div class="mt-4 row col-6  justify-content-center align-items-center">
+              <input class="form-check-input" type="checkbox" value=""  /> Yeni soru metni ekle
+            </div>
+             <label>Açıklama</label>
+             <textarea class="form-control" formControlName="meetingdescription"  maxlength="300" placeholder="Yeni soru metni..." ></textarea> -->
+            
+             <div class="mt-4 row col-5 justify-content-center align-items-center">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="isCheckboxChecked" id="showAdditionalContent" />
+              Yeni soru metni ekle
+            </div>
+            
+            <div *ngIf="isCheckboxChecked">
+              <!-- Ek içerik burada -->
+              <br>
+              <textarea class="form-control" formControlName="meetingdescription" maxlength="300" placeholder="Yeni soru metni giriniz..."></textarea>
+            </div>
+            
+            </div>
         </div>
       </div>
       <button class="btn btn-primary mt-4" (click)="openSuccessModal()">Gönder</button>
