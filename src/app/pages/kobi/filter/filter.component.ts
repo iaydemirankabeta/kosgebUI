@@ -22,14 +22,24 @@ export class FilterComponent {
 
   @Output() filterChanged = new EventEmitter<any>();
 form: FormGroup<any>;
-
+selectedSektor="Gıda";
+selectedYear="2023";
+Adet="";
   constructor(private filterService: FilterService,private fb: FormBuilder) {
     this.form = this.fb.group({
       selectedValue: ['option1'] 
     });
   
   }
-
+  changesektor(event: any) {
+    this.selectedSektor = event.target.value; // Seçilen değeri değişkene ata
+  }
+  changeYear(event: any) {
+    this.selectedYear = event.target.value; // Seçilen değeri değişkene ata
+  }
+  changeAdet(event: any) {
+    this.Adet = event.target.value; 
+  }
   ngOnInit() {
     this.kobiFilter = this.filterService.getKobiFilter();
     this.initializeSelectedFilters();
