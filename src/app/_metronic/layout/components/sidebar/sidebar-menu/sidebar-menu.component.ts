@@ -22,10 +22,10 @@ export class SidebarMenuComponent implements OnInit {
     {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/calls', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
       subMenu: [
-        { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/create-call' },
-        { title: 'Çağrılarım', icon: 'call', routerLink: '/calls' },
-        { title: 'Çağrılarıma Gelen Başvurular', icon: 'paper-clip', routerLink: '/offers' },
-        { title: 'KOSGEB Talep Toplama', icon: '', routerLink: '/apply-request' },
+        { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/yerellestirme//cagri-olustur' },
+        { title: 'Çağrılarım', icon: 'call', routerLink: '/yerellestirme//cagrilar' },
+        { title: 'Çağrılarıma Gelen Başvurular', icon: 'paper-clip', routerLink: '/yerellestirme/cagrima-gelen-basvurular' },
+        { title: 'KOSGEB Talep Toplama', icon: '', routerLink: '/yerellestirme/kosgeb-talep-toplama' },
       ],
     },
     // {
@@ -38,16 +38,16 @@ export class SidebarMenuComponent implements OnInit {
     {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/offers', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
       subMenu: [
-        { title: 'Başvurduğum Çağrılar', icon: '', routerLink: '/offers' },
-        { title: 'Başvuruya Açık Çağrılar', icon: '', routerLink: '/apply-calls' },
+        { title: 'Başvurduğum Çağrılar', icon: '', routerLink: 'yerellestirme/cagrima-gelen-basvurular' },
+        { title: 'Başvuruya Açık Çağrılar', icon: '', routerLink: '/yerellestirme/basvuruya-acik-cagrilar' },
       ],
     },
     {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/kosgeb-destek', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB,CompanyTypes.KOSGEBUSER], shown: false,
       subMenu: [
         // { title: 'KOSGEB Destek Çağrıları', icon: '', routerLink: '/kosgeb-destek' },
-        { title: 'Talep Toplama', icon: '', routerLink: '/request-collection' },
-        { title: 'Tüm Çağrılar', icon: '', routerLink: '/calls' },
+        { title: 'Talep Toplama', icon: '', routerLink: '/yerellestirme/talep-olustur' },
+        { title: 'Tüm Çağrılar', icon: '', routerLink: '/yerellestirme/cagrilar' },
 
       ],
     },

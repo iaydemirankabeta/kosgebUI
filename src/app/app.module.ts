@@ -27,6 +27,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FinansComponent } from './pages/finans/finans.component';
 import { ProjectComponent } from './pages/project/project.component';
+import { LocalizationComponent } from './pages/localization/localization.component';
 
 
 
@@ -40,7 +41,7 @@ function appInitializer(authService: AuthService) {
 }
 
 @NgModule({
-  declarations: [AppComponent,   ReportsComponent,CompanyChoiceComponent, FinansComponent, ProjectComponent],
+  declarations: [AppComponent,   ReportsComponent,CompanyChoiceComponent, FinansComponent, ProjectComponent, LocalizationComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

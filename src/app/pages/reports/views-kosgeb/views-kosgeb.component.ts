@@ -4,7 +4,7 @@ import { delay, of } from 'rxjs';
 
 // Simüle edilmiş servis
 class FakeViewsService {
-  getKobiRapor(selectedName: string, selectedDateRange: string, selectedSector: string) {
+  getKobiRapor(selectedName: string,startDate:string, endDate: string, selectedSector: string) {
     // KOBİ raporunu simüle etmek için örnek veriler
     return of([
       {
@@ -36,7 +36,7 @@ class FakeViewsService {
     ]).pipe(delay(1000)); // Gerçek servis gibi bir gecikme ekleyebilirsiniz
   }
 
-  getBiRapor(selectedName: string, selectedDateRange: string, selectedSector: string) {
+  getBiRapor(selectedName: string,startDate:string, endDate: string, selectedSector: string) {
     // Bİ raporunu simüle etmek için örnek veriler
     return of([
       {
@@ -89,7 +89,7 @@ class FakeViewsService {
   ]
 })
 export class ViewsKOSGEBComponent {
-  selectedType: string = '';
+  selectedType: string = 'kobi';
   selectedName: string = '';
   startDate: string = ''; // Başlangıç tarihi için alan
   endDate: string = '';   // Bitiş tarihi için alan
