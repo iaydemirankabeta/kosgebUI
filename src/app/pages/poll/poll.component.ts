@@ -22,6 +22,8 @@ interface Question {
 })
 export class PollComponent {
   startDate: Date = new Date(1991, 1);
+  isNewQuest = false;
+  isCheckboxChecked: boolean = false;
 
   sektorler = new MatTableDataSource([
     { id: 1, tip: "Gıda" },

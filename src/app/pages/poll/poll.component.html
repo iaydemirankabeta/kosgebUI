@@ -63,6 +63,7 @@
             <!-- <div class="row col-12 "> -->
             <label for="sektorSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Seçiniz:</label>
             <select id="sektorSelect" (change)="changesektor($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
+              <option *ngIf="isCheckboxChecked" value="" selected></option>
               <option value="Gıda" Selected>Gıda</option>
               <option value="İnşaat">İnşaat</option>
               <option value="Tekstil">Tekstil</option>
@@ -73,6 +74,7 @@
 
             <label for="ulkeSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Ülke Seçiniz:</label>
             <select id="ulkeSelect" (change)="changeulke($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
+              <option *ngIf="isCheckboxChecked" value="" selected></option>
               <option value="Almanya" selected>Almanya</option>
               <option value="Türkiye" >Türkiye</option>
               <option value="Amerika">Amerika</option>
@@ -82,6 +84,7 @@
             </select>
             <label for="sirketSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Şirket Seçiniz:</label>
             <select id="sirketSelect" (change)="changesirket($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
+              <option *ngIf="isCheckboxChecked" value="" selected></option>
               <option value="X" selected>X</option>
               <option value="Y">Y</option>
               <option value="Z">Z</option>
@@ -89,6 +92,7 @@
             <label for="oranSelect" class="col-lg-6 col-form-label fw-bold fs-6 text-start">Destek Oranı
               Seçiniz:</label>
             <select id="oranSelect" (change)="changeoran($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
+              <option *ngIf="isCheckboxChecked" value="" selected></option>
               <option value="%30" selected>%30</option>
               <option value="%40">%40</option>
               <option value="%50">%50</option>
@@ -100,12 +104,29 @@
             </select>
             <div>
               <br>
-            <label class="fw-bold">{{ selectedUlke }}' da {{ selectedSektor }} sektöründe faliyet gösteren {{
+            <label *ngIf="!isCheckboxChecked" class="fw-bold">{{ selectedUlke }}' da {{ selectedSektor }} sektöründe faliyet gösteren {{
               selectedSirket }}
               şirketi için düzenlenen {{ selectedOran }} KOSGEB destekli iş gezisine katılım sağlamak ister
               misiniz?</label>
-              </div>
-          </div>
+            </div>
+            <!-- <div class="mt-4 row col-6  justify-content-center align-items-center">
+              <input class="form-check-input" type="checkbox" value=""  /> Yeni soru metni ekle
+            </div>
+             <label>Açıklama</label>
+             <textarea class="form-control" formControlName="meetingdescription"  maxlength="300" placeholder="Yeni soru metni..." ></textarea> -->
+            
+             <div class="mt-4 row col-5 justify-content-center align-items-center">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="isCheckboxChecked" id="showAdditionalContent" />
+              Yeni soru metni ekle
+            </div>
+            
+            <div *ngIf="isCheckboxChecked">
+              <!-- Ek içerik burada -->
+              <br>
+              <textarea class="form-control" formControlName="meetingdescription" maxlength="300" placeholder="Yeni soru metni giriniz..."></textarea>
+            </div>
+            
+            </div>
         </div>
       </div>
       <button class="btn btn-primary mt-4" (click)="openSuccessModal()">Gönder</button>

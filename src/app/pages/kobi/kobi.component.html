@@ -36,6 +36,8 @@
     <option value="recommended" >Sırala </option>
     <option value="az">A-Z Sırala</option>
     <option value="za">Z-A Sırala</option>
+    <option value="za">Puana Göre Sırala</option>
+
   </select>
 </div>
 
@@ -60,6 +62,7 @@
         <a href="javascript:;" *ngIf="business.chart">
           <i class="fa fa-map-pin"></i>
         </a>
+     
         <a href="javascript:;" class="compare" (click)="toggleSelected(i)" [ngClass]="{'active': isSelected(i)}">
           
           <i class="ki-duotone ki-copy fs-3 ms-4 color-black" style="margin-right: 5px;margin-left: 0 !important;"></i>
@@ -68,8 +71,15 @@
 
         </a>
       </div>
-    
-    
+    <div  class="col-xs-12 text-end" *ngIf="business.advice">
+      <a >
+          
+        <i class="bi bi-check-circle fs-3 ms-4 color-success" style="margin-right: 5px;margin-left: 0 ;color: rgb(0, 128, 55);"></i>
+
+        <span style="position: relative;top:-3px;font-weight: bold;">KOSGEB Önerisi</span>
+
+      </a>
+    </div>
     <div class="business-name">{{ business.name }}</div>
     <div class="business-company" >{{ business.location }}</div>
     
