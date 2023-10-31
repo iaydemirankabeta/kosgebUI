@@ -4,8 +4,8 @@ import { DataService } from 'src/app/_fake/fake-data';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { Company } from 'src/app/models/Company.model';
 import { AuthService, UserModel, UserType } from 'src/app/modules/auth';
-import { KobiService } from '../kobi/kobi.service';
-import { Business } from '../kobi/business.model';
+import { KobiService } from '../../kobi/kobi.service';
+import { Business } from '../../kobi/business.model';
 import { FilterService } from './filter/kobiFilter.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 

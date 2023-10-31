@@ -14,7 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { MatTabsModule } from '@angular/material/tabs';
-import { CallsComponent } from '../calls/calls.component';
+import { CallsComponent } from '../localization/calls/calls.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
 registerLocaleData(localeTr);
 

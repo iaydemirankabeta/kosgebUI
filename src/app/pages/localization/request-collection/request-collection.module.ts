@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    RequestCollectionComponent
   ],
   imports: [
     CommonModule,
