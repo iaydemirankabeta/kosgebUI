@@ -4,14 +4,14 @@ import { CreateCallComponent } from './create-call.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { RouterModule } from '@angular/router';
-import { ModalsModule, WidgetsModule } from '../../_metronic/partials';
-import { SharedModule } from "../../_metronic/shared/shared.module";
+import { ModalsModule, WidgetsModule } from '../../../_metronic/partials';
+import { SharedModule } from "../../../_metronic/shared/shared.module";
 import { CallsComponent } from '../calls/calls.component';
 import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-    declarations: [CreateCallComponent ],
+    declarations: [ ],
     imports: [
         ReactiveFormsModule,
         FormsModule,

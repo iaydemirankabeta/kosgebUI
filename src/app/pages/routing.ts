@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { ListsComponent } from '../modules/widgets-examples/lists/lists.component';
 import { CompanyChoiceComponent } from './company-choice/company-choice.component';
-import { KeeniconComponent } from '../_metronic/shared/keenicon/keenicon.component';
 import { ReportsComponent } from '../_metronic/layout/components/toolbar/reports/reports.component';
 import { FinansComponent } from './finans/finans.component';
 
@@ -32,6 +31,12 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' }
   },
   {
+    path: 'yerellestirme',
+    loadChildren: () =>
+      import('./localization/localization.module').then((m) => m.LocalizationModule),
+    data: { layout: 'dark-sidebar' }
+  },
+  {
     path: 'raporlar',
     loadChildren: () =>
       import('./reports/reports.module').then((m) => m.ReportsModule),
@@ -47,12 +52,6 @@ const Routing: Routes = [
     path: 'buyuk-isletmeler',
     loadChildren: () =>
       import('./bi/bi.module').then((m) => m.biModule),
-    data: { layout: 'dark-sidebar' }
-  },
-  {
-    path: 'calls',
-    loadChildren: () =>
-      import('./calls/calls.module').then((m) => m.callsModule),
     data: { layout: 'dark-sidebar' }
   },
   {
@@ -104,41 +103,12 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'offers',
-    loadChildren: () =>
-      import('./submitted-offers/submitted-offers.module').then((m) => m.SubmittedOffersModule),
-    data: { layout: 'dark-sidebar' }
-  },
-  {
-    path: 'apply-request',
-    loadChildren: () =>
-      import('./apply-request/apply-request.module').then((m) => m.ApplyRequestModule),
-    data: { layout: 'dark-sidebar' }
-  },
-  {
-    path: 'apply-calls',
-    loadChildren: () =>
-      import('./apply-calls/apply-calls.module').then((m) => m.ApplyCallsModule),
-    data: { layout: 'dark-sidebar' }
-  },
-  {
-    path: 'create-call',
-    loadChildren: () =>
-      import('./create-call/create-call.module').then((m) => m.createcallmodule),
-    data: { layout: 'dark-sidebar' }
-  },
-  {
     path: 'pending-calls',
     loadChildren: () =>
       import('./pending-calls/pending-calls.module').then((m) => m.PendingCallsModule),
     data: { layout: 'dark-sidebar' }
   },
-  {
-    path: 'request-collection',
-    loadChildren: () =>
-      import('./request-collection/request-collection.module').then((m) => m.RequestCollectionModule),
-    data: { layout: 'dark-sidebar' }
-  },
+
   {
     path: 'create-solution',
     loadChildren: () =>
