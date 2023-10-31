@@ -21,6 +21,7 @@ fakeBusinesses: any = [
       group: true,
       users: false,
       pin: true,
+      advice:true,
       call: {id:1, title:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
       badget:'Enerji ',badgetColor:'#27ae60',tags:'#ActiveNoiceCanelling #ANC #GürültüEngelleme #GürültüKontrolü',
       url:[
@@ -59,6 +60,7 @@ fakeBusinesses: any = [
       group: false,
       users: true,
       pin: true,
+      advice:false,
       cagri:{id:2, title:'Kozmetik Teknoloji Çözümler',badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
       url:[
         {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
@@ -96,6 +98,7 @@ fakeBusinesses: any = [
       group: false,
       users: false,
       pin: true,
+      advice:true,
       call:{id:3, title:'Tekstil Ürün İthalatı',badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
       url:[
         {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
@@ -170,6 +173,7 @@ fakeBusinesses: any = [
       group: false,
       users: false,
       pin: true,
+      advice:true,
       call:{id:5, title:'Kozmetik Ürünleri Saklama Sistemi',badget:'Tekstil',badgetColor:'#c0392b',tags:'#kozmetik,#product,#ithalat,#ÜrünSaklama #Soğutma',
 url:[
   {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},

@@ -12,6 +12,7 @@ export interface Business {
     pin: boolean;
     companyInfo: CompanyInfo[];
     call?:Call
+    advice:boolean;
   }
   
   export interface CompanyInfo {
