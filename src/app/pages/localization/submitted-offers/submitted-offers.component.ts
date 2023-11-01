@@ -31,14 +31,14 @@ import { MonthViewDay } from 'calendar-utils'; // İmport MonthViewDay sınıfı
 
 
 export interface ConversationElement {
-  id:string,
+  id: string,
   firm: string;
   firmAuthority: string;
-  solutionName:string;
+  solutionName: string;
 }
 const ELEMENT_DATA: ConversationElement[] = [
-  {id:"X Çağrısı",firm:"X şirketi", firmAuthority:"Tufan Yazıcı",solutionName:"Gürültü Engelleyici Malzeme Tedariği"},
-  {id:"Y Çağrısı",firm:"Y şirketi", firmAuthority:"Gizem Turanlı",solutionName:"Kozmetik Ürünlerin Tedariği"},
+  { id: "X Çağrısı", firm: "X şirketi", firmAuthority: "Tufan Yazıcı", solutionName: "Gürültü Engelleyici Malzeme Tedariği" },
+  { id: "Y Çağrısı", firm: "Y şirketi", firmAuthority: "Gizem Turanlı", solutionName: "Kozmetik Ürünlerin Tedariği" },
 ];
 
 
@@ -48,35 +48,74 @@ const ELEMENT_DATA: ConversationElement[] = [
   styleUrls: ['./submitted-offers.component.scss']
 })
 export class SubmittedOffersComponent {
-  displayedColumns: string[] = ['TeklifId', 'CagrıAdi', 'FirmaAdi',"TeklifTarihi","TeklifStatusu"];
-  displayedColumns2: string[] = ['CozumId', 'CozumAdi', 'FirmaAdi',"FirmaYetkilisi","YetkiliAjandasi"];
+  displayedColumns: string[] = ['TeklifId', 'CagrıAdi', 'FirmaAdi', "TeklifTarihi", "TeklifStatusu"];
+  displayedColumns2: string[] = ['CozumId', 'CozumAdi', 'FirmaAdi', "FirmaYetkilisi", "YetkiliAjandasi"];
   dataSource = ELEMENT_DATA;
 
   data = [
-    {id:1,callId:1, callName:'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
-    firmName:'X Firması ', offerDate:'23.09.2023',
-    status:"Açık"
-  },
-  {id:2,callId:2, callName:'Kozmetik Teknoloji Çözümler',
-  firmName:'Y Firması ', offerDate:'27.09.2023',
-  status:"Değerlendirme Aşamasında"
-}, 
-{id:3,callId:3, callName:'Tekstil Ürün İthalatı',
-firmName:'Z Firması ', offerDate:'24.09.2023',
-status:"Onaylandı"
-},
-{id:2,callId:2, callName:'Kozmetik Teknoloji Çözümler',
-  firmName:'Y Firması ', offerDate:'27.09.2023',
-  status:"Değerlendirme Aşamasında"
-}, 
-{id:3,callId:3, callName:'Tekstil Ürün İthalatı',
-firmName:'Z Firması ', offerDate:'24.09.2023',
-status:"Onaylandı"
-},
-{id:2,callId:2, callName:'Kozmetik Teknoloji Çözümler',
-  firmName:'Y Firması ', offerDate:'27.09.2023',
-  status:"Değerlendirme Aşamasında"
-}, 
+    {
+      id: 1, callId: 1, callName: 'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
+      firmName: 'X Firması ', offerDate: '23.09.2023',
+      status: "Açık"
+    },
+    {
+      id: 2, callId: 2, callName: 'Kozmetik Teknoloji Çözümler',
+      firmName: 'Y Firması ', offerDate: '27.09.2023',
+      status: "Değerlendirme Aşamasında"
+    },
+    {
+      id: 3, callId: 3, callName: 'Tekstil Ürün İthalatı',
+      firmName: 'Z Firması ', offerDate: '24.09.2023',
+      status: "Onaylandı"
+    },
+    {
+      id: 2, callId: 2, callName: 'Kozmetik Teknoloji Çözümler',
+      firmName: 'Y Firması ', offerDate: '27.09.2023',
+      status: "Değerlendirme Aşamasında"
+    },
+    {
+      id: 3, callId: 3, callName: 'Tekstil Ürün İthalatı',
+      firmName: 'Z Firması ', offerDate: '24.09.2023',
+      status: "Onaylandı"
+    },
+    {
+      id: 2, callId: 2, callName: 'Kozmetik Teknoloji Çözümler',
+      firmName: 'Y Firması ', offerDate: '27.09.2023',
+      status: "Değerlendirme Aşamasında"
+    },
+  ]
+
+  dataKobi = [
+    {
+      id: 1, callId: 1, callName: 'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
+      firmName: 'X Firması ', offerDate: '23.09.2023',
+      status: "KOSGEB'den Görüşme Talep Edildi"
+    },
+    {
+      id: 2, callId: 2, callName: 'Kozmetik Teknoloji Çözümler',
+      firmName: 'Y Firması ', offerDate: '27.09.2023',
+      status: "Reddedildi"
+    },
+    {
+      id: 3, callId: 3, callName: 'Tekstil Ürün İthalatı',
+      firmName: 'Z Firması ', offerDate: '24.09.2023',
+      status: "KOSGEB'den Görüşme Talep Edildi"
+    },
+    {
+      id: 2, callId: 2, callName: 'Kozmetik Teknoloji Çözümler',
+      firmName: 'Y Firması ', offerDate: '27.09.2023',
+      status: "KOSGEB'den Görüşme Talep Edildi"
+    },
+    {
+      id: 3, callId: 3, callName: 'Tekstil Ürün İthalatı',
+      firmName: 'Z Firması ', offerDate: '24.09.2023',
+      status: "KOSGEB'den Görüşme Talep Edildi"
+    },
+    {
+      id: 2, callId: 2, callName: 'Kozmetik Teknoloji Çözümler',
+      firmName: 'Y Firması ', offerDate: '27.09.2023',
+      status: "Reddedildi"
+    },
   ]
   trigClick = this.data;
   tabs = [
@@ -85,14 +124,22 @@ status:"Onaylandı"
     { id: '3', label: 'Aradığı Teknoloji Tedarikçisi Özellikleri', content: 'Üçüncü sekme içeriği burada yer alacak.' },
     { id: '4', label: 'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri', content: 'Dördüncü sekme içeriği burada yer alacak.' }
   ];
+  // trigClick2 = this.data2;
+  // tabs2 = [
+  //   { id: '62', label: 'Özel Sorun/İhtiyaç/Fırsat Alanı', content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry' },
+  //   { id: '2', label: 'Teknoloji Tedarikçisinden Beklentisi', content: 'İkinci sekme içeriği burada yer alacak.' },
+  //   { id: '3', label: 'Aradığı Teknoloji Tedarikçisi Özellikleri', content: 'Üçüncü sekme içeriği burada yer alacak.' },
+  //   { id: '4', label: 'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri', content: 'Dördüncü sekme içeriği burada yer alacak.' }
+  // ];
+
   user$: Observable<UserType>;
   activeTabIndex = 0;
   modalTitle = '';
   showOfferModal = false;
-  isList=true;
-  callId:string|null;
-  constructor(private route: ActivatedRoute,private auth:AuthService,
-    private randevuService: RandevuService,private modalService: NgbModal){
+  isList = true;
+  callId: string | null;
+  constructor(private route: ActivatedRoute, private auth: AuthService,
+    private randevuService: RandevuService, private modalService: NgbModal) {
     this.user$ = this.auth.currentUserSubject.asObservable();
   }
   ngOnInit(): void {
@@ -102,104 +149,104 @@ status:"Onaylandı"
       // Fetch the product details using the product service
       if (callId) {
         this.callId = callId;
-         this.trigClick = this.data.filter((element) => element.callId == callId);
+        this.trigClick = this.data.filter((element) => element.callId == callId);
         return this.trigClick
       } else {
         this.callId = null;
-        
+
       }
     });
   }
-  allOffers(){
+  allOffers() {
     this.callId = null
     this.trigClick = this.data;
   }
-  statuses = ["Açık","Teklif Sürecinde", "Değerlendirme Aşamasında","Müzakere Aşamasında","Onay Bekliyor","Tamamlandı","Reddedildi","İptal Edildi","Süresi Doldu"]
+  statuses = ["Açık", "Teklif Sürecinde", "Değerlendirme Aşamasında", "Müzakere Aşamasında", "Onay Bekliyor", "Tamamlandı", "Reddedildi", "İptal Edildi", "Süresi Doldu"]
   modalConfig: ModalConfig = {
     modalTitle: this.modalTitle,
-    closeButtonLabel:'Kapat'
+    closeButtonLabel: 'Kapat'
 
   };
   modalOfferConfig: ModalConfig = {
     modalTitle: "Teklif İste",
-    closeButtonLabel:'Teklif İste'
+    closeButtonLabel: 'Teklif İste'
 
   };
   modalAcceptConfig: ModalConfig = {
     modalTitle: "Teklif Kabul Edildi",
-    closeButtonLabel:'Tamam'
+    closeButtonLabel: 'Tamam'
 
   };
   modalDetailsConfig: ModalConfig = {
     modalTitle: "Teklif Talebi Detayı",
-    closeButtonLabel:'Kapat'
+    closeButtonLabel: 'Kapat'
   };
   modalCreateMeetingConfig: ModalConfig = {
-    modalTitle : "Toplantı Oluştur",
+    modalTitle: "Toplantı Oluştur",
     hideCloseButton: () => true,
   }
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('meet') private meet: ModalComponent;
   @ViewChild('acceptmodal') private acceptModalComponent: ModalComponent;
-  @ViewChild('meetingModal') private meetingModal:ModalComponent;
-  
-  targetValue:number;
-  selectedOffer:any = this.data[2];
-  async openModal(event:any) {
-    this.targetValue = event ;  
+  @ViewChild('meetingModal') private meetingModal: ModalComponent;
+
+  targetValue: number;
+  selectedOffer: any = this.data[2];
+  async openModal(event: any) {
+    this.targetValue = event;
     this.showTabContent(this.targetValue);
     return await this.modalComponent.open();
-    
+
   }
 
-  async openAcceptModal(){
+  async openAcceptModal() {
     this.acceptModalComponent.open()
   }
 
-  onFilterChange(event:any){
+  onFilterChange(event: any) {
     this.trigClick = this.data.filter(x => x.status == event.target.value)
   }
 
-  listOrCard(isList:boolean){
-    console.log(typeof(isList),isList)
+  listOrCard(isList: boolean) {
+    console.log(typeof (isList), isList)
     this.isList = isList
   }
-  
+
   showTabContent(index: number) {
-    this.modalConfig ={
-      modalTitle : ''+this.tabs[index].label+'',
-    } 
+    this.modalConfig = {
+      modalTitle: '' + this.tabs[index].label + '',
+    }
 
     this.activeTabIndex = index;
   }
 
-  async createMeeting(item : any){
+  async createMeeting(item: any) {
     this.selectedOffer = item
     this.meetingModal.open();
   }
 
-  async closeMeetingModal(){
+  async closeMeetingModal() {
     this.meetingModal.close();
   }
 
 
   modalMeetConfig: ModalConfig = {
     modalTitle: "Randevu",
-    closeButtonLabel:'Kapat',
-    hideCloseButton:() => true
-  }; 
+    closeButtonLabel: 'Kapat',
+    hideCloseButton: () => true
+  };
 
-  
+
 
   async acRandevuModal() {
-    
+
     this.meet.open()
   }
 
-  
 
 
-  locale:string = "tr";
+
+  locale: string = "tr";
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   view: CalendarView = CalendarView.Month;
 
@@ -207,7 +254,7 @@ status:"Onaylandı"
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
   refresh = new Subject<void>();
   activeDayIsOpen: boolean = true;
-  selectedDates : Date[] = [];
+  selectedDates: Date[] = [];
   viewDate: Date = new Date();
   events: any[] = [];
 
@@ -233,16 +280,16 @@ status:"Onaylandı"
       this.selectedDates.push(clickedDate);
     }
     // Tıklanan tarih bugünden önceyse tıklamayı engelle
-    if (clickedDate < today ) {
+    if (clickedDate < today) {
       return;
     }
   }
 
-  selectHour(){
+  selectHour() {
     this.meet.close();
     this.openModalMeet(this.selectedDates);
   }
-  
+
 
   openModalMeet(selectedDate: Date[]) {
     console.log(selectedDate);
@@ -253,25 +300,25 @@ status:"Onaylandı"
 
   dataViews = [
     {
-      id:1,
-      companyName:'X İşletmesi',
-      sektor:'Otomotiv',
-      date:'20.11.2023',
+      id: 1,
+      companyName: 'X İşletmesi',
+      sektor: 'Otomotiv',
+      date: '20.11.2023',
     },
     {
-      id:2,
-      companyName:'Y İşletmesi',
-      sektor:'Otomotiv',
-      date:'24.11.2023',
+      id: 2,
+      companyName: 'Y İşletmesi',
+      sektor: 'Otomotiv',
+      date: '24.11.2023',
     },
     {
-      id:3,
-      companyName:'Z İşletmesi',
-      sektor:'Üretim',
-      date:'25.11.2023',
+      id: 3,
+      companyName: 'Z İşletmesi',
+      sektor: 'Üretim',
+      date: '25.11.2023',
     }
   ]
-  
+
 
 
 }
