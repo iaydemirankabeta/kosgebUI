@@ -23,7 +23,7 @@ export class FilterComponent {
   @Output() filterChanged = new EventEmitter<any>();
 form: FormGroup<any>;
 selectedSektor="Gıda";
-selectedYear="2023";
+selectedYear="1";
 Adet="";
   constructor(private filterService: FilterService,private fb: FormBuilder) {
     this.form = this.fb.group({
