@@ -21,7 +21,7 @@ export class CompanyChoiceComponent {
   click(id:Number){
     this.user ? this.user.selectedCompany = this.myCompanies.filter(x => x.company.id === id)[0] : null;
     this.auth.currentUserSubject.next(this.user);
-    this.router.navigate(["dashboard"]);
+    this.router.navigate(["anasayfa"]);
   }
 
 
