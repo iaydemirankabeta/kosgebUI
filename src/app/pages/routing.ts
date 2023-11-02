@@ -7,7 +7,7 @@ import { FinansComponent } from './finans/finans.component';
 
 const Routing: Routes = [
   {
-    path: 'dashboard',
+    path: 'anasayfa',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     data: { layout: 'dark-sidebar' }
@@ -19,7 +19,7 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'catalog',
+    path: 'katalog',
     loadChildren: () =>
       import('./catalog/catalog.module').then((m) => m.catalogModule),
     data: { layout: 'dark-sidebar' }
@@ -67,7 +67,7 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'conversations',
+    path: 'takvimim',
     loadChildren: () =>
       import('./meet-module/conversations/conversations.module').then((m) => m.ConversationsModule),
     data: { layout: 'dark-sidebar' }
@@ -79,62 +79,62 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'kobi-profile',
+    path: 'kobi-profili',
     loadChildren: () =>
       import('./kobi-profile/kobi-profile.module').then((m) => m.KobiProfileModule),
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'poll',
+    path: 'global-zeka/anketler',
     loadChildren: () =>
       import('./poll/poll.module').then((m) => m.PollModule),
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'user-management',
+    path: 'kullanici-yonetimi',
     loadChildren: () =>
       import('./user-management/user-management.module').then((m) => m.UserManagementModule),
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'company-management',
+    path: 'sirket-yonetimi',
     loadChildren: () =>
       import('./company-management/company-management.module').then((m) => m.CompanyManagementModule),
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'pending-calls',
+    path: 'bekleyen-cagrilar',
     loadChildren: () =>
       import('./pending-calls/pending-calls.module').then((m) => m.PendingCallsModule),
     data: { layout: 'dark-sidebar' }
   },
 
   {
-    path: 'create-solution',
+    path: 'cozum-olustur',
     loadChildren: () =>
-      import('./create-solution/create-solution.module').then((m) => m.CreateSolutionModule),
+      import('./my-solutions/create-solution/create-solution.module').then((m) => m.CreateSolutionModule),
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'my-solutions',
-    loadChildren: () =>
-      import('./my-solutions/my-solutions.module').then((m) => m.MySolutionsModule),
-    data: { layout: 'dark-sidebar' }
-  },
-  {
-    path: 'solutions',
+    path: 'cozumlerim',
     loadChildren: () =>
       import('./my-solutions/my-solutions.module').then((m) => m.MySolutionsModule),
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'application-examples',
+    path: 'cozumler',
+    loadChildren: () =>
+      import('./my-solutions/my-solutions.module').then((m) => m.MySolutionsModule),
+    data: { layout: 'dark-sidebar' }
+  },
+  {
+    path: 'uygulama-ornekleri',
     loadChildren: () =>
       import('./application-examples/application-examples.module').then((m) => m.ApplicationExamplesModule),
     data: { layout: 'dark-sidebar' }
   },
   {
-    path: 'crafted/account',
+    path: 'hesabim',
     loadChildren: () =>
       import('../modules/account/account.module').then((m) => m.AccountModule),
     data: { layout: 'dark-sidebar' },
@@ -169,7 +169,7 @@ const Routing: Routes = [
   },*/
 
   {
-    path: 'apps/chat',
+    path: 'mesajlar',
     loadChildren: () =>
       import('../modules/apps/chat/chat.module').then((m) => m.ChatModule),
     data: { layout: 'dark-sidebar' },

@@ -66,9 +66,9 @@
                 <label for="" style="width: 100%;display: inline-block ;">Yıllık İşbirliği Bilgisi</label>
                 <br><br>
                   <!-- <label for="yearSelect">Yıl Seçin:</label> -->
-                  <label for="sektorSelect">Yıl Seçiniz:</label>
+                  <!-- <label for="sektorSelect">Yıl Seçiniz:</label> -->
 
-                  <select id="yearSelect" (change)="changeYear($event)"class="text-center mx-2 form-select form-select-solid">
+                  <!-- <select id="yearSelect" (change)="changeYear($event)"class="text-center mx-2 form-select form-select-solid">
                     <option value="1970">1970</option>
                     <option value="1971">1971</option>
                     <option value="1972">1972</option>
@@ -150,8 +150,26 @@
                     <option value="2048">2048</option>
                     <option value="2049">2049</option>
                     <option value="2050">2050</option>
-                  </select>
+                  </select> -->
+                  <label for="sektorSelect">Yıl Aralığı Seçiniz:</label>
 
+                  <select id="yearSelect" (change)="changeYear($event)"class="text-center mx-2 form-select form-select-solid">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                  </select>
                   <label for="sektorSelect">Sektör Seçiniz:</label>
                   <select id="sektorSelect" (change)="changesektor($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
                     <option value="Gıda" Selected>Gıda</option>
@@ -168,7 +186,7 @@
                 <input type="number" (input)="changeAdet($event)"  placeholder=" Adet Giriniz..." style="max-width: 150px;float: left;margin-left:5px"> 
               </div><br><br>
                 <div>
-                <p> {{selectedYear}} Yılında  {{selectedSektor}} Sektöründe {{Adet}} Adet işbirliği sağlanmıştır.
+                <p> Son {{selectedYear}} Yılda  {{selectedSektor}} Sektöründe {{Adet}} Adet işbirliği sağlanmıştır.
                 </p>
               </div>
               </div>

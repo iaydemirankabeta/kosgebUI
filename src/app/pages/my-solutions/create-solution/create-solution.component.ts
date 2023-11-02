@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
-import { MySolutionsComponent } from '../my-solutions/my-solutions.component';
+import { MySolutionsComponent } from '../my-solutions.component';
 
 @Component({
   selector: 'app-create-solution',

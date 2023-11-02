@@ -5,7 +5,7 @@ import { ModalsModule, WidgetsModule } from 'src/app/_metronic/partials';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/_metronic/shared/shared.module';
-import { MySolutionsComponent } from '../my-solutions/my-solutions.component';
+import { MySolutionsComponent } from '../my-solutions.component';
 
 
 
