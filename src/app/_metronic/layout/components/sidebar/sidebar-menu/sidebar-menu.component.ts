@@ -68,6 +68,15 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
+      title: 'B2B', icon: 'element-5', routerLink: '/b2b', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
+      subMenu: [
+        { title: 'Büyük İşletmeler', icon: '', routerLink: '/buyuk-isletmeler' },
+        { title: 'Büyük İşletmeye Gönderilen Görüşme Talepleri', icon: '', routerLink: '/bi-gonderilen-gorusmeler' },
+        { title: 'Kobiler', icon: '', routerLink: '/kobi' },
+        { title: 'Proje Ortaklığı Talep Ettiğim Kobiler', icon: ''},
+      ],
+    },
+    {
       title: 'Toplantı Modülü', icon: 'tablet-book', routerLink: '/company-management', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN], shown: false,
       subMenu: [
         { title: 'Toplantı Planla', icon: '', routerLink: '/toplanti/toplanti-planla' },
