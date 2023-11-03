@@ -78,8 +78,11 @@
 
       <div class="row mb-6">
         <div class="col-5 form-check">
-          <input class="form-check-input" type="checkbox" name="isQuestionable" formControlName="isQuestionable" (click)="isQuestionable()"
-            id="isQuestionable" />
+          <!-- <input class="form-check-input" type="checkbox" name="isQuestionable" formControlName="isQuestionable" (click)="isQuestionable()"
+            id="isQuestionable" /> -->
+            <input class="form-check-input" type="checkbox" name="isQuestionable" formControlName="isQuestionable" 
+            (change)="isQuestionable($event)" id="isQuestionable" />
+
           <label class="form-check-label text-black" for="isQuestionable">KOBI'ler soru sorabilsin</label>
         </div>
         <div class="col-5 form-check">
@@ -138,19 +141,16 @@
 
   <app-modal #kobiSoru [modalConfig]="modalConfig" aria-modal="true">
     <div class="col-xs-12 text-center">
-      <div class="row mb-12">
-        <label class="col-lg-4 col-form-label required fw-bold fs-6">Soru Giriniz</label>
-        <div class="col-lg-8 fv-row">
-          <input type="text" class="form-control form-control-lg" placeholder="Soru" name="name"
-            [value]="result ? result.tags : ''" formControlName="name" />
-          <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
+        <!-- <label class="col-lg-4 col-form-label required fw-bold fs-6">Soru Giriniz</label> -->
+          <!-- <input type="text" class="form-control form-control-lg" placeholder="Soru" name="name"
+            [value]="result ? result.tags : ''" formControlName="name" /> -->
+          <!-- <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
             Soru Gerekli
           </div>
-          <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
-
+          <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div> -->
+            <input class="form-check-input" type="checkbox" name="showFAQ" formControlName="showFAQ" id="showFAQ"/>
+            <label class="form-check-label text-black" for="showFAQ">Tüm kobiler soruyu soran kobinin sorusunu ve cevabını görsün mü?</label>
         </div>
-      </div>
-    </div>
   </app-modal>
 
 </ng-container>

@@ -40,9 +40,8 @@ isEnabledError: boolean;
   itemId: string | null;
 
 
-  modalTitle = 'Çağrı Oluşturuldu';
   modalConfig: ModalConfig = {
-    modalTitle: this.modalTitle,
+    modalTitle:'',
     closeButtonLabel:'Kapat'
 
   };
@@ -175,10 +174,17 @@ isEnabledError: boolean;
   @ViewChild('kobiSoru') private modalKobiComponent: ModalComponent;
 
 
-  isQuestionable(){
-    this.modalKobiComponent.open();
+  // isQuestionable(){
+  //   this.modalKobiComponent.open();
+  // }
+  isQuestionable(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.checked) {
+      this.modalKobiComponent.open();
+    }
   }
-
+  
+  
   addFAQ() {
     this.faqQuestions.push({ question: '', answer: '' });
   }
