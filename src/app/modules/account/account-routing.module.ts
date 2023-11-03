@@ -13,11 +13,11 @@ const routes: Routes = [
     component: AccountComponent,
     children: [
       {
-        path: 'overview',
+        path: 'ayarlar',
         component: OverviewComponent,
       },
       {
-        path: 'settings',
+        path: 'ayarlar/duzenle',
         component: SettingsComponent,
       },
       {
