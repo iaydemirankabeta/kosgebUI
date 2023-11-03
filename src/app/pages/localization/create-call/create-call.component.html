@@ -21,7 +21,8 @@
           <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
             Ürün ismi gerekli.
           </div>
-          <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
+          <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">
+            Revize Gerekli</div>
 
         </div>
       </div>
@@ -33,7 +34,8 @@
           <div *ngIf="form.get('piece')?.invalid && form.get('piece')?.touched" class="error-message">
             Adet Bilgisi gerekli.
           </div>
-          <div *ngIf="itemId &&form.get('piece')?.pristine && form.get('piece')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
+          <div *ngIf="itemId &&form.get('piece')?.pristine && form.get('piece')?.value !== ''" class="text-danger mt-2">
+            Revize Gerekli</div>
         </div>
       </div>
 
@@ -44,10 +46,11 @@
           <select class="form-select mb-5" aria-label="Select example" formControlName="adress">
             <option *ngFor="let option of filteredAdresses" [value]="option.title">{{ option.title }}</option>
           </select>
-          <div *ngIf="itemId && form.get('adress')?.pristine && form.get('adress')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
+          <div *ngIf="itemId && form.get('adress')?.pristine && form.get('adress')?.value !== ''"
+            class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
-      
+
 
       <div *ngFor="let item of filters" class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">{{item.label}}</label>
@@ -56,7 +59,8 @@
             <option *ngFor="let option of item.options" value="{{option.value}}"
               [selected]="result ? option.value == result[item.name] : null">{{option.name}}</option>
           </select>
-          <div *ngIf="itemId &&form.get(item.name)?.pristine && form.get(item.name)?.value !== '' " class="text-danger mt-2">Revize Gerekli</div>
+          <div *ngIf="itemId &&form.get(item.name)?.pristine && form.get(item.name)?.value !== '' "
+            class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
 
@@ -68,39 +72,47 @@
             placeholder="Lütfen almak istediğiniz ürün/hizmet veya hizmeti tanımlayınız."
             formControlName="expectationDescription" minlength="{{minLength}}" maxlength="{{maxLength}}">
                     </textarea>
-          <div *ngIf="(form.get('expectationDescription')?.invalid && form.get('expectationDescription')?.touched) || form.get('expectationDescription')?.getError('invalid')"
+          <div
+            *ngIf="(form.get('expectationDescription')?.invalid && form.get('expectationDescription')?.touched) || form.get('expectationDescription')?.getError('invalid')"
             class="error-message">
             Lütfen en az {{minLength}} karakter, en fazla {{maxLength}} karakter girişi yapın.
           </div>
-          <div *ngIf="itemId && form.get('expectationDescription')?.pristine && form.get('expectationDescription')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
+          <div
+            *ngIf="itemId && form.get('expectationDescription')?.pristine && form.get('expectationDescription')?.value !== ''"
+            class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
 
       <div class="row mb-6">
         <div class="col-5 form-check">
-          <input class="form-check-input" type="checkbox" name="isQuestionable" formControlName="isQuestionable" (click)="isQuestionable()"
-            id="isQuestionable" />
+          <!-- <input class="form-check-input" type="checkbox" name="isQuestionable" formControlName="isQuestionable" (click)="isQuestionable()"
+            id="isQuestionable" /> -->
+          <input class="form-check-input" type="checkbox" name="isQuestionable" formControlName="isQuestionable"
+            (change)="isQuestionable($event)" id="isQuestionable" />
+
           <label class="form-check-label text-black" for="isQuestionable">KOBI'ler soru sorabilsin</label>
         </div>
         <div class="col-5 form-check">
-          <input class="form-check-input" type="checkbox" name="showFAQ" formControlName="showFAQ" id="showFAQ" (change)="toggleFAQ()" />
+          <input class="form-check-input" type="checkbox" name="showFAQ" formControlName="showFAQ" id="showFAQ"
+            (change)="toggleFAQ()" />
           <label class="form-check-label text-black" for="showFAQ">Sık Sorulan Sorular Gösterilsin</label>
         </div>
-        
+
         <div class="mt-3" *ngIf="showFAQ">
           <div *ngFor="let question of faqQuestions; let i = index" class="faq-item">
             <div class="form-group">
               <input [(ngModel)]="faqQuestions[i].question" class="form-control" placeholder="Soru" required />
             </div>
             <div class="form-group">
-              <textarea [(ngModel)]="faqQuestions[i].answer" class="form-control" placeholder="Cevap" required></textarea>
+              <textarea [(ngModel)]="faqQuestions[i].answer" class="form-control" placeholder="Cevap"
+                required></textarea>
             </div>
             <button (click)="removeFAQ(i)" class="btn btn-danger">Sil</button>
           </div>
           <button (click)="addFAQ()" class="btn btn-primary mt-3">+</button>
         </div>
-        
-        
+
+
       </div>
       <hr />
       <p> İşle ilgili varsa, örnek görsel ve metin eklemen tedarikçilerin işi daha rahat anlamalarını sağlar.</p>
@@ -138,18 +150,34 @@
 
   <app-modal #kobiSoru [modalConfig]="modalConfig" aria-modal="true">
     <div class="col-xs-12 text-center">
-      <div class="row mb-12">
-        <label class="col-lg-4 col-form-label required fw-bold fs-6">Soru Giriniz</label>
-        <div class="col-lg-8 fv-row">
-          <input type="text" class="form-control form-control-lg" placeholder="Soru" name="name"
-            [value]="result ? result.tags : ''" formControlName="name" />
-          <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
+      <!-- <label class="col-lg-4 col-form-label required fw-bold fs-6">Soru Giriniz</label> -->
+      <!-- <input type="text" class="form-control form-control-lg" placeholder="Soru" name="name"
+            [value]="result ? result.tags : ''" formControlName="name" /> -->
+      <!-- <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
             Soru Gerekli
           </div>
-          <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div>
+          <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">Revize Gerekli</div> -->
+      <!-- <input class="form-check-input" type="checkbox" name="showFAQ" formControlName="showFAQ" id="showFAQ"/>
+            <label class="form-check-label text-black" for="showFAQ">Tüm kobiler soruyu soran kobinin sorusunu ve cevabını görsün mü?</label> -->
 
-        </div>
+      <!-- <label class="form-check-label text-black">Tüm kobiler soruyu soran kobinin sorusunu ve cevabını görsün
+        mü?</label>
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-success">
+          <input type="radio" name="showFAQ" id="showFAQEvet" value="1"> Evet
+        </label>
+        <label class="btn btn-danger">
+          <input type="radio" name="showFAQ" id="showFAQHayir" value="0"> Hayır
+        </label>
+      </div> -->
+      <label class="form-check-label text-black">Tüm kobiler soruyu soran kobinin sorusunu ve cevabını görsün
+        mü?</label>
+      <div class="btn-group" role="group" aria-label="Evet veya Hayır seçeneği">
+        <button type="button" class="btn btn-success" id="showFAQEvet" value="1">Evet</button>
+        <button type="button" class="btn btn-danger" id="showFAQHayir" value="0">Hayır</button>
       </div>
+
+
     </div>
   </app-modal>
 

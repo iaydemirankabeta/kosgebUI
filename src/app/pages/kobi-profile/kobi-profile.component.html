@@ -1,4 +1,4 @@
-<div class="card mb-5 mb-xl-10">
+<div class="card mb-5 mb-xl-10" *ngIf="user$ | async as _user">
     <div class="card-body pt-9 pb-0">
       <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
         <div class="me-7 mb-4">
@@ -53,7 +53,7 @@
                 >
                   {{selectedKobi?.companyInfo[0]?.description}}
                 </a>
-                <div class="mt-4 row col-5 "></div>
+                <div *ngIf="_user.roles===3" class="mt-4 row col-5 "></div>
 
                 <div class="mt-4 row col-5 d-flex justify-content-center align-items-center">
                     <i class="fa-solid fa-phone col-1" aria-hidden="true"></i>
@@ -94,7 +94,7 @@
                   Fabrikayı İncele
                   </a>
                 </div>
-                <div class="mt-4 row col-2  justify-content-center align-items-center">
+                <div *ngIf="_user.roles===3" class="mt-4 row col-2  justify-content-center align-items-center">
                   <input class="form-check-input" type="checkbox" value=""  /> KOBİ'yi Öne Çıkar
                 </div>
               </div>
