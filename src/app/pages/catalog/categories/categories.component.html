@@ -21,13 +21,13 @@
             <td>
                 <div class="d-flex">
                     <!--begin::Thumbnail-->
-                    <a [routerLink]="['/catalog/urunler', category.id]" class="symbol symbol-50px">
+                    <a [routerLink]="['/katalog/urunler', category.id]" class="symbol symbol-50px">
                         <img class="symbol-label" src="{{category.img.url}}"/>
                     </a>
                     <!--end::Thumbnail-->
                     <div class="ms-5">
                         <!--begin::Title-->
-                        <a [routerLink]="['/catalog/urunler', category.id]" data-kt-ecommerce-category-filter="category_name">{{category.name}}</a>
+                        <a [routerLink]="['/katalog/urunler', category.id]" data-kt-ecommerce-category-filter="category_name">{{category.name}}</a>
                         <!--end::Title-->
                         <!--begin::Description-->
                         <div class="text-muted fs-7 fw-bold">{{category.description}}</div>

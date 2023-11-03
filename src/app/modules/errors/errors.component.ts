@@ -29,7 +29,7 @@ export class ErrorsComponent implements OnInit, OnDestroy {
   }
 
   routeToDashboard() {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['anasayfa']);
     setTimeout(() => {
       ToggleComponent.bootstrap();
       ScrollTopComponent.bootstrap();

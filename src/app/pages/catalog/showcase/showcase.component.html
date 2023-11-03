@@ -11,7 +11,7 @@
     <div *ngIf="currentView === 'list'; else gridView" class="product-list row">
       <ul>
         <li *ngFor="let product of products" class="product-item col-6 col-xs-12">
-          <a [routerLink]="['/catalog/urun-detay', product.id]">
+          <a [routerLink]="['/katalog/urun-detay', product.id]">
             <div class="product-image">
               <img [src]="product.img.url" [alt]="product.name" />
             </div>
@@ -46,7 +46,7 @@
   
     <ng-template #gridView>
       <div class="product-grid">
-        <a [routerLink]="['/catalog/urun-detay', product.id]" *ngFor="let product of products" class="product-card">
+        <a [routerLink]="['/katalog/urun-detay', product.id]" *ngFor="let product of products" class="product-card">
           <div class="product-image">
             <img [src]="product.img.url" [alt]="product.name" />
           </div>

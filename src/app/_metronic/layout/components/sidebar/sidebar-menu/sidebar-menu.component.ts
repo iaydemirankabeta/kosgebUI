@@ -22,8 +22,8 @@ export class SidebarMenuComponent implements OnInit {
     {
       title: 'Yerlileştirme Modülü', icon: 'element-5', routerLink: '/cagrilar', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: false,
       subMenu: [
-        { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/yerellestirme//cagri-olustur' },
-        { title: 'Çağrılarım', icon: 'call', routerLink: '/yerellestirme//cagrilar' },
+        { title: 'Çağrı Oluştur', icon: 'element-3', routerLink: '/yerellestirme/cagri-olustur' },
+        { title: 'Çağrılarım', icon: 'call', routerLink: '/yerellestirme/cagrilar' },
         { title: 'Çağrılarıma Gelen Başvurular', icon: 'paper-clip', routerLink: '/yerellestirme/cagrima-gelen-basvurular' },
         { title: 'KOSGEB Talep Toplama', icon: '', routerLink: '/yerellestirme/kosgeb-talep-toplama' },
       ],
@@ -63,7 +63,7 @@ export class SidebarMenuComponent implements OnInit {
       title: 'I2 Modülü', icon: 'element-5', routerLink: '/gorusme-talepleri', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB], shown: false,
       subMenu: [
         { title: 'Görüşme Talepleri', icon: '', routerLink: '/gorusme-talepleri' },
-        { title: 'Tüm Başvurular', icon: '', routerLink: '/offers' },
+        { title: 'Tüm Başvurular', icon: '', routerLink: 'yerellestirme/cagrilar' },
 
       ],
     },
@@ -109,8 +109,8 @@ export class SidebarMenuComponent implements OnInit {
       title: 'Kobi Penceresi', icon: 'element-5', routerLink: '/b2b', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
       subMenu: [
         { title: 'Kobiler', icon: '', routerLink: '/kobi' },
-        { title: 'Proje Ortaklığı Talep Ettiğim Kobiler', icon: '', routerLink: '/dashboard' },
-        { title: 'Proje Ortaklığı Teklif Eden  Kobiler', icon: '', routerLink: '/dashboard' },
+        { title: 'Proje Ortaklığı Talep Ettiğim Kobiler', icon: '', routerLink: '/anasayfa' },
+        { title: 'Proje Ortaklığı Teklif Eden  Kobiler', icon: '', routerLink: '/anasayfa' },
 
       ],
     },
@@ -175,7 +175,7 @@ export class SidebarMenuComponent implements OnInit {
     { title: 'Kullanıcı Yönetimi', icon: 'user', routerLink: '/kullanici-yonetimi', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.ADMIN], shown: false },
     { title: 'Şirket Yönetimi', icon: 'compass', routerLink: '/sirket-yonetimi', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB, CompanyTypes.Muadil, CompanyTypes.ADMIN], shown: false },
     { title: 'Uygulama Örnekleri', icon: 'element-8', routerLink: '/uygulama-ornekleri', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: true },
-    { title: 'Mesajlar', icon: 'message-notif', routerLink: '/apps/chat', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI], shown: true },
+    { title: 'Mesajlar', icon: 'message-notif', routerLink: '/mesajlar', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI, CompanyTypes.KOBI], shown: true },
     
     {
       title: 'Finans Modülü', icon: 'element-5', routerLink: '/finans-modulu', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
