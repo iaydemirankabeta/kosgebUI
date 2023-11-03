@@ -187,7 +187,7 @@ export class SidebarMenuComponent implements OnInit {
 
     
     {
-      title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI, CompanyTypes.KOSGEB], shown: true,
+      title: 'Ayarlar', icon: 'profile-circle', routerLink: '', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI, CompanyTypes.KOSGEB], shown: true,
       subMenu: [
         { title: 'Profilim', icon: '', routerLink: '/hesabim/profilim' },
         { title: 'Kullanıcı Yönetimi', icon: '', routerLink: '/hesabim/kullanici-yonetimi' },
@@ -196,7 +196,7 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
-      title: 'Hesap Ayarları', icon: 'profile-circle', routerLink: '', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: true,
+      title: 'Ayarlar', icon: 'profile-circle', routerLink: '', roles: [UserRoles.KosgebAdmin, UserRoles.User], disabled: false, companyTypes: [CompanyTypes.BI], shown: true,
       subMenu: [
         { title: 'Profilim', icon: '', routerLink: '/hesabim/profilim' },
         { title: 'Kullanıcı Yönetimi', icon: '', routerLink: '/hesabim/kullanici-yonetimi' },
