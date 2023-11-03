@@ -73,7 +73,7 @@ export class SidebarMenuComponent implements OnInit {
         { title: 'Büyük İşletmeler', icon: '', routerLink: '/buyuk-isletmeler' },
         { title: 'Büyük İşletmeye Gönderilen Görüşme Talepleri', icon: '', routerLink: '/bi-gonderilen-gorusmeler' },
         { title: 'Kobiler', icon: '', routerLink: '/kobi' },
-        { title: 'Proje Ortaklığı Talep Ettiğim Kobiler', icon: ''},
+        { title: 'Proje Ortaklığı Teklif Eden Kobiler', icon: ''},
       ],
     },
     {
