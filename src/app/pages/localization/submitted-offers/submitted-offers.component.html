@@ -14,7 +14,7 @@
       
         <!-- Position Column -->
         <ng-container matColumnDef="TeklifId">
-          <th mat-header-cell *matHeaderCellDef> Çağrı </th>
+          <th mat-header-cell *matHeaderCellDef> ÇağrıID </th>
           <td mat-cell *matCellDef="let element" >
             <input *ngIf="_user.roles===1" type="checkbox" class="form-check-input">
             {{element.id}} </td>
@@ -33,7 +33,7 @@
       
         <!-- Symbol Column -->
         <ng-container matColumnDef="TeklifTarihi">
-          <th mat-header-cell *matHeaderCellDef> Teklif Tarihi </th>
+          <th mat-header-cell *matHeaderCellDef> Başvuru Tarihi </th>
           <td mat-cell *matCellDef="let element" > {{element.offerDate}} </td>
         </ng-container>
         <ng-container matColumnDef="TeklifStatusu">
@@ -43,7 +43,7 @@
               <!-- <div *ngIf = "_user.roles !== 2 "> -->
                 <div>
                 <button type="button"  (click)="acRandevuModal()" class="btn btn-success btn-margin">KOSGEB'ten Görüşme Talep Et</button>
-              <button type="button" class="btn btn-danger btn-margin">Reddet</button>
+              <button type="button" class="btn btn-danger btn-margin">İptal Et</button>
               </div>
               <!-- <span *ngIf = "_user.roles === 2">Beklemede</span> -->
               
@@ -96,7 +96,7 @@
         
           <!-- Position Column -->
           <ng-container matColumnDef="TeklifId">
-            <th mat-header-cell *matHeaderCellDef> Çağrı </th>
+            <th mat-header-cell *matHeaderCellDef> ÇağrıID </th>
             <td mat-cell *matCellDef="let element" >
               {{element.id}} </td>
           </ng-container>
@@ -125,7 +125,7 @@
                 <!-- <div *ngIf = "_user.roles !== 2 "> -->
                 <div>
                   <button type="button" class="btn btn-primary btn-margin">Onayla</button>
-                <button type="button" class="btn btn-danger btn-margin">Reddet</button>
+                <button type="button" class="btn btn-danger btn-margin">İptal Et</button>
                 <button type="button" class="btn btn-success btn-margin">Düzenle</button>
 
                 </div>
@@ -157,7 +157,7 @@
           </div>
 
           <div class="col-6 mt-4">
-            <h4 class="mt-4">Çağrı</h4>
+            <h4 class="mt-4">ÇağrıID</h4>
             <h5 class="form-control mt-4">{{selectedOffer.callName}}</h5>
 
             <h4 class="mt-4">Çağrı Detayı</h4>
