@@ -28,7 +28,23 @@ import {
 import { MonthViewDay } from 'calendar-utils'; // İmport MonthViewDay sınıfını içe aktarın
 
 
-
+export interface request {
+  id: number;
+  SuitableDate: string;
+  EmployeeNumber: number;
+  StartTime: string;
+  MeetingTime: string;
+  EndTime: string;
+  IsBreak: string;
+  IsLunch: string;
+  MeetingType: string;
+  Status:string;
+  applications: application[];
+}
+export interface application {
+  id: number;
+  KOBI: string;
+}
 
 export interface ConversationElement {
   id: string,
@@ -36,6 +52,7 @@ export interface ConversationElement {
   firmAuthority: string;
   solutionName: string;
 }
+
 const ELEMENT_DATA: ConversationElement[] = [
   { id: "X Çağrısı", firm: "X şirketi", firmAuthority: "Tufan Yazıcı", solutionName: "Gürültü Engelleyici Malzeme Tedariği" },
   { id: "Y Çağrısı", firm: "Y şirketi", firmAuthority: "Gizem Turanlı", solutionName: "Kozmetik Ürünlerin Tedariği" },
@@ -185,10 +202,17 @@ export class SubmittedOffersComponent {
     modalTitle: "Toplantı Oluştur",
     hideCloseButton: () => true,
   }
+  modalConfigKobi: ModalConfig = {
+    modalTitle: "",
+    closeButtonLabel: 'Kapat'
+    // hideCloseButton: () => true
+  };
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('meet') private meet: ModalComponent;
   @ViewChild('acceptmodal') private acceptModalComponent: ModalComponent;
   @ViewChild('meetingModal') private meetingModal: ModalComponent;
+  @ViewChild('kobi') private modalKobiComponent: ModalComponent;
+
 
   targetValue: number;
   selectedOffer: any = this.data[2];
@@ -319,7 +343,20 @@ export class SubmittedOffersComponent {
     }
   ]
 
+  displayedColumnsDetail: string[] = ['Id', 'SuitableDate', 'EmployeeNumber', 'StartTime', 'MeetingTime', 'EndTime', 'IsBreak', 'IsLunch', 'MeetingType', 'Status','Action'];
+  requests:request[] = [
+    { id: 1, SuitableDate: "23.09.2021", EmployeeNumber: 5, StartTime: '10:00', MeetingTime: '2 Saat', EndTime: '12:00', IsBreak: 'Yok', IsLunch: 'Yok', MeetingType: 'Yüz yüze',Status:'KOSGEB Onayladı', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
+    { id: 2, SuitableDate: "24.09.2021", EmployeeNumber: 4, StartTime: '10:00', MeetingTime: '4,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Yüz yüze', Status:'KOSGEB Reddetti',applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
+    { id: 3, SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', Status:'KOSGEB Yeni Tari Önersinde',applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
+    { id: 4, SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status:'KOSGEB Onayladı',applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
+ ];
+ request: request | null = null;
 
+ getKobies(item: any) {
+  this.request = item;
 
+  // this.modalComponent.close()
+  this.modalKobiComponent.open();
+}
 }
 
