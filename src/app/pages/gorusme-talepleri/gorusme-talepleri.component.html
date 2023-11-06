@@ -71,7 +71,7 @@
               <div *ngIf="element.Status!='Bİ İptal Etti' &&element.Status!='Bİ Onayladı'">
                 <button type="button"  (click)="openSuccessModal()" class="btn btn-primary btn-margin">Onayla</button>
                 <button type="button"  (click)="acRandevuModal(element)" class="btn btn-success btn-margin">Görüşme Düzenle</button>
-                <button type="button" class="btn btn-danger btn-margin">Reddet</button>
+                <button type="button" class="btn btn-danger btn-margin" (click)="openRejectionReasonModal()">Reddet</button>
               </div>
             </td>
           </ng-container>
@@ -155,4 +155,24 @@
           <p>Görüşme Talebini onayladınız. Oturum sekmesinden taleplerinizi takip edebilirsiniz.</p>
         </div>
       </app-modal>
+
+      Reddetme Nedeni 
+      <form style="width: 100%;">
+
+        <app-modal #rejectionReasonModal [modalConfig]="modalConfigRejectionReason" aria-modal="true">
+          <div class="row">
+            <!-- <div class="character-count">Kalan Karakter Sayısı: {{ characterCount }} / 300</div> -->
+            <textarea class="form-control" formControlName="rejectionReason" [ngClass]="form.get('rejectionReason')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Reddetme sebebini giriniz..." (input)="updateCharacterCount()"></textarea>
+            <button [disabled]="!form.valid" class="btn btn-primary btn-margin col-xs-12" style="width: 100%;margin-top:10px;" (click)="openrejectionReasonSuccessModal()" >Gönder</button>
+          </div>
+        </app-modal>
+      </form>
+      <app-modal #rejectionReasonSuccess [modalConfig]="successModalConfig2" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <i class="fa-solid fa-check call-tick"></i>
+          <!-- <h3>Tebrikler</h3> -->
+          <p>Reddetme İşleminiz Yapımıştır.</p>
+        </div>
+      </app-modal>
 </ng-container>
+

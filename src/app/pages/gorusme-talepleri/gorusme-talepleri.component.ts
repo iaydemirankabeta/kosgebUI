@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 export interface request {
   id: number;
   MeetingName: string;
@@ -24,7 +26,22 @@ export interface application {
   templateUrl: './gorusme-talepleri.component.html',
   styleUrls: ['./gorusme-talepleri.component.scss']
 })
+
 export class GorusmeTalepleriComponent {
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      // meetingdescription: ['', Validators.required]
+    });
+  }
+
+  selectedFiltersList: { filterName: string, selectedValue: any }[] = [];
+  businessList:any = [];
+
+  filters: any[] ;
+  selectedFilters: { [key: number]: any } = {};
+ 
   displayedColumns: string[] = ['Id', 'MeetingName', 'RequestMeetiingBI', 'SuitableDate', 'EmployeeNumber', 'StartTime', 'MeetingTime', 'EndTime', 'IsBreak', 'IsLunch', 'MeetingType', 'Status', 'Action'];
   requests: request[] = [
     { id: 1, MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", RequestMeetiingBI: "BI-1", SuitableDate: "23.09.2021", EmployeeNumber: 5, StartTime: '10:00', MeetingTime: '2 Saat', EndTime: '12:00', IsBreak: 'Yok', IsLunch: 'Yok', MeetingType: 'Yüz yüze', Status: 'Bİ Görüşme Talebinde Bulundu', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
@@ -56,12 +73,41 @@ export class GorusmeTalepleriComponent {
     closeButtonLabel: 'Kapat'
     // hideCloseButton: () => true
   };
+  closeMeetingModal(){
+    this.ModalRejectionReasonComponent.close();
+    this.form.reset();
+    return true;
+  }
+  //red
+  modalConfigRejectionReason: ModalConfig = {
+    modalTitle: "Reddetme Sebebi",
+    closeButtonLabel:'Kapat',
+    onClose:() => this.closeMeetingModal()
+  }
+  successModalConfig2: ModalConfig = {
+    modalTitle: "deedede",
+    closeButtonLabel:'Kapat',
+    onClose:() => this.closeMeetingModal(),
+  }
+
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('kobimodal') private kobiModalComponent: ModalComponent;
   @ViewChild('success') private modalSuccessComponent: ModalComponent;
   @ViewChild('kobi') private modalKobiComponent: ModalComponent;
+  @ViewChild('rejectionReasonModal') private ModalRejectionReasonComponent: ModalComponent;//red
+  @ViewChild('rejectionReasonSuccess') private ModalrejectionReasonSuccessComponent: ModalComponent;
 
+  characterCount: number = 0;
 
+  updateCharacterCount() {
+    const rejectionReasonControl = this.form.get('rejectionReason');
+    if (rejectionReasonControl) {
+      this.characterCount = rejectionReasonControl.value.length;
+    }
+  }
+  async openRejectionReasonModal(){
+    return await this.ModalRejectionReasonComponent.open();
+  }
   availableDays: any[] = [
     "30/09/2023", "01/10/2023", "02/10/2023"]
   changeStartDate(event: string) {
@@ -87,6 +133,11 @@ export class GorusmeTalepleriComponent {
     this.modalSuccessComponent.open();
     return true;
   }
+  openrejectionReasonSuccessModal() {
+    this.ModalrejectionReasonSuccessComponent.open();
+    return true;
+  }
+  
   getKobies(item: any) {
     this.request = item;
 
