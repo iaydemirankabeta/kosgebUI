@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 export interface request {
   id: number;
+  MeetingName: string;
+  Status: string;
   RequestMeetiingBI: string;
   SuitableDate: string;
   EmployeeNumber: number;
@@ -23,13 +25,13 @@ export interface application {
   styleUrls: ['./gorusme-talepleri.component.scss']
 })
 export class GorusmeTalepleriComponent {
-  displayedColumns: string[] = ['Id', 'RequestMeetiingBI', 'SuitableDate', 'EmployeeNumber', 'StartTime', 'MeetingTime', 'EndTime', 'IsBreak', 'IsLunch', 'MeetingType', 'Action'];
+  displayedColumns: string[] = ['Id', 'MeetingName', 'RequestMeetiingBI', 'SuitableDate', 'EmployeeNumber', 'StartTime', 'MeetingTime', 'EndTime', 'IsBreak', 'IsLunch', 'MeetingType', 'Status', 'Action'];
   requests: request[] = [
-    { id: 1, RequestMeetiingBI: "BI-1", SuitableDate: "23.09.2021", EmployeeNumber: 5, StartTime: '10:00', MeetingTime: '2 Saat', EndTime: '12:00', IsBreak: 'Yok', IsLunch: 'Yok', MeetingType: 'Yüz yüze', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
-    { id: 2, RequestMeetiingBI: "BI-2", SuitableDate: "24.09.2021", EmployeeNumber: 4, StartTime: '10:00', MeetingTime: '4,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Yüz yüze', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
-    { id: 3, RequestMeetiingBI: "BI-3", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
-    { id: 4, RequestMeetiingBI: "BI-4", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
- ];
+    { id: 1, MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", RequestMeetiingBI: "BI-1", SuitableDate: "23.09.2021", EmployeeNumber: 5, StartTime: '10:00', MeetingTime: '2 Saat', EndTime: '12:00', IsBreak: 'Yok', IsLunch: 'Yok', MeetingType: 'Yüz yüze', Status: 'Bİ Görüşme Talebinde Bulundu', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
+    { id: 2, MeetingName: "Kozmetik Teknoloji Çözümler", RequestMeetiingBI: "BI-2", SuitableDate: "24.09.2021", EmployeeNumber: 4, StartTime: '10:00', MeetingTime: '4,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Yüz yüze', Status: 'Bİ İptal Etti', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
+    { id: 3, MeetingName: "Tekstil Ürün İthalatı", RequestMeetiingBI: "BI-3", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', Status: 'Bİ Onayladı', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
+    { id: 4, MeetingName: "B2B Talebi", RequestMeetiingBI: "BI-4", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status: 'Bİ Düzenleme Önerisinde Bulundu', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
+  ];
   startHour: string = "";
   endHour: string = "";
   request: request | null = null;
@@ -77,7 +79,7 @@ export class GorusmeTalepleriComponent {
     this.modalComponent.close()
     this.kobiModalComponent.open();
   }
-  
+
   kapatKobiModal() {
     this.kobiModalComponent.close();
   }
@@ -95,5 +97,5 @@ export class GorusmeTalepleriComponent {
     this.request = item;
     this.modalComponent.open();
   }
-  
+
 }
