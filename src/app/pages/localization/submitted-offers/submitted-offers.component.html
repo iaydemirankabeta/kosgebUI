@@ -161,7 +161,7 @@
                 <div *ngIf="element.Status!='KOSGEB Onayladı' &&element.Status!='KOSGEB Reddetti'">
                   <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" type="button" class="btn btn-primary btn-margin">Onayla</button>
                 <button type="button" class="btn btn-danger btn-margin">İptal Et</button>
-                <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'"  type="button" class="btn btn-success btn-margin">Düzenle</button>
+                <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" (click) = "acKobiModal()"  type="button" class="btn btn-success btn-margin">Düzenle</button>
 
                 </div>
               
@@ -334,5 +334,39 @@
             </div>
         </div>
         
+      </app-modal>
+      <app-modal #kobimodal [modalConfig]="kobimodalConfig" aria-modal="true">
+        <div >
+            <mat-tab-group fitInkBarToContent>
+                <mat-tab *ngFor="let day of availableDays" label="{{day}}">
+                    <div class="p-2">
+                        <label>Başlangıç Saati</label>
+                        <div class="row">
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '10:00' ? 'bg-secondary':''" (click)="changeStartDate('10:00')">10:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '11:00' ? 'bg-secondary':''" (click)="changeStartDate('11:00')">11:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '12:00' ? 'bg-secondary':''" (click)="changeStartDate('12:00')">12:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '13:00' ? 'bg-secondary':''" (click)="changeStartDate('13:00')">13:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '14:00' ? 'bg-secondary':''" (click)="changeStartDate('14:00')">14:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '15:00' ? 'bg-secondary':''" (click)="changeStartDate('15:00')">15:00</div>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <label>Bitiş Saati</label>
+                        <div class="row">
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '10:00' ? 'bg-secondary':''" (click)="changeEndDate('10:00')">10:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '11:00' ? 'bg-secondary':''" (click)="changeEndDate('11:00')">11:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '12:00' ? 'bg-secondary':''" (click)="changeEndDate('12:00')">12:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '13:00' ? 'bg-secondary':''" (click)="changeEndDate('13:00')">13:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '14:00' ? 'bg-secondary':''" (click)="changeEndDate('14:00')">14:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '15:00' ? 'bg-secondary':''" (click)="changeEndDate('15:00')">15:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '16:00' ? 'bg-secondary':''" (click)="changeEndDate('16:00')">16:00</div>
+                        </div>
+                    </div>
+                   
+                    <label for="tarih" class="col-lg-4 col-form-label  fw-bold fs-6">Önermek İstediğiniz Tarih Bilgisi Giriniz</label>
+                    <input type="date" id="tarih"  name="tarih" class="form-control" >
+                </mat-tab>
+            </mat-tab-group>
+        </div>
       </app-modal>
 </ng-container>

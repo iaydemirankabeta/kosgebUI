@@ -39,8 +39,8 @@ export interface request {
   IsBreak: string;
   IsLunch: string;
   MeetingType: string;
-  Status:string;
-  RejectionReason?:string;
+  Status: string;
+  RejectionReason?: string;
   applications: application[];
 }
 export interface application {
@@ -70,7 +70,13 @@ export class SubmittedOffersComponent {
   displayedColumns: string[] = ['TeklifId', 'CagrıAdi', 'FirmaAdi', "TeklifTarihi", "TeklifStatusu"];
   displayedColumns2: string[] = ['CozumId', 'CozumAdi', 'FirmaAdi', "FirmaYetkilisi", "YetkiliAjandasi"];
   dataSource = ELEMENT_DATA;
-
+  startHour: string = "";
+  endHour: string = "";
+  selectedApplication: application | null = null;
+  kobimodalConfig: ModalConfig = {
+    modalTitle: "Görüşme İçin Saat ve Tarih Seç",
+    closeButtonLabel: 'Gönder',
+  };
   data = [
     {
       id: 1, callId: 1, callName: 'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
@@ -214,6 +220,8 @@ export class SubmittedOffersComponent {
   @ViewChild('acceptmodal') private acceptModalComponent: ModalComponent;
   @ViewChild('meetingModal') private meetingModal: ModalComponent;
   @ViewChild('kobi') private modalKobiComponent: ModalComponent;
+  @ViewChild('kobimodal') private kobiModalComponent: ModalComponent;
+
 
 
   targetValue: number;
@@ -345,21 +353,33 @@ export class SubmittedOffersComponent {
     }
   ]
 
-  displayedColumnsDetail: string[] = ['Id', 'CallName','SuitableDate', 'EmployeeNumber', 'StartTime', 'MeetingTime', 'EndTime', 'IsBreak', 'IsLunch', 'MeetingType', 'Status','Action'];
-  requests:request[] = [
-    { id: 1,CallName:"Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", SuitableDate: "23.09.2021", EmployeeNumber: 5, StartTime: '10:00', MeetingTime: '2 Saat', EndTime: '12:00', IsBreak: 'Yok', IsLunch: 'Yok', MeetingType: 'Yüz yüze',Status:'KOSGEB Onayladı', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
-    { id: 2,CallName:"Kozmetik Teknoloji Çözümler", SuitableDate: "24.09.2021", EmployeeNumber: 4, StartTime: '10:00', MeetingTime: '4,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Yüz yüze', Status:'KOSGEB Reddetti',RejectionReason:'Toplantıya katılım olmadığından reddedildi.',applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
-    { id: 3,CallName:"Tekstil Ürün İthalatı", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', Status:'KOSGEB Yeni Tarih Önersinde Bulundu',applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
-    { id: 4,CallName:"Kozmetik Teknoloji Çözümler", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status:'KOSGEB Onayladı',applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
-    { id: 5,CallName:"B2B Talebi", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status:'KOSGEB\'e Gönderildi',applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
- ];
- request: request | null = null;
+  displayedColumnsDetail: string[] = ['Id', 'CallName', 'SuitableDate', 'EmployeeNumber', 'StartTime', 'MeetingTime', 'EndTime', 'IsBreak', 'IsLunch', 'MeetingType', 'Status', 'Action'];
+  requests: request[] = [
+    { id: 1, CallName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", SuitableDate: "23.09.2021", EmployeeNumber: 5, StartTime: '10:00', MeetingTime: '2 Saat', EndTime: '12:00', IsBreak: 'Yok', IsLunch: 'Yok', MeetingType: 'Yüz yüze', Status: 'KOSGEB Onayladı', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
+    { id: 2, CallName: "Kozmetik Teknoloji Çözümler", SuitableDate: "24.09.2021", EmployeeNumber: 4, StartTime: '10:00', MeetingTime: '4,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Yüz yüze', Status: 'KOSGEB Reddetti', RejectionReason: 'Toplantıya katılım olmadığından reddedildi.', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
+    { id: 3, CallName: "Tekstil Ürün İthalatı", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', Status: 'KOSGEB Yeni Tarih Önersinde Bulundu', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
+    { id: 4, CallName: "Kozmetik Teknoloji Çözümler", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status: 'KOSGEB Onayladı', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
+    { id: 5, CallName: "B2B Talebi", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status: 'KOSGEB\'e Gönderildi', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
+  ];
+  request: request | null = null;
 
- getKobies(item: any) {
-  this.request = item;
+  getKobies(item: any) {
+    this.request = item;
 
-  // this.modalComponent.close()
-  this.modalKobiComponent.open();
-}
+    // this.modalComponent.close()
+    this.modalKobiComponent.open();
+  }
+  changeEndDate(event: string) {
+    this.endHour = event
+  }
+  changeStartDate(event: string) {
+    this.startHour = event
+  }
+    availableDays: any[] = [
+    "30/09/2023", "01/10/2023", "02/10/2023"]
+
+     acKobiModal() {
+      this.kobiModalComponent.open();
+    }
 }
 
