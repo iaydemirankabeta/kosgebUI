@@ -146,25 +146,27 @@
             <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.MeetingType}} </td>
           </ng-container>
           <!-- Weight Column -->
-          <ng-container matColumnDef="Status">
+          <ng-container matColumnDef="KosgebStatus">
             <th mat-header-cell *matHeaderCellDef> Durum</th>
-            <td mat-cell *matCellDef="let element"(click)="getKobies(element)"> {{element.Status}} </td>
+            <td mat-cell *matCellDef="let element"(click)="getKobies(element)"> {{element.KosgebStatus}} </td>
           </ng-container>
           
           <ng-container matColumnDef="Action">
               <!-- <th mat-header-cell *matHeaderCellDef> {{_user.roles === 2 ? 'Başvuru Statüsü': 'Aksiyon'}} </th> -->
               <th mat-header-cell *matHeaderCellDef>Aksiyon</th>
-
+              <!-- Buton Ayarlamaları -->
               <td mat-cell *matCellDef="let element" > 
                  <!-- Status Red ise red nedenini yazacak -->
-                <button *ngIf="element.Status=='KOSGEB Reddetti'" (click)="openRejectionReasonModal(element.RejectionReason)" type="button" class="btn btn-warning btn-margin">Reddetme Nedeni</button>
+                <button *ngIf="element.KosgebStatus=='KOSGEB Reddetti'" (click)="openRejectionReasonModal(element.RejectionReason)" type="button" class="btn btn-warning btn-margin">Reddetme Nedeni</button>
 
-                <div *ngIf="element.Status!='KOSGEB Onayladı' &&element.Status!='KOSGEB Reddetti'">
-                <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" (click)="openSuccessModal()" type="button" class="btn btn-primary btn-margin">Onayla</button>
-                <button type="button" class="btn btn-danger btn-margin"(click)="openCancelModal()">İptal Et</button>
-                <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" (click) = "acKobiModal()"  type="button" class="btn btn-success btn-margin">Düzenle</button>
+                <div *ngIf="element.KosgebStatus!='KOSGEB Onayladı' &&element.KosgebStatus!='KOSGEB Reddetti'&&element.BiStatus!='Bİ Onayladı'&&element.BiStatus!='Bİ İptal Etti'">
+                <button *ngIf="element.KosgebStatus!='KOSGEB\'e Gönderildi'" (click)="openSuccessModal(element.id)" type="button" class="btn btn-primary btn-margin">Onayla</button>
+                <button type="button" class="btn btn-danger btn-margin"(click)="openCancelModal(element.id)">İptal Et</button>
+                <button *ngIf="element.KosgebStatus!='KOSGEB\'e Gönderildi'" (click) = "acKobiModal()"  type="button" class="btn btn-success btn-margin">Düzenle</button>
 
                 </div>
+                <div *ngIf="element.BiStatus==='Bİ Onayladı'"><strong> Onayladınız</strong></div>
+                <div *ngIf="element.BiStatus==='Bİ İptal Etti'"><strong> İptal Ettiniz</strong></div>
               
                 <!-- <span *ngIf = "_user.roles === 2">Beklemede</span> -->
               </td>
