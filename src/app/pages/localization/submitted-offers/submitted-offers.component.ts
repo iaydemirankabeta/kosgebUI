@@ -221,8 +221,16 @@ export class SubmittedOffersComponent {
   @ViewChild('meetingModal') private meetingModal: ModalComponent;
   @ViewChild('kobi') private modalKobiComponent: ModalComponent;
   @ViewChild('kobimodal') private kobiModalComponent: ModalComponent;
+  @ViewChild('success') private modalSuccessComponent: ModalComponent;
+  @ViewChild('cancel') private modalCancelComponent: ModalComponent;
 
 
+  async openSuccessModal() {
+    return await this.modalSuccessComponent.open();
+  }
+  async openCancelModal() {
+    return await this.modalCancelComponent.open();
+  }
 
   targetValue: number;
   selectedOffer: any = this.data[2];
@@ -375,11 +383,20 @@ export class SubmittedOffersComponent {
   changeStartDate(event: string) {
     this.startHour = event
   }
-    availableDays: any[] = [
+  availableDays: any[] = [
     "30/09/2023", "01/10/2023", "02/10/2023"]
 
-     acKobiModal() {
-      this.kobiModalComponent.open();
-    }
+  acKobiModal() {
+    this.kobiModalComponent.open();
+  }
+  successModalConfig: ModalConfig = {
+    modalTitle: "",
+    closeButtonLabel: 'Kapat',
+  }
+  cancelModalConfig: ModalConfig = {
+    modalTitle: "",
+    closeButtonLabel: 'Kapat',
+  }
+
 }
 

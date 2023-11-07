@@ -159,8 +159,8 @@
                  <!-- Status Red ise red nedenini yazacak -->
                   <div *ngIf="element.Status=='KOSGEB Reddetti'"><strong>Reddedilme Nedeni:</strong> {{element.RejectionReason}}</div>
                 <div *ngIf="element.Status!='KOSGEB Onayladı' &&element.Status!='KOSGEB Reddetti'">
-                  <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" type="button" class="btn btn-primary btn-margin">Onayla</button>
-                <button type="button" class="btn btn-danger btn-margin">İptal Et</button>
+                  <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" (click)="openSuccessModal()" type="button" class="btn btn-primary btn-margin">Onayla</button>
+                <button type="button" class="btn btn-danger btn-margin"(click)="openCancelModal()">İptal Et</button>
                 <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" (click) = "acKobiModal()"  type="button" class="btn btn-success btn-margin">Düzenle</button>
 
                 </div>
@@ -328,7 +328,7 @@
       </table>
       <app-modal #kobi [modalConfig]="modalConfigKobi" aria-modal="true">
         <div *ngIf="request !== null">
-          <h3 >İşletmesiyle Görüşecek  Kobiler</h3>
+          <h3 >İşletmeyle Görüşecek  Kobiler</h3>
             <div *ngFor="let application of request?.applications" class="mt-4">
                 <label> {{application.KOBI}}</label>
             </div>
@@ -367,6 +367,20 @@
                     <input type="date" id="tarih"  name="tarih" class="form-control" >
                 </mat-tab>
             </mat-tab-group>
+        </div>
+      </app-modal>
+
+      <app-modal #success [modalConfig]="successModalConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <i class="fa-solid fa-check call-tick"></i>
+          <p>KOSGEB'e Gönderilen Görüşme Talebi Onaylandı</p>
+        </div>
+      </app-modal>
+
+      <app-modal #cancel [modalConfig]="cancelModalConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <i class="fa-solid fa-check call-tick"></i>
+          <p>KOSGEB'e Gönderilen Görüşme Talebi iptal edildi</p>
         </div>
       </app-modal>
 </ng-container>

@@ -32,7 +32,7 @@ export class GorusmeTalepleriComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      // meetingdescription: ['', Validators.required]
+      rejectionReason: ['', Validators.required]
     });
   }
 

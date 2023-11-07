@@ -111,8 +111,8 @@
                 <label> {{application.KOBI}}</label>
             </div>
         </div>
-        
       </app-modal>
+      
       <app-modal #kobimodal [modalConfig]="kobimodalConfig" aria-modal="true">
         <div *ngIf="selectedApplication !== null">
             <label>{{request?.RequestMeetiingBI !== null ? request?.RequestMeetiingBI : ''}} && {{selectedApplication.KOBI}}</label>
@@ -157,12 +157,15 @@
       </app-modal>
 
       Reddetme Nedeni 
-      <form style="width: 100%;">
+      <!-- <form style="width: 100%;"> -->
+      <form [formGroup]="form"  style="width: 100%;">
 
         <app-modal #rejectionReasonModal [modalConfig]="modalConfigRejectionReason" aria-modal="true">
           <div class="row">
-            <!-- <div class="character-count">Kalan Karakter Sayısı: {{ characterCount }} / 300</div> -->
+            <div class="character-count">Kalan Karakter Sayısı: {{ characterCount }} / 300</div>
             <textarea class="form-control" formControlName="rejectionReason" [ngClass]="form.get('rejectionReason')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Reddetme sebebini giriniz..." (input)="updateCharacterCount()"></textarea>
+            <!-- <textarea class="form-control" formControlName="meetingdescription" [ngClass]="form.get('meetingdescription')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Görüşme açıklaması giriniz..." (input)="updateCharacterCount()"></textarea> -->
+
             <button [disabled]="!form.valid" class="btn btn-primary btn-margin col-xs-12" style="width: 100%;margin-top:10px;" (click)="openrejectionReasonSuccessModal()" >Gönder</button>
           </div>
         </app-modal>
@@ -171,7 +174,7 @@
         <div class="col-xs-12 text-center">
           <i class="fa-solid fa-check call-tick"></i>
           <!-- <h3>Tebrikler</h3> -->
-          <p>Reddetme İşleminiz Yapımıştır.</p>
+          <p>Reddetme İşleminiz Yapılmıştır.</p>
         </div>
       </app-modal>
 </ng-container>
