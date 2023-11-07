@@ -85,7 +85,7 @@ export class GorusmeTalepleriComponent {
     onClose:() => this.closeMeetingModal()
   }
   successModalConfig2: ModalConfig = {
-    modalTitle: "deedede",
+    modalTitle: "",
     closeButtonLabel:'Kapat',
     onClose:() => this.closeMeetingModal(),
   }

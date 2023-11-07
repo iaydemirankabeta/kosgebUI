@@ -223,10 +223,16 @@ export class SubmittedOffersComponent {
   @ViewChild('kobimodal') private kobiModalComponent: ModalComponent;
   @ViewChild('success') private modalSuccessComponent: ModalComponent;
   @ViewChild('cancel') private modalCancelComponent: ModalComponent;
+  @ViewChild('rejection') private modalRejectionReasonComponent: ModalComponent;
 
-
+  chanceRejectionReason:"";
   async openSuccessModal() {
     return await this.modalSuccessComponent.open();
+  }
+  //ekleme
+   openRejectionReasonModal(item:any) {debugger
+     this.chanceRejectionReason=item;
+    return  this.modalRejectionReasonComponent.open();
   }
   async openCancelModal() {
     return await this.modalCancelComponent.open();
@@ -365,9 +371,9 @@ export class SubmittedOffersComponent {
   requests: request[] = [
     { id: 1, CallName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", SuitableDate: "23.09.2021", EmployeeNumber: 5, StartTime: '10:00', MeetingTime: '2 Saat', EndTime: '12:00', IsBreak: 'Yok', IsLunch: 'Yok', MeetingType: 'Yüz yüze', Status: 'KOSGEB Onayladı', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
     { id: 2, CallName: "Kozmetik Teknoloji Çözümler", SuitableDate: "24.09.2021", EmployeeNumber: 4, StartTime: '10:00', MeetingTime: '4,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Yüz yüze', Status: 'KOSGEB Reddetti', RejectionReason: 'Toplantıya katılım olmadığından reddedildi.', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
-    { id: 3, CallName: "Tekstil Ürün İthalatı", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', Status: 'KOSGEB Yeni Tarih Önersinde Bulundu', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
-    { id: 4, CallName: "Kozmetik Teknoloji Çözümler", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status: 'KOSGEB Onayladı', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
-    { id: 5, CallName: "B2B Talebi", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status: 'KOSGEB\'e Gönderildi', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
+    { id: 3, CallName: "Tekstil Ürün İthalatı", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', Status: 'KOSGEB Yeni Tarih Önersinde Bulundu', RejectionReason: 'Toplantıya katılım olmadığından reddedildi.', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
+    { id: 4, CallName: "Kozmetik Teknoloji Çözümler", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status: 'KOSGEB Onayladı', RejectionReason: 'Toplantıya katılım olmadığından reddedildi.', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
+    { id: 5, CallName: "B2B Talebi", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', Status: 'KOSGEB\'e Gönderildi', RejectionReason: 'Toplantıya katılım olmadığından reddedildi.',applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
   ];
   request: request | null = null;
 
@@ -395,6 +401,10 @@ export class SubmittedOffersComponent {
   }
   cancelModalConfig: ModalConfig = {
     modalTitle: "",
+    closeButtonLabel: 'Kapat',
+  }
+  rejectionReasonModalConfig: ModalConfig = {
+    modalTitle: "Reddetme  nedeni",
     closeButtonLabel: 'Kapat',
   }
 

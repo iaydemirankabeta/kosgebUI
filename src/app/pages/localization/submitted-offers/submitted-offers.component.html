@@ -157,9 +157,10 @@
 
               <td mat-cell *matCellDef="let element" > 
                  <!-- Status Red ise red nedenini yazacak -->
-                  <div *ngIf="element.Status=='KOSGEB Reddetti'"><strong>Reddedilme Nedeni:</strong> {{element.RejectionReason}}</div>
+                <button *ngIf="element.Status=='KOSGEB Reddetti'" (click)="openRejectionReasonModal(element.RejectionReason)" type="button" class="btn btn-warning btn-margin">Reddetme Nedeni</button>
+
                 <div *ngIf="element.Status!='KOSGEB Onayladı' &&element.Status!='KOSGEB Reddetti'">
-                  <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" (click)="openSuccessModal()" type="button" class="btn btn-primary btn-margin">Onayla</button>
+                <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" (click)="openSuccessModal()" type="button" class="btn btn-primary btn-margin">Onayla</button>
                 <button type="button" class="btn btn-danger btn-margin"(click)="openCancelModal()">İptal Et</button>
                 <button *ngIf="element.Status!='KOSGEB\'e Gönderildi'" (click) = "acKobiModal()"  type="button" class="btn btn-success btn-margin">Düzenle</button>
 
@@ -379,8 +380,13 @@
 
       <app-modal #cancel [modalConfig]="cancelModalConfig" aria-modal="true">
         <div class="col-xs-12 text-center">
-          <i class="fa-solid fa-check call-tick"></i>
+          <!-- <i class="fa-solid fa-check call-tick"></i> -->
           <p>KOSGEB'e Gönderilen Görüşme Talebi iptal edildi</p>
         </div>
+      </app-modal>
+      <app-modal #rejection [modalConfig]="rejectionReasonModalConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+            <div>{{chanceRejectionReason}}</div>
+          </div>
       </app-modal>
 </ng-container>
