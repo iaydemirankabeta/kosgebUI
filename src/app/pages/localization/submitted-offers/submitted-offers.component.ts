@@ -228,7 +228,7 @@ export class SubmittedOffersComponent {
 
   chanceRejectionReason:"";
   async openSuccessModal(id:any) {
-    debugger
+    
     const requestToUpdate = this.requests.find(request => request.id === id);
     if (requestToUpdate) {
       //update eklenecek
@@ -236,7 +236,7 @@ export class SubmittedOffersComponent {
     }
     return await this.modalSuccessComponent.open();
   }
-   openRejectionReasonModal(item:any) {debugger
+   openRejectionReasonModal(item:any) {
      this.chanceRejectionReason=item;
     return  this.modalRejectionReasonComponent.open();
   }
