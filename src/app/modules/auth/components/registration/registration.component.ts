@@ -44,6 +44,14 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   initForm() {
     this.registrationForm = this.fb.group(
       {
+        tcno: [
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(100),
+          ]),
+        ],
         fullname: [
           '',
           Validators.compose([
@@ -100,7 +108,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe((user: UserModel) => {
         if (user) {
-          this.router.navigate(['/']);
+          console.log(user);
+          this.router.navigate(['/anasayfa']);
         } else {
           this.hasError = true;
         }
