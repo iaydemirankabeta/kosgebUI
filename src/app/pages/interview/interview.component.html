@@ -6,119 +6,58 @@
       
         <!-- Position Column -->
         <ng-container matColumnDef="Id">
-          <th mat-header-cell *matHeaderCellDef> GörüşmeIDdeneme </th>
-          <td mat-cell *matCellDef="let element"(click)="getKobies(element)" >
+          <th mat-header-cell *matHeaderCellDef>GörüşmeID</th>
+          <td mat-cell *matCellDef="let element" >
             {{element.id}} </td>
         </ng-container>
         <ng-container matColumnDef="MeetingName">
           <th mat-header-cell *matHeaderCellDef>Çağrı Adı/B2B Talebi</th>
-          <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.MeetingName}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.MeetingName}} </td>
         </ng-container>
         <!-- Name Column -->
         <ng-container matColumnDef="RequestMeetiingBI">
           <th mat-header-cell *matHeaderCellDef> İşletme Adı</th>
-          <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.RequestMeetiingBI}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="SuitableDate">
-          <th mat-header-cell *matHeaderCellDef> Uygun Tarih Aralığı</th>
-          <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.SuitableDate}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.RequestMeetiingBI}} </td>
         </ng-container>
 
         <ng-container matColumnDef="EmployeeNumber">
           <th mat-header-cell *matHeaderCellDef> Katılımcı Sayısı</th>
-          <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.EmployeeNumber}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="StartTime">
-          <th mat-header-cell *matHeaderCellDef>Başlangıç Zamanı</th>
-          <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.StartTime}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.EmployeeNumber}} </td>
         </ng-container>
 
         <ng-container matColumnDef="MeetingTime">
           <th mat-header-cell *matHeaderCellDef>Görüşme Süresi</th>
-          <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.MeetingTime}} </td>
+          <td mat-cell *matCellDef="let element" > {{element.MeetingTime}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="EndTime">
-          <th mat-header-cell *matHeaderCellDef>Bitiş Zamanı</th>
-          <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.EndTime}} </td>
-        </ng-container>
         <ng-container matColumnDef="IsBreak">
           <th mat-header-cell *matHeaderCellDef>Mola Bilgisi</th>
-          <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.IsBreak}} </td>
+          <td mat-cell *matCellDef="let element" > {{element.IsBreak}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="IsLunch">
-          <th mat-header-cell *matHeaderCellDef>Öğle Arası Bilgisi</th>
-          <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.IsLunch}} </td>
-        </ng-container>
-
+      
         <ng-container matColumnDef="MeetingType">
           <th mat-header-cell *matHeaderCellDef>Görüşme Tipi</th>
-          <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.MeetingType}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.MeetingType}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="BiStatus">
-          <th mat-header-cell *matHeaderCellDef>Durum</th>
-          <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.BiStatus}} </td>
-        </ng-container>
+    
         <!-- Weight Column -->
       
         <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef> Aksiyon </th>
             <td mat-cell *matCellDef="let element" > 
-              <div *ngIf="element.BiStatus!='Bİ İptal Etti' &&element.BiStatus!='Bİ Onayladı'&&element.KosgebStatus!='KOSGEB Onayladı'&&element.KosgebStatus!='KOSGEB Reddetti'">
-                <button type="button"  (click)="openSuccessModal(element.id)" class="btn btn-primary btn-margin">Onayla</button>
-                <button type="button"  (click)="acRandevuModal(element)" class="btn btn-success btn-margin">Görüşme Düzenle</button>
-                <button type="button" class="btn btn-danger btn-margin" (click)="openRejectionReasonModal(element.id)">Reddet</button>
-              </div>
-              <div *ngIf="element.KosgebStatus==='KOSGEB Onayladı'"><strong> Onayladınız</strong></div>
-              <div *ngIf="element.KosgebStatus==='KOSGEB Reddetti'"><strong> Reddettiniz</strong></div>
-
+                <button type="button"  (click)="acKobiModal()" class="btn btn-success btn-margin">Oturum Seç</button>
             </td>
           </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <ng-container >
-       
-        <!-- <div *ngIf="request !== null&&!IsClose" >
-          <div class="row">
-            <div class="col-md-12 text-center">
-          <h3 class="mt-4">{{request.RequestMeetiingBI}} İşletmesiyle Görüşecek  Kobiler</h3>
-          <div *ngFor="let application of request?.applications" class="mt-4">
-              <label> {{application.KOBI}}</label>
-          </div>
-          <button class="btn btn-danger btn-margin"(click) = "isClose()" >Kapat</button>
-      </div>
-    </div>
-  </div> -->
-
-    
-        </ng-container>
-      <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
-        <div *ngIf="request !== null">
-           <div *ngFor="let application of request?.applications" class="mt-4">
-                <label>{{request?.RequestMeetiingBI !== null ? request.RequestMeetiingBI : ''}} && {{application.KOBI}}</label>
-                <button class="btn btn-primary btn-margin" (click) = "acKobiModal(application)">Seç</button>
-            </div>
-        </div>
-        
-      </app-modal>
-      <app-modal #kobi [modalConfig]="modalConfigKobi" aria-modal="true">
-        <div *ngIf="request !== null">
-          <h3 >{{request.RequestMeetiingBI}} İşletmesiyle Görüşecek  Kobiler</h3>
-            <div *ngFor="let application of request?.applications" class="mt-4">
-                <label> {{application.KOBI}}</label>
-            </div>
-        </div>
-      </app-modal>
-      
+      <!-- <ng-container >
+        </ng-container> -->
       <app-modal #kobimodal [modalConfig]="kobimodalConfig" aria-modal="true">
-        <div *ngIf="selectedApplication !== null">
-            <label>{{request?.RequestMeetiingBI !== null ? request?.RequestMeetiingBI : ''}} && {{selectedApplication.KOBI}}</label>
+        <div >
             <mat-tab-group fitInkBarToContent>
                 <mat-tab *ngFor="let day of availableDays" label="{{day}}">
                     <div class="p-2">
@@ -144,9 +83,8 @@
                             <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '16:00' ? 'bg-secondary':''" (click)="changeEndDate('16:00')">16:00</div>
                         </div>
                     </div>
-                   
-                    <label for="tarih" class="col-lg-4 col-form-label  fw-bold fs-6">Önermek İstediğiniz Tarih Bilgisi Giriniz</label>
-                    <input type="date" id="tarih"  name="tarih" class="form-control" >
+                    <!-- <label for="tarih" class="col-lg-4 col-form-label  fw-bold fs-6">Önermek İstediğiniz Tarih Bilgisi Giriniz</label>
+                    <input type="date" id="tarih"  name="tarih" class="form-control" > -->
                 </mat-tab>
             </mat-tab-group>
         </div>
@@ -155,30 +93,9 @@
         <div class="col-xs-12 text-center">
           <i class="fa-solid fa-check call-tick"></i>
           <h3>Tebrikler</h3>
-          <p>Görüşme Talebini onayladınız. Oturum sekmesinden taleplerinizi takip edebilirsiniz.</p>
+          <p>Görüşme tarihi  ve saatini seçtiniz. Oturum sekmesinden taleplerinizi takip edebilirsiniz.</p>
         </div>
       </app-modal>
-
-      Reddetme Nedeni 
-      <!-- <form style="width: 100%;"> -->
-      <form [formGroup]="form"  style="width: 100%;">
-
-        <app-modal #rejectionReasonModal [modalConfig]="modalConfigRejectionReason" aria-modal="true">
-          <div class="row">
-            <div class="character-count">Kalan Karakter Sayısı: {{ characterCount }} / 300</div>
-            <textarea class="form-control" formControlName="rejectionReason" [ngClass]="form.get('rejectionReason')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Reddetme sebebini giriniz..." (input)="updateCharacterCount()"></textarea>
-            <!-- <textarea class="form-control" formControlName="meetingdescription" [ngClass]="form.get('meetingdescription')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300" placeholder="Görüşme açıklaması giriniz..." (input)="updateCharacterCount()"></textarea> -->
-
-            <button [disabled]="!form.valid" class="btn btn-primary btn-margin col-xs-12" style="width: 100%;margin-top:10px;" (click)="openrejectionReasonSuccessModal()" >Gönder</button>
-          </div>
-        </app-modal>
-      </form>
-      <app-modal #rejectionReasonSuccess [modalConfig]="successModalConfig2" aria-modal="true">
-        <div class="col-xs-12 text-center">
-          <i class="bi bi-trash"></i>
-          <!-- <h3>Tebrikler</h3> -->
-          <p>Reddetme İşleminiz Yapılmıştır.</p>
-        </div>
-      </app-modal>
+   
 </ng-container>
 
