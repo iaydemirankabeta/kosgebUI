@@ -5,6 +5,7 @@ import { ModalsModule } from 'src/app/_metronic/partials';
 import { RouterModule } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,6 +15,8 @@ import { MatTableModule } from '@angular/material/table';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
           path: '',
@@ -23,7 +26,7 @@ import { MatTableModule } from '@angular/material/table';
   ]),
     ModalsModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
   ]
 })
 export class GorusmeTalepleriModule { }

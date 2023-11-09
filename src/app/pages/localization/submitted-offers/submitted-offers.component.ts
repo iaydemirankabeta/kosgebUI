@@ -28,7 +28,26 @@ import {
 import { MonthViewDay } from 'calendar-utils'; // İmport MonthViewDay sınıfını içe aktarın
 
 
-
+export interface request {
+  id: number;
+  CallName: string;
+  SuitableDate: string;
+  EmployeeNumber: number;
+  StartTime: string;
+  MeetingTime: string;
+  EndTime: string;
+  IsBreak: string;
+  IsLunch: string;
+  MeetingType: string;
+  KosgebStatus: string;
+  BiStatus?: string;
+  RejectionReason?: string;
+  applications: application[];
+}
+export interface application {
+  id: number;
+  KOBI: string;
+}
 
 export interface ConversationElement {
   id: string,
@@ -36,6 +55,7 @@ export interface ConversationElement {
   firmAuthority: string;
   solutionName: string;
 }
+
 const ELEMENT_DATA: ConversationElement[] = [
   { id: "X Çağrısı", firm: "X şirketi", firmAuthority: "Tufan Yazıcı", solutionName: "Gürültü Engelleyici Malzeme Tedariği" },
   { id: "Y Çağrısı", firm: "Y şirketi", firmAuthority: "Gizem Turanlı", solutionName: "Kozmetik Ürünlerin Tedariği" },
@@ -51,7 +71,13 @@ export class SubmittedOffersComponent {
   displayedColumns: string[] = ['TeklifId', 'CagrıAdi', 'FirmaAdi', "TeklifTarihi", "TeklifStatusu"];
   displayedColumns2: string[] = ['CozumId', 'CozumAdi', 'FirmaAdi', "FirmaYetkilisi", "YetkiliAjandasi"];
   dataSource = ELEMENT_DATA;
-
+  startHour: string = "";
+  endHour: string = "";
+  selectedApplication: application | null = null;
+  kobimodalConfig: ModalConfig = {
+    modalTitle: "Görüşme İçin Saat ve Tarih Seç",
+    closeButtonLabel: 'Gönder',
+  };
   data = [
     {
       id: 1, callId: 1, callName: 'Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi',
@@ -185,10 +211,43 @@ export class SubmittedOffersComponent {
     modalTitle: "Toplantı Oluştur",
     hideCloseButton: () => true,
   }
+  modalConfigKobi: ModalConfig = {
+    modalTitle: "",
+    closeButtonLabel: 'Kapat'
+    // hideCloseButton: () => true
+  };
   @ViewChild('modal') private modalComponent: ModalComponent;
   @ViewChild('meet') private meet: ModalComponent;
   @ViewChild('acceptmodal') private acceptModalComponent: ModalComponent;
   @ViewChild('meetingModal') private meetingModal: ModalComponent;
+  @ViewChild('kobi') private modalKobiComponent: ModalComponent;
+  @ViewChild('kobimodal') private kobiModalComponent: ModalComponent;
+  @ViewChild('success') private modalSuccessComponent: ModalComponent;
+  @ViewChild('cancel') private modalCancelComponent: ModalComponent;
+  @ViewChild('rejection') private modalRejectionReasonComponent: ModalComponent;
+
+  chanceRejectionReason:"";
+  async openSuccessModal(id:any) {
+    
+    const requestToUpdate = this.requests.find(request => request.id === id);
+    if (requestToUpdate) {
+      //update eklenecek
+      requestToUpdate.BiStatus = 'Bİ Onayladı';
+    }
+    return await this.modalSuccessComponent.open();
+  }
+   openRejectionReasonModal(item:any) {
+     this.chanceRejectionReason=item;
+    return  this.modalRejectionReasonComponent.open();
+  }
+  async openCancelModal(id:any) {
+    const requestToUpdate = this.requests.find(request => request.id === id);
+    if (requestToUpdate) {
+      //update eklenecek
+      requestToUpdate.BiStatus = 'Bİ İptal Etti';
+    }
+    return await this.modalCancelComponent.open();
+  }
 
   targetValue: number;
   selectedOffer: any = this.data[2];
@@ -319,7 +378,49 @@ export class SubmittedOffersComponent {
     }
   ]
 
+  displayedColumnsDetail: string[] = ['Id', 'CallName', 'SuitableDate', 'EmployeeNumber', 'StartTime', 'MeetingTime', 'EndTime', 'IsBreak', 'IsLunch', 'MeetingType', 'KosgebStatus', 'Action'];
+  requests: request[] = [
+    { id: 1, CallName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", SuitableDate: "23.09.2021", EmployeeNumber: 5, StartTime: '10:00', MeetingTime: '2 Saat', EndTime: '12:00', IsBreak: 'Yok', IsLunch: 'Yok', MeetingType: 'Yüz yüze', KosgebStatus: 'KOSGEB Onayladı', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
+    { id: 2, CallName: "Kozmetik Teknoloji Çözümler", SuitableDate: "24.09.2021", EmployeeNumber: 4, StartTime: '10:00', MeetingTime: '4,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Yüz yüze', KosgebStatus: 'KOSGEB Reddetti', RejectionReason: 'Toplantıya katılım olmadığından reddedildi.', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }] },
+    { id: 3, CallName: "Tekstil Ürün İthalatı", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', KosgebStatus: 'KOSGEB Yeni Tarih Önersinde Bulundu' ,RejectionReason: 'Toplantıya katılım olmadığından reddedildi.', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
+    { id: 4, CallName: "Tekstil Ürün İthalatı", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', KosgebStatus: 'KOSGEB Yeni Tarih Önersinde Bulundu', BiStatus:'Bİ Onayladı',RejectionReason: 'Toplantıya katılım olmadığından reddedildi.', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
+    { id: 5, CallName: "Kozmetik Teknoloji Çözümler", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', KosgebStatus: 'KOSGEB Onayladı', RejectionReason: 'Toplantıya katılım olmadığından reddedildi.', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
+    { id: 6, CallName: "B2B Talebi", SuitableDate: "24.09.2021", EmployeeNumber: 10, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '30 Dakika', IsLunch: '1 Saat', MeetingType: 'Hibrit', KosgebStatus: 'KOSGEB\'e Gönderildi', RejectionReason: 'Toplantıya katılım olmadığından reddedildi.',applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
+    { id: 7, CallName: "Tekstil Ürün İthalatı", SuitableDate: "24.09.2021", EmployeeNumber: 7, StartTime: '09:00', MeetingTime: '5,5 Saat', EndTime: '16:00', IsBreak: '15 Dakika', IsLunch: '1 Saat', MeetingType: 'Online', KosgebStatus: 'KOSGEB Yeni Tarih Önersinde Bulundu', BiStatus:'Bİ İptal Etti',RejectionReason: 'Toplantıya katılım olmadığından reddedildi.', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }, { id: 2, KOBI: "KOBI-4" }, { id: 2, KOBI: "KOBI-5" }] },
 
+  ];
+  request: request | null = null;
+
+  getKobies(item: any) {
+    this.request = item;
+
+    // this.modalComponent.close()
+    this.modalKobiComponent.open();
+  }
+  changeEndDate(event: string) {
+    this.endHour = event
+  }
+  changeStartDate(event: string) {
+    this.startHour = event
+  }
+  availableDays: any[] = [
+    "30/09/2023", "01/10/2023", "02/10/2023"]
+
+  acKobiModal() {
+    this.kobiModalComponent.open();
+  }
+  successModalConfig: ModalConfig = {
+    modalTitle: "",
+    closeButtonLabel: 'Kapat',
+  }
+  cancelModalConfig: ModalConfig = {
+    modalTitle: "",
+    closeButtonLabel: 'Kapat',
+  }
+  rejectionReasonModalConfig: ModalConfig = {
+    modalTitle: "Reddetme  nedeni",
+    closeButtonLabel: 'Kapat',
+  }
 
 }
 
