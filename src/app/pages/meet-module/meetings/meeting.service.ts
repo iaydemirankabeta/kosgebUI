@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Meeting,Note } from './meeting.model';
+import { MeetingDTO } from './meeting.model';
 import { HttpClient } from '@angular/common/http';
 import { Company } from 'src/app/models/Company.model';
 import { BaseResponse } from 'src/app/models/BaseResponse.model';
@@ -45,34 +45,30 @@ export enum MeetingNoteType{
 export class MeetingService {
 
   // meetingNotes adlı özelliği tanımlayın ve başlangıçta boş bir harita olarak başlatın
-  private meetingNotes: Map<number, Note[]> = new Map<number, Note[]>();
+  private meetingNotes: Map<number, MeetingNote[]> = new Map<number, MeetingNote[]>();
 
   constructor(private httpClient : HttpClient) {
     // Notları örnek olarak burada doldurabilirsiniz.
     // Örneğin, Toplantı 1 için notlar:
-    this.meetingNotes.set(1, [
-      { content: 'Yapılacaklar 1', category: 'Yapılacaklar' },
-      { content: 'Yapılabilecekler 1', category: 'Yapılabilecekler' },
-      { content: 'Bilgi 1', category: 'Bilgi' },
-    ]);
+
   }
 
-  getMeetings(getMeetingDTO:GetMeetingDTO):any{
+  getMeetings(getMeetingDTO:GetMeetingDTO|null = null):any{
     return this.httpClient.post(baseURL+"/Meeting/GetMeetings",getMeetingDTO);
   }
 
 
-  getMeetingNotes(meeting: Meeting):any{
+  getMeetingNotes(meeting: MeetingDTO):any{
     const meetingId = meeting.id;
     return this.httpClient.get(`${baseURL}/MeetingNote/${meeting.id}`)
   }
-  private notes: Note[] = [];
+  private notes: MeetingNote[] = [];
 
-  addMeeting(meeting: Meeting) {
+  addMeeting(meeting: MeetingDTO) {
     return this.httpClient.post(`${baseURL}/Meeting`,meeting);
   }
 
-  addNote(note: Note) {
+  addNote(note: MeetingNote) {
     return this.httpClient.post(`${baseURL}/MeetingNote`,note);  
   }
   
