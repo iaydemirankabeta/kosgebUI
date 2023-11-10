@@ -108,7 +108,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe((user: UserModel) => {
         if (user) {
-          console.log(user);
           this.router.navigate(['/anasayfa']);
         } else {
           this.hasError = true;

@@ -44,17 +44,20 @@ export class AuthService implements OnDestroy {
   }
 
   // public methods
-  login(email: string = "", password: string = ""): Observable<UserType> {
+  login(Username: string = "", Password: string = ""): Observable<UserType> {
     this.isLoadingSubject.next(true);
-    return this.authHttpService.login(email, password).pipe(
+    return this.authHttpService.login(Username, Password).pipe(
       map((auth: AuthModel) => {
         const result = this.setAuthFromLocalStorage(auth);
         return result;
       }),
       switchMap(() => this.getUserByToken()),
       catchError((err) => {
-        console.error('err', err);
-        return of(undefined);
+        console.error('Hata:', err);
+  console.log('Hata türü:', err.constructor.name);
+  console.log('Hata mesajı:', err.message);
+  console.log('Hata detayları:', err.stack);
+  return of(undefined);
       }),
       finalize(() => this.isLoadingSubject.next(false))
     );

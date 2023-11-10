@@ -60,31 +60,31 @@
   </ng-container>
   <!-- end::Alert error-->
       <div class="fv-row mb-8">
-    <label class="form-label fs-6 fw-bolder text-dark">Email</label>
-    <input class="form-control bg-transparent" type="email" name="email" formControlName="email" autocomplete="off"
+    <label class="form-label fs-6 fw-bolder text-dark">TC NO</label>
+    <input class="form-control bg-transparent" type="number" name="userName" formControlName="userName" autocomplete="off"
       [ngClass]="{
-        'is-invalid': loginForm.controls['email'].invalid,
-        'is-valid': loginForm.controls['email'].valid
+        'is-invalid': loginForm.controls['userName'].invalid,
+        'is-valid': loginForm.controls['userName'].valid
       }" />
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
         validation: 'required',
         message: 'E-posta alanını boş bırakmayınız',
-        control: loginForm.controls['email']
+        control: loginForm.controls['userName']
       }"></ng-container>
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
-        validation: 'email',
+        validation: 'userName',
         message: 'E-posta geçersiz',
-        control: loginForm.controls['email']
+        control: loginForm.controls['userName']
       }"></ng-container>
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
         validation: 'minLength',
         message: 'Email should have at least 3 symbols',
-        control: loginForm.controls['email']
+        control: loginForm.controls['userName']
       }"></ng-container>
     <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
         validation: 'maxLength',
         message: 'Email should have maximum 360 symbols',
-        control: loginForm.controls['email']
+        control: loginForm.controls['userName']
       }"></ng-container>
   </div>
   <!--end::Form group-->
