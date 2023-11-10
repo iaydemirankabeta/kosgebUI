@@ -18,6 +18,7 @@ export class UserModel extends AuthModel {
   socialNetworks?: SocialNetworksModel;
   selectedCompany?:UserCompany | null;
   userCompanies?:UserCompany[];
+  userMenus?:UserMenu[]
   // personal information
   firstname?: string;
   lastname?: string;
@@ -52,10 +53,10 @@ export class UserModel extends AuthModel {
   };
 
   // UserModel sınıfı içinde
-loginSetUser(apiData: any) {
+loginSetUser(apiData: any,userName:string) {
   this.id = 1;
-  this.username = "1297801578";
-  this.password = 'demoTestPassword12'; // Şifre verisi güvenlik nedeniyle temizlenmiş gibi görünüyor
+  this.username = userName;
+  this.password = ''; // Şifre verisi güvenlik nedeniyle temizlenmiş gibi görünüyor
   this.authToken = apiData.data.token
   this.refreshToken = "auth-token-f8c137a2c98743f48b643e71161d90aa";
   this.fullname = apiData.data.companies.name || ''; // Tam adınızın API yanıtının doğru alanına göre güncellenmesi gerekebilir
@@ -65,7 +66,23 @@ loginSetUser(apiData: any) {
   this.occupation = apiData.data.occupation || '';
   this.companyName = apiData.data.companies.name || '';
   this.phone = apiData.data.phoneNumber || '';
-  
+  this.userCompanies = [];
+  if(apiData.data.companies.length > 0){
+    var a:UserCompany[] = [];
+    apiData.data.companies.forEach((companyItem:any) => {
+      a.push(
+        {
+          company:{
+            name:companyItem.name,
+            id:companyItem.id,
+            img:{url:""},
+            type:CompanyTypes.KOBI
+          }
+        }
+      )
+    });
+   this.userCompanies = a;
+  }
   // Diğer özellikleri API yanıtına göre güncelleyin
   this.firstname = apiData.data.firstname || '';
   this.lastname = apiData.data.lastname || '';
@@ -107,4 +124,14 @@ loginSetUser(apiData: any) {
     this.address = user.address;
     this.socialNetworks = user.socialNetworks;
   }
+}
+
+export interface UserMenu{
+  name:string;
+  displayName:string;
+  enDisplayName:string;
+  endpoint:string;
+  icon:string;
+  id:string;
+  upperMenuId:string
 }

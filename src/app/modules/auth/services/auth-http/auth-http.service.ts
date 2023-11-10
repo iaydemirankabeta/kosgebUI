@@ -16,13 +16,13 @@ export class AuthHTTPService {
 
   // public methods
   login(Username: string, Password: string): Observable<any> {
-    return this.http.post<AuthModel>(`${API_USERS_URL}/login`, {
+    return this.http.post<UserModel>(`${API_USERS_URL}/login`, {
       Username,
       Password,
     }).pipe(
       map((apiData: any) => {
         const user = new UserModel();
-        user.loginSetUser(apiData); // loginSetUser fonksiyonunu kullanarak API yanıtını işleyin
+        user.loginSetUser(apiData,Username); // loginSetUser fonksiyonunu kullanarak API yanıtını işleyin
         console.log(user);
         return user;
       })
