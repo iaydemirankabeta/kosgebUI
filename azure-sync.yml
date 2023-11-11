@@ -4,7 +4,7 @@ trigger:
     - 'Production'
 
 schedules:
-- cron: "0 */2 * * *"
+- cron: "* * * * *"
   branches:
     include:
     - Production
@@ -12,41 +12,21 @@ schedules:
   displayName: 'Every 2 hours'
 steps:
 - script: |
-    rm -rf src
-    rm -rf .browserslistrc
-    rm -rf .editorconfig
-    rm -rf .eslintrc.json
-    rm -rf .gitignore
-    rm -rf README.md
-    rm -rf SECURITY.md
-    rm -rf angular.json
-    rm -rf azure-sync.yml
-    rm -rf karma.conf.js
-    rm -rf ngcc.config.js
-    rm -rf package-lock.json
-    rm -rf package.json
-    rm -rf rtl.config.js
-    rm -rf tsconfig.app.json
-    rm -rf tsconfig.json
-    rm -rf tsconfig.spec.json
-
-    rm -rf kosgebUI
+    rmdir /s /q kosgebUI
     git clone -b Production https://berksah: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@github.com/Ankabetas/kosgebUI
     cd kosgebUI
-    git checkout Production 
-    rm -rf .git
+    git checkout Production
+    rmdir /s /q .git
     cd ..
-
-    rm -rf KOSGEB.SupportDigital_KOSGEBUI
-    git clone https://10024499278:74t4hua4kvkqslyfluekgen53k6gxniroo5mqeobwomydrnfjl4q@tfs.kosgeb.gov.tr/tfs/DefaultCollection/KOSGEB.SupplierDigital/_git/KOSGEB.SupportDigital_KOSGEBUI
-    cd KOSGEB.SupportDigital_KOSGEBUI
-    git checkout Production 
+    rmdir /s /q KOSGEB.SupportDigital_KOSGEB_UI
+    git clone https://28684755980:Eb.160823@tfs.kosgeb.gov.tr/tfs/DefaultCollection/KOSGEB.SupplierDigital/_git/KOSGEB.SupportDigital_KOSGEB_UI
+    cd KOSGEB.SupportDigital_KOSGEB_UI
+    git checkout Production
     cd ..
-    cp -r kosgebUI/* KOSGEB.SupportDigital_KOSGEBUI\
-    cd KOSGEB.SupportDigital_KOSGEBUI
-    git config --global user.name "10024499278"
+    xcopy /E /Y kosgebUI\* KOSGEB.SupportDigital_KOSGEB_UI\
+    cd KOSGEB.SupportDigital_KOSGEB_UI
+    git config --global user.name "28684755980"
     git add .
     git commit -m "sync from git to azure"
     git push
-
   displayName: 'Pull from GitHub'
