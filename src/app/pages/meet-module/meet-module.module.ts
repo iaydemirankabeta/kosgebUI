@@ -11,7 +11,7 @@ import { registerLocaleData } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MeetPlanComponent } from './meet-plan/meet-plan.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MeetingsComponent } from './meetings/meetings.component';
 import { MeetingNotesComponent } from './meetings/meeting-notes/meeting-notes.component';
 import { ModalsModule } from "../../_metronic/partials/layout/modals/modals.module"; // FormsModule'ı içeri alın
@@ -27,6 +27,7 @@ registerLocaleData(localeTr, 'tr');
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         MatDatepickerModule,
         MatFormFieldModule,
         MatNativeDateModule,

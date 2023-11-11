@@ -7,7 +7,7 @@ export class UsersTable {
       username: 'admin',
       password: 'demo',
       email: 'admin@ankabeta.com',
-      authToken: 'auth-token-8f3ae836da744329a6f93bf20594b5cc',
+      authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImI5ZjhhZGY5LTAwMWUtNGM0NC1hMGVmLTA4ZGJlMTM2ODZkNCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiIxMjk3ODAxNTc4IiwiZXhwIjoxNjk5NTc4NjI1LCJpc3MiOiJrb3NnZWJfaXNzdWVyIiwiYXVkIjoia29zZ2ViX2F1ZGllbmNlIn0.JsKAmcvJegRyIQRhZdegt-VYfSpo6hAo_Cgmuik_T2M",
       refreshToken: 'auth-token-f8c137a2c98743f48b643e71161d90aa',
       roles: CompanyTypes.ADMIN, // Administrator
       pic: './assets/media/avatars/300-1.jpg',

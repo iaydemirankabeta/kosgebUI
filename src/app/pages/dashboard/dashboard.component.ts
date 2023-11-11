@@ -24,8 +24,8 @@ export class DashboardComponent {
   @Input() chartLine: number = 11;
   @Input() chartRotate?: number = 145;
   constructor(private auth:AuthService,private dataService:DataService) {
-    var companyId = auth.currentUserValue?.selectedCompany?.company.id || 1
-    this.selectedCompany = dataService.getCompany(companyId || 1);
+    var companyId = auth.currentUserValue?.selectedCompany?.company.id || ""
+    this.selectedCompany = dataService.getCompany(companyId || "");
   }
   ngOnInit(): void {
     this.user$ = this.auth.currentUserSubject.asObservable();

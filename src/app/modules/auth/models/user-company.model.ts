@@ -1,10 +1,10 @@
 export interface UserCompany{
     company:Company,
-    roles: UserRoles[],
-    occupation:string
+    roles?: UserRoles[],
+    occupation?:string
 }
 export interface Company{
-    id:Number;
+    id:string;
     name: string;
     img:{ url: string };
     type:CompanyTypes

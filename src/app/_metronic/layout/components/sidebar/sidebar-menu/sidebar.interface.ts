@@ -5,8 +5,8 @@ export interface MenuItem {
   icon?: string;
   routerLink?: string;
   subMenu?: subMenu[];
-  roles: number[];
-  disabled:boolean;
+  roles?: number[];
+  disabled?:boolean;
   companyTypes?:CompanyTypes[];
   shown:boolean;
 }

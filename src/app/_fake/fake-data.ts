@@ -335,8 +335,8 @@ export class DataService {
     return this.products.filter(product => product.categoryId === categoryId);
   }
 
-  getCompany(companyId:Number):Company{
-    return this.Companies.filter(company => company.id === companyId)[0];
+  getCompany(companyId:string):any{
+    return null
   }
 
 }
