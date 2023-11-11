@@ -23,7 +23,7 @@ steps:
     cd KOSGEB.SupportDigital_KOSGEBUI
     git checkout Production 
     cd ..
-    cp -r kosgebUI/* KOSGEB.SupportDigital_KOSGEBUI/
+    cp -r kosgebUI/* KOSGEB.SupportDigital_KOSGEBUI
     cd KOSGEB.SupportDigital_KOSGEBUI
     git config --global user.name "28684755980"
     git add .
