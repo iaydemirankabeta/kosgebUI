@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { MeetingService } from './meeting.service';
-import { Meeting,Note } from './meeting.model';
+import {MeetingService } from './meeting.service';
 import { DatePipe } from '@angular/common';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { Observable } from 'rxjs';
 import { AuthService, UserType } from 'src/app/modules/auth';
 import { MeetingNotesService } from './meeting-notes/meeting-notes.service';
 import localeTr from '@angular/common/locales/tr'; // Türkçe yerelleştirme
+import { Meeting } from './meeting.model';
 
 
 
@@ -44,7 +44,12 @@ export class MeetingsComponent {
   searchMeetingsByDateRange() {
     if (this.startDate && this.endDate) {
       // Başlangıç ve bitiş tarihlerini kullanarak toplantıları filtrelemek için MeetingService'i kullanın
-      this.meetings = this.meetingService.getMeetingsByDateRange(this.startDate, this.endDate);
+      this.meetings = this.meetingService.getMeetings({
+        startDate:this.startDate,
+        endDate:this.endDate,
+        page:1, 
+        count:10
+      });
     } else {
       // Başlangıç ve bitiş tarihleri eksikse, tüm toplantıları gösterin veya bir hata mesajı gösterin.
       this.meetings = this.meetingService.getMeetings();
@@ -73,7 +78,7 @@ export class MeetingsComponent {
   }
 
   updateMeetingLink(meeting: Meeting) {
-    this.meetingService.updateMeetingLink(meeting);
+    this.meetingService.updateMeeting(meeting);
   }
 
   

@@ -1,62 +1,79 @@
 import { Injectable } from '@angular/core';
-import { Meeting,Note } from './meeting.model';
+import { MeetingDTO } from './meeting.model';
+import { HttpClient } from '@angular/common/http';
+import { Company } from 'src/app/models/Company.model';
+import { BaseResponse } from 'src/app/models/BaseResponse.model';
+import { Observable } from 'ol';
 
+const baseURL = "http://localhost:8080/Company"
+export interface GetMeetingDTO{
+  page:number;
+  count:number;
+  columnName?:string
+  isDesc?:boolean;
+  search?:string;
+  startDate?:Date;
+  endDate?:Date;
+  companyId?:string;
+  cityId?:string;
+}
+export interface Meeting{
+  id:string;
+  name:string;
+  topic:string;
+  meetingDate:Date;
+  meetingLink:string;
+  company:{name:string;}
+  participants:{isim:string;soyisim:string;email:string;unvan:string};
+  excludeParticipants:{isim:string;soyisim:string;email:string;unvan:string;companyName:string};
+}
+export interface MeetingNote{
+  note:string;
+  type:MeetingNoteType
+}
+export enum MeetingNoteType{
+  Did=0,
+  Can=1,
+  Info=2,
+  NumberofProjects=3
+}
 
 @Injectable({
   providedIn: 'root',
 })
 
-
-
 export class MeetingService {
 
-  private meetings: Meeting[] = [
-    new Meeting(1, 'Toplantı 1', new Date('2023-10-12'), 'Ofis A','istanbul', ['Katılımcı 1', 'Katılımcı 2'],'www.toplanti1.com'),
-    new Meeting(1, 'Toplantı 2', new Date('2023-10-11'), 'Ofis B','Ankara', ['Katılımcı 4', 'Katılımcı 5'],'www.toplanti2.com'),
-    new Meeting(1, 'Toplantı 3', new Date('2023-10-17'), 'Ofis C','İzmir', ['Katılımcı 23', 'Katılımcı 7'],'www.toplanti3.com'),
-    new Meeting(1, 'Toplantı 4', new Date('2023-10-20'), 'Ofis D','Antalya', ['Katılımcı 1', 'Katılımcı 2'],'www.toplanti4.com'),
-
-    // Daha fazla toplantı ekleyebilirsiniz.
-  ];
-
   // meetingNotes adlı özelliği tanımlayın ve başlangıçta boş bir harita olarak başlatın
-  private meetingNotes: Map<number, Note[]> = new Map<number, Note[]>();
+  private meetingNotes: Map<number, MeetingNote[]> = new Map<number, MeetingNote[]>();
 
-  constructor() {
+  constructor(private httpClient : HttpClient) {
     // Notları örnek olarak burada doldurabilirsiniz.
     // Örneğin, Toplantı 1 için notlar:
-    this.meetingNotes.set(1, [
-      { content: 'Yapılacaklar 1', category: 'Yapılacaklar' },
-      { content: 'Yapılabilecekler 1', category: 'Yapılabilecekler' },
-      { content: 'Bilgi 1', category: 'Bilgi' },
-    ]);
+
   }
 
-  getMeetingsByDateRange(startDate: Date, endDate: Date): Meeting[] {
-    return this.meetings.filter(meeting => meeting.date >= startDate && meeting.date <= endDate);
+  getMeetings(getMeetingDTO:GetMeetingDTO|null = null):any{
+    return this.httpClient.post(baseURL+"/Meeting/GetMeetings",getMeetingDTO);
   }
 
-  getMeetingNotes(meeting: Meeting): Note[] {
+
+  getMeetingNotes(meeting: MeetingDTO):any{
     const meetingId = meeting.id;
-    return this.meetingNotes.get(meetingId) || [];
+    return this.httpClient.get(`${baseURL}/MeetingNote/${meeting.id}`)
   }
-  private notes: Note[] = [];
+  private notes: MeetingNote[] = [];
 
-  getMeetings(): Meeting[] {
-    return this.meetings;
-  }
-
-
-  addMeeting(meeting: Meeting) {
-    this.meetings.push(meeting);
+  addMeeting(meeting: MeetingDTO) {
+    return this.httpClient.post(`${baseURL}/Meeting`,meeting);
   }
 
-  addNote(note: Note) {
-    this.notes.push(note);
+  addNote(note: MeetingNote) {
+    return this.httpClient.post(`${baseURL}/MeetingNote`,note);  
   }
   
 
-  updateMeetingLink(meeting: Meeting) {
-    // Link güncelleme kodu burada
+  updateMeeting(meeting: Meeting) {
+    return this.httpClient.put(`${baseURL}/Meeting/${meeting.id}`,meeting);
   }
 }
