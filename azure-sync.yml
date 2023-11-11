@@ -18,13 +18,13 @@ steps:
     git checkout Production
     rmdir /s /q .git
     cd ..
-    rmdir /s /q KOSGEB.SupportDigital_KOSGEB_UI
-    git clone https://28684755980:Eb.160823@tfs.kosgeb.gov.tr/tfs/DefaultCollection/KOSGEB.SupplierDigital/_git/KOSGEB.SupportDigital_KOSGEB_UI
+    rmdir /s /q KOSGEB.SupportDigital_KOSGEBUI
+    git clone https://28684755980:Eb.160823@tfs.kosgeb.gov.tr/tfs/DefaultCollection/KOSGEB.SupplierDigital/_git/KOSGEB.SupportDigital_KOSGEBUI
     cd KOSGEB.SupportDigital_KOSGEB_UI
     git checkout Production
     cd ..
-    xcopy /E /Y kosgebUI\* KOSGEB.SupportDigital_KOSGEB_UI\
-    cd KOSGEB.SupportDigital_KOSGEB_UI
+    xcopy /E /Y kosgebUI\* KOSGEB.SupportDigital_KOSGEBUI\
+    cd KOSGEB.SupportDigital_KOSGEBUI
     git config --global user.name "28684755980"
     git add .
     git commit -m "sync from git to azure"
