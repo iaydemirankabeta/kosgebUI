@@ -38,7 +38,7 @@
               <div class="add-to-cart">
                 <div class="quantity-controls" style="margin-bottom: 10px;">
                     <button class="btn btn-secondary" (click)="decrementQuantity(index)" [disabled]="cartQuantity === 0">-</button>
-                    <input type="number" [(ngModel)]="cartItems[index].quantity" min="1" [max]="cartItems[index].product.qty" (focusout)="qualityInput(index)" class="form-control" style="width: 60px;display:inline-block">
+                    <input type="number" [(ngModel)]="cartItems[index].quantity" min="1" [max]="cartItems[index].product.qty" (focusout)="qualityInput(index)" class="form-control" style="margin-right:8px; width: 60px;display:inline-block;">
                     <button class="btn btn-secondary" (click)="incrementQuantity(index)" [disabled]="cartQuantity === item.product.qty">+</button>
                 </div>
                 <button class="btn btn-danger btn-sm" style="position: absolute; top: 10px; right: 10px" (click)="removeItem(item)">X</button>
@@ -49,7 +49,7 @@
         </li>
       </ul>
       <div *ngIf="cartItems.length > 0">
-        <button type="submit" class="btn btn-primary justify-content-end">Ödeme Sayfası</button>
+        <button type="submit" class="btn btn-primary justify-content-end mt-3">Ödeme Sayfası</button>
       </div>
       <div *ngIf="cartItems?.length == 0" style="text-align: center;">
         <i class="fa-solid fa-basket-shopping fa-2xl basket"></i>

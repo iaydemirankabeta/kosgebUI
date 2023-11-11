@@ -63,6 +63,7 @@
       </div>
       <div class="col-xs-12 col-md-6" style="position: relative;">
         <label for="katilimci" class="col-lg-4 col-form-label required fw-bold fs-6">Katılımcı</label>
+
     <input type="text" id="katilimci" [(ngModel)]="yeniKatilimci" name="katilimci" class="form-control" (keyup.enter)="openAddUpdateModal()">
     <button type="button" class="btn btn-primary" (click)="openAddUpdateModal()"  style="position: absolute;right: 10px;top:43px;">Ekle</button>
   <p *ngIf="katilimcilar.length > 0">Katılımcılar</p>
@@ -77,7 +78,7 @@
 
     </div>
     
-    <button type="submit" class="btn btn-primary" [disabled]="toplantiForm.invalid" style="margin-top: 10px; float:right;">Kaydet</button>
+    <button type="submit" class="btn btn-primary m-0" [disabled]="toplantiForm.invalid" style="margin-top: 10px; float:right;">Kaydet</button>
   </form>
   <app-modal #addUpdateModal [modalConfig]="modalAddUpdateConfig" aria-modal="true">
     <div *ngIf="!isExclude">
