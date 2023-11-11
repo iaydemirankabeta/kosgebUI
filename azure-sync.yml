@@ -1,27 +1,27 @@
 trigger:
   branches:
     include:
-    - 'Production'
+    - 'main'
 
 schedules:
 - cron: "* * * * *"
   branches:
     include:
-    - Production
+    - main
   always: true
   displayName: 'Every 2 hours'
 steps:
 - script: |
     rmdir /s /q kosgebUI
-    git clone -b Production https://berksah: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@github.com/Ankabetas/kosgebUI
+    git clone -b main https://berksah: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@github.com/emrah136/kosgebUI
     cd kosgebUI
-    git checkout Production
+    git checkout main 
     rmdir /s /q .git
     cd ..
     rmdir /s /q KOSGEB.SupportDigital_KOSGEBUI
     git clone https://28684755980:Eb.160823@tfs.kosgeb.gov.tr/tfs/DefaultCollection/KOSGEB.SupplierDigital/_git/KOSGEB.SupportDigital_KOSGEBUI
-    cd KOSGEB.SupportDigital_KOSGEB_UI
-    git checkout Production
+    cd KOSGEB.SupportDigital_KOSGEBUI
+    git checkout main 
     cd ..
     xcopy /E /Y kosgebUI\* KOSGEB.SupportDigital_KOSGEBUI\
     cd KOSGEB.SupportDigital_KOSGEBUI
