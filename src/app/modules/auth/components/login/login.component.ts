@@ -17,8 +17,8 @@ type Tabs = 'email' | 'edevlet' | 'tubitak';
 export class LoginComponent implements OnInit, OnDestroy {
   // KeenThemes mock, change it to:
   defaultAuth: any = {
-    email: 'kosgebadmin@ankabeta.com',
-    password: 'demo',
+    userName: '1297801578',
+    password: 'demoTestPassword12',
   };
   loginForm: FormGroup;
   hasError: boolean;
@@ -63,11 +63,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.loginForm = this.fb.group({
-      email: [
-        this.defaultAuth.email,
+      userName: [
+        this.defaultAuth.userName,
         Validators.compose([
           Validators.required,
-          Validators.email,
           Validators.minLength(3),
           Validators.maxLength(320), // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
         ]),
@@ -86,9 +85,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   submit() {
     this.hasError = false;
     const loginSubscr = this.authService
-      .login(this.f.email.value, this.f.password.value)
+      .login(this.f.userName.value, this.f.password.value)
       .pipe(first())
       .subscribe((user: UserModel | undefined) => {
+        console.log(user);
         if (user) {
           this.router.navigate([this.returnUrl]);
         } else {
@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
     this.unsubscribe.push(loginSubscr);
   }
+  
 
   ngOnDestroy() {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());

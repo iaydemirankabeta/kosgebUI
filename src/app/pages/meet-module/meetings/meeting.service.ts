@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { MeetingDTO } from './meeting.model';
 import { HttpClient } from '@angular/common/http';
 import { Company } from 'src/app/models/Company.model';
-import { BaseResponse } from 'src/app/models/BaseResponse.model';
-import { Observable } from 'ol';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs';
 
-const baseURL = "http://localhost:8080/Company"
 export interface GetMeetingDTO{
   page:number;
   count:number;
@@ -54,26 +54,52 @@ export class MeetingService {
   }
 
   getMeetings(getMeetingDTO:GetMeetingDTO|null = null):any{
-    return this.httpClient.post(baseURL+"/Meeting/GetMeetings",getMeetingDTO);
+    return this.httpClient.post(environment.apiUrl+"/Meeting/GetMeetings",getMeetingDTO);
   }
 
 
   getMeetingNotes(meeting: MeetingDTO):any{
     const meetingId = meeting.id;
-    return this.httpClient.get(`${baseURL}/MeetingNote/${meeting.id}`)
+    return this.httpClient.get(`${environment.apiUrl}/MeetingNote/${meeting.id}`)
   }
   private notes: MeetingNote[] = [];
 
   addMeeting(meeting: MeetingDTO) {
-    return this.httpClient.post(`${baseURL}/Meeting`,meeting);
+    return this.httpClient.post(`${environment.apiUrl}/Meeting`,meeting);
   }
 
   addNote(note: MeetingNote) {
-    return this.httpClient.post(`${baseURL}/MeetingNote`,note);  
+    return this.httpClient.post(`${environment.apiUrl}/MeetingNote`,note);  
   }
   
 
   updateMeeting(meeting: Meeting) {
-    return this.httpClient.put(`${baseURL}/Meeting/${meeting.id}`,meeting);
+    return this.httpClient.put(`${environment.apiUrl}/Meeting/${meeting.id}`,meeting);
+  }
+
+  searchCompanies(name:string):Observable<any>{
+    return this.httpClient.post(environment.apiUrl+"/Company/Company/SearchCompanies",{
+      Search:name,
+      Page:1,
+      Count:50
+    }).pipe(
+      map((searchResults:any) =>{
+        return searchResults;
+      })
+    );
+  }
+  
+  searchUsers(companyId:string,name:string =""):Observable<any>{
+    return this.httpClient.post(environment.apiUrl+"/Identity/Account/SearchUsers",{
+      Search:name,
+      CompanyId:companyId,
+      Page:1,
+      Count:50
+    }).pipe(
+      map((searchResults:any) =>{
+        return searchResults;
+      })
+    );
+
   }
 }

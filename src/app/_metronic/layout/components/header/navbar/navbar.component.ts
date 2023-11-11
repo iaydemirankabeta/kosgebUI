@@ -21,15 +21,15 @@ export class NavbarComponent implements OnInit {
 
   myCompanies : UserCompany[] = [];
   user: UserModel | undefined;
-  selectedValue : Number ;
+  selectedValue : string ;
   constructor(private dataService: DataService,private auth:AuthService,private router: Router){
     this.user = auth.currentUserValue;
-    this.selectedValue = this.user?.selectedCompany?.company.id || 5;
+    this.selectedValue = this.user?.selectedCompany?.company.id || "";
     this.myCompanies = auth.currentUserValue?.userCompanies || [];
   }
 
   click(event:any){
-    this.user ? this.user.selectedCompany = this.myCompanies.filter(x => x.company.id === Number(event.target.value))[0] : null;
+    this.user ? this.user.selectedCompany = this.myCompanies.filter(x => x.company.id ===(event.target.value))[0] : null;
     this.auth.currentUserSubject.next(this.user);
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['dashboard']);
