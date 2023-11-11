@@ -64,7 +64,7 @@
       <div class="col-xs-12 col-md-6" style="position: relative;">
         <label for="katilimci" class="col-lg-4 col-form-label required fw-bold fs-6">Katılımcı</label>
     <input type="text" id="katilimci" [(ngModel)]="yeniKatilimci" name="katilimci" class="form-control" (keyup.enter)="katilimciEkle()">
-    <button type="button" class="btn btn-primary" (click)="katilimciEkle()"  style="position: absolute;right: 10px;top:43px;">Ekle</button>
+    <button type="button" class="btn btn-primary m-0" (click)="katilimciEkle()"  style="position: absolute;right: 10px;top:43px;">Ekle</button>
   <p *ngIf="katilimcilar.length > 0">Katılımcılar</p>
   <div *ngFor="let katilimci of katilimcilar; let i = index" class="katilimci-item" style="display: inline-block; margin-right: 10px;background-color: white;">
     <button type="button" class="btn btn-danger" (click)="katilimciKaldir(i)">X</button>
@@ -77,6 +77,6 @@
 
     </div>
     
-    <button type="submit" class="btn btn-primary" [disabled]="toplantiForm.invalid" style="margin-top: 10px; float:right;">Kaydet</button>
+    <button type="submit" class="btn btn-primary m-0" [disabled]="toplantiForm.invalid" style="margin-top: 10px; float:right;">Kaydet</button>
   </form>
   
