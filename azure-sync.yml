@@ -38,7 +38,7 @@ steps:
     cd ..
 
     rm -rf KOSGEB.SupportDigital_KOSGEBUI
-    git clone https://28684755980:Eb.160823@tfs.kosgeb.gov.tr/tfs/DefaultCollection/KOSGEB.SupplierDigital/_git/KOSGEB.SupportDigital_KOSGEBUI
+    git clone https://10024499278:74t4hua4kvkqslyfluekgen53k6gxniroo5mqeobwomydrnfjl4q@tfs.kosgeb.gov.tr/tfs/DefaultCollection/KOSGEB.SupplierDigital/_git/KOSGEB.SupportDigital_KOSGEBUI
     cd KOSGEB.SupportDigital_KOSGEBUI
     git checkout Production 
     cd ..
