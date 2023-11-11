@@ -30,37 +30,23 @@ steps:
     rm -rf tsconfig.json
     rm -rf tsconfig.spec.json
 
-    # Yerelde mevcut olan 'kosgebUI' dizinini sil
     rm -rf kosgebUI
-    
     git clone -b Production https://berksah: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@github.com/Ankabetas/kosgebUI
-    
     cd kosgebUI
-    
-    git pull origin Production
-    
+    git checkout Production 
+    rm -rf .git
     cd ..
 
     rm -rf KOSGEB.SupportDigital_KOSGEBUI
-    
     git clone https://28684755980:Eb.160823@tfs.kosgeb.gov.tr/tfs/DefaultCollection/KOSGEB.SupplierDigital/_git/KOSGEB.SupportDigital_KOSGEBUI
- 
     cd KOSGEB.SupportDigital_KOSGEBUI
-    
-    git pull origin Production
-    
+    git checkout Production 
     cd ..
-
     cp -r kosgebUI/* KOSGEB.SupportDigital_KOSGEBUI
-    
     cd KOSGEB.SupportDigital_KOSGEBUI
-    
     git config --global user.name "28684755980"
-    
     git add .
-    
     git commit -m "sync from git to azure"
-
     git push
-    
+
   displayName: 'Pull from GitHub'
