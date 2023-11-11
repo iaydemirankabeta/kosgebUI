@@ -52,6 +52,14 @@ export class SidebarMenuComponent implements OnInit {
       ],
     },
     {
+      title: 'I2 Modülü', icon: 'element-5', routerLink: '/gorusme-talepleri', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOBI], shown: false,
+      subMenu: [
+        { title: 'Görüşmeler', icon: '', routerLink: '/interview' },
+        { title: 'Oturumlar', icon: '',  },
+
+      ],
+    },
+    {
       title: 'Çağrı Zekası', icon: 'element-5', routerLink: '/kosgeb-destek', roles: [UserRoles.User], disabled: false, companyTypes: [CompanyTypes.KOSGEB,CompanyTypes.KOSGEBUSER], shown: false,
       subMenu: [
         { title: 'KOSGEB Destek Çağrıları', icon: '', routerLink: '/kosgeb-destek' },

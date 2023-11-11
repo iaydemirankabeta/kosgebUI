@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GorusmeTalepleriComponent } from './gorusme-talepleri.component';
+import { InterviewComponent } from './interview.component';
 import { ModalsModule } from 'src/app/_metronic/partials';
 import { RouterModule } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    GorusmeTalepleriComponent
+    InterviewComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule.forChild([
       {
           path: '',
-          component: GorusmeTalepleriComponent,
+          component: InterviewComponent,
       },
 
   ]),
@@ -29,4 +29,4 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
   ]
 })
-export class GorusmeTalepleriModule { }
+export class InterviewModule { }

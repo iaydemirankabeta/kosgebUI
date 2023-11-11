@@ -187,6 +187,12 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' }
   },
   {
+    path: 'interview',
+    loadChildren: () =>
+      import('./interview/interview.module').then((m) => m.InterviewModule),
+    data: { layout: 'dark-sidebar' }
+  },
+  {
     path: '',
     redirectTo: '/sirketler',
     pathMatch: 'full',
