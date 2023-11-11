@@ -100,5 +100,6 @@ export class MeetingService {
         return searchResults;
       })
     );
+
   }
 }
