@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import {MeetingService } from './meeting.service';
 import { DatePipe } from '@angular/common';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { AuthService, UserType } from 'src/app/modules/auth';
 import { MeetingNotesService } from './meeting-notes/meeting-notes.service';
 import localeTr from '@angular/common/locales/tr'; // Türkçe yerelleştirme
@@ -19,7 +19,10 @@ import { Meeting } from './meeting.model';
 export class MeetingsComponent {
   meetings: Meeting[];
   user$: Observable<UserType>;
-
+  searchCompanies:any=null;
+  searchCities:any=null
+  selectedCompany:any={id:"0"};
+  selectedCity:any={id:"0"}
   selectedMeeting: Meeting; // selectedMeeting özelliğini tanımlayın
 
   modalCompareConfig: ModalConfig = {
@@ -33,10 +36,12 @@ export class MeetingsComponent {
   constructor(private meetingService: MeetingService,
     private datePipe: DatePipe,
     private auth: AuthService,
-    private meetingNoteService: MeetingNotesService
+    private meetingNoteService: MeetingNotesService,
+    private changeDetectorRef: ChangeDetectorRef
 
 
-    ) {}
+    ) {
+this.getMeetings()    }
 
   startDate: Date | null = null;
   endDate: Date | null = null;
@@ -47,6 +52,8 @@ export class MeetingsComponent {
       this.meetings = this.meetingService.getMeetings({
         startDate:this.startDate,
         endDate:this.endDate,
+        cityId:this.selectedCity.id === "0"? "":this.selectedCity.id,
+        companyId: this.selectedCompany.id === "0"? "":this.selectedCompany.id,
         page:1, 
         count:10
       });
@@ -64,10 +71,7 @@ export class MeetingsComponent {
 
 
   ngOnInit() {
-    this.meetings = this.meetingService.getMeetings();
     this.user$ = this.auth.currentUserSubject.asObservable();
-
-
   }
 
   viewMeetingNotes(meeting: Meeting) {
@@ -81,6 +85,45 @@ export class MeetingsComponent {
     this.meetingService.updateMeeting(meeting);
   }
 
+
+  companySearch(event:any){
+    if(event.target.value.length > 3){
+      this.meetingService.searchCompanies(event.target.value).pipe(first()).subscribe((searchResult:any) => {
+        console.log(searchResult)
+        this.searchCompanies = searchResult.data.data
+        this.changeDetectorRef.detectChanges();
+      })
+    }
+  }
+  citySearch(event:any){
+    if(event.target.value.length > 3){
+      this.meetingService.searchCities(event.target.value).pipe(first()).subscribe((searchResult:any) => {
+        console.log(searchResult)
+        this.searchCities = searchResult.data
+        this.changeDetectorRef.detectChanges();
+      })
+    }
+  }
+  citySelect(item:any){
+    this.selectedCity = item;
+  }
+
+  companySelect(item:any){
+    this.selectedCompany = item;
+  }
+
+
+
+  getMeetings(){
+    this.meetingService.getMeetings({
+      search : "",cityId:"",count:50,
+      page:1,isDesc:false
+    }).pipe(first()).subscribe((res:any) => {
+      this.meetings = res.data.data
+      this.changeDetectorRef.detectChanges();
+
+    })
+  }
   
 
 

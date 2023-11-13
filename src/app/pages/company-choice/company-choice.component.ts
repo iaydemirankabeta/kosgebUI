@@ -31,6 +31,7 @@ export class CompanyChoiceComponent {
         this.user.authToken = apiData.data.token;
         this.user.userMenus= apiData.data.menus;
         this.user.selectedCompany = this.myCompanies.filter(x => x.company.id === id)[0];
+        this.user.roles = apiData.data.user.roles
       }
       this.auth.currentUserSubject.next(this.user);
       this.auth.setAuthFromLocalStorage(this.user!)

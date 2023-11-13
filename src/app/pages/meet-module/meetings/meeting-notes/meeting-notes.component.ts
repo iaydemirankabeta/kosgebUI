@@ -3,7 +3,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MeetingNote } from './meeting-note.model';
 import { MeetingNotesService } from './meeting-notes.service';
-import { Meeting } from '../meeting.model';
+import { Meeting, MeetingNoteType } from '../meeting.model';
 import { Observable } from 'rxjs';
 import { AuthService, UserType } from 'src/app/modules/auth';
 
@@ -13,27 +13,12 @@ import { AuthService, UserType } from 'src/app/modules/auth';
   styleUrls: ['./meeting-notes.component.scss']
 })
 export class MeetingNotesComponent {
-  meetingId: number;
+  meetingId: string;
   meetingNotes: MeetingNote[] = [];
-  newNote: MeetingNote = new MeetingNote(0, 0, '', ''); // Yeni not oluşturmak için
   @Input() meeting: Meeting | undefined; // @Input ile gelen meeting verisi
   user$: Observable<UserType>;
+  newNote:string = "";
 
-
-  fakeNotes: { [key: string]: MeetingNote[] } = {
-    'Yapılacaklar': [
-      new MeetingNote(1, 1, 'Yapılacak 1', 'Yapılacaklar'),
-      new MeetingNote(2, 1, 'Yapılacak 2', 'Yapılacaklar')
-    ],
-    'Yapılabilecekler': [
-      new MeetingNote(3, 1, 'Yapılabilecek 1', 'Yapılabilecekler'),
-      new MeetingNote(4, 1, 'Yapılabilecek 2', 'Yapılabilecekler')
-    ],
-    'Bilgi': [
-      new MeetingNote(5, 1, 'Bu bir bilgidir.', 'Bilgi'),
-      new MeetingNote(6, 1, 'BÜyük işletmeler buradan feyz alabilir.', 'Bilgi')
-    ]
-  };
 
   constructor(
     private route: ActivatedRoute,
@@ -45,7 +30,7 @@ export class MeetingNotesComponent {
     this.user$ = this.auth.currentUserSubject.asObservable();
 
     // URL'den toplantı kimliğini al
-    this.meetingId = Number(this.route.snapshot.paramMap.get('id'));
+    this.meetingId = this.route.snapshot.paramMap.get('id')!;
     // Toplantı notlarını al
     this.loadMeetingNotes();
     
@@ -55,44 +40,52 @@ export class MeetingNotesComponent {
     this.meetingNotes = this.meetingNotesService.getMeetingNotes(this.meetingId);
   }
 
-  notesByCategory: { [key: string]: string } = {};
 
-  addMeetingNote(category: string) {
-    const categoryNotes = this.fakeNotes[category];
-    if (categoryNotes && categoryNotes.length > 0) {
-      // İlgili kategoriye ait yeni bir not ekleyin
-      const newNoteId = categoryNotes.length + 1;
-      const newNoteContent = this.newNote[category]; // Yeni not içeriğini alın
-      if (newNoteContent && newNoteContent.trim() !== '') {
-        const newMeetingNote = new MeetingNote(newNoteId, this.meetingId, newNoteContent, category);
-        categoryNotes.push(newMeetingNote);
-        // Yeni not eklendikten sonra textarea içeriğini temizleyin
-        this.newNote[category] = '';
-      }
+  addMeetingNote(category: string,note:string) {
+    let type;
+    switch (category) {
+        case 'will':
+        type = MeetingNoteType.Will
+        break;
+        case 'can':
+        type = MeetingNoteType.Can
+        break;
+        case 'marketShare':
+        type = MeetingNoteType.MarketShare
+        break;
+        case 'numberofProjects':
+        type = MeetingNoteType.NumberofProjects
+        break;
+        case 'estimatedExportInformation':
+        type = MeetingNoteType.EstimatedExportInformation
+        break;
+        case 'overseasOfficeInformation':
+        type = MeetingNoteType.OverseasOfficeInformation
+        break;
+        case 'info':
+        type = MeetingNoteType.Info
+        break;
+      default:
+        type = MeetingNoteType.Info
+        break;
     }
+    this.meetingNotesService.addMeetingNote(
+      {
+        note : note,
+        noteType : type,
+        meetingId : this.meetingId
+      }
+    )
   }
   
-  removeMeetingNote(category: string, noteId: number) {
-    const categoryNotes = this.fakeNotes[category];
-    if (categoryNotes) {
-      // Notu kaldır
-      const noteIndex = categoryNotes.findIndex(note => note.id === noteId);
-      if (noteIndex !== -1) {
-        categoryNotes.splice(noteIndex, 1);
-      }
-    }
+  removeMeetingNote(noteId: number) {
+    
   }
   
 
 
 
-  newNoteContent(category: string): string {
-    const fakeNotesForCategory = this.fakeNotes[category];
-    if (fakeNotesForCategory) {
-      return fakeNotesForCategory.map(note => note.content).join('\n');
-    }
-    return '';
-  }
+
   
 
 }
