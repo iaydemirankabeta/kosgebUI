@@ -44,7 +44,7 @@
 </div>
 <!--end::Secondary button-->
 <div class="row">
-  <div *ngFor="let business of businessList,let i = index" class="col-md-4 mb-5 col-xs-6">
+  <div *ngFor="let business of paginatedBusinessList,let i = index" class="col-md-4 mb-5 col-xs-6">
     <div class="card p-5">
       <div class="businessTop-icon">
         <a href="javascript:;">
@@ -158,5 +158,26 @@
     </div>
   </app-modal>
   </div>
+  <!-- Sayfalama (Pagination) -->
+<div class="col-lg-12 text-center">
+  <nav *ngIf="paginationService.getTotalPages() > 1">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="paginationService.currentPage === 1">
+        <a class="page-link" href="javascript:;" (click)="paginationService.setPage(paginationService.currentPage - 1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let page of getRange(paginationService.getTotalPages())">
+        <a class="page-link" href="javascript:;" (click)="paginationService.setPage(page)" [class.active]="page === paginationService.currentPage">{{ page }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="paginationService.currentPage === paginationService.getTotalPages()">
+        <a class="page-link" href="javascript:;" (click)="paginationService.setPage(paginationService.currentPage + 1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
 </div>
   

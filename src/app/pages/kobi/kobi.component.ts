@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { FilterService } from './filter/kobiFilter.service';
 import { KobiService } from './kobi.service';
+import { PaginationService } from '../service/pagination.service';
 import { FilterComponent } from './filter/filter.component';
 import { filter } from 'rxjs';
 
@@ -14,8 +15,12 @@ import { filter } from 'rxjs';
 export class KobiComponent {
 
 filterOptions: any[];
-  constructor(private filterService: FilterService,private KobiService:KobiService) {
+  constructor(private filterService: FilterService,private KobiService:KobiService// Adjust the type accordingly
+  ) {
   } // Servisi enjekte edin
+
+  paginationService: PaginationService<any> = new PaginationService<any>();
+
 
   selectedFiltersList: { filterName: string, selectedValue: any }[] = [];
   businessList:any = [];
@@ -31,6 +36,21 @@ filterOptions: any[];
         this.filters = this.filterService.getKobiFilter();
     
     this.initializeSelectedFilters();
+    this.paginationService.items = this.businessList; // Set the items in the pagination service
+    this.paginationService.setItemsPerPage(21); // Set the items per page
+  }
+
+  get paginatedBusinessList(): any[] {
+    return this.paginationService.paginatedItems;
+  }
+
+  getRange(totalPages: number): number[] {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  // Use pagination service to handle page change
+  onPageChange(pageNumber: number): void {
+    this.paginationService.setPage(pageNumber);
   }
 
   initializeSelectedFilters(): void {
@@ -41,17 +61,17 @@ filterOptions: any[];
   }
 
   emitFilterChanges(selectedFilters: any): void {
-    
     // Seçili filtreleri sıfırla
     this.selectedFiltersList = [];
-    
-    this.businessList = this.KobiService.fakeBusinesses.filter((business: any) => {
+  
+    // Filtrelenmiş işletmeleri güncelle ve sayfalandır
+    this.paginationService.items = this.KobiService.fakeBusinesses.filter((business: any) => {
       for (let filterId in selectedFilters) {
-        if (filterId != 'konum'){
+        if (filterId !== 'konum') {
           if (selectedFilters[filterId] !== null) {
             const selectedValue = +selectedFilters[filterId];
             if (business[filterId] !== selectedValue) {
-              return false; 
+              return false;
             } else {
               // Seçili filtreleri listeye ekle
               const filterInfo = this.filters.find(filter => filter.id === parseInt(filterId));
@@ -64,8 +84,11 @@ filterOptions: any[];
       }
       return true; // Include business if all selected filters match
     });
-
+  
+    // Sayfayı ilk sayfaya ayarla
+    this.paginationService.setPage(1);
   }
+  
   
 
   modalConfig: ModalConfig = {
@@ -131,7 +154,7 @@ filterOptions: any[];
 
   // Sıralama işlevi
   sortBusinessListAlphabetically() {
-    this.businessList.sort((a: any, b: any) => {
+    this.paginationService.items.sort((a: any, b: any) => {
       if (this.selectedSortOption === 'az') {
         return a.name.localeCompare(b.name);
       } else if (this.selectedSortOption === 'za') {

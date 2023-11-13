@@ -7,7 +7,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ExtrasModule } from '../../_metronic/partials';
 import { PaginationService } from '../service/pagination.service';
-import { PaginationComponent } from 'src/app/modules/pagination/pagination.component';
 import { CatalogComponent } from './catalog.component';
 import { ProductsComponent } from './products/products.component'
 import { CategoriesComponent } from './categories/categories.component'
@@ -22,7 +21,7 @@ import { SharedModule } from "../../_metronic/shared/shared.module";
 
 
 @NgModule({
-    declarations: [CatalogComponent, ProductsComponent, CategoriesComponent, PaginationComponent, ProductAddComponent, ShowcaseComponent, SearchComponent, CurrencyComponent, MarketplacesComponent, ProductDetailComponent],
+    declarations: [CatalogComponent, ProductsComponent, CategoriesComponent, ProductAddComponent, ShowcaseComponent, SearchComponent, CurrencyComponent, MarketplacesComponent, ProductDetailComponent],
     providers: [PaginationService],
     imports: [
         ExtrasModule,
