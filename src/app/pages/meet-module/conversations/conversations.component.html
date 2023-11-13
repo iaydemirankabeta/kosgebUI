@@ -1,0 +1,146 @@
+<ng-container>
+            <div class="row text-center mt-5">
+                <div class="col-md-4">
+                  <div class="btn-group">
+                    <div
+                      class="btn btn-primary"
+                      mwlCalendarPreviousView
+                      [view]="view"
+                      [(viewDate)]="viewDate"
+                    >
+                      Önceki
+                    </div>
+                    <div
+                      class="btn btn-outline-secondary"
+                      mwlCalendarToday
+                      [(viewDate)]="viewDate"
+                    >
+                      Bugün
+                    </div>
+                    <div
+                      class="btn btn-primary"
+                      mwlCalendarNextView
+                      [view]="view"
+                      [(viewDate)]="viewDate"
+                    >
+                      Sonraki
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <h3>
+                    {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }}
+                  </h3>
+                </div>
+                <div class="col-md-4">
+                  <div class="btn-group">
+                    <div
+                      class="btn btn-primary"
+                      (click)="setView(CalendarView.Month)"
+                      [class.active]="view === CalendarView.Month"
+                    >
+                      Ay
+                    </div>
+                    <div
+                      class="btn btn-primary"
+                      (click)="setView(CalendarView.Week)"
+                      [class.active]="view === CalendarView.Week"
+                    >
+                      Hafta
+                    </div>
+                    <div
+                      class="btn btn-primary"
+                      (click)="setView(CalendarView.Day)"
+                      [class.active]="view === CalendarView.Day"
+                    >
+                      Gün
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br />
+              
+              <div [ngSwitch]="view">
+                <mwl-calendar-month-view
+                  *ngSwitchCase="'month'"
+                  [viewDate]="viewDate"
+                  [events]="events"
+                  [locale]="locale"
+                  [weekStartsOn]="weekStartsOn"
+                  [weekendDays]="weekendDays"    
+                  [activeDayIsOpen]="activeDayIsOpen"
+                  (dayClicked)="dayClicked($event.day)"
+                  (eventClicked)="handleEvent('Clicked', $event.event)"
+                  (eventTimesChanged)="eventTimesChanged($event)"
+                >
+                </mwl-calendar-month-view>
+                <mwl-calendar-week-view
+                  *ngSwitchCase="'week'"
+                  [viewDate]="viewDate"
+                  [events]="events"
+                  [locale]="locale"
+                  [weekStartsOn]="weekStartsOn"
+                  [weekendDays]="weekendDays"
+                  (eventClicked)="handleEvent('Clicked', $event.event)"
+                  (eventTimesChanged)="eventTimesChanged($event)"
+                >
+                </mwl-calendar-week-view>
+                <mwl-calendar-day-view
+                  *ngSwitchCase="'day'"
+                  [viewDate]="viewDate"
+                  [events]="events"
+                  [locale]="locale"
+                  (eventClicked)="handleEvent('Clicked', $event.event)"
+                  (eventTimesChanged)="eventTimesChanged($event)"
+                >
+                </mwl-calendar-day-view>
+              </div>
+              
+      <app-modal #cancelmodal [modalConfig]="modalCancelConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <p>Devam edilsin mi?</p>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-success btn-margin" (click)="closeCancelModal()">Evet</button>
+            <button class="btn btn-danger" (click)="closeCancelModal()">Hayır</button>
+        </div>
+      </app-modal>
+      <app-modal #editmodal [modalConfig]="modalEditConfig" aria-modal="true">
+        <div class="container">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
+            <div class="mt-3">
+                <label>Görüşme Tarihi</label>
+                <input name="meetingDate" class="form-control" [ngClass] = "form.get('meetingDate')?.invalid ? 'border-danger' : 'border-primary'" type="date" [value]="selectedConversation.date2" formControlName="meetingDate"/>
+            </div>
+            <div class="mt-3">
+                <label>Görüşme Saati</label>
+                <input name="meetingHour" class="form-control" [ngClass] = "form.get('meetingHour')?.invalid ? 'border-danger' : 'border-primary'" type="text"  [value]="selectedConversation.hour" formControlName="meetingHour"/>
+            </div>
+            <div class="mt-3">
+                <label>Katılımcılar</label>
+                <div class="mt-2">
+                    <input class="form-control add-participant" name="participant" (change)="changeInputParticipant($event)" value="">
+                    <button class="btn btn-primary btn-margin-left" type="button" (click)="addParticipant()">Temsilci ekle</button>
+                </div>
+                <div class="mt-2">
+                    <span class="form-control justify-content-between d-flex mt-2" *ngFor="let item of selectedConversation.participants">{{item}} <span (click) = "deleteParticipant(item)"> X</span></span>
+                </div>
+
+            </div>
+            <div class="mt-3">
+                <label>Açıklama</label>
+                <textarea name="meetingDescription" class="form-control" [ngClass] = "form.get('meetingDescription')?.invalid ? 'border-danger' : 'border-primary'" tabindex="2"  [value]="selectedConversation.description" formControlName="meetingDescription"></textarea>
+            </div>
+            <div class="mt-3">
+                <label>Görüşme Link</label>
+                <input name="link"  class="form-control" [ngClass] = "form.get('link')?.invalid ? 'border-danger' : 'border-primary'" type="text" formControlName="link"/>
+            </div>
+            <div *ngIf="isEnabledError">
+                <p class="error-message mt-3" style="text-align: right;font-size: 14px;">Lütfen Tüm Alanları Doldurun</p>
+               
+               </div>
+               <button class="btn btn-primary flex-grow-1 mt-3" style="float:right">Teklif İste</button>
+            </form>
+        </div>
+      </app-modal>
+</ng-container>

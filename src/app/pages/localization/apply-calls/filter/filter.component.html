@@ -1,0 +1,85 @@
+<!--begin::Exolore drawer-->
+<div
+  id="kt_help"
+  class="bg-body"
+  data-kt-drawer="true"
+  data-kt-drawer-name="help"
+  data-kt-drawer-activate="true"
+  data-kt-drawer-overlay="true"
+  data-kt-drawer-width="{default:'350px', 'md': '525px'}"
+  data-kt-drawer-direction="end"
+  data-kt-drawer-toggle="#kt_help_toggle"
+  data-kt-drawer-close="#kt_help_close">
+
+  <!--begin::Card-->
+  <div class="card shadow-none rounded-0 w-100">
+    <!--begin::Header-->
+    <div class="card-header" id="kt_help_header">
+      <h5 class="card-title fw-bold text-gray-600">
+        Filtreleme
+      </h5>
+
+      <div class="card-toolbar">
+        <button type="button" class="btn btn-sm btn-icon explore-btn-dismiss me-n5" id="kt_help_close">
+          X
+        </button>
+      </div>
+    </div>
+    <!--end::Header-->
+
+    <!--begin::Body-->
+    <div class="card-body" id="kt_help_body">
+      <!--begin::Content-->
+      <div
+        id="kt_help_scroll"
+        class="hover-scroll-overlay-y"
+        data-kt-scroll="true"
+        data-kt-scroll-height="auto"
+        data-kt-scroll-wrappers="#kt_help_body"
+        data-kt-scroll-dependencies="#kt_help_header"
+        data-kt-scroll-offset="5px">
+
+
+        <!--begin::Link-->
+        <div class="d-flex align-items-center mb-12">
+          <form action="" class="form" style="width: 100%;" [formGroup]="form" >
+
+            <div class="filter-container">
+              <div *ngFor="let filterGroup of kobiFilter" class="filter-group">
+                <label>{{ filterGroup.label }}</label>
+                  <select  class="form-select  mb-5 " formControlName="selectedValue"  (change)="onFilterChange(filterGroup.name,$event)"  [(ngModel)]="selectedFilters[filterGroup.name]"  >
+                  <option value="0" disabled>Seçiniz</option>
+                  <option *ngFor="let option of filterGroup.options" [value]="option.value">{{ option.name }}</option>
+                </select>
+              </div>
+              <div class="col-xs-12 filter-group">
+                <label for="" style="width: 100%;display: inline-block ;">Yıllık İşbirliği Bilgisi</label>
+                <input type="text" class="form-control col-xs-4" placeholder="... yılında" style="max-width: 150px;float: left; margin-right:5px">
+                <span style="float: left;">:</span> 
+                <input type="text" class="form-control col-xs-4" placeholder="... Adet" style="max-width: 150px;float: left;margin-left:5px"> 
+                <p>                işbirliği sağlanmıştır.
+                </p>
+              </div>
+            </div>
+            
+            
+           <!-- <input type="submit" class="btn btn-primary" placeholder="filtrele" (click)="closeModal()" value="Filtrele">-->
+            <button type="button" class="btn btn-secondary btn-sm " id="kt_help_close">
+              Kapat
+            </button>
+            <a class="btn btn-primary btn-sm m-5" (click)="onReset()">Temizle</a>
+          </form>
+        </div>
+        <!--end::Link-->
+
+ 
+
+      </div>
+      <!--end::Content-->
+    </div>
+    <!--end::Body-->
+  </div>
+  <!--end::Card-->
+</div>
+<!--end::Exolore drawer-->
+

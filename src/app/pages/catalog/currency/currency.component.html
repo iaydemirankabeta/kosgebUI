@@ -1,0 +1,3 @@
+<select class="form-select form-select-sm form-select-solid" id="currencySelect" [(ngModel)]="selectedCurrency" (change)="onCurrencySelected()">
+    <option *ngFor="let item of currencyList" [value]="item.code" [selected]="item.code === '₺'">{{ item.code }} {{ item.currency }}</option>
+  </select>

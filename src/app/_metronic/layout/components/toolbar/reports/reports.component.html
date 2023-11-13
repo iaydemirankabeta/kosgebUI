@@ -1,0 +1,185 @@
+<!--begin::Wrapper-->
+<div class="col-md-6 col-xs-12">
+  <div class="d-flex align-items-center flex-shrink-0">
+    <!--begin::Label-->
+    <span class="fs-7 fw-bold text-gray-700 flex-shrink-0 pe-4 d-none d-md-block">Filtrele:</span>
+    <!--end::Label-->
+  
+    <div class="flex-shrink-0 ">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link btn btn-sm btn-color-muted btn-active-color-primary btn-active-light active fw-semibold fs-7 px-4 me-1"
+            data-bs-toggle="tab" href="#">Bugün</a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link btn btn-sm btn-color-muted btn-active-color-primary btn-active-light fw-semibold fs-7 px-4 me-1"
+            data-bs-toggle="tab" href="">Haftalık</a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link btn btn-sm btn-color-muted btn-active-color-primary btn-active-light fw-semibold fs-7 px-4"
+            data-bs-toggle="tab" href="#">Ay</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--end::Wrapper-->
+
+<!--begin::Separartor-->
+<div class="bullet bg-secondary h-35px w-1px mx-5"></div>
+<!--end::Separartor-->
+
+<div class="col-md-6 col-xs-12">
+  <!--begin::Wrapper-->
+<div class="d-flex align-items-center">
+  <!--begin::Label-->
+  <span class="fs-7 fw-bold text-gray-700 flex-shrink-0 pe-4 d-none d-md-block">Sırala:</span>
+  <!--end::Label-->
+
+  <!--begin::Select-->
+  <select class="form-select form-select-sm w-md-125px form-select-solid" data-control="select2"
+    data-placeholder="Latest" data-hide-search="true">
+    <option value=""></option>
+    <option value="1" selected>Son </option>
+    <option value="2">Aylık </option>
+    <option value="3">Yıllık</option>
+  </select>
+  <!--end::Select-->
+
+  <!--begin::Actions-->
+  <div class="d-flex align-items-center ms-3">
+    <button type="button" class="btn btn-sm btn-icon btn-light-primary me-3" data-bs-toggle="tooltip"
+      data-bs-placement="top" title="Enable grid view">
+      <app-keenicon name="element-11" class="fs-2 text-primary"></app-keenicon>
+    </button>
+
+    <button type="button" class="btn btn-sm btn-icon btn-light" data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Enable row view">
+      <app-keenicon name="abstract-14" class="fs-2 text-gray400"></app-keenicon>
+    </button>
+  </div>
+  <!--end::Actions-->
+</div>
+<!--end::Wrapper-->
+</div>
+
+
+<div class="row mb-6">
+  <div class="col-lg-6">
+      <label class="col-lg-4 col-form-label required fw-bold fs-6">Sektör </label>
+
+      <select
+          class="form-select form-select-solid"
+          data-kt-select2="true"
+          data-placeholder="Select option"
+          data-allow-clear="true"
+      >
+          <option></option>
+          <option selected value="">Seçiniz...</option>
+          <option value="">Gıda</option>
+          <option value="">Otomotiv</option>
+          <option value="">İnşaat</option>
+          <option value="">Tekstil</option>
+          
+
+      </select>
+      <div class="row">
+        <div class="col-md-6 col-xs-12" >
+          <img src="./assets/media/report.jpeg" alt="Metronic logo" style="width: 100%;" />
+        </div>
+        <style>
+          .report p{
+              margin: 42px 0;
+            }
+          
+        </style>
+        <div class="col-md-6 col-xs-12 report">
+          <p>Sağlanan iş birliği sayısı</p>
+          <p>Yapılan i2 sayısı</p>
+          <p>Eşleşme sayısı</p>
+          <p>Açılan Çağrı Sayısı</p>
+          <p>Bu Sektördeki KOBİ Sayısı</p>
+        </div>
+      </div>
+  </div>
+  <div class="col-lg-6">
+      <label class="col-lg-4 col-form-label required fw-bold fs-6">Firma</label>
+
+      <select
+          class="form-select form-select-solid"
+          data-kt-select2="true"
+          data-placeholder="Select option"
+          data-allow-clear="true"
+      >
+          <option></option>
+          <option selected value="">Seçiniz...</option>
+          <option selected value="">BMC</option>
+          <option selected value="">BMW</option>
+          <option selected value="">SUZUKİ</option>
+
+      </select>
+      <div class="row">
+        <div class="col-md-6 col-xs-12" >
+          <img src="./assets/media/report.jpeg" alt="Metronic logo" style="width: 100%;" />
+        </div>
+        <style>
+          .report p{
+              margin: 42px 0;
+            }
+          
+        </style>
+        <div class="col-md-6 col-xs-12 report">
+          <p>Sağlanan iş birliği sayısı</p>
+          <p>Yapılan i2 sayısı</p>
+          <p>Eşleşme sayısı</p>
+          <p>Açılan Çağrı Sayısı</p>
+          <p>Bu Sektördeki KOBİ Sayısı</p>
+        </div>
+      </div>
+  </div>
+
+  <div class="row mb-6">
+    <div class="col-lg-6">
+      <label class="col-lg-4 col-form-label required fw-bold fs-6">Rapor Almak İstediğin İşlemi Seç</label>
+
+      <select
+          class="form-select form-select-solid"
+          data-kt-select2="true"
+          data-placeholder="Select option"
+          data-allow-clear="true"
+      >
+          <option></option>
+          <option selected value="">Seçiniz...</option>
+          <option  value="">Tüm Çağrılar</option>
+          <option  value="">Tüm KOBİ'ler</option>
+          <option  value="">Tüm Büyük İşletmeler</option>
+          <option  value="">Tüm Başvurular</option>
+          <option  value="">Bİ'lerden gelen i2 toplantı istekleri</option>
+          <option  value="">İşbirliği Yapan İşletmeler</option>
+          <option  value="">KOSGEB talep toplama çağrısına katılan Bİ'lar</option>
+          <option  value="">KOSGEB Destekli çağrılar</option>
+
+      </select>
+    </div>
+    <div class="col-lg-6">
+      <label class="col-lg-4 col-form-label required fw-bold fs-6">Faaliyet Raporu için Şirket Seçiniz</label>
+
+      <select
+          class="form-select form-select-solid"
+          data-kt-select2="true"
+          data-placeholder="Select option"
+          data-allow-clear="true"
+      >
+          <option></option>
+          <option selected value="">Seçiniz...</option>
+          <option  value="">ISUZU</option>
+          <option  value="">ASELSAN</option>
+          <option  value="">BMC</option>
+          
+
+      </select>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { OverviewComponent } from './overview/overview.component';
+import { AccountComponent } from './account.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { CompanyAdressesComponent } from './company-adresses/company-adresses.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: AccountComponent,
+    children: [
+      {
+        path: 'ayarlar',
+        component: OverviewComponent,
+      },
+      {
+        path: 'ayarlar/duzenle',
+        component: SettingsComponent,
+      },
+      {
+        path: 'profilim',
+        component: ProfileComponent,
+      },
+      {
+        path: 'kullanici-yonetimi',
+        component: UserManagementComponent,
+      },
+      {
+        path:'adreslerim',
+        component:CompanyAdressesComponent
+      },
+
+      { path: '', redirectTo: 'overview', pathMatch: 'full' },
+      { path: '**', redirectTo: 'overview', pathMatch: 'full' },
+    ],
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class AccountRoutingModule {}

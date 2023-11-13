@@ -1,0 +1,256 @@
+<div class="card mb-5 mb-xl-10" *ngIf="user$ | async as _user">
+    <div
+      class="card-header border-0 cursor-pointer"
+      role="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#kt_account_profile_details"
+      aria-expanded="true"
+      aria-controls="kt_account_profile_details"
+    >
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Profilim</h3>
+      </div>
+    </div>
+    <div id="kt_account_profile_details" class="collapse show">
+      <form novalidate="" class="form">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label fw-bold fs-6">Şirket Logo</label>
+            <div class="col-lg-8">
+              <div
+                class="image-input image-input-outline"
+                data-kt-image-input="true"
+                [style.background-image]="_user.pic"
+              >
+                <div
+                  class="image-input-wrapper w-125px h-125px"
+                  style="background-size: contain; background-position: center;"
+                  
+                  [style.background-image]="'url('+_user.pic+')'
+                  "
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >İsim</label>
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <input
+                    type="text"
+                    class="
+                      form-control form-control-lg form-control-solid
+                      mb-3 mb-lg-0
+                    "
+                    placeholder="web adresi"
+                    name="fName"
+                    [value]="_user.fullname"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6">Web Adresi</label>
+                <div class="col-lg-12 fv-row">
+                <input
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Şirket Adı"
+                    name="company"
+                    [value]="_user.website"
+                />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6">Telefon</label>
+                <div class="col-lg-12 fv-row">
+                <input
+                    type="phone"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Şirket Adı"
+                    name="company"
+                    [value]="_user.phone"
+                />
+                </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-xs-12">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6">Hakkında</label>
+                <textarea
+                #messageInput
+                class="form-control form-control-flush mb-3"
+                rows="6"
+                cols="30"
+                data-kt-element="input"
+                style="border: 1px solid #ded9d9;border-radius: 10px;"
+              >
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            </textarea>            
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6">Sektör (Nace Kodu Seçimi)</label>
+
+                <select
+                    class="form-select form-select-solid"
+                    data-kt-select2="true"
+                    data-placeholder="Select option"
+                    data-allow-clear="true"
+                >
+                    <option></option>
+                    <option selected value="">Seçiniz...</option>
+                    <option value="">J62.0.1 - Computer programming activities</option>
+                    
+ 
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6">Faaliyet Merkezi</label>
+
+                <select
+                    class="form-select form-select-solid"
+                    data-kt-select2="true"
+                    data-placeholder="Select option"
+                    data-allow-clear="true"
+                >
+                    <option></option>
+                    <option selected value="">Seçiniz...</option>
+                    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+                    
+ 
+                </select>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6">Şirket Çalışan Sayısı</label>
+
+                <select
+                    class="form-select form-select-solid"
+                    data-kt-select2="true"
+                    data-placeholder="Select option"
+                    data-allow-clear="true"
+                >
+                    <option></option>
+                    <option selected value="">Seçiniz...</option>
+                    <option value="0-5">0 - 5</option>
+                    <option value="">5 - 20</option>
+                    <option value="">20 - 50</option>
+                    <option value="">50 - 100</option>
+                    <option value="">100 - 250</option>
+                    <option value="">250 ve Üzeri</option>
+                    
+ 
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6">2023 yılı sonu itibariyle şirket cirosu</label>
+
+                <select
+                    class="form-select form-select-solid"
+                    data-kt-select2="true"
+                    data-placeholder="Select option"
+                    data-allow-clear="true"
+                >
+                    <option></option>
+                    <option selected value="">Seçiniz...</option>
+                    <option value="0-5">1+ - 5 Milyon TL</option>
+                    <option value="0-5">5+ - 20 Milyon TL</option>
+                    <option value="0-5">20 - 50 Milyon TL</option>
+                    <option value="0-5">50 - 100 Milyon TL</option>
+                    <option value="0-5">100 - 250 Milyon TL</option>
+                    
+ 
+                </select>
+            </div>
+          </div>
+          <div class="row mb-6">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-lg-4 col-form-label required fw-bold fs-6">Teşvik Bölgesi</label>
+
+                <input
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Şirket Adı"
+                    name="company"
+                    value="2. Bölge"
+                    disabled
+                />
+                </div>
+                
+                <div class="col-lg-6">
+                  <div class="col-lg-12 fv-row">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Laboratuvar Bilgisi</label>
+      
+                  <input
+                      type="text"
+                      class="form-control form-control-lg form-control-solid"
+                      placeholder=""
+                      name="company"
+                    
+                  />
+                  </div>
+                </div>
+                <div class="row mb-6">
+                  <div class="col-lg-6 fv-row">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Görüşme Talepleri Bildirim Sınırı</label>
+          
+                    <input
+                        type="number"
+                        min="0"
+                        class="form-control form-control-lg form-control-solid"
+                        placeholder=""
+                        name="company"
+                        
+                    />
+                    <p>KOBİ’lerden gelecek olan görüşme talepleri belirlemiş olduğunuz sayıyı aştığında bildirim gelecektir. Bunun için bir sayı giriniz. <br>(Örnek: 200)</p> 
+                      
+                  </div>
+                </div>
+
+              <p>  IDR, D3A, FINDEKS, TSE, Fatura, OEM, İhraç/ithal edilen ürün, GTİP ve Konşimento gibi belgeleri yükleyebilirsiniz.</p>
+      <div class="drop-zone" (drop)="dosyaBirak($event)" (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)">
+        <input type="file" (change)="dosyaSec($event)" style="display: none">
+        <p><a href="javascript:void(0);" (click)="dosyaSecManuel()">Dosyayı buraya sürükleyip bırakın veya tıklayarak
+            dosya seçin</a>.</p>
+      </div>
+
+
+      <div *ngIf="yuklenenDosyalar.length > 0">
+        <h3>Yüklenen Dosyalar</h3>
+        <ul>
+          <li *ngFor="let dosya of yuklenenDosyalar">{{ dosya.name }}</li>
+        </ul>
+      </div>
+          </div>
+         
+        </div>
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+          <button
+            type="button"
+            class="btn btn-primary"
+            [disabled]="isLoading"
+            (click)="saveSettings()"
+          >
+            <ng-container *ngIf="!isLoading">Kaydet</ng-container>
+            <ng-container *ngIf="isLoading">
+              <span clas="indicator-progress" [style.display]="'block'">
+                Lütfen bekleyin...{{ " " }}
+                <span
+                  class="spinner-border spinner-border-sm align-middle ms-2"
+                ></span>
+              </span>
+            </ng-container>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

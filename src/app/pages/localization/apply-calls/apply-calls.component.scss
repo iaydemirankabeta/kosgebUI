@@ -1,0 +1,79 @@
+.title-sector{
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: #27ae60;
+    width: auto !important;
+    color: white;
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    max-width: 150px;
+}
+div.card{
+  height: 800px;
+}
+div.card-info{
+  height: 50px
+}
+div.card-body{
+  height: 80px;
+}
+
+div.card-footer{
+  height: 89px;
+}
+div.card-header{
+  height: 500px;
+}
+.tags{
+    color:#1abc9c;
+    margin: 5px 0;
+}
+.btn.btn-dark{
+    margin-bottom:10px;
+}
+.btn.btn-dark:hover:not(.btn-active){
+    background-color: #50cd89 !important;
+    
+}
+.list-group-item{
+    font-size: 12px;
+}
+.modal-content{
+    min-width: 720px !important;
+    max-width: 100%;
+    width: 100%;
+}
+.btn.btn-margin{
+  margin-left: 10px;
+}
+.list-group{text-align: left;}
+.list-group.list-group-item{margin-bottom: 10px;}
+.list-group h3,.list-group p,.list-group h5{text-align: left;}
+.list-group a{float: left;margin:0 5px;}
+.list-group button.btn-primary{float: right;font-size: 11px;}
+.list-group .btn{float: right;}
+.calls-content{float:left;}
+.list-group a.btn-dark{float: left;border:1px solid;}
+.toggle-btn {
+    border: none;
+    background-color: transparent;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .toggle-btn.active {
+    background-color: #3498db;
+    color: white;
+  }
+  .toggle-btn.active i{color: white;}
+
+
+  @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }

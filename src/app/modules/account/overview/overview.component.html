@@ -1,0 +1,121 @@
+<div class="card mb-5 mb-xl-10" id="kt_profile_details_view" *ngIf="user$ | async as _user">
+  <div class="card-header cursor-pointer">
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Profil Detay</h3>
+    </div>
+
+    <a
+      routerLink="/hesabim/ayarlar/duzenle"
+      class="btn btn-primary align-self-center"
+    >
+      Profili Düzenle
+    </a>
+  </div>
+
+  <div class="card-body p-9">
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Ad</label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark">{{_user.firstname}} {{_user.lastname}}</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Şirket</label>
+
+      <div class="col-lg-8 fv-row">
+        <span class="fw-bold fs-6">{{_user.selectedCompany ?  _user.selectedCompany.company.name : ''}}</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">
+        Telefon
+        <i
+          class="fas fa-exclamation-circle ms-1 fs-7"
+          data-bs-toggle="tooltip"
+          title="Telefon numarası aktif olmak zorunda"
+        ></i>
+      </label>
+
+      <div class="col-lg-8 d-flex align-items-center">
+        <span class="fw-bolder fs-6 me-2">{{_user.phone}}</span>
+
+        <span class="badge badge-success">Onaylı</span>
+      </div>
+    </div>
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">Web site</label>
+
+      <div class="col-lg-8">
+        <a href="#" class="fw-bold fs-6 text-dark text-hover-primary">
+          {{_user.website}}
+        </a>
+      </div>
+    </div>
+
+   <!-- <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">
+        Ülke
+        <i
+          class="fas fa-exclamation-circle ms-1 fs-7"
+          data-bs-toggle="tooltip"
+          title="Country of origination"
+        ></i>
+      </label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark">{{_user}}</span>
+      </div>
+    </div>-->
+
+    <div class="row mb-7">
+      <label class="col-lg-4 fw-bold text-muted">İletişim</label>
+
+      <div class="col-lg-8">
+        <span class="fw-bolder fs-6 text-dark">Email,sms</span>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+      <label class="col-lg-4 fw-bold text-muted">Değişikliklere İzin Ver</label>
+
+      <div class="col-lg-8">
+        <span class="fw-bold fs-6">Yes</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<app-sign-in-method></app-sign-in-method>
+<!--
+<div class="row gy-10 gx-xl-10">
+  <div class="col-xl-6">
+    <app-charts-widget1
+      class="card card-xxl-stretch mb-5 mb-xl-10"
+    ></app-charts-widget1>
+  </div>
+
+  <div class="col-xl-6">
+    <app-tables-widget1
+      class="card card-xxl-stretch mb-5 mb-xl-10"
+    ></app-tables-widget1>
+  </div>
+</div>
+
+<div class="row gy-10 gx-xl-10">
+  <div class="col-xl-6">
+    <app-lists-widget5
+      class="card card-xxl-stretch mb-5 mb-xl-10"
+    ></app-lists-widget5>
+  </div>
+
+  <div class="col-xl-6">
+    <app-tables-widget5
+      class="card card-xxl-stretch mb-5 mb-xl-10"
+    ></app-tables-widget5>
+  </div>
+</div>
+-->

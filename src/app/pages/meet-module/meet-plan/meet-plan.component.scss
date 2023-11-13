@@ -1,0 +1,27 @@
+/* Katılımcıları liste olarak göster */
+.katilimci-listesi {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .katilimci-item {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  
+  .katilimci-item span {
+    flex-grow: 1;
+    margin-right: 8px;
+  }
+  
+  .katilimci-item button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    padding: 5px !important;
+  }

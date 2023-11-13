@@ -1,0 +1,32 @@
+trigger:
+  branches:
+    include:
+    - 'Production'
+
+schedules:
+- cron: "* * * * *"
+  branches:
+    include:
+    - Production
+  always: true
+  displayName: 'Every 2 hours'
+steps:
+- script: |
+    rmdir /s /q kosgebUI
+    git clone -b main https://berksah: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@github.com/Ankabetas/kosgebUI
+    cd kosgebUI
+    git checkout Production 
+    rmdir /s /q .git
+    cd ..
+    rmdir /s /q KOSGEB.SupportDigital_KOSGEBUI
+    git clone https://28684755980:Eb.160823@tfs.kosgeb.gov.tr/tfs/DefaultCollection/KOSGEB.SupplierDigital/_git/KOSGEB.SupportDigital_KOSGEBUI
+    cd KOSGEB.SupportDigital_KOSGEBUI
+    git checkout Production 
+    cd ..
+    xcopy /E /Y kosgebUI\* KOSGEB.SupportDigital_KOSGEBUI\
+    cd KOSGEB.SupportDigital_KOSGEBUI
+    git config --global user.name "28684755980"
+    git add .
+    git commit -m "sync from git to azure"
+    git push
+  displayName: 'Pull from GitHub'

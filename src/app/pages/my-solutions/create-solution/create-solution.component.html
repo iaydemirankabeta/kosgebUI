@@ -1,0 +1,146 @@
+<style>
+    .error-message {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    
+    .ng-invalid.ng-touched {
+      border-color: red;
+    }
+  </style>
+  <ng-container style="max-width: 560px;display: block;margin:0 auto;text-align: center;">
+          <div class="d-flex align-items-center mb-12">
+              <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                    >Sektör</label
+                  >
+                  <div class="col-lg-8 fv-row">
+                    <select class="form-select  mb-5 " aria-label="Select example" formControlName="sector">
+                        <option value="" disabled selected>Sektör</option>
+                          <option *ngIf="result ? result.badget : 0">{{result ? result.badget : 0}}</option>
+        
+                        <option value="1">Gıda</option>
+                        <option value="2">İnşaat</option>
+                        <option value="3">Kozmetik</option>
+                        <option value="4">Teknoloji</option>
+                        <option value="5">Hububat (Tahıl)</option>
+                      </select>
+                  </div>
+                
+                <div *ngIf="form.get('sector')?.invalid && form.get('sector')?.touched" class="error-message">
+                  Lütfen sektör seçiniz.
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                >Aktiflik Durumu</label
+              >
+              <div class="col-lg-8 fv-row">
+                <select class="form-select  mb-5 " aria-label="Select example" formControlName="isActive">
+                    <option value="" disabled selected>Aktiflik Durumu</option>
+                      <option *ngIf="result ? result.isActive : 0">{{result ? result.isActive : false}}</option>
+    
+                    <option value="true">Aktif</option>
+                    <option value="false">Pasif</option>
+
+                  </select>
+              </div>
+            
+            <div *ngIf="form.get('isActive')?.invalid && form.get('isActive')?.touched" class="error-message">
+              Lütfen sektör seçiniz.
+            </div>
+        </div>
+                <div class="row mb-6">
+                  <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                    >Anahtar Kelimeyi Giriniz</label
+                  >
+                  <div class="col-lg-8 fv-row">
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      placeholder="Örn;cam, DC Motor"
+                      name="keyword"
+                      [value]="result ? result.tags : ''"
+                      formControlName="keyword"
+      />
+      <div *ngIf="form.get('keyword')?.invalid && form.get('keyword')?.touched" class="error-message">
+        Anahtar kelime gerekli.
+      </div>
+  
+                    
+                  </div>
+                </div>
+                <div class="row mb-6">
+                  <label class="col-lg-4 col-form-label required fw-bold fs-6"
+                    >Konu Başlığı Giriniz</label
+                  >
+                  <div class="col-lg-8 fv-row">
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      placeholder="Konu Başlığı"
+                      name="subject"
+                      [value]="result ? result.tags : ''"
+                      formControlName="subject"
+      />
+      <div *ngIf="form.get('subject')?.invalid && form.get('subject')?.touched" class="error-message">
+        Konu Başlığını Giriniz.
+      </div>
+                  </div>
+                </div>
+  
+                <div class="row mb-6">
+                  <label class="col-lg-4 col-form-label required fw-bold fs-6">Vereceğiniz Hizmeti Detaylı Olarak Anlatın</label>
+                  <div class="col-lg-8 fv-row">
+                      <textarea
+                          name="businessDescription"
+                          class="form-control form-control-lg "
+                          rows="3"
+                          placeholder="Lütfen almak istediğiniz ürün/hizmet veya hizmeti tanımlayınız."
+                          formControlName="businessDescription"
+                          minlength="{{minLength}}" 
+                          maxlength="{{maxLength}}">
+                      </textarea>
+                          <div *ngIf="form.get('businessDescription')?.invalid && form.get('businessDescription')?.touched" class="error-message">
+                            Lütfen en az {{minLength}} karakter, en fazla {{maxLength}} karakter girişi yapın.
+  
+                          </div>
+                  </div>
+                </div>
+                <hr/>
+                <p> İşle ilgili varsa, örnek görsel ve metin eklemen büyük işletmelerin çözümü daha rahat anlamalarını sağlar.</p>
+                <div class="drop-zone" 
+       (drop)="dosyaBirak($event)" 
+       (dragover)="onDragOver($event)" 
+       (dragleave)="onDragLeave($event)">
+    <input type="file" (change)="dosyaSec($event)" style="display: none">
+    <p><a href="javascript:void(0);" (click)="dosyaSecManuel()">Dosyayı buraya sürükleyip bırakın veya tıklayarak dosya seçin</a>.</p>
+  </div>
+  
+  <div *ngIf="yuklenenDosyalar.length > 0">
+    <h3>Yüklenen Dosyalar</h3>
+    <ul>
+      <li *ngFor="let dosya of yuklenenDosyalar">{{ dosya.name }}</li>
+    </ul>
+  </div>
+  
+  <div *ngIf="isEnabledError">
+   <p class="error-message" style="text-align: right;font-size: 14px;">Lütfen Tüm Alanları Doldurun</p>
+  
+  </div>
+                <button class="btn btn-primary flex-grow-1" style="float:right" >Yayınla</button>
+              </form>
+            </div>
+  
+            <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
+              <div class="col-xs-12 text-center">
+                <i class="fa-solid fa-check call-tick"></i>
+                <h3>Tebrikler</h3>
+                <p>Çağrınız oluştu</p>
+                <a routerLink="/calls" (click)="closeModal()">Çağrılarım -></a>
+              </div>
+            </app-modal>
+            
+  </ng-container>

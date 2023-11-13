@@ -1,0 +1,394 @@
+<ng-container *ngIf="user$ | async as _user">
+  <mat-tab-group fitInkBarToContent *ngIf="_user.roles!==2" >
+    <mat-tab  label="Gelen Başvurular"  >
+      <!-- TODO -->
+      <!-- <div>
+
+        <button *ngIf="_user.roles === 1" type="button"  (click)="acRandevuModal()" class="btn btn-success btn-margin">KOSGEB'ten Görüşme Talep Et</button>
+        <button *ngIf="_user.roles === 1" type="button" class="btn btn-danger btn-margin">Reddet</button>
+      </div> -->
+      <table mat-table [dataSource]="trigClick" class="mat-elevation-z8" *ngIf="(_user.roles !== 3 && _user.roles !== 6)">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="TeklifId">
+          <th mat-header-cell *matHeaderCellDef> ÇağrıID </th>
+          <td mat-cell *matCellDef="let element" >
+            <input *ngIf="_user.roles===1" type="checkbox" class="form-check-input">
+            {{element.id}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="CagrıAdi">
+          <th mat-header-cell *matHeaderCellDef> Çağrı Adı</th>
+          <td mat-cell *matCellDef="let element" > {{element.callName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="FirmaAdi">
+          <th mat-header-cell *matHeaderCellDef> Firma Adı</th>
+          <td mat-cell *matCellDef="let element" > {{element.firmName}} </td>
+        </ng-container>
+        <!-- Weight Column -->
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="TeklifTarihi">
+          <th mat-header-cell *matHeaderCellDef> Başvuru Tarihi </th>
+          <td mat-cell *matCellDef="let element" > {{element.offerDate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="TeklifStatusu">
+            <!-- <th mat-header-cell *matHeaderCellDef> {{_user.roles === 2 ? 'Başvuru Statüsü': 'Aksiyon'}} </th> -->
+            <th mat-header-cell *matHeaderCellDef>Aksiyon</th>
+            <td mat-cell *matCellDef="let element" > 
+              <!-- <div *ngIf = "_user.roles !== 2 "> -->
+                <div>
+                <button type="button"  (click)="acRandevuModal()" class="btn btn-success btn-margin">KOSGEB'ten Görüşme Talep Et</button>
+              <button type="button" class="btn btn-danger btn-margin">Reddet</button>
+              </div>
+              <!-- <span *ngIf = "_user.roles === 2">Beklemede</span> -->
+              
+
+            </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      </mat-tab>
+      <mat-tab label="Çağrıyı Görüntüleyenler" *ngIf="(_user.roles !== 3 && _user.roles !== 6)">
+        <mat-table [dataSource]="dataViews" class="mat-elevation-z8">
+          <!-- İşletme Adı Sütunu -->
+          <ng-container matColumnDef="companyName">
+            <mat-header-cell *matHeaderCellDef> İşletme Adı </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.companyName }}</mat-cell>
+          </ng-container>
+        
+          <!-- Sektör Sütunu -->
+          <ng-container matColumnDef="sektor">
+            <mat-header-cell *matHeaderCellDef> Sektör </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.sektor }}</mat-cell>
+          </ng-container>
+        
+          <!-- Tarih Sütunu -->
+          <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef> Tarih </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.date }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> İşlemler </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-button class="btn btn-primary">Başvurmaya Davet Et</button>
+            </mat-cell>
+          </ng-container>
+        
+          <!-- Sütun Tanımlamaları -->
+          <mat-header-row *matHeaderRowDef="['companyName', 'sektor', 'date','actions']"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: ['companyName', 'sektor', 'date','actions']"></mat-row>
+        </mat-table>
+      </mat-tab>
+      
+      <mat-tab  label="KOSGEB'e Gönderilen Görüşme Talepleri">
+        <table mat-table [dataSource]="requests" class="mat-elevation-z8" *ngIf="(_user.roles !== 3 && _user.roles !== 6)">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+        
+          <!-- Position Column -->
+          <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef> GörüşmeID </th>
+            <td mat-cell *matCellDef="let element" (click)="getKobies(element)" >
+              {{element.id}} </td>
+          </ng-container>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="CallName">
+            <th mat-header-cell *matHeaderCellDef>Çağrı Adı/B2B Talebi</th>
+            <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.CallName}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="SuitableDate">
+            <th mat-header-cell *matHeaderCellDef> Uygun Tarih Aralığı</th>
+            <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.SuitableDate}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="EmployeeNumber">
+            <th mat-header-cell *matHeaderCellDef> Katılımcı Sayısı</th>
+            <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.EmployeeNumber}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="StartTime">
+            <th mat-header-cell *matHeaderCellDef>Başlangıç Zamanı</th>
+            <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.StartTime}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="MeetingTime">
+            <th mat-header-cell *matHeaderCellDef>Görüşme Süresi</th>
+            <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.MeetingTime}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="EndTime">
+            <th mat-header-cell *matHeaderCellDef>Bitiş Zamanı</th>
+            <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.EndTime}} </td>
+          </ng-container>
+          <ng-container matColumnDef="IsBreak">
+            <th mat-header-cell *matHeaderCellDef>Mola Bilgisi</th>
+            <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.IsBreak}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="IsLunch">
+            <th mat-header-cell *matHeaderCellDef>Öğle Arası Bilgisi</th>
+            <td mat-cell *matCellDef="let element"(click)="getKobies(element)" > {{element.IsLunch}} </td>
+          </ng-container>
+  
+          <ng-container  matColumnDef="MeetingType">
+            <th mat-header-cell  *matHeaderCellDef>Görüşme Tipi</th>
+            <td mat-cell *matCellDef="let element" (click)="getKobies(element)"> {{element.MeetingType}} </td>
+          </ng-container>
+          <!-- Weight Column -->
+          <ng-container matColumnDef="KosgebStatus">
+            <th mat-header-cell *matHeaderCellDef> Durum</th>
+            <td mat-cell *matCellDef="let element"(click)="getKobies(element)"> {{element.KosgebStatus}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="Action">
+              <!-- <th mat-header-cell *matHeaderCellDef> {{_user.roles === 2 ? 'Başvuru Statüsü': 'Aksiyon'}} </th> -->
+              <th mat-header-cell *matHeaderCellDef>Aksiyon</th>
+              <!-- Buton Ayarlamaları -->
+              <td mat-cell *matCellDef="let element" > 
+                 <!-- Status Red ise red nedenini yazacak -->
+                <button *ngIf="element.KosgebStatus=='KOSGEB Reddetti'" (click)="openRejectionReasonModal(element.RejectionReason)" type="button" class="btn btn-warning btn-margin">Reddetme Nedeni</button>
+
+                <div *ngIf="element.KosgebStatus!='KOSGEB Onayladı' &&element.KosgebStatus!='KOSGEB Reddetti'&&element.BiStatus!='Bİ Onayladı'&&element.BiStatus!='Bİ İptal Etti'">
+                <button *ngIf="element.KosgebStatus!='KOSGEB\'e Gönderildi'" (click)="openSuccessModal(element.id)" type="button" class="btn btn-primary btn-margin">Onayla</button>
+                <button type="button" class="btn btn-danger btn-margin"(click)="openCancelModal(element.id)">İptal Et</button>
+                <button *ngIf="element.KosgebStatus!='KOSGEB\'e Gönderildi'" (click) = "acKobiModal()"  type="button" class="btn btn-success btn-margin">Düzenle</button>
+
+                </div>
+                <div *ngIf="element.BiStatus==='Bİ Onayladı'"><strong> Onayladınız</strong></div>
+                <div *ngIf="element.BiStatus==='Bİ İptal Etti'"><strong> İptal Ettiniz</strong></div>
+              
+                <!-- <span *ngIf = "_user.roles === 2">Beklemede</span> -->
+              </td>
+            </ng-container>
+            
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsDetail"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsDetail;"></tr>
+        </table>
+</mat-tab>
+      </mat-tab-group>
+        
+      <app-modal #acceptmodal [modalConfig]="modalAcceptConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <p>Teklif Talebini Kabul Ettiniz. Teklif talebini B2B zekası modülü, Görüşmelerim sekmesinden görüntüleyebilirsiniz!</p>
+        </div>
+      </app-modal>
+      <app-modal #meetingModal [modalConfig]="modalCreateMeetingConfig" aria-modal="true">
+        <div class="container row" >
+          <div class="col-12">
+            <div class="mt-4">
+              <h4 class="mt-4">Büyük İşletme Bilgisi</h4>
+              <div class="form-control mt-4 ">
+                <h5 class="mt-4">Isuzu</h5>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe assumenda autem deserunt adipisci sunt? Eveniet dolores neque saepe velit totam numquam possimus, doloremque distinctio, perspiciatis est voluptates ab quasi consectetur.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 mt-4">
+            <h4 class="mt-4">ÇağrıID</h4>
+            <h5 class="form-control mt-4">{{selectedOffer.callName}}</h5>
+
+            <h4 class="mt-4">Çağrı Detayı</h4>
+            <p class="form-control mt-4">{{selectedOffer.callName}} hakkında detaylı bilgi</p>
+          </div>
+          <div  class="col-6 mt-4">
+            <h4 class="mt-4">Firma Yetkilisi</h4>
+            <h6 class="form-control mt-4">Gizem Turanlı</h6>
+            <h4 class="mt-4">Teklif Başlığı</h4>
+            <h6 class="form-control mt-4">Teklif Başlığı</h6>
+          </div>
+
+          <div class="mt-4 d-flex justify-content-end">
+            <button class="btn btn-primary btn-margin" (click)="closeMeetingModal()">Toplantı Oluştur</button>
+            <button class="btn btn-danger" (click)="closeMeetingModal()" >Kapat</button>
+          </div>
+      </div>
+      </app-modal>
+      
+      <app-modal #meet [modalConfig]="modalMeetConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <p>Lütfen uygun tarihlerinizi seçiniz</p>
+          <div class="calendar-container">
+            <div class="row text-center mt-5">
+              <div class="col-md-8">
+                <div class="btn-group">
+                  <div
+                    class="btn btn-primary"
+                    mwlCalendarPreviousView
+                    [view]="view"
+                    [(viewDate)]="viewDate"
+                  >
+                    Önceki
+                  </div>
+                  <div
+                    class="btn btn-outline-secondary"
+                    mwlCalendarToday
+                    [(viewDate)]="viewDate"
+                  >
+                    Bugün
+                  </div>
+                  <div
+                    class="btn btn-primary"
+                    mwlCalendarNextView
+                    [view]="view"
+                    [(viewDate)]="viewDate"
+                  >
+                    Sonraki
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <h3>
+                  {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }}
+                </h3>
+              </div>
+            </div>
+            <div [ngSwitch]="view">
+              <mwl-calendar-month-view
+                *ngSwitchCase="'month'"
+                [viewDate]="viewDate"
+                [events]="events"
+                [locale]="locale"
+                [weekStartsOn]="weekStartsOn"
+                [weekendDays]="weekendDays"
+                [activeDayIsOpen]="activeDayIsOpen"
+                (dayClicked)="onDayClick($event.day)"
+              >
+              </mwl-calendar-month-view>
+              <mwl-calendar-week-view
+                *ngSwitchCase="'week'"
+                [viewDate]="viewDate"
+                [events]="events"
+                [locale]="locale"
+                [weekStartsOn]="weekStartsOn"
+                [weekendDays]="weekendDays"
+              >
+              </mwl-calendar-week-view>
+              <mwl-calendar-day-view
+                *ngSwitchCase="'day'"
+                [viewDate]="viewDate"
+                [events]="events"
+                [locale]="locale"
+              >
+              </mwl-calendar-day-view>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-secondary" (click)="selectHour()">Devam</button>
+        </div>
+      </app-modal>
+      
+
+      
+      <table *ngIf="_user.roles === 2" mat-table [dataSource]="dataKobi" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="TeklifId">
+          <th mat-header-cell *matHeaderCellDef> ÇağrıID</th>
+          <td mat-cell *matCellDef="let element" > {{element.id}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="CagrıAdi">
+          <th mat-header-cell *matHeaderCellDef> Çağrı Adı</th>
+          <td mat-cell *matCellDef="let element"> {{element.callName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="FirmaAdi">
+          <th mat-header-cell *matHeaderCellDef>Çağrıyı Yayınlayan İşletme</th>
+          <td mat-cell *matCellDef="let element"> {{element.firmName}} </td>
+        </ng-container>
+        <!-- Weight Column -->
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="TeklifTarihi">
+          <th mat-header-cell *matHeaderCellDef> Çağrıya Başvuru Tarihi </th>
+          <td mat-cell *matCellDef="let element"> {{element.offerDate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="TeklifStatusu">
+            <th mat-header-cell *matHeaderCellDef> Başvuru Statüsü </th>
+
+            <td mat-cell *matCellDef="let element">{{element.status}}</td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <app-modal #kobi [modalConfig]="modalConfigKobi" aria-modal="true">
+        <div *ngIf="request !== null">
+          <h3 >İşletmeyle Görüşecek  Kobiler</h3>
+            <div *ngFor="let application of request?.applications" class="mt-4">
+                <label> {{application.KOBI}}</label>
+            </div>
+        </div>
+        
+      </app-modal>
+      <app-modal #kobimodal [modalConfig]="kobimodalConfig" aria-modal="true">
+        <div >
+            <mat-tab-group fitInkBarToContent>
+                <mat-tab *ngFor="let day of availableDays" label="{{day}}">
+                    <div class="p-2">
+                        <label>Başlangıç Saati</label>
+                        <div class="row">
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '10:00' ? 'bg-secondary':''" (click)="changeStartDate('10:00')">10:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '11:00' ? 'bg-secondary':''" (click)="changeStartDate('11:00')">11:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '12:00' ? 'bg-secondary':''" (click)="changeStartDate('12:00')">12:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '13:00' ? 'bg-secondary':''" (click)="changeStartDate('13:00')">13:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '14:00' ? 'bg-secondary':''" (click)="changeStartDate('14:00')">14:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="startHour !== '15:00' ? 'bg-secondary':''" (click)="changeStartDate('15:00')">15:00</div>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <label>Bitiş Saati</label>
+                        <div class="row">
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '10:00' ? 'bg-secondary':''" (click)="changeEndDate('10:00')">10:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '11:00' ? 'bg-secondary':''" (click)="changeEndDate('11:00')">11:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '12:00' ? 'bg-secondary':''" (click)="changeEndDate('12:00')">12:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '13:00' ? 'bg-secondary':''" (click)="changeEndDate('13:00')">13:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '14:00' ? 'bg-secondary':''" (click)="changeEndDate('14:00')">14:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '15:00' ? 'bg-secondary':''" (click)="changeEndDate('15:00')">15:00</div>
+                            <div class="border rounded p-2 col-2 ml-2" [ngClass]="endHour !== '16:00' ? 'bg-secondary':''" (click)="changeEndDate('16:00')">16:00</div>
+                        </div>
+                    </div>
+                   
+                    <label for="tarih" class="col-lg-4 col-form-label  fw-bold fs-6">Önermek İstediğiniz Tarih Bilgisi Giriniz</label>
+                    <input type="date" id="tarih"  name="tarih" class="form-control" >
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+      </app-modal>
+
+      <app-modal #success [modalConfig]="successModalConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <i class="fa-solid fa-check call-tick"></i>
+          <p>KOSGEB'e Gönderilen Görüşme Talebi Onaylandı</p>
+        </div>
+      </app-modal>
+
+      <app-modal #cancel [modalConfig]="cancelModalConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+          <!-- <i class="fa-solid fa-check call-tick"></i> -->
+          <p>KOSGEB'e Gönderilen Görüşme Talebi iptal edildi</p>
+        </div>
+      </app-modal>
+      <app-modal #rejection [modalConfig]="rejectionReasonModalConfig" aria-modal="true">
+        <div class="col-xs-12 text-center">
+            <div>{{chanceRejectionReason}}</div>
+          </div>
+      </app-modal>
+</ng-container>

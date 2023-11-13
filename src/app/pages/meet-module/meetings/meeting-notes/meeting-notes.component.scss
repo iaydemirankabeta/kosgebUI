@@ -1,0 +1,13 @@
+.remove-button {
+    padding: 0; /* Düğme içeriğinin çevresindeki boşluğu kaldırır */
+  }
+  
+  /* Red color for 'x' symbol */
+  .text-danger {
+    color: #ff0000; /* Kırmızı renk */
+  }
+  
+  /* Remove default button focus effect */
+  .remove-button:focus {
+    box-shadow: none; /* Odaklandığında düğmenin gölgesini kaldırır */
+  }

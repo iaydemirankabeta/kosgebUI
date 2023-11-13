@@ -1,0 +1,200 @@
+<div class="view-toggle w-100 d-inline-block p-3">
+  <div class="float-end ">
+
+  <button class="toggle-btn" [class.active]="currentView === 'list'" (click)="toggleView('list')"><i class="fa fa-list"></i></button>
+  <button class="toggle-btn" [class.active]="currentView === 'grid'" (click)="toggleView('grid')"><i class="fa fa-th"></i></button>
+  </div>
+  
+</div>
+<div class="col-xs-12 full-width d-inline-block">
+  <ng-container *ngFor="let filter of filters">
+    <app-filter [kobiFilter]="filter"
+  [filterOptions]="filterOptions"
+  (filterChanged)="emitFilterChanges($event)"></app-filter>
+  </ng-container>
+  
+  <button
+    id="kt_help_toggle"
+    class="btn engage-help-toggle btn btn-flex h-35px bg-body btn-color-gray-700 btn-active-color-gray-900 shadow-sm px-5 rounded-top-0"
+    title="Learn & Get Inspired"
+    data-bs-toggle="tooltip"
+    data-bs-placement="left"
+    data-bs-dismiss="click"
+    style="margin-bottom: 10px;"
+    data-bs-trigger="hover">
+    Filtrele ->
+  </button>
+  
+</div>
+<ng-container >
+    <div class="row" *ngIf="currentView === 'grid';">
+    <div class="col-md-4 col-xs-12" *ngFor="let item of trigClick">
+        <div class="card p-2 text-center mt-4" >
+          <div class="card-header">
+            <div class="w-100"><p class="title-sector" style="background-color: {{item.call?.badgetColor}};">{{item.call?.badget}}</p></div>
+            <h3 style="margin:0 auto;">{{item.call?.title}}</h3>
+            <p class="tags">{{item.call?.tags}}</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex risus. Proin lobortis lacus diam, sit amet dignissim elit sodales ac. Fusce eu hendrerit arcu, et sodales augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent cursus interdum diam vitae luctus. Phasellus consequat eget tellus sed blandit. Sed bibendum vehicula lorem ac finibus. Pellentesque eget faucibus felis. Ut sagittis neque eu felis faucibus ullamcorper. Nunc a auctor risus, sit amet lobortis neque. Curabitur nisl eros, egestas eu vestibulum vitae, aliquam at elit. Nullam id efficitur libero, sed vehicula mi.
+            </p>
+            <a href="javascript:;" (click)="sss()">Sık Sorulan Sorular</a>
+                <a href="javascript:;" (click)="aboutss()">Çağrı Hakkında Sorular</a>
+        </div>
+        <div class="card-body">
+          <h5 class="text-upperCase"><b>{{item.call?.badget}} Kullanıcısı Şirketin;</b></h5>
+          <div>
+              <a class="btn btn-dark btn-active-bg-success col-12"   href="javascript:;" (click)="openModal(0)">Beklentileri</a>
+             
+          </div>
+      </div>
+            <div class="card-footer">
+              <button class="btn btn-primary float-right w-100" (click)="openOfferModal()">{{ user!.roles === 2 ? 'Başvur' : 'Teklif İste'}}</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <ul class="row list-group" *ngIf="currentView === 'list';">
+      <li class="col-md-12 col-xs-12 list-group-item mb-5" *ngFor="let item of trigClick">
+          <div class="p-2 text-center " >
+              <div>
+                  <div class="w-100"><p class="title-sector" style="float:right;background-color: {{item.call?.badgetColor}};">{{item.call?.badget}}</p></div>
+                  <h3 style="margin:0 auto;">{{item.call?.title}}</h3>
+                  <p class="tags">{{item.call?.tags}}</p>
+              </div>
+              <div class="calls-content">
+                  <h5 class="text-upperCase"><b>{{item.call?.badget}} Kullanıcısı Şirketin;</b></h5>
+                  <div class="col-xs-12">
+                      <a class="btn btn-dark btn-active-bg-success col-xs-12 " style="font-size:11px;" *ngFor="let listItem of item.call?.url;let i = index"   href="javascript:;" (click)="openModal(i)">{{listItem.name}}</a>
+                     
+                  </div>
+                  <a href="javascript:;" (click)="sss()">Sık Sorulan Sorular</a>
+                <a href="javascript:;" (click)="aboutss()">Çağrı Hakkında Sorular</a>
+              </div>
+              <div>
+                <button class="btn btn-primary float-right w-200px" (click)="openOfferModal()">{{ user!.roles === 2 ? 'Başvur' : 'Teklif İste'}}</button>
+              </div>
+          </div>
+        </li>
+    </ul>
+
+    <app-modal #modalSSS [modalConfig]="modalConfig" aria-label="true">
+      <div class="container">
+        <h3>Sık Sorulan Sorular</h3>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <p style="font-weight: bold;font-size: 18px;">GET isteği nedir?</p>
+            <p>GET, bir web sunucusundan kaynakları (verileri) almak için kullanılan bir HTTP yöntemidir. Genellikle tarayıcılar, bir web sayfasını indirmek için GET istekleri gönderir. Bu istek, sunucudan veri almak için kullanılır ve genellikle URL'deki parametrelerle iletilen bilgilere dayanır.</p>
+          </li>
+          <li class="list-group-item">
+            <p style="font-weight: bold;font-size: 18px;">POST isteği ne işe yarar?</p>
+            <p>POST, bir web sunucusuna yeni veriler göndermek için kullanılan bir HTTP yöntemidir. Genellikle form verilerini veya yüksek hacimli verileri sunucuya göndermek için kullanılır. Veriler, isteğin gövdesinde taşınır ve genellikle JSON veya form verisi olarak kodlanır.</p>
+          </li>
+          <li class="list-group-item">
+            <p style="font-weight: bold;font-size: 18px;">PUT ve PATCH istekleri arasındaki fark nedir?</p>
+            <p>PUT: Tüm kaynağı (resource) tamamen değiştirmek için kullanılır. Yani, var olan kaynağın tüm bilgileri yeniden gönderilir.</p>
+             <p> PATCH: Sadece belirli alanlarda güncelleme yapmak için kullanılır. Yani, sadece değiştirilmesi gereken verileri göndermek yeterlidir, diğer veriler değişmez.</p>
+          </li>
+
+        </ul>
+      </div>
+    </app-modal>
+
+    <app-modal #aboutSS [modalConfig]="modalaboutSSConfig" aria-label="true">
+      <div class="container">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <p style="font-weight: bold;font-size: 18px;">Bu çağrı nedir?</p>
+            <div class="row mb-12">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex risus. Proin lobortis lacus diam, sit amet dignissim elit sodales ac. Fusce eu hendrerit arcu, et sodales augue. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+
+            </div>
+          </li>
+          <li class="list-group-item">
+            <p style="font-weight: bold;font-size: 18px;">Bu çağrı ile ilgili detay verir misiniz ?</p>
+            <div class="row mb-12">
+             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex risus. Proin lobortis lacus diam, sit amet dignissim elit sodales ac. Fusce eu hendrerit arcu, et sodales augue. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="mb-12">
+          <label class="col-lg-4 col-form-label required fs-6">Soru Sor</label>
+          <div class="col-lg-12">
+            <input type="text" class="form-control form-control-lg col-lg-8"  name="name"
+              formControlName="name" />
+              <br>
+              <div >
+                <input class="form-check-input" type="checkbox" value=""  /> Sorduğum soruda firma ismimin gözükmesine izin veriyorum
+              </div>
+              <br>
+            <button type="submit" class="btn btn-primary col-lg-4">Gönder</button>
+  
+          </div>
+        </div>
+      </div>
+    </app-modal>
+
+    <app-modal #modal [modalConfig]="modalConfig" aria-modal="true">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+              <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action"
+                   *ngFor="let tab of tabs; let i = index"
+                   [class.active]="i === activeTabIndex"
+                   [id]="'list-' + tab.id + '-list'"
+                   data-toggle="list"
+                   role="tab"
+                   [attr.aria-controls]="tab.id"
+                   (click)="showTabContent(i)">
+                  {{ tab.label }}
+                </a>
+              </div>
+        
+        </div>
+        <div class="col-md-8">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade"
+                 *ngFor="let tab of tabs; let i = index"
+                 [class.show]="i === activeTabIndex"
+                 [class.active]="i === activeTabIndex"
+                 [id]="tab.id"
+                 role="tabpanel"
+                 [attr.aria-labelledby]="'list-' + tab.id + '-list'">
+              <p>{{ tab.content }}</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </app-modal>
+    <app-modal #offermodal [modalConfig]="modalOfferConfig" aria-modal="true">
+      <div class="container">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
+          <div class="mt-3">
+              <label>Firma Yetkilisi</label>
+              <input name="firmAuthority" class="form-control" [ngClass] = "form.get('firmAuthority')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="firmAuthority"/>
+          </div>
+          <div class="mt-3">
+              <label>Teklif Başlığı</label>
+              <input name="offerTitle" class="form-control" [ngClass] = "form.get('offerTitle')?.invalid ? 'border-danger' : 'border-primary'" type="text"  value="" formControlName="offerTitle"/>
+          </div>
+          <div class="mt-3">
+              <label>Açıklama</label>
+              <textarea name="offerDescription" class="form-control" [ngClass] = "form.get('offerDescription')?.invalid ? 'border-danger' : 'border-primary'" tabindex="2" value="" formControlName="offerDescription"></textarea>
+          </div>
+          <div *ngIf="isEnabledError">
+              <p class="error-message mt-3" style="text-align: right;font-size: 14px;">Lütfen Tüm Alanları Doldurun</p>
+             
+             </div>
+             <button class="btn btn-primary flex-grow-1 mt-3" style="float:right">Gönder</button>
+          </form>
+      </div>
+    </app-modal>
+    <app-modal #success [modalConfig]="modalConfig" aria-modal="true">
+      <div class="col-xs-12 text-center">
+        <i class="fa-solid fa-check call-tick"></i>
+        <h3>Tebrikler</h3>
+        <p>Teklif İsteğiniz Oluşturuldu</p>
+      </div>
+    </app-modal>
+</ng-container>

@@ -1,0 +1,24 @@
+.drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .drop-zone:hover {
+    background-color: #f7f7f7;
+    color: #333;
+  }
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .ng-invalid.ng-touched {
+    border-color: red;
+  }

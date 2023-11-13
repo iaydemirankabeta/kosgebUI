@@ -1,0 +1,61 @@
+
+<div class="container" *ngIf="user$ | async as _user">
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="startDatePicker" placeholder="Başlangıç Tarihi" [(ngModel)]="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="endDatePicker" placeholder="Bitiş Tarihi" [(ngModel)]="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="searchMeetingsByDateRange()">Ara</button>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="user$ | async as _user">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Toplantı Adı</th>
+          <th scope="col">Toplantı Tarihi</th>
+          <th scope="col">Şehir</th>
+          <th scope="col">Katılımcılar</th>
+          <th scope="col" >Toplantı Notları</th>
+
+          <th scope="col">{{_user.roles == 2 || _user.roles == 4 ? 'Görüşme Linki' : 'Link Güncelle'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let meeting of meetings">
+          <td>{{ meeting.name }}</td>
+          <td>
+            <span class="meeting-time">{{ formatMeetingDate(meeting.meetingDate) }}</span>
+
+          </td>
+          <td>{{meeting.city}}</td>
+          <td>{{ meeting.meetingLink }}</td>
+          <td  >
+            <button class="btn btn-primary" (click)="viewMeetingNotes(meeting)">Toplantı Notları</button>
+          </td>
+          <td>
+            <input type="text" [disabled]="_user.roles == 2 || _user.roles == 4" class="form-control form-control-sm form-control-solid ps-10" value="{{meeting.meetingLink}}">
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <app-modal #modal [modalConfig]="modalCompareConfig" aria-modal="true" >
+    <app-meeting-notes [meeting]="selectedMeeting"></app-meeting-notes>
+  </app-modal>
+  

@@ -1,0 +1,28 @@
+<!--begin::Logo image-->
+<a routerLink="/anasayfa">
+  <ng-container *ngIf="currentLayoutType === 'dark-sidebar'">
+    <div class="text-center align-items-center" style="margin-top: 20px;float:left;"><img alt="Logo" src="./assets/media/logos/Kosgeb-logo.png" class="h-40px app-sidebar-logo-default" /></div>
+    <p style="color: white;font-size:14px;margin-left: 10px;margin-top:20px;">Kosgeb Dijital Tedarikçi Platformu</p>
+  </ng-container>
+<!--  <ng-container *ngIf="currentLayoutType !== 'dark-sidebar'">
+    <img alt="Logo" src="./assets/media/logos/Kosgeb-logo.png" class="h-40px app-sidebar-logo-default theme-light-show" />
+    <img alt="Logo" src="./assets/media/logos/Kosgeb-logo.png"
+      class="h-25px app-sidebar-logo-default theme-dark-show" />
+      <span style="color:black;font-size:18px;margin-left: 10px;">Kosgeb Dijital Tedarikçi Platformu</span>
+  </ng-container>-->
+
+  <img alt="Logo" src="./assets/media/logos/Kosgeb-logo.png" class="h-20px app-sidebar-logo-minimize" />
+</a>
+<!--end::Logo image-->
+
+
+<ng-container *ngIf="toggleEnabled">
+  <!--begin::Sidebar toggle-->
+  <div id="kt_app_sidebar_toggle"
+    class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate"
+    [ngClass]="toggleButtonClass" data-kt-toggle="true" [attr.data-kt-toggle-state]="toggleState"
+    data-kt-toggle-target="body" [attr.data-kt-toggle-name]="toggleAttr">
+    <app-keenicon name="double-left" class="fs-2 rotate-180"></app-keenicon>
+  </div>
+  <!--end::Sidebar toggle-->
+</ng-container>

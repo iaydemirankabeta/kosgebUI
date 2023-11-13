@@ -1,0 +1,61 @@
+<div
+  id="kt_basket"
+  class="bg-body"
+  [attr.data-kt-drawer]="true"
+  [attr.data-kt-drawer-name]="'help'"
+  [attr.data-kt-drawer-activate]="true"
+  [attr.data-kt-drawer-overlay]="true"
+  [attr.data-kt-drawer-width]="{default: '350px', md: '525px'}"
+  [attr.data-kt-drawer-direction]="'end'"
+  [attr.data-kt-drawer-toggle]="'#kt_basket_toggle'"
+  [attr.data-kt-drawer-close]="'#kt_basket_close'"
+>
+  <div class="cart-view col-xs-12" style="width: 100%; padding: 30px;">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title m-0">
+          <p>Sepet</p>
+        </div>
+        <div class="card-toolbar">
+          <div
+            class="btn btn-sm btn-icon btn-active-light-primary"
+            id="kt_basket_close"
+          >
+            <span class="svg-icon fs-2"></span>
+            <app-keenicon name="cross" class="fs-2"></app-keenicon>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of cartItems; let index = index">
+          <div class="cart-item d-flex">
+            <div class="item-image" style="max-width: 200px;">
+              <img [src]="item.product.img.url" [alt]="item.product.name" class="img-thumbnail">
+            </div>
+            <div class="item-details flex-grow-1" style="margin-left: 10px;">
+              <h4>{{ item.product.name }}</h4>
+              <p><strong>Fiyat:</strong> {{ item.product.price | currency:'TRY':'symbol-narrow':'1.2-2' }}</p>
+              <div class="add-to-cart">
+                <div class="quantity-controls" style="margin-bottom: 10px;">
+                    <button class="btn btn-secondary" (click)="decrementQuantity(index)" [disabled]="cartQuantity === 0">-</button>
+                    <input type="number" [(ngModel)]="cartItems[index].quantity" min="1" [max]="cartItems[index].product.qty" (focusout)="qualityInput(index)" class="form-control" style="margin-right:8px; width: 60px;display:inline-block;">
+                    <button class="btn btn-secondary" (click)="incrementQuantity(index)" [disabled]="cartQuantity === item.product.qty">+</button>
+                </div>
+                <button class="btn btn-danger btn-sm" style="position: absolute; top: 10px; right: 10px" (click)="removeItem(item)">X</button>
+
+            </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div *ngIf="cartItems.length > 0">
+        <button type="submit" class="btn btn-primary justify-content-end mt-3">Ödeme Sayfası</button>
+      </div>
+      <div *ngIf="cartItems?.length == 0" style="text-align: center;">
+        <i class="fa-solid fa-basket-shopping fa-2xl basket"></i>
+        <p>Sepetiniz boş</p>
+      </div>
+    </div>
+  </div>
+</div>
+
