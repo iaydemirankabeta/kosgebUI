@@ -20,6 +20,7 @@ export interface BI {
   id: number;
   BIName: string;
   Sector: string;
+  isSend:boolean;
 }
 
 @Component({
@@ -77,19 +78,28 @@ export class SessionsComponent {
   ];
   displayedColumnsBI: string[] = ['BIName'];
   requestsBI: BI[] = [
-    { id: 1, BIName: 'TOGG', Sector: 'Otomotiv' },
-    { id: 2, BIName: 'BMC', Sector: 'Otomotiv' },
-    { id: 3, BIName: 'FORD', Sector: 'Otomotiv' },
-    { id: 4, BIName: 'FIAT', Sector: 'Otomotiv' },
-    { id: 5, BIName: 'MERCEDES', Sector: 'Otomotiv' },
-    { id: 6, BIName: 'TOFAŞ', Sector: 'Otomotiv' },
-    { id: 7, BIName: 'TORKU', Sector: 'Gıda' },
-    { id: 8, BIName: 'ÇAYKUR', Sector: 'Gıda' },
-    { id: 9, BIName: 'SAGRA', Sector: 'Gıda' },
-    { id: 10, BIName: 'VESTEL', Sector: 'Elektronik' },
-    { id: 11, BIName: 'BEKO', Sector: 'Elektronik' },
+    { id: 1, BIName: 'TOGG', Sector: 'Otomotiv',isSend:false },
+    { id: 2, BIName: 'BMC', Sector: 'Otomotiv',isSend:false },
+    { id: 3, BIName: 'FORD', Sector: 'Otomotiv',isSend:false },
+    { id: 4, BIName: 'FIAT', Sector: 'Otomotiv' ,isSend:false},
+    { id: 5, BIName: 'MERCEDES', Sector: 'Otomotiv',isSend:false },
+    { id: 6, BIName: 'TOFAŞ', Sector: 'Otomotiv',isSend:false },
+    { id: 7, BIName: 'TORKU', Sector: 'Gıda',isSend:false },
+    { id: 8, BIName: 'ÇAYKUR', Sector: 'Gıda',isSend:false },
+    { id: 9, BIName: 'SAGRA', Sector: 'Gıda',isSend:false },
+    { id: 10, BIName: 'VESTEL', Sector: 'Elektronik',isSend:false },
+    { id: 11, BIName: 'BEKO', Sector: 'Elektronik',isSend:false },
   ];
-
+  checkboxChanged(element: BI): void {
+    element.isSend = !element.isSend;
+  }
+  //Tümünü Seç
+  selectAllItems(event: any) {
+    const isChecked = event.target.checked;
+    this.requestsBI.forEach(item => item.isSend = isChecked);
+    // Daha sonra isterseniz change detection işlemlerini de uygulayabilirsiniz.
+  }
+  
   user$: Observable<UserType>;
   meetinglinkInput: string = '';
   meetingID = 0;
