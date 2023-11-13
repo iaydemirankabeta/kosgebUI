@@ -34,8 +34,8 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
         <option value="yuz-yuze">Yüz yüze</option>
       </select>
       </div>
-      <div class="mt-4" *ngIf="gorusmeSekli === 'Online'|| gorusmeSekli === 'Hibrit'">
-      <label>Görüşme Linki</label>
+    <div class="mt-4" *ngIf="gorusmeSekli === 'yuz-yuze'">
+        <label>Görüşme Yeri</label>
       <input type="text" class="form-control">
     </div>
       <div class="mt-4">
@@ -88,7 +88,7 @@ export class AppModalComponent {
   @Input() selectedDate: Date[];
   emptyHours: string[] = [];
   selectedHour: string[];
-  counters:number[]=[1];
+  counters: number[] = [1];
   constructor(public activeModal: NgbActiveModal, public randevuService: RandevuService
 
   ) { }
@@ -128,8 +128,8 @@ export class AppModalComponent {
 
   }
 
-  counterUpdate(){
-    this.counters.push(this.counters.length+1);
+  counterUpdate() {
+    this.counters.push(this.counters.length + 1);
   }
 
   findEmptyHours() {
@@ -137,17 +137,17 @@ export class AppModalComponent {
     const startHour = 9;
     const endHour = 18;
     const emptyHours: string[] = [];
-  
+
     // Dolu tarihleri alın
     const doluTarihler = randevuVerileri
       .filter((appointment) => appointment.dolu)
       .map((appointment) => appointment.tarih);
-  
+
     // Boş saat aralıklarını hesaplayın
     for (let hour = startHour; hour < endHour; hour++) {
       for (let minute = 0; minute < 60; minute += 60) {
         const currentHour = new Date().setHours(hour, minute, 0, 0);
-  
+
         // Dolu tarihlerle çakışmayan saatleri ekleyin
         if (!doluTarihler.some((doluTarih) => doluTarih.getTime() === currentHour)) {
           const formattedHour = hour.toString().padStart(2, '0');
@@ -155,7 +155,7 @@ export class AppModalComponent {
         }
       }
     }
-  
+
     this.emptyHours = emptyHours;
   }
   gorusmeSekli: string = 'Online';

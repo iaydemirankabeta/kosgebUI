@@ -1,0 +1,105 @@
+<ng-container *ngIf="user$ | async as _user">
+
+  <div>
+    <input class="form-check-input" (click)="PermissonList($event.target)" type="checkbox" value="" /> Görüşme Davetine
+    İzin Verenler
+  </div>
+  <table mat-table [dataSource]="requests" class="mat-elevation-z8">
+
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef>OturumID</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="BusinessRepresentative">
+      <th mat-header-cell *matHeaderCellDef>İşletme Temsilcisi</th>
+      <td mat-cell *matCellDef="let element"> {{element.BusinessRepresentative}} </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="SessionDate">
+      <th mat-header-cell *matHeaderCellDef>Oturum Tarihi</th>
+      <td mat-cell *matCellDef="let element"> {{element.SessionDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="SessionHour">
+      <th mat-header-cell *matHeaderCellDef>Oturum Saati</th>
+      <td mat-cell *matCellDef="let element"> {{element.SessionHour}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="BreakCount">
+      <th mat-header-cell *matHeaderCellDef>Mola Sayı/dk</th>
+      <td mat-cell *matCellDef="let element"> {{element.BreakCount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="KobiRepresentative">
+      <th mat-header-cell *matHeaderCellDef>Kobi Yetkilisi</th>
+      <td mat-cell *matCellDef="let element"> {{element.KobiRepresentative}} </td>
+    </ng-container>
+    <ng-container matColumnDef="MeetingType">
+      <th mat-header-cell *matHeaderCellDef>Görüşme Tipi</th>
+      <td mat-cell *matCellDef="let element"> {{element.MeetingType}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Meetinglink">
+      <th mat-header-cell *matHeaderCellDef>Görüşme Yeri/ Linki</th>
+      <td mat-cell *matCellDef="let element">
+        <a href="{{element.Meetinglink}}" target="_blank"
+          *ngIf="element.MeetingType!='Yüz yüze'">{{element.Meetinglink}}</a>
+        <div *ngIf="element.MeetingType==='Yüz yüze'">{{element.Meetinglink}} </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <!-- TODO -->
+        <!-- <button *ngIf="(_user.roles===1 || _user.roles===3)" (click)="openMeetinglink(element.id)" title="Görüşme Linki veya Yerini Düzenle" style="padding: 10px; background-color: transparent; border: none;">
+              <mat-icon style="font-size: 20px;">edit</mat-icon>
+            </button>
+            <button *ngIf="(_user.roles===1 || _user.roles===3)&&element.isPermission" (click)="openMeetinglink(element.id)" title="Büyük işletme Davet Et" style="padding: 10px; background-color: transparent; border: none;">
+              <mat-icon style="font-size: 20px;">forward_to_inbox</mat-icon>
+            </button> -->
+        <!-- TODO -->
+        <!-- <button *ngIf="(_user.roles===1 || _user.roles===3)" class="bi bi-pencil-square fs-3" (click)="openMeetinglink(element.id)" title="Görüşme Linki veya Yerini Düzenle" style="padding: 10px; background-color: transparent; border: none;">
+            </button>
+            <button *ngIf="(_user.roles===1 || _user.roles===3)&&element.isPermission"class="bi bi-envelope-plus fs-3"  (click)="openMeetinglink(element.id)" title="Büyük işletme Davet Et" style="padding: 10px; background-color: transparent; border: none;">
+            </button> -->
+
+        <button class="bi bi-pencil-square fs-3" (click)="openMeetinglink(element.id)"
+          title="Görüşme Linki veya Yerini Düzenle" style="padding: 10px; background-color: transparent; border: none;">
+        </button>
+        <button class="bi bi-envelope-plus fs-3" (click)="openMeetinglink(element.id)" title="Büyük işletme Davet Et"
+          style="padding: 10px; background-color: transparent; border: none;">
+        </button>
+
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <app-modal #success [modalConfig]="modalConfigSuccess" aria-modal="true">
+    <div class="col-xs-12 text-center">
+      <i class="fa-solid fa-check call-tick"></i>
+      <p>Görüşme Yeri/Linki Kayıt Edildi.</p>
+    </div>
+  </app-modal>
+  <form [formGroup]="form" style="width: 100%;">
+
+    <app-modal #meetingLink [modalConfig]="modalConfigMeetingLink" aria-modal="true">
+      <div class="col-12 text-center">
+
+        <!-- <input [(ngModel)]="meetinglinkInput" type="text" class="form-control" placeholder="Görüşme Yeri/ Linki giriniz..." /> -->
+        <textarea [(ngModel)]="meetinglinkInput" class="form-control" formControlName="meetingdescription"
+          [ngClass]="form.get('meetingdescription')?.invalid ? 'border-danger' : 'border-primary'" maxlength="300"
+          placeholder="Görüşme Yeri/Linki giriniz..." (input)="updateCharacterCount()"></textarea>
+      </div>
+      <div class="col-xs-12 text-center">
+
+        <button class="btn btn-primary mt-4" (click)="editMeetinglink()" [disabled]="!form.valid">Kaydet</button>
+      </div>
+
+    </app-modal>
+  </form>
+</ng-container>

@@ -35,8 +35,8 @@ import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
       </select>
       
     </div>
-    <div class="mt-4" *ngIf="gorusmeSekli === 'Online'|| gorusmeSekli === 'Hibrit'">
-        <label>Görüşme Linki</label>
+    <div class="mt-4" *ngIf="gorusmeSekli === 'yuz-yuze'">
+        <label>Görüşme Yeri</label>
         <input type="text" class="form-control">
       </div>
       
