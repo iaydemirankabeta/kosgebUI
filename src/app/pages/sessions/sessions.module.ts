@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -20,6 +21,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatCheckboxModule,
     RouterModule.forChild([
       {
           path: '',
