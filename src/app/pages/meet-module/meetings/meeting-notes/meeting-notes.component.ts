@@ -33,6 +33,7 @@ export class MeetingNotesComponent {
     this.meetingId = this.route.snapshot.paramMap.get('id')!;
     // Toplantı notlarını al
     this.loadMeetingNotes();
+
     
   }
 
@@ -41,7 +42,8 @@ export class MeetingNotesComponent {
   }
 
 
-  addMeetingNote(category: string,note:string) {
+  addMeetingNote(category: string,note:string,meetingId:string) {
+    
     let type;
     switch (category) {
         case 'will':
@@ -69,11 +71,13 @@ export class MeetingNotesComponent {
         type = MeetingNoteType.Info
         break;
     }
+    
     this.meetingNotesService.addMeetingNote(
       {
         note : note,
         noteType : type,
-        meetingId : this.meetingId
+        meetingId : meetingId,
+        userId: this.auth.currentUserValue?.id! 
       }
     )
   }

@@ -147,7 +147,6 @@
           <label>Firma</label>
           <input [readonly]="true"  name="company" class="form-control" [ngClass] = "contactForm.get('company')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="company"/>
         </div>
-             <button class="btn btn-primary flex-grow-1 mt-3" style="float:right">Gönder</button>
           </form>
           <mat-checkbox (change) = "toggleExcludeContact($event.checked)">Kontakt olarak da ekle</mat-checkbox>
           <button  (click)="toggleIsExclude()"  class="btn mt-4"><label>Kullanıcı Sistemde Kayıtlı ise Buraya Tıklayınız.</label></button>

@@ -41,27 +41,42 @@ export class MeetingsComponent {
 
 
     ) {
-this.getMeetings()    }
+    this.getMeetings()    
+}
 
   startDate: Date | null = null;
   endDate: Date | null = null;
+  meetings$: Observable<Meeting[]>;
 
   searchMeetingsByDateRange() {
-    if (this.startDate && this.endDate) {
-      // Başlangıç ve bitiş tarihlerini kullanarak toplantıları filtrelemek için MeetingService'i kullanın
-      this.meetings = this.meetingService.getMeetings({
-        startDate:this.startDate,
-        endDate:this.endDate,
-        cityId:this.selectedCity.id === "0"? "":this.selectedCity.id,
-        companyId: this.selectedCompany.id === "0"? "":this.selectedCompany.id,
-        page:1, 
-        count:10
-      });
-    } else {
-      // Başlangıç ve bitiş tarihleri eksikse, tüm toplantıları gösterin veya bir hata mesajı gösterin.
-      this.meetings = this.meetingService.getMeetings();
+    // meetings$ değişkeni bir Observable
+  
+    // İsteği oluşturmadan önce parametreleri kontrol et
+    const requestParams: any = {
+      cityId: this.selectedCity.id === "0" ? "" : this.selectedCity.id,
+      companyId: this.selectedCompany.id === "0" ? "" : this.selectedCompany.id,
+      page: 1,
+      count: 10
+    };
+  
+    if (this.startDate) {
+      requestParams.startDate = this.startDate;
     }
+  
+    if (this.endDate) {
+      requestParams.endDate = this.endDate;
+    }
+  
+    // İsteği oluştur
+    this.meetings$ = this.meetingService.getMeetings(requestParams);
+  
+    this.meetings$.subscribe(meetings => {
+      // Observable başarıyla tamamlandığında yapılacak işlemler
+      this.meetings = meetings;
+    });
   }
+  
+  
   
 
   formatMeetingDate(meetingDate: Date): string | null | undefined {
@@ -86,7 +101,7 @@ this.getMeetings()    }
   }
 
 
-  companySearch(event:any){
+  companySearch(event:any){ 
     if(event.target.value.length > 3){
       this.meetingService.searchCompanies(event.target.value).pipe(first()).subscribe((searchResult:any) => {
         console.log(searchResult)

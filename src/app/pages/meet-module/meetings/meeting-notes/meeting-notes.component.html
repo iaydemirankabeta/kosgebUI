@@ -28,9 +28,11 @@
               class="form-control"
               rows="3"
               cols="10"
+              #noteContentRef
+              
 
             ></textarea>
-            <button class="btn btn-primary mt-2" >
+            <button class="btn btn-primary mt-2" (click)="addMeetingNote('will',noteContentRef.value,''+meeting?.id+'')">
               Not Ekle
             </button>
           </div>
@@ -43,9 +45,10 @@
               class="form-control"
               rows="3"
               cols="10"
+              #noteContentCan
               
             ></textarea>
-            <button  class="btn btn-primary mt-2" >
+            <button  class="btn btn-primary mt-2" (click)="addMeetingNote('can',noteContentCan.value,''+meeting?.id+'')">
               Not Ekle
             </button>
           </div>
@@ -58,10 +61,10 @@
               class="form-control"
               rows="3"
               cols="10"
-
+              #noteContentInfo
     
             ></textarea>
-            <button class="btn btn-primary mt-2">
+            <button class="btn btn-primary mt-2" (click)="addMeetingNote('info',noteContentInfo.value,''+meeting?.id+'')">
               Not Ekle
             </button>
           </div>
@@ -70,13 +73,14 @@
           <div class="form-group">
 
             <textarea
-              id="noteContentBilgi"
+              id="noteContentBi"
               class="form-control"
               rows="3"
               cols="10"
+              #noteContentBi
 
             ></textarea>
-            <button class="btn btn-primary mt-2" >
+            <button class="btn btn-primary mt-2" (click)="addMeetingNote('numberofProjects',noteContentBi.value,''+meeting?.id+'')">
               Not Ekle
             </button>
           </div>
@@ -85,14 +89,15 @@
           <div class="form-group">
 
             <textarea
-              id="noteContentBilgi"
+              id="noteContentpazar"
               class="form-control"
               rows="3"
               cols="10"
+              #noteContentpazar
 
     
             ></textarea>
-            <button class="btn btn-primary mt-2"  >
+            <button class="btn btn-primary mt-2"  (click)="addMeetingNote('marketShare',noteContentpazar.value,''+meeting?.id+'')">
               Not Ekle
             </button>
           </div>

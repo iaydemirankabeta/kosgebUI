@@ -62,6 +62,7 @@ export class MeetingService {
     return this.httpClient.post(environment.apiUrl+"/Company/Meeting/GetMeetings",getMeetingDTO,
     {headers:this.headers}).pipe(
       map((res)=>{
+        console.log(res)
         return res;
     }));
   }

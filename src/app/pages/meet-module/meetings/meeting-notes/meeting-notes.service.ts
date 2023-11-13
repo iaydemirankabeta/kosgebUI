@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MeetingNote } from './meeting-note.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs';
+import { catchError, map } from 'rxjs';
 import { AuthService } from 'src/app/modules/auth';
 import { environment } from 'src/environments/environment';
 
@@ -26,9 +26,14 @@ export class MeetingNotesService {
   }
   addMeetingNote(note: MeetingNote) {
     return this.httpClient.post(`${environment.apiUrl}/Company/MeetingNote`,note,
-    {headers:this.headers}).pipe((response => {
-      return response;
-    }));
+    {headers:this.headers}).pipe(map((res)=>{
+      return res;
+  }),catchError(error => {
+      console.error('Post request error:', error);
+      throw error;
+    })).subscribe(response => {
+      console.log(response);
+    });
   }
   deleteMeetingNote(id: number): any {
     // Belirli bir toplantıya ait notları döndürme
