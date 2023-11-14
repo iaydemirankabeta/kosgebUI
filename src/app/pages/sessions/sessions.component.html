@@ -1,9 +1,14 @@
 <ng-container *ngIf="user$ | async as _user">
 
-  <div>
+  <div  *ngIf="(_user.roles===1 || _user.roles===3)">
     <input class="form-check-input" (click)="PermissonList($event.target)" type="checkbox" value="" /> Görüşme Davetine
     İzin Verenler
   </div>
+  <!-- TODO User yapıldıktan sonra tekrardan bakılacak -->
+  <!-- <div>
+    <input class="form-check-input" (click)="PermissonList($event.target)" type="checkbox" value="" /> Görüşme Davetine
+    İzin Verenler
+  </div> -->
   <table mat-table [dataSource]="requests" class="mat-elevation-z8">
 
 
@@ -53,7 +58,7 @@
     <ng-container matColumnDef="Action">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <!-- TODO -->
+  <!-- TODO User yapıldıktan sonra tekrardan bakılacak -->
         <!-- <button *ngIf="(_user.roles===1 || _user.roles===3)" (click)="openMeetinglink(element.id)" title="Görüşme Linki veya Yerini Düzenle" style="padding: 10px; background-color: transparent; border: none;">
               <mat-icon style="font-size: 20px;">edit</mat-icon>
             </button>
@@ -65,13 +70,13 @@
             </button>
             <button *ngIf="(_user.roles===1 || _user.roles===3)&&element.isPermission"class="bi bi-envelope-plus fs-3"  (click)="openMeetinglink(element.id)" title="Büyük işletme Davet Et" style="padding: 10px; background-color: transparent; border: none;">
             </button>
-
-        <button class="bi bi-pencil-square fs-3" (click)="openMeetinglink(element.id)"
+  <!-- TODO User yapıldıktan sonra tekrardan bakılacak -->
+        <!-- <button class="bi bi-pencil-square fs-3" (click)="openMeetinglink(element.id)"
           title="Görüşme Linki veya Yerini Düzenle" style="padding: 10px; background-color: transparent; border: none;">
         </button>
         <button class="bi bi-envelope-plus fs-3" (click)="openInvitation(element.Sector)" title="Büyük işletme Davet Et"
           style="padding: 10px; background-color: transparent; border: none;">
-        </button>
+        </button> -->
 
       </td>
     </ng-container>
