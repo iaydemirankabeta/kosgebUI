@@ -97,7 +97,6 @@ export class SessionsComponent {
   selectAllItems(event: any) {
     const isChecked = event.target.checked;
     this.requestsBI.forEach(item => item.isSend = isChecked);
-    // Daha sonra isterseniz change detection işlemlerini de uygulayabilirsiniz.
   }
   
   user$: Observable<UserType>;
@@ -116,8 +115,8 @@ export class SessionsComponent {
 
   };
   modalConfigSuccessInvitation: ModalConfig = {
-    modalTitle: "Davetler Gönderildi ",
-    closeButtonLabel: 'Tamam',
+    modalTitle: "Davet Gönderildi ",
+    closeButtonLabel: 'Kapat',
     onClose: () => this.closeInvitationModal(),
 
 

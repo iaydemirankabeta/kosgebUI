@@ -61,10 +61,10 @@
               <mat-icon style="font-size: 20px;">forward_to_inbox</mat-icon>
             </button> -->
         <!-- TODO -->
-        <!-- <button *ngIf="(_user.roles===1 || _user.roles===3)" class="bi bi-pencil-square fs-3" (click)="openMeetinglink(element.id)" title="Görüşme Linki veya Yerini Düzenle" style="padding: 10px; background-color: transparent; border: none;">
+        <button *ngIf="(_user.roles===1 || _user.roles===3)" class="bi bi-pencil-square fs-3" (click)="openMeetinglink(element.id)" title="Görüşme Linki veya Yerini Düzenle" style="padding: 10px; background-color: transparent; border: none;">
             </button>
             <button *ngIf="(_user.roles===1 || _user.roles===3)&&element.isPermission"class="bi bi-envelope-plus fs-3"  (click)="openMeetinglink(element.id)" title="Büyük işletme Davet Et" style="padding: 10px; background-color: transparent; border: none;">
-            </button> -->
+            </button>
 
         <button class="bi bi-pencil-square fs-3" (click)="openMeetinglink(element.id)"
           title="Görüşme Linki veya Yerini Düzenle" style="padding: 10px; background-color: transparent; border: none;">
