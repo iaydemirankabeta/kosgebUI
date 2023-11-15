@@ -7,6 +7,7 @@ import { AuthService, UserType } from 'src/app/modules/auth';
 import { MeetingNotesService } from './meeting-notes/meeting-notes.service';
 import localeTr from '@angular/common/locales/tr'; // Türkçe yerelleştirme
 import { Meeting } from './meeting.model';
+import { MeetingNote } from './meeting-notes/meeting-note.model';
 
 
 
@@ -19,6 +20,7 @@ import { Meeting } from './meeting.model';
 export class MeetingsComponent {
   meetings: Meeting[];
   user$: Observable<UserType>;
+  selectedMeetingNotes:MeetingNote[];
   searchCompanies:any=null;
   searchCities:any=null
   selectedCompany:any={id:"0"};
@@ -68,12 +70,12 @@ export class MeetingsComponent {
     }
   
     // İsteği oluştur
-    this.meetings$ = this.meetingService.getMeetings(requestParams);
-  
-    this.meetings$.subscribe(meetings => {
-      // Observable başarıyla tamamlandığında yapılacak işlemler
-      this.meetings = meetings;
+    this.meetingService.getMeetings(requestParams).pipe(first()).subscribe((res:any) => {
+      this.meetings = res.data.data
+      this.changeDetectorRef.detectChanges();
+
     });
+  
   }
   
   
@@ -91,13 +93,25 @@ export class MeetingsComponent {
 
   viewMeetingNotes(meeting: Meeting) {
     // Toplantı notları görüntüleme işlemi burada
-    console.log(meeting)
+    console.log(meeting);
     this.selectedMeeting = meeting;
+    this.changeDetectorRef.detectChanges();
+    this.meetingNoteService.getMeetingNotes(meeting.id).pipe(first()).subscribe((res:any) => {
+      this.changeDetectorRef.detectChanges();
+      this.selectedMeetingNotes = res.data;
+      this.changeDetectorRef.detectChanges();
+
+    });
     this.modal.open();
   }
 
-  updateMeetingLink(meeting: Meeting) {
-    this.meetingService.updateMeeting(meeting);
+  updateMeetingLink(event:any,meeting: Meeting) {
+    this.meetingService.updateMeeting({
+      id : meeting.id,
+      meetingLink : event.target.value,
+    }).pipe(first()).subscribe((res) => {
+      
+    });
   }
 
 
@@ -124,7 +138,10 @@ export class MeetingsComponent {
   }
 
   companySelect(item:any){
-    this.selectedCompany = item;
+    if(this.selectedCompany !== item)
+      this.selectedCompany = item;
+    else
+      this.selectedCompany={id:"0"}
   }
 
 

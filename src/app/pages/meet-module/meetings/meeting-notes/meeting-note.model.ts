@@ -5,6 +5,6 @@ export interface MeetingNote {
   meetingId: string;
   note: string;
   userId:string;
-  noteType:MeetingNoteType;
+  type:MeetingNoteType;
 }
 

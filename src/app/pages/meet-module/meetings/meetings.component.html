@@ -62,12 +62,14 @@
 
           </td>
           <td>{{meeting.city.cityName}}</td>
-          <td>{{ meeting.meetingLink }}</td>
+          <td *ngIf="meeting.participants ||meeting.excludeParticipants" >
+            <span *ngFor = "let item of meeting.excludeParticipants.slice(0,2) ">{{ item.name }}, </span>
+            <span *ngFor = "let item of meeting.participants.slice(0,2) ">{{ item.name}}, </span> </td>
           <td  >
             <button class="btn btn-primary" (click)="viewMeetingNotes(meeting)">Toplantı Notları</button>
           </td>
           <td>
-            <input type="text" [disabled]="_user.roles[0].appRole.name !=='Büyük İşletme Temsilcisi' || _user.roles[0].appRole.name !=='KOSGEB Admin'" class="form-control form-control-sm form-control-solid ps-10" value="{{meeting.meetingLink}}">
+            <input (focusout)="updateMeetingLink($event,meeting)"  type="text" [disabled]="_user.roles[0].appRole.name !=='Büyük İşletme Temsilcisi' && _user.roles[0].appRole.name !=='KOSGEB Admin'" class="form-control form-control-sm form-control-solid ps-10" value="{{meeting.meetingLink}}">
           </td>
         </tr>
         
@@ -75,6 +77,6 @@
     </table>
   </div>
   <app-modal #modal [modalConfig]="modalCompareConfig" aria-modal="true" >
-    <app-meeting-notes [meeting]="selectedMeeting"></app-meeting-notes>
+    <app-meeting-notes [meeting]="selectedMeeting" [meetingNotes]="selectedMeetingNotes"></app-meeting-notes>
   </app-modal>
   

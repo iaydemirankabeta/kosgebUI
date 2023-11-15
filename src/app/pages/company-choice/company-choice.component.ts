@@ -29,7 +29,7 @@ export class CompanyChoiceComponent {
         this.user.fullname = apiData.data.user.name;
         this.user.id = apiData.data.user.id;
         this.user.authToken = apiData.data.token;
-        this.user.userMenus= apiData.data.menus;
+        this.user.userMenus= apiData.data.menus.sort((a:any,b:any) => { return a.order - b.order});
         this.user.selectedCompany = this.myCompanies.filter(x => x.company.id === id)[0];
         this.user.roles = apiData.data.user.roles
       }

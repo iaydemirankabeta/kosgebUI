@@ -11,3 +11,8 @@
   .remove-button:focus {
     box-shadow: none; /* Odaklandığında düğmenin gölgesini kaldırır */
   }
+
+  .line-through{
+    text-decoration: line-through
+  }
+  .pointer {cursor: pointer;}

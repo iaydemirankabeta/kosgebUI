@@ -31,15 +31,15 @@ export class MeetingNotesService {
   }),catchError(error => {
       console.error('Post request error:', error);
       throw error;
-    })).subscribe(response => {
-      console.log(response);
-    });
+    }))
   }
-  deleteMeetingNote(id: number): any {
+
+  deleteMeetingNote(id: string): any {
     // Belirli bir toplantıya ait notları döndürme
-    return this.httpClient.delete(`${environment.apiUrl}/Company/MeetingNote/${id}`,{headers:this.headers}).pipe(map(res => {
+    return this.httpClient.get(`${environment.apiUrl}/Company/MeetingNote/DeleteNote/${id}`,{headers:this.headers}).pipe(map(res => {
       return res
     }))
   }
+
 
 }

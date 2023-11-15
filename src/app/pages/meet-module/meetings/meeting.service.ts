@@ -59,10 +59,9 @@ export class MeetingService {
   }
 
   getMeetings(getMeetingDTO:GetMeetingDTO|null = null):any{
-    return this.httpClient.post(environment.apiUrl+"/Company/Meeting/GetMeetings",getMeetingDTO,
+    return this.httpClient.post("http://localhost:5002/api/Meeting/GetMeetings",getMeetingDTO,
     {headers:this.headers}).pipe(
       map((res)=>{
-        console.log(res)
         return res;
     }));
   }
@@ -85,8 +84,10 @@ export class MeetingService {
   }
   
 
-  updateMeeting(meeting: Meeting) {
-    return this.httpClient.put(`${environment.apiUrl}/Company/Meeting/${meeting.id}`,meeting);
+  updateMeeting(meeting: MeetingDTO) {
+    return this.httpClient.put(`http://localhost:5002/api/Meeting/${meeting.id}`,meeting).pipe(map((res) => {
+      return res;
+    }));
   }
 
   searchCompanies(name:string):Observable<any>{
