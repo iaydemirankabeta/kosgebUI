@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 export interface request {
   id: number;
+  KobiId: number;
   BusinessRepresentative: string;
   Sector: string;
   SessionDate: string;
@@ -38,11 +39,29 @@ export class SessionsComponent {
     });
   }
   originalRequests: request[]; // Bu diziyi, bileşenin başlangıcında tanımlayın ve verilerin orijinal hali olarak saklayın.
-
+  UserRole?: number; 
+  UserId?: number; 
   ngOnInit(): void {
     this.originalRequests = [...this.requests];
-
     this.user$ = this.auth.currentUserSubject.asObservable();
+     //UserID yi burada aldık
+     this.auth.currentUserSubject.subscribe(user => {
+      if (user && user.id) {
+        this.UserId = user.id;
+        this. UserRole=user.roles;
+        console.log("User ID:", this.UserId);
+        
+      }
+    });
+
+    
+   //Eğer ki  Kullanıcı kobiyse listeyi kobi Idsine göre filtreliyoruz
+    if (this.UserRole==2) {
+      this.requests = this.requests.filter(request => request.KobiId==this.UserId);
+
+
+    }
+    
   }
 
   PermissonList(filterValue: any): void {
@@ -71,10 +90,11 @@ export class SessionsComponent {
 
   displayedColumns: string[] = ['Id', 'BusinessRepresentative', 'SessionDate', 'SessionHour', 'BreakCount', 'KobiRepresentative', 'MeetingType', 'Meetinglink', 'Action'];
   requests: request[] = [
-    { id: 1, Sector: 'Elektronik', BusinessRepresentative: "Vestel Yetkilisi", SessionDate: "24.09.2021", SessionHour: '10:30', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi A', MeetingType: 'Online', Meetinglink: 'www.meet1.com', isPermission: true },
-    { id: 2, Sector: 'Otomotiv', BusinessRepresentative: "ISUZU Yetkilisi", SessionDate: "25.09.2021", SessionHour: '09:30', BreakCount: '1 Mola - 15dk.', KobiRepresentative: 'KOBİ yetkilisi B', MeetingType: 'Yüz yüze', Meetinglink: 'Polaris Plaza', isPermission: true },
-    { id: 3, Sector: 'Elektronik', BusinessRepresentative: "Beko Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
-    { id: 4, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
+    { id: 1,KobiId:1, Sector: 'Elektronik', BusinessRepresentative: "Vestel Yetkilisi", SessionDate: "24.09.2021", SessionHour: '10:30', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi A', MeetingType: 'Online', Meetinglink: 'www.meet1.com', isPermission: true },
+    { id: 2,KobiId:2, Sector: 'Otomotiv', BusinessRepresentative: "ISUZU Yetkilisi", SessionDate: "25.09.2021", SessionHour: '09:30', BreakCount: '1 Mola - 15dk.', KobiRepresentative: 'KOBİ yetkilisi B', MeetingType: 'Yüz yüze', Meetinglink: 'Polaris Plaza', isPermission: true },
+    { id: 3,KobiId:5, Sector: 'Elektronik', BusinessRepresentative: "Beko Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
+    { id: 4,KobiId:5, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'Polaris Plaza', isPermission: false },
+    { id: 5,KobiId:5, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
   ];
   displayedColumnsBI: string[] = ['BIName'];
   requestsBI: BI[] = [
