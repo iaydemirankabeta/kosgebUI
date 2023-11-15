@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 
 export interface request {
   id: number;
-  KobiId: number;
+  KobiID: number;
+  BiID: number;
   BusinessRepresentative: string;
   Sector: string;
   SessionDate: string;
@@ -21,7 +22,7 @@ export interface BI {
   id: number;
   BIName: string;
   Sector: string;
-  isSend:boolean;
+  isSend: boolean;
 }
 
 @Component({
@@ -39,29 +40,30 @@ export class SessionsComponent {
     });
   }
   originalRequests: request[]; // Bu diziyi, bileşenin başlangıcında tanımlayın ve verilerin orijinal hali olarak saklayın.
-  UserRole?: number; 
-  UserId?: number; 
+  UserRole?: number;
+  UserId?: number;
   ngOnInit(): void {
     this.originalRequests = [...this.requests];
     this.user$ = this.auth.currentUserSubject.asObservable();
-     //UserID yi burada aldık
-     this.auth.currentUserSubject.subscribe(user => {
+    //UserID yi burada aldık
+    this.auth.currentUserSubject.subscribe(user => {
       if (user && user.id) {
         this.UserId = user.id;
-        this. UserRole=user.roles;
+        this.UserRole = user.roles;
         console.log("User ID:", this.UserId);
-        
+
       }
     });
 
-    
-   //Eğer ki  Kullanıcı kobiyse listeyi kobi Idsine göre filtreliyoruz
-    if (this.UserRole==2) {
-      this.requests = this.requests.filter(request => request.KobiId==this.UserId);
-
-
+    //BI Eğer ki  Kullanıcı Büyük işletmese listeyibüyük işletme idsine göre göre filtreliyoruz
+    if (this.UserRole == 1) {
+      this.requests = this.requests.filter(request => request.BiID == this.UserId);
     }
-    
+
+    //KOBI Eğer ki  Kullanıcı kobiyse listeyi kobi Idsine göre filtreliyoruz
+    if (this.UserRole == 2) {
+      this.requests = this.requests.filter(request => request.KobiID == this.UserId);
+    }
   }
 
   PermissonList(filterValue: any): void {
@@ -90,25 +92,25 @@ export class SessionsComponent {
 
   displayedColumns: string[] = ['Id', 'BusinessRepresentative', 'SessionDate', 'SessionHour', 'BreakCount', 'KobiRepresentative', 'MeetingType', 'Meetinglink', 'Action'];
   requests: request[] = [
-    { id: 1,KobiId:1, Sector: 'Elektronik', BusinessRepresentative: "Vestel Yetkilisi", SessionDate: "24.09.2021", SessionHour: '10:30', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi A', MeetingType: 'Online', Meetinglink: 'www.meet1.com', isPermission: true },
-    { id: 2,KobiId:2, Sector: 'Otomotiv', BusinessRepresentative: "ISUZU Yetkilisi", SessionDate: "25.09.2021", SessionHour: '09:30', BreakCount: '1 Mola - 15dk.', KobiRepresentative: 'KOBİ yetkilisi B', MeetingType: 'Yüz yüze', Meetinglink: 'Polaris Plaza', isPermission: true },
-    { id: 3,KobiId:5, Sector: 'Elektronik', BusinessRepresentative: "Beko Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
-    { id: 4,KobiId:5, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'Polaris Plaza', isPermission: false },
-    { id: 5,KobiId:5, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
+    { id: 1, KobiID: 1,BiID:1, Sector: 'Elektronik', BusinessRepresentative: "Vestel Yetkilisi", SessionDate: "24.09.2021", SessionHour: '10:30', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi A', MeetingType: 'Online', Meetinglink: 'www.meet1.com', isPermission: true },
+    { id: 2, KobiID: 2,BiID:2, Sector: 'Otomotiv', BusinessRepresentative: "ISUZU Yetkilisi", SessionDate: "25.09.2021", SessionHour: '09:30', BreakCount: '1 Mola - 15dk.', KobiRepresentative: 'KOBİ yetkilisi B', MeetingType: 'Yüz yüze', Meetinglink: 'Polaris Plaza', isPermission: true },
+    { id: 3, KobiID: 5,BiID:3, Sector: 'Elektronik', BusinessRepresentative: "Beko Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
+    { id: 4, KobiID: 5,BiID:4, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Yüz yüze', Meetinglink: 'Polaris Plaza', isPermission: false },
+    { id: 5, KobiID: 5,BiID:4, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
   ];
   displayedColumnsBI: string[] = ['BIName'];
   requestsBI: BI[] = [
-    { id: 1, BIName: 'TOGG', Sector: 'Otomotiv',isSend:false },
-    { id: 2, BIName: 'BMC', Sector: 'Otomotiv',isSend:false },
-    { id: 3, BIName: 'FORD', Sector: 'Otomotiv',isSend:false },
-    { id: 4, BIName: 'FIAT', Sector: 'Otomotiv' ,isSend:false},
-    { id: 5, BIName: 'MERCEDES', Sector: 'Otomotiv',isSend:false },
-    { id: 6, BIName: 'TOFAŞ', Sector: 'Otomotiv',isSend:false },
-    { id: 7, BIName: 'TORKU', Sector: 'Gıda',isSend:false },
-    { id: 8, BIName: 'ÇAYKUR', Sector: 'Gıda',isSend:false },
-    { id: 9, BIName: 'SAGRA', Sector: 'Gıda',isSend:false },
-    { id: 10, BIName: 'VESTEL', Sector: 'Elektronik',isSend:false },
-    { id: 11, BIName: 'BEKO', Sector: 'Elektronik',isSend:false },
+    { id: 1, BIName: 'TOGG', Sector: 'Otomotiv', isSend: false },
+    { id: 2, BIName: 'BMC', Sector: 'Otomotiv', isSend: false },
+    { id: 3, BIName: 'FORD', Sector: 'Otomotiv', isSend: false },
+    { id: 4, BIName: 'FIAT', Sector: 'Otomotiv', isSend: false },
+    { id: 5, BIName: 'MERCEDES', Sector: 'Otomotiv', isSend: false },
+    { id: 6, BIName: 'TOFAŞ', Sector: 'Otomotiv', isSend: false },
+    { id: 7, BIName: 'TORKU', Sector: 'Gıda', isSend: false },
+    { id: 8, BIName: 'ÇAYKUR', Sector: 'Gıda', isSend: false },
+    { id: 9, BIName: 'SAGRA', Sector: 'Gıda', isSend: false },
+    { id: 10, BIName: 'VESTEL', Sector: 'Elektronik', isSend: false },
+    { id: 11, BIName: 'BEKO', Sector: 'Elektronik', isSend: false },
   ];
   checkboxChanged(element: BI): void {
     element.isSend = !element.isSend;
@@ -118,7 +120,7 @@ export class SessionsComponent {
     const isChecked = event.target.checked;
     this.requestsBI.forEach(item => item.isSend = isChecked);
   }
-  
+
   user$: Observable<UserType>;
   meetinglinkInput: string = '';
   meetingID = 0;
