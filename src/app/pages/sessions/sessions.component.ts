@@ -97,6 +97,8 @@ export class SessionsComponent {
     { id: 3, KobiID: 5,BiID:3, Sector: 'Elektronik', BusinessRepresentative: "Beko Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
     { id: 4, KobiID: 5,BiID:4, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Yüz yüze', Meetinglink: 'Polaris Plaza', isPermission: false },
     { id: 5, KobiID: 5,BiID:4, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi C', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
+    { id: 6, KobiID: 5,BiID:4, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi D', MeetingType: 'Hibrit', Meetinglink: 'www.meet3.com', isPermission: false },
+    { id: 7, KobiID: 3,BiID:4, Sector: 'Gıda', BusinessRepresentative: "Torku Yetkilisi", SessionDate: "26.09.2021", SessionHour: '10:00', BreakCount: '2 Mola - 10dk.', KobiRepresentative: 'KOBİ yetkilisi E', MeetingType: 'Yüz yüze', Meetinglink: 'Kartal', isPermission: false },
   ];
   displayedColumnsBI: string[] = ['BIName'];
   requestsBI: BI[] = [
