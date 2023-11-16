@@ -6,6 +6,7 @@ import { FilterComponent } from './filter/filter.component';
 import { filter } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PaginationService } from '../service/pagination.service';
 
 @Component({
   selector: 'app-bi',
@@ -24,6 +25,9 @@ export class BiComponent {
     });  
   } // Servisi enjekte edin
 
+  paginationService: PaginationService<any> = new PaginationService<any>();
+
+
   selectedFiltersList: { filterName: string, selectedValue: any }[] = [];
   businessList:any = [];
 
@@ -38,6 +42,21 @@ export class BiComponent {
         this.filters = this.filterService.getKobiFilter();
     
     this.initializeSelectedFilters();
+    this.paginationService.items = this.businessList; // Set the items in the pagination service
+    this.paginationService.setItemsPerPage(21); // Set the items per page
+  }
+
+  get paginatedBusinessList(): any[] {
+    return this.paginationService.paginatedItems;
+  }
+
+  getRange(totalPages: number): number[] {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  // Use pagination service to handle page change
+  onPageChange(pageNumber: number): void {
+    this.paginationService.setPage(pageNumber);
   }
 
   initializeSelectedFilters(): void {
@@ -48,17 +67,17 @@ export class BiComponent {
   }
 
   emitFilterChanges(selectedFilters: any): void {
-    
     // Seçili filtreleri sıfırla
     this.selectedFiltersList = [];
-    
-    this.businessList = this.KobiService.fakeBusinesses.filter((business: any) => {
+  
+    // Filtrelenmiş işletmeleri güncelle ve sayfalandır
+    this.paginationService.items = this.KobiService.fakeBusinesses.filter((business: any) => {
       for (let filterId in selectedFilters) {
-        if (filterId != 'konum'){
+        if (filterId !== 'konum') {
           if (selectedFilters[filterId] !== null) {
             const selectedValue = +selectedFilters[filterId];
             if (business[filterId] !== selectedValue) {
-              return false; 
+              return false;
             } else {
               // Seçili filtreleri listeye ekle
               const filterInfo = this.filters.find(filter => filter.id === parseInt(filterId));
@@ -170,7 +189,7 @@ export class BiComponent {
 
   // Sıralama işlevi
   sortBusinessListAlphabetically() {
-    this.businessList.sort((a: any, b: any) => {
+    this.paginationService.items.sort((a: any, b: any) => {
       if (this.selectedSortOption === 'az') {
         return a.name.localeCompare(b.name);
       } else if (this.selectedSortOption === 'za') {
