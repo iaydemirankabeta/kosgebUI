@@ -25,6 +25,12 @@ const Routing: Routes = [
     data: { layout: 'dark-sidebar' }
   },
   {
+    path: 'sessions',
+    loadChildren: () =>
+      import('./sessions/sessions.module').then((m) => m.SessionsModule),
+    data: { layout: 'dark-sidebar' }
+  },
+  {
     path: 'proje-zekasi',
     loadChildren: () =>
       import('./project/project.module').then((m) => m.ProjectModule),
