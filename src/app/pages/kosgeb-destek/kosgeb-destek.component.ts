@@ -3,6 +3,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { AuthService, UserType } from 'src/app/modules/auth';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+
 
 export interface Destek{
   id:number;
@@ -39,10 +42,22 @@ export class KosgebDestekComponent {
   }
   @ViewChild('firstModal') private firstModal:ModalComponent;
   @ViewChild('secondModal') private secondModal:ModalComponent;
-  constructor(private auth : AuthService) { }
+  constructor(private auth : AuthService,private httpClient: HttpClient) { }
 
   async ngOnInit(): Promise<void> {
     this.user$ = this.auth.currentUserSubject.asObservable();
+
+    this.httpClient.get<any>(`${environment.apiUrl}/localization/demandCall/getalldemandcall`).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.destekler = response;
+        // Gelen cevabı işleyebilirsiniz
+      },
+      (error: any) => {
+        console.error('Hata oluştu:', error);
+        // Hata durumunda işlemler yapabilirsiniz
+      }
+    );
 
   }
   change(item:any){
