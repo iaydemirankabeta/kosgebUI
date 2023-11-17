@@ -38,4 +38,9 @@ export class CompanyChoiceComponent {
     });
 
   }
+
+  logout() {
+    this.auth.logout();
+    document.location.reload();
+  }
 }
