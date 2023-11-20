@@ -4,6 +4,9 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { AuthService } from 'src/app/modules/auth';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 export interface Request{
   requestId:string,
@@ -59,11 +62,37 @@ export class RequestCollectionComponent {
   @ViewChild('detailModal') private modalComponent: ModalComponent;
   @ViewChild('createModal') private createModalComponent: ModalComponent;
   @ViewChild('MatSort') sort: MatSort;
-  constructor(private auth: AuthService,private fb: FormBuilder) {
+  constructor(private auth: AuthService,private fb: FormBuilder,private httpClient: HttpClient) {
     this.form = this.fb.group({
       sector: ['', Validators.required],
       lastDate: ['', Validators.required],
     });
+  }
+
+
+  ngOnInit(): void {
+    this.httpClient.get<any>(`${environment.apiUrl}/Localization/demandCall/getalldemandcall`).subscribe(
+      (response: any) => {
+        console.log(response);
+        // Gelen cevabı işleyebilirsiniz
+      },
+      (error: any) => {
+        console.error('Hata oluştu:', error);
+        // Hata durumunda işlemler yapabilirsiniz
+      }
+    );
+
+    this.httpClient.get<any>(`${environment.apiUrl}/Localization/DemandCall/GetSectorsForDemandCall`).subscribe(
+      (response: any) => {
+        console.log(response);
+        // Gelen cevabı işleyebilirsiniz
+      },
+      (error: any) => {
+        console.error('Hata oluştu:', error);
+        // Hata durumunda işlemler yapabilirsiniz
+      }
+    );
+    
   }
   ngAfterViewInit() {
     this.data.sort = this.sort;
@@ -79,18 +108,34 @@ export class RequestCollectionComponent {
     if (this.form.valid) {
       // Form gönderme işlemini burada gerçekleştir
       const formData = new FormData();
-      formData.append('sector', this.form.value.sector);
-      formData.append('lastDate', this.form.value.lastDate);
-      this.isEnabledError=false;
-      this.form.reset();      
-       return this.createModalComponent.close();
+      formData.append('sectorId', this.form.value.sector);
+  
+      const date = new Date(this.form.value.lastDate);
+      const formattedDate = new DatePipe('en-US').transform(date, 'yyyy-MM-ddTHH:mm:ss.SSSZ');
+  
+      // Tarih değerini doğrudan FormData'ya ekleyin
+      formData.append('endDate', formattedDate || '');
+  
+      this.isEnabledError = false;
+      this.form.reset();
+  
       // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
-      // Örnek: this.myApiService.submitFormData(formData).subscribe(response => { ... });
+      this.httpClient.post(environment.apiUrl + '/Localization/DemandCall/CreateDemandCall', formData).subscribe(
+        (response) => {
+          console.log('Başarıyla gönderildi!', response);
+          // Yanıtı işleyebilirsiniz
+        },
+        (error) => {
+          console.error('Hata oluştu:', error);
+          // Hata durumunu ele alabilirsiniz
+        }
+      );
     } else {
       // Form hatalı, kullanıcıya mesaj göster
       this.isEnabledError = true;
     }
   }
+  
 
   tableProductBasedChange(bool:boolean){
     this.isProductBased = bool;

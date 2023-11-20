@@ -43,34 +43,34 @@
     
     <app-modal #secondModal [modalConfig]="secondModalConfig" aria-modal="true">
         <div *ngIf="selectedType === 'ARGE'">
-            <form>
+            <form #argeForm="ngForm" (ngSubmit)="postData(argeForm.value)">
                 <div class="mt-4">
                     <label>Proje Teklif Çağrısının Amacı</label>
-                    <input class="form-control"/>
+                    <input class="form-control" name="projeAmaci" [(ngModel)]="argeFormValue.projeAmaci"/>
                 </div>
                 <div class="mt-4">
                     <label>Proje Başvuru Tarihleri</label>
-                    <input class="form-control"/>
+                    <input class="form-control" name="tarih" [(ngModel)]="argeFormValue.tarih"/>
                 </div>
                 <div class="mt-4">
                     <label>Proje Başvuru Koşulları</label>
-                    <input class="form-control"/>
+                    <input class="form-control" name="kosul" [(ngModel)]="argeFormValue.kosul"/>
                 </div>
                 <div class="mt-4">
                     <label>Proje Süresi</label>
-                    <input class="form-control"/>
+                    <input class="form-control" name="sure" [(ngModel)]="argeFormValue.sure"/>
                 </div>
                 <div class="mt-4">
                     <label>Destek Üst Limiti</label>
-                    <input class="form-control"/>
+                    <input class="form-control" name="limit" [(ngModel)]="argeFormValue.limit"/>
                 </div>
                 <div class="mt-4">
                     <label>Destek Oranı</label>
-                    <input class="form-control"/>
+                    <input class="form-control" name="oran" [(ngModel)]="argeFormValue.oran"/>
                 </div>
                 <div class="mt-4">
                     <label>GTIP</label>
-                    <input class="form-control"/>
+                    <input class="form-control" name="GTIP" [(ngModel)]="argeFormValue.gtip"/>
                 </div>
                 <div class="drop-zone" (drop)="dosyaBirak($event)" (dragover)="onDragOver($event)"
                 (dragleave)="onDragLeave($event)">
@@ -83,6 +83,9 @@
                 <ul>
                   <li *ngFor="let dosya of yuklenenDosyalar">{{ dosya.name }}</li>
                 </ul>
+              </div>
+              <div class="col-xs-12">
+                <button type="submit">Gönder </button>
               </div>
             </form>
         </div>

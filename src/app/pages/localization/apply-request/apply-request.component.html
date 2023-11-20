@@ -42,29 +42,30 @@
         </div>
     </app-modal>
     <app-modal #createModal [modalConfig]="createModalConfig" aria-modal="true">
-        <button *ngIf="counter.length < 5" class="btn btn-success" (click) = "counterUpdate()">Ürün Ekle</button>
+        <form  (ngSubmit)="onSubmit()" [formGroup]="form">
+            <button *ngIf="counter.length < 5" class="btn btn-success" (click) = "counterUpdate()">Ürün Ekle</button>
         <div class="col-xs-12 text-center">
             <div *ngFor="let value of counter">
                 <div class="row">
                     <div class="row col-6">
                         <label class="col-lg-4 col-form-label fw-bold fs-6">Ürün</label>
                         <div class="col-lg-12 ">
-                          <select class="form-select " aria-label="Select example" >
-                            <option *ngFor="let product of usingProductData" value="{{product.name}}"
-                             >{{product.name}}</option>
-                          </select>
+                            <select class="form-select" id="productName" aria-label="Select example" formControlName="productName">
+                                <option *ngFor="let product of usingProductData; let i = index" [value]="product.name">{{ product.name }}</option>
+                              </select>
                         </div>
                       </div>
                       <div class="row col-6">
                         <label class="col-lg-4 col-form-label fw-bold fs-6">Adet</label>
                         <div class="col-lg-12">
-                            <input type="text" class="form-control" id="adet" placeholder="Adet">
+                            <input type="text" class="form-control" id="productQTY" placeholder="Adet" formControlName="productQTY">
                         </div>
                     </div>
                 </div>
             </div>
             <button class="btn btn-primary mt-4" (click)="openSuccessModal()">Başvur</button>
         </div>
+        </form>
     </app-modal>
     <app-modal #successModal [modalConfig]="successModalConfig" aria-modal="true">
         <div class="col-xs-12 text-center">
