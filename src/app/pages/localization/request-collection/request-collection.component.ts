@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { map } from 'rxjs';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { AuthService } from 'src/app/modules/auth';
 
@@ -64,6 +66,7 @@ export class RequestCollectionComponent {
       sector: ['', Validators.required],
       lastDate: ['', Validators.required],
     });
+
   }
   ngAfterViewInit() {
     this.data.sort = this.sort;
