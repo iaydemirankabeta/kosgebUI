@@ -1,6 +1,25 @@
 
 <div class="container" *ngIf="user$ | async as _user">
+  <div *ngIf="_user.roles[0].appRole.name ==='KOSGEB Admin'" class="col">
+    <div class="row">
+      <div class="form-group row mb-6 col-4">
+        <input style="max-height: 45px;" (change)="companySearch($event)" name="companySearch" class="form-control" type="text" value="" placeholder="Firma Ara"/>
+                <div *ngIf="searchCompanies !== null" class="form-control mt-3">
+                  <label (click)="companySelect(company)" [ngClass]="selectedCompany.id === company.id ? 'bg-info' : 'bg-white'" class="form-control" *ngFor="let company of searchCompanies">{{company.name}}</label>
+          </div>
+      </div>
+      <div class="form-group row mb-6 col-4">
+        <input style="max-height: 45px;" (change)="citySearch($event)" name="companySearch" class="form-control" type="text" value="" placeholder="Şehir Ara"/>
+                <div *ngIf="searchCities !== null" class="form-control mt-3">
+                  <label (click)="citySelect(city)" [ngClass]="selectedCity.id === city.id ? 'bg-info' : 'bg-white'" class="form-control" *ngFor="let city of searchCities">{{city.cityName}}</label>
+          </div>
+      </div>
+    </div>
+    
+  </div>
   <div class="row">
+    
+
     <div class="col">
       <mat-form-field appearance="fill">
         <input matInput [matDatepicker]="startDatePicker" placeholder="Başlangıç Tarihi" [(ngModel)]="startDate">
@@ -23,7 +42,7 @@
 
 <div class="container mt-4" *ngIf="user$ | async as _user">
   
-    <table class="table">
+    <table *ngIf="meetings" class="table">
       <thead>
         <tr>
           <th scope="col">Toplantı Adı</th>
@@ -32,7 +51,7 @@
           <th scope="col">Katılımcılar</th>
           <th scope="col" >Toplantı Notları</th>
 
-          <th scope="col">{{_user.roles == 2 || _user.roles == 4 ? 'Görüşme Linki' : 'Link Güncelle'}}</th>
+          <th scope="col">{{_user.roles[0].appRole.name ==='Büyük İşletme Temsilcisi' || _user.roles[0].appRole.name ==='KOSGEB Admin' ? 'Görüşme Linki' : 'Link Güncelle'}}</th>
         </tr>
       </thead>
       <tbody>
@@ -42,13 +61,15 @@
             <span class="meeting-time">{{ formatMeetingDate(meeting.meetingDate) }}</span>
 
           </td>
-          <td>{{meeting.city}}</td>
-          <td>{{ meeting.meetingLink }}</td>
+          <td>{{meeting.city.cityName}}</td>
+          <td *ngIf="meeting.participants ||meeting.excludeParticipants" >
+            <span *ngFor = "let item of meeting.excludeParticipants.slice(0,2) ">{{ item.name }}, </span>
+            <span *ngFor = "let item of meeting.participants.slice(0,2) ">{{ item.name}}, </span> </td>
           <td  >
             <button class="btn btn-primary" (click)="viewMeetingNotes(meeting)">Toplantı Notları</button>
           </td>
           <td>
-            <input type="text" [disabled]="_user.roles == 2 || _user.roles == 4" class="form-control form-control-sm form-control-solid ps-10" value="{{meeting.meetingLink}}">
+            <input (focusout)="updateMeetingLink($event,meeting)"  type="text" [disabled]="_user.roles[0].appRole.name !=='Büyük İşletme Temsilcisi' && _user.roles[0].appRole.name !=='KOSGEB Admin'" class="form-control form-control-sm form-control-solid ps-10" value="{{meeting.meetingLink}}">
           </td>
         </tr>
         
@@ -56,6 +77,6 @@
     </table>
   </div>
   <app-modal #modal [modalConfig]="modalCompareConfig" aria-modal="true" >
-    <app-meeting-notes [meeting]="selectedMeeting"></app-meeting-notes>
+    <app-meeting-notes [meeting]="selectedMeeting" [meetingNotes]="selectedMeetingNotes"></app-meeting-notes>
   </app-modal>
   

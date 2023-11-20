@@ -1,3 +1,5 @@
+import { MeetingNote } from "./meeting-notes/meeting-note.model";
+
 // meeting.model.ts
 export class Meeting {
   id:string;
@@ -6,38 +8,42 @@ export class Meeting {
   meetingDate:Date;
   meetingLink:string;
   location:string;
-  city:string;
+  city:{
+    id: string;cityName:string
+};
   company:{name:string;}
-  participants:{isim:string;soyisim:string;email:string;unvan:string};
-  excludeParticipants:{isim:string;soyisim:string;email:string;unvan:string;companyName:string};
+  participants:{name:string;email:string;unvan:string}[];
+  excludeParticipants:{name:string;email:string;unvan:string;companyName:string}[];
   meetingNotes:MeetingNote[]
   }
-  export interface MeetingNote{
-    note:string;
-    type:MeetingNoteType
-  }
   export enum MeetingNoteType{
-    Did=0,
+    Will=0,
     Can=1,
     Info=2,
-    NumberofProjects=3
+    NumberofProjects=3,
+    EstimatedExportInformation=4,
+    OverseasOfficeInformation=5,
+    MarketShare=6
   }
 
 export interface BaseDTO {
     id: string;
-    userId: string;
-    companyId: string;
+    userId?: string;
+    companyId?: string;
 }
 export interface MeetingDTO extends BaseDTO {
-    name: string;
-    topic: string;
-    meetingDate: string;
-    meetingLink: string;
-    participants: string[];
-    excludeUserDtos: ExcludeUserDto[];
-    deletedParticipants: string[];
-    deletedExcludeUsers: string[];
-    isDeleted: boolean;
+    name?: string;
+    topic?: string;
+    cityId?:string;
+    companyId?:string;
+    meetingDate?: string;
+    meetingHour?: string;
+    meetingLink?: string;
+    participants?: string[];
+    excludeUserDtos?: ExcludeUserDto[];
+    deletedParticipants?: string[];
+    deletedExcludeUsers?: string[];
+    isDeleted?: boolean;
 }
 
 export interface ExcludeUserDto extends BaseDTO {

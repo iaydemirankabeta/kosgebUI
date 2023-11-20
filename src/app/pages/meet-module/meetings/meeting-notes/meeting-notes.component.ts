@@ -1,11 +1,12 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { MeetingNote } from './meeting-note.model';
 import { MeetingNotesService } from './meeting-notes.service';
-import { Meeting } from '../meeting.model';
-import { Observable } from 'rxjs';
+import { Meeting, MeetingNoteType } from '../meeting.model';
+import { Observable, first } from 'rxjs';
 import { AuthService, UserType } from 'src/app/modules/auth';
+import { MeetingService } from '../meeting.service';
 
 @Component({
   selector: 'app-meeting-notes',
@@ -13,86 +14,179 @@ import { AuthService, UserType } from 'src/app/modules/auth';
   styleUrls: ['./meeting-notes.component.scss']
 })
 export class MeetingNotesComponent {
-  meetingId: number;
-  meetingNotes: MeetingNote[] = [];
-  newNote: MeetingNote = new MeetingNote(0, 0, '', ''); // Yeni not oluşturmak için
+  meetingId: string;
+  willMeetingNotes: MeetingNote[] = [];
+  canMeetingNotes: MeetingNote[] = [];
+  infoMeetingNotes: MeetingNote[] = [];
+  numberOfMeetingNotes: MeetingNote[] = [];
+  estimatedExportMeetingNotes: MeetingNote[] = [];
+  overseasOfficeMeetingNotes: MeetingNote[] = [];
+  marketShareOfficeMeetingNotes: MeetingNote[] = [];
+
+  @Input() meetingNotes: MeetingNote[] | undefined; // @Input ile gelen meeting verisi
   @Input() meeting: Meeting | undefined; // @Input ile gelen meeting verisi
+
   user$: Observable<UserType>;
-
-
-  fakeNotes: { [key: string]: MeetingNote[] } = {
-    'Yapılacaklar': [
-      new MeetingNote(1, 1, 'Yapılacak 1', 'Yapılacaklar'),
-      new MeetingNote(2, 1, 'Yapılacak 2', 'Yapılacaklar')
-    ],
-    'Yapılabilecekler': [
-      new MeetingNote(3, 1, 'Yapılabilecek 1', 'Yapılabilecekler'),
-      new MeetingNote(4, 1, 'Yapılabilecek 2', 'Yapılabilecekler')
-    ],
-    'Bilgi': [
-      new MeetingNote(5, 1, 'Bu bir bilgidir.', 'Bilgi'),
-      new MeetingNote(6, 1, 'BÜyük işletmeler buradan feyz alabilir.', 'Bilgi')
-    ]
-  };
+  newNote:string = "";
+  deletedParticipants:any=[]
+  deletedExcludeParticipants:any=[]
 
   constructor(
     private route: ActivatedRoute,
     private meetingNotesService: MeetingNotesService,
-    private auth: AuthService
-  ) {}
+    private auth: AuthService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private meetingService:MeetingService
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.user$ = this.auth.currentUserSubject.asObservable();
-
-    // URL'den toplantı kimliğini al
-    this.meetingId = Number(this.route.snapshot.paramMap.get('id'));
-    // Toplantı notlarını al
     this.loadMeetingNotes();
-    
+    // URL'den toplantı kimliğini al
+  }
+
+  ngOnChanges(){
+    this.loadMeetingNotes()
   }
 
   private loadMeetingNotes() {
-    this.meetingNotes = this.meetingNotesService.getMeetingNotes(this.meetingId);
+    this.willMeetingNotes =  this.meetingNotes!.filter((x:MeetingNote) => x.type == MeetingNoteType.Will)
+      this.canMeetingNotes =  this.meetingNotes!.filter((x:MeetingNote) => x.type == MeetingNoteType.Can)
+      this.infoMeetingNotes =  this.meetingNotes!.filter((x:MeetingNote) => x.type == MeetingNoteType.Info)
+      this.numberOfMeetingNotes =   this.meetingNotes!.filter((x:MeetingNote) => x.type == MeetingNoteType.NumberofProjects)
+      this.marketShareOfficeMeetingNotes =  this.meetingNotes!.filter((x:MeetingNote) => x.type == MeetingNoteType.MarketShare)
+      this.estimatedExportMeetingNotes =  this.meetingNotes!.filter((x:MeetingNote) => x.type == MeetingNoteType.EstimatedExportInformation)
+      this.overseasOfficeMeetingNotes =  this.meetingNotes!.filter((x:MeetingNote) => x.type == MeetingNoteType.OverseasOfficeInformation)
+      this.changeDetectorRef.detectChanges();
   }
 
-  notesByCategory: { [key: string]: string } = {};
 
-  addMeetingNote(category: string) {
-    const categoryNotes = this.fakeNotes[category];
-    if (categoryNotes && categoryNotes.length > 0) {
-      // İlgili kategoriye ait yeni bir not ekleyin
-      const newNoteId = categoryNotes.length + 1;
-      const newNoteContent = this.newNote[category]; // Yeni not içeriğini alın
-      if (newNoteContent && newNoteContent.trim() !== '') {
-        const newMeetingNote = new MeetingNote(newNoteId, this.meetingId, newNoteContent, category);
-        categoryNotes.push(newMeetingNote);
-        // Yeni not eklendikten sonra textarea içeriğini temizleyin
-        this.newNote[category] = '';
-      }
+  addMeetingNote(category: string,note:string,meetingId:string) {
+    
+    let type;
+    switch (category) {
+        case 'will':
+        type = MeetingNoteType.Will
+        console.log("will")
+        break;
+        case 'can':
+        type = MeetingNoteType.Can
+        console.log("will")
+        break;
+        case 'marketShare':
+        type = MeetingNoteType.MarketShare
+        console.log("marketshare")
+
+        break;
+        case 'numberofProjects':
+        type = MeetingNoteType.NumberofProjects
+        break;
+        case 'estimatedExportInformation':
+        type = MeetingNoteType.EstimatedExportInformation
+        break;
+        case 'overseasOfficeInformation':
+        type = MeetingNoteType.OverseasOfficeInformation
+        break;
+        case 'info':
+        type = MeetingNoteType.Info
+        break;
+      default:
+        type = MeetingNoteType.Info
+        break;
     }
+    console.log(type)
+    this.meetingNotesService.addMeetingNote(
+      {
+        note : note,
+        type : type,
+        meetingId : meetingId,
+        userId: this.auth.currentUserValue?.id! 
+      }
+    ).pipe(first()).subscribe((res) => {
+      this.meetingNotesService.getMeetingNotes(this.meeting?.id!).pipe(first()).subscribe((response:any) => {
+        console.log(response.data,"res")
+        this.meetingNotes = response.data;
+        this.willMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.Will)
+        this.canMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.Can)
+        this.infoMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.Info)
+        this.numberOfMeetingNotes =   response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.NumberofProjects)
+        this.marketShareOfficeMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.MarketShare)
+        this.estimatedExportMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.EstimatedExportInformation)
+        this.overseasOfficeMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.OverseasOfficeInformation)
+        this.changeDetectorRef.detectChanges();
+      })
+    })
   }
   
-  removeMeetingNote(category: string, noteId: number) {
-    const categoryNotes = this.fakeNotes[category];
-    if (categoryNotes) {
-      // Notu kaldır
-      const noteIndex = categoryNotes.findIndex(note => note.id === noteId);
-      if (noteIndex !== -1) {
-        categoryNotes.splice(noteIndex, 1);
-      }
-    }
+  removeMeetingNote(noteId: string) {
+      this.meetingNotesService.deleteMeetingNote(noteId).pipe(first()).subscribe((res:any) => {
+        this.meetingNotesService.getMeetingNotes(this.meeting?.id!).pipe(first()).subscribe((response:any) => {
+          console.log(response.data,"res")
+          this.meetingNotes = response.data;
+          this.willMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.Will)
+          this.canMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.Can)
+          this.infoMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.Info)
+          this.numberOfMeetingNotes =   response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.NumberofProjects)
+          this.marketShareOfficeMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.MarketShare)
+          this.estimatedExportMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.EstimatedExportInformation)
+          this.overseasOfficeMeetingNotes =  response.data.filter((x:MeetingNote) => x.type == MeetingNoteType.OverseasOfficeInformation)
+          this.changeDetectorRef.detectChanges();
+        })
+      })
   }
-  
-
-
-
-  newNoteContent(category: string): string {
-    const fakeNotesForCategory = this.fakeNotes[category];
-    if (fakeNotesForCategory) {
-      return fakeNotesForCategory.map(note => note.content).join('\n');
+  checkInDeleted(participant:any){
+    if(this.deletedParticipants.some((x:any) => x.id == participant.id) ||this.deletedExcludeParticipants.some((x:any) => x.id == participant.id)){
+      console.log("true")
+      return true;
     }
-    return '';
+    else
+      return false;
   }
+
+  removeExcludeParticipant(participant:any){
+    if(this.deletedExcludeParticipants.some((x:any) => x == participant)){
+      this.deletedExcludeParticipants.splice(this.deletedParticipants.indexOf(participant),1);
+    }
+    else{
+      this.deletedExcludeParticipants.push(participant);
+    }
+    this.changeDetectorRef.detectChanges();
+
+  }
+
+  removeParticipant(participant:any){
+    if(this.deletedParticipants.some((x:any) => x == participant)){
+      this.deletedParticipants.splice(this.deletedParticipants.indexOf(participant),1);
+    }
+    else{
+      this.deletedParticipants.push(participant);
+    }
+    this.changeDetectorRef.detectChanges();
+
+  }
+
+  updateMeeting(){
+    this.meetingService.updateMeeting({
+      id:this.meeting?.id!,
+      deletedExcludeUsers:Array.from(this.deletedExcludeParticipants,(x:any) => x.id),
+      deletedParticipants:Array.from(this.deletedParticipants,(x:any) => x.id),
+
+    }).pipe(first()).subscribe((res) => {
+      this.deletedExcludeParticipants.forEach((element:any) => {
+        this.meeting?.excludeParticipants.splice(this.meeting.excludeParticipants.indexOf(element),1);
+      });
+      this.deletedParticipants.forEach((element:any) => {
+        this.meeting?.participants.splice(this.meeting.participants.indexOf(element),1);
+      });
+      this.deletedParticipants = [];
+      this.deletedExcludeParticipants=[];
+      this.changeDetectorRef.detectChanges();
+
+    })
+  }
+
   
 
 }

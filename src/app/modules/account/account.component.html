@@ -63,7 +63,7 @@
           </div>
         </div>
         <div
-          *ngIf="_user.roles === 1 || _user.roles === 2"
+          *ngIf="_user.roles === 1 || _user.roles[0].appRole.name ==='KOSGEB Admin' "
           class="bg-success d-inline-block p-4 rounded border-white border"
           (click)="openModal()"
         >

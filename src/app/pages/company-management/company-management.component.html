@@ -19,7 +19,7 @@
       </div>
       <div class="d-flex">
         <div class="ms-auto">
-          <button class="btn btn-primary" *ngIf="_user.roles === 4 "(click)="openCreateModal()">Ekle</button>
+          <button class="btn btn-primary" *ngIf="_user.roles[0].appRole.name !=='Büyük İşletme Temsilcisi' "(click)="openCreateModal()">Ekle</button>
         </div>
       </div>
     </div>

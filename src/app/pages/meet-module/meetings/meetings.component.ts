@@ -1,12 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import {MeetingService } from './meeting.service';
 import { DatePipe } from '@angular/common';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { AuthService, UserType } from 'src/app/modules/auth';
 import { MeetingNotesService } from './meeting-notes/meeting-notes.service';
 import localeTr from '@angular/common/locales/tr'; // Türkçe yerelleştirme
 import { Meeting } from './meeting.model';
+import { MeetingNote } from './meeting-notes/meeting-note.model';
 
 
 
@@ -19,7 +20,11 @@ import { Meeting } from './meeting.model';
 export class MeetingsComponent {
   meetings: Meeting[];
   user$: Observable<UserType>;
-
+  selectedMeetingNotes:MeetingNote[];
+  searchCompanies:any=null;
+  searchCities:any=null
+  selectedCompany:any={id:"0"};
+  selectedCity:any={id:"0"}
   selectedMeeting: Meeting; // selectedMeeting özelliğini tanımlayın
 
   modalCompareConfig: ModalConfig = {
@@ -33,28 +38,47 @@ export class MeetingsComponent {
   constructor(private meetingService: MeetingService,
     private datePipe: DatePipe,
     private auth: AuthService,
-    private meetingNoteService: MeetingNotesService
+    private meetingNoteService: MeetingNotesService,
+    private changeDetectorRef: ChangeDetectorRef
 
 
-    ) {}
+    ) {
+    this.getMeetings()    
+}
 
   startDate: Date | null = null;
   endDate: Date | null = null;
+  meetings$: Observable<Meeting[]>;
 
   searchMeetingsByDateRange() {
-    if (this.startDate && this.endDate) {
-      // Başlangıç ve bitiş tarihlerini kullanarak toplantıları filtrelemek için MeetingService'i kullanın
-      this.meetings = this.meetingService.getMeetings({
-        startDate:this.startDate,
-        endDate:this.endDate,
-        page:1, 
-        count:10
-      });
-    } else {
-      // Başlangıç ve bitiş tarihleri eksikse, tüm toplantıları gösterin veya bir hata mesajı gösterin.
-      this.meetings = this.meetingService.getMeetings();
+    // meetings$ değişkeni bir Observable
+  
+    // İsteği oluşturmadan önce parametreleri kontrol et
+    const requestParams: any = {
+      cityId: this.selectedCity.id === "0" ? "" : this.selectedCity.id,
+      companyId: this.selectedCompany.id === "0" ? "" : this.selectedCompany.id,
+      page: 1,
+      count: 10
+    };
+  
+    if (this.startDate) {
+      requestParams.startDate = this.startDate;
     }
+  
+    if (this.endDate) {
+      requestParams.endDate = this.endDate;
+    }
+  
+    // İsteği oluştur
+    this.meetingService.getMeetings(requestParams).pipe(first()).subscribe((res:any) => {
+      this.meetings = res.data.data
+      this.changeDetectorRef.detectChanges();
+
+    });
+  
   }
+  
+  
   
 
   formatMeetingDate(meetingDate: Date): string | null | undefined {
@@ -64,23 +88,74 @@ export class MeetingsComponent {
 
 
   ngOnInit() {
-    this.meetings = this.meetingService.getMeetings();
     this.user$ = this.auth.currentUserSubject.asObservable();
-
-
   }
 
   viewMeetingNotes(meeting: Meeting) {
     // Toplantı notları görüntüleme işlemi burada
-    console.log(meeting)
+    console.log(meeting);
     this.selectedMeeting = meeting;
+    this.changeDetectorRef.detectChanges();
+    this.meetingNoteService.getMeetingNotes(meeting.id).pipe(first()).subscribe((res:any) => {
+      this.changeDetectorRef.detectChanges();
+      this.selectedMeetingNotes = res.data;
+      this.changeDetectorRef.detectChanges();
+
+    });
     this.modal.open();
   }
 
-  updateMeetingLink(meeting: Meeting) {
-    this.meetingService.updateMeeting(meeting);
+  updateMeetingLink(event:any,meeting: Meeting) {
+    this.meetingService.updateMeeting({
+      id : meeting.id,
+      meetingLink : event.target.value,
+    }).pipe(first()).subscribe((res) => {
+      
+    });
   }
 
+
+  companySearch(event:any){ 
+    if(event.target.value.length > 3){
+      this.meetingService.searchCompanies(event.target.value).pipe(first()).subscribe((searchResult:any) => {
+        console.log(searchResult)
+        this.searchCompanies = searchResult.data.data
+        this.changeDetectorRef.detectChanges();
+      })
+    }
+  }
+  citySearch(event:any){
+    if(event.target.value.length > 3){
+      this.meetingService.searchCities(event.target.value).pipe(first()).subscribe((searchResult:any) => {
+        console.log(searchResult)
+        this.searchCities = searchResult.data
+        this.changeDetectorRef.detectChanges();
+      })
+    }
+  }
+  citySelect(item:any){
+    this.selectedCity = item;
+  }
+
+  companySelect(item:any){
+    if(this.selectedCompany !== item)
+      this.selectedCompany = item;
+    else
+      this.selectedCompany={id:"0"}
+  }
+
+
+
+  getMeetings(){
+    this.meetingService.getMeetings({
+      search : "",cityId:"",count:50,
+      page:1,isDesc:false
+    }).pipe(first()).subscribe((res:any) => {
+      this.meetings = res.data.data
+      this.changeDetectorRef.detectChanges();
+
+    })
+  }
   
 
 

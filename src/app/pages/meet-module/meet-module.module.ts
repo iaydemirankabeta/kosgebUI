@@ -14,7 +14,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MeetingsComponent } from './meetings/meetings.component';
 import { MeetingNotesComponent } from './meetings/meeting-notes/meeting-notes.component';
-import { ModalsModule } from "../../_metronic/partials/layout/modals/modals.module"; // FormsModule'ı içeri alın
+import { ModalsModule } from "../../_metronic/partials/layout/modals/modals.module";
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -33,6 +34,7 @@ registerLocaleData(localeTr, 'tr');
         MatNativeDateModule,
         MatInputModule,
         MatTabsModule,
+        MatCheckboxModule,
         RouterModule.forChild([
             {
                 path: 'toplanti-planla',

@@ -21,7 +21,7 @@
               <div class="card-body">
                 <span>{{item.description}}</span>
               </div>
-              <div *ngIf="_user.roles === 2" class="card-footer">
+              <div *ngIf="_user.roles[0].appRole.name ==='KOSGEB Admin'" class="card-footer">
                 <a [routerLink]="['/create-solution', item.id]" type="button" class="btn btn-warning w-100 mb-10" ><i class="fa-solid fa-pencil"></i> Düzenle</a>
   
               </div>

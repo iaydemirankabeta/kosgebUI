@@ -1,11 +1,11 @@
 <ng-container *ngIf="user$ | async as _user">
     <!-- <div class="card-header border-0 pt-5 d-flex justify-content-between">
         <h3 class="card-title align-items-start flex-column ">
-            <span *ngIf="_user.roles !== 2" class="card-label fw-bolder fs-3 mb-1">KOSGEB Destek Programları Yönetimi</span>
-            <span *ngIf="_user.roles === 2" class="card-label fw-bolder fs-3 mb-1">KOSGEB Destek Programları</span>
+            <span *ngIf="_user.roles[0].appRole.name !=='KOSGEB Admin'" class="card-label fw-bolder fs-3 mb-1">KOSGEB Destek Programları Yönetimi</span>
+            <span *ngIf="_user.roles[0].appRole.name ==='KOSGEB Admin'" class="card-label fw-bolder fs-3 mb-1">KOSGEB Destek Programları</span>
 
         </h3>
-        <button *ngIf="_user.roles !== 2" class="btn btn-primary" (click)="openFirstModal()">Ekle</button> -->
+        <button *ngIf="_user.roles[0].appRole.name !=='KOSGEB Admin'" class="btn btn-primary" (click)="openFirstModal()">Ekle</button> -->
     <!-- end::Menu -->
     <!-- </div> -->
     <app-modal #meet [modalConfig]="modalMeetConfig" aria-modal="true">

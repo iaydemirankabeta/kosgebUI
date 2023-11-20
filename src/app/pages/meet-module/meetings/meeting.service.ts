@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MeetingDTO } from './meeting.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Company } from 'src/app/models/Company.model';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
+import { AuthService, UserModel } from 'src/app/modules/auth';
 
 export interface GetMeetingDTO{
   page:number;
@@ -24,18 +25,22 @@ export interface Meeting{
   meetingDate:Date;
   meetingLink:string;
   company:{name:string;}
-  participants:{isim:string;soyisim:string;email:string;unvan:string};
-  excludeParticipants:{isim:string;soyisim:string;email:string;unvan:string;companyName:string};
+  participants:{name:string;email:string;unvan:string}[];
+  excludeParticipants:{name:string;email:string;unvan:string;companyName:string}[];
 }
 export interface MeetingNote{
   note:string;
   type:MeetingNoteType
 }
+
+
 export enum MeetingNoteType{
   Did=0,
   Can=1,
   Info=2,
-  NumberofProjects=3
+  NumberofProjects=3,
+  EstimatedExportInformation=4,
+  OverseasOfficeInformation=5
 }
 
 @Injectable({
@@ -43,38 +48,46 @@ export enum MeetingNoteType{
 })
 
 export class MeetingService {
-
+  headers:HttpHeaders;
+  user: UserModel | undefined;
   // meetingNotes adlı özelliği tanımlayın ve başlangıçta boş bir harita olarak başlatın
   private meetingNotes: Map<number, MeetingNote[]> = new Map<number, MeetingNote[]>();
 
-  constructor(private httpClient : HttpClient) {
-    // Notları örnek olarak burada doldurabilirsiniz.
-    // Örneğin, Toplantı 1 için notlar:
-
+  constructor(private httpClient : HttpClient,private auth : AuthService) {
+    this.user = this.auth.currentUserValue;
+    this.headers = new HttpHeaders().set("Authorization","Bearer "+this.user!.authToken)
   }
 
   getMeetings(getMeetingDTO:GetMeetingDTO|null = null):any{
-    return this.httpClient.post(environment.apiUrl+"/Meeting/GetMeetings",getMeetingDTO);
+    return this.httpClient.post(environment.apiUrl+"/Company//Meeting/GetMeetings",getMeetingDTO,
+    {headers:this.headers}).pipe(
+      map((res)=>{
+        return res;
+    }));
   }
 
-
-  getMeetingNotes(meeting: MeetingDTO):any{
-    const meetingId = meeting.id;
-    return this.httpClient.get(`${environment.apiUrl}/MeetingNote/${meeting.id}`)
+  searchCities(search:string):any{
+    return this.httpClient.get(environment.apiUrl+"/Company/City/GetCities/"+search,
+    {headers:this.headers}).pipe(
+      map((res)=>{
+        return res;
+    }));
   }
-  private notes: MeetingNote[] = [];
+
 
   addMeeting(meeting: MeetingDTO) {
-    return this.httpClient.post(`${environment.apiUrl}/Meeting`,meeting);
-  }
-
-  addNote(note: MeetingNote) {
-    return this.httpClient.post(`${environment.apiUrl}/MeetingNote`,note);  
+    return this.httpClient.post(environment.apiUrl+"/Company/Meeting",meeting,
+    {headers:this.headers}).pipe(
+      map((res)=>{
+        return res;
+    }));
   }
   
 
-  updateMeeting(meeting: Meeting) {
-    return this.httpClient.put(`${environment.apiUrl}/Meeting/${meeting.id}`,meeting);
+  updateMeeting(meeting: MeetingDTO) {
+    return this.httpClient.put(`${environment.apiUrl}/Company//Meeting/${meeting.id}`,meeting).pipe(map((res) => {
+      return res;
+    }));
   }
 
   searchCompanies(name:string):Observable<any>{
@@ -101,6 +114,5 @@ export class MeetingService {
         return searchResults;
       })
     );
-
   }
 }
