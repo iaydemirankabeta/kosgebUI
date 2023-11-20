@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: true,
+    production: false,
     appVersion: 'v8.1.8',
-    evnName: 'Canlı Ortamı',
+    evnName: 'dev',
     USERDATA_KEY: 'authf649fc9a5f55',
     isMockEnabled: true,
     apiUrl: 'https://preapi.ankabeta.com',
