@@ -48,7 +48,7 @@ export class SessionsComponent {
     //UserID yi burada aldık
     this.auth.currentUserSubject.subscribe(user => {
       if (user && user.id) {
-        this.UserId = user.id;
+        this.UserId = Number(user.id);
         this.UserRole = user.roles;
         console.log("User ID:", this.UserId);
 
