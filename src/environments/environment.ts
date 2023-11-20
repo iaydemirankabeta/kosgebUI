@@ -7,7 +7,7 @@ export const environment = {
   appVersion: 'v8.1.8',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
-  apiUrl: 'http://10.100.68.2:5007/',
+  apiUrl: 'https://preapi.ankabeta.com',
   appThemeName: 'AnkaBeta',
   appPurchaseUrl: 'https://1.envato.market/EA4JP',
   appHTMLIntegration:

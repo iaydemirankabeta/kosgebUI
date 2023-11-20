@@ -8,6 +8,9 @@ import {locale as jpLang} from './modules/i18n/vocabs/jp';
 import {locale as deLang} from './modules/i18n/vocabs/de';
 import {locale as frLang} from './modules/i18n/vocabs/fr';
 import {ThemeModeService} from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
+import { environment as envProd } from './../environments/environment.prod';
+import { environment as envDev } from './../environments/environment.dev';
+import { environment as envTest } from './../environments/environment.test';
 
 
 @Component({
@@ -39,7 +42,34 @@ export class AppComponent implements OnInit {
     location.reload();
   }
 
+    checkEnvironment(env: any) {
+    if (env === envDev) {
+      console.log('Bu geliştirme ortamıdır.');
+    } else if (env === envProd) {
+      console.log('Bu canlı (production) ortamıdır.');
+    } else if (env === envTest) {
+      console.log('Bu test ortamıdır.');
+    } else {
+      console.log('Bilinmeyen bir ortam.');
+    }
+  }
+
   ngOnInit() {
     this.modeService.init();
+    let currentEnvironment: any;
+
+    if (envDev) {
+      currentEnvironment = envDev;
+    } else if (envProd) {
+      currentEnvironment = envProd;
+    } else if (envTest) {
+      currentEnvironment = envTest;
+    } else {
+      console.error('Tanımlanamayan bir ortam!');
+      return;
+    }
+  
+    this.checkEnvironment(currentEnvironment);
+    
   }
 }
