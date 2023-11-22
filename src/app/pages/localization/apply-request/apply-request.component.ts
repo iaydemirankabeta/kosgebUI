@@ -4,6 +4,10 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalConfig, ModalComponent } from 'src/app/_metronic/partials';
 import { AuthService } from 'src/app/modules/auth';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+
 export interface Request{
   requestId:string,
   sector: string;
@@ -90,10 +94,10 @@ export class ApplyRequestComponent {
   @ViewChild('successModal') private successModalComponent: ModalComponent;
 
   @ViewChild('MatSort') sort: MatSort;
-  constructor(private auth: AuthService,private fb: FormBuilder) {
+  constructor(private auth: AuthService,private fb: FormBuilder,private httpClient: HttpClient) {
     this.form = this.fb.group({
-      sector: ['', Validators.required],
-      lastDate: ['', Validators.required],
+      productName: ['', Validators.required],
+      productQTY: ['', Validators.required],
     });
   }
   ngAfterViewInit() {
@@ -104,8 +108,42 @@ export class ApplyRequestComponent {
   }
   openCreateModal(request: Request) {
     this.usingProductData = this.productData.filter(x => x.category === request.sector);
+    console.log(this.usingProductData);
     this.createModalComponent.open();
   }
+
+  onSubmit() {
+    console.log(this.form);
+    if (this.form.valid) {
+      // Form gönderme işlemini burada gerçekleştir
+      const formData = new FormData();
+      
+      formData.append('product', this.form.value.product);
+      formData.append('productQTY', this.form.value.productQTY);
+
+  
+
+
+      this.isEnabledError = false;
+      this.form.reset();
+  
+      // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
+      this.httpClient.post(environment.apiUrl + 'Localization/DemandCall/AddDemandCallApply', formData).subscribe(
+        (response) => {
+          console.log('Başarıyla gönderildi!', response);
+          // Yanıtı işleyebilirsiniz
+        },
+        (error) => {
+          console.error('Hata oluştu:', error);
+          // Hata durumunu ele alabilirsiniz
+        }
+      );
+    } else {
+      // Form hatalı, kullanıcıya mesaj göster
+      this.isEnabledError = true;
+    }
+  }
+
   openSuccessModal() {
     this.createModalComponent.close();
     this.successModalComponent.open();

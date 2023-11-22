@@ -38,7 +38,6 @@ export class KosgebDestekComponent {
   }
   secondModalConfig :ModalConfig = {
     modalTitle:"Gerekli Bilgileri Doldur",
-    closeButtonLabel:"Gönder",
   }
   @ViewChild('firstModal') private firstModal:ModalComponent;
   @ViewChild('secondModal') private secondModal:ModalComponent;
@@ -47,19 +46,30 @@ export class KosgebDestekComponent {
   async ngOnInit(): Promise<void> {
     this.user$ = this.auth.currentUserSubject.asObservable();
 
-    this.httpClient.get<any>(`${environment.apiUrl}/localization/demandCall/getalldemandcall`).subscribe(
-      (response: any) => {
-        console.log(response);
-        this.destekler = response;
-        // Gelen cevabı işleyebilirsiniz
-      },
-      (error: any) => {
-        console.error('Hata oluştu:', error);
-        // Hata durumunda işlemler yapabilirsiniz
-      }
-    );
+    
 
   }
+
+  argeFormValue: any = {};
+  kobigelFormValue: any = {};
+  ileriGirisimciFormValue: any = {};
+
+
+  postData(formData: any) {
+
+    // Form verilerini göndermek için HTTP POST isteği yapılabilir
+    this.httpClient.post(environment.apiUrl+'/Localization/DemandCall/CreateDemandCall ', formData).subscribe(
+      (response) => {
+        console.log('Başarıyla gönderildi!', response);
+        // Yanıtı işleyebilirsiniz
+      },
+      (error) => {
+        console.error('Hata oluştu:', error);
+        // Hata durumunu ele alabilirsiniz
+      }
+    );
+  }
+
   change(item:any){
     this.selectedType = item.target.value;
   }
