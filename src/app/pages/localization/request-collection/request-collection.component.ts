@@ -85,6 +85,8 @@ export class RequestCollectionComponent {
     this.httpClient.get<any>(`${environment.apiUrl}/Localization/DemandCall/GetSectorsForDemandCall`).subscribe(
       (response: any) => {
         console.log(response);
+        this.sectors = response.dataList
+        console.log(this.sectors)
         // Gelen cevabı işleyebilirsiniz
       },
       (error: any) => {
@@ -107,22 +109,24 @@ export class RequestCollectionComponent {
   onSubmit() {
     if (this.form.valid) {
       // Form gönderme işlemini burada gerçekleştir
-      const formData = new FormData();
-      formData.append('sectorId', this.form.value.sector);
-  
+      const selectedSectorId = this.form.value.sector;
+      const selectedSector = this.sectors.find(sector => sector.sectorId === selectedSectorId);
       const date = new Date(this.form.value.lastDate);
-      const formattedDate = new DatePipe('en-US').transform(date, 'yyyy-MM-ddTHH:mm:ss.SSSZ');
-  
-      // Tarih değerini doğrudan FormData'ya ekleyin
-      formData.append('endDate', formattedDate || '');
+      const formattedDate = new DatePipe('en-US').transform(date, 'yyyy-MM-dd');
+
+      const requestData = {
+        sectorName: selectedSector.sectorName,
+        sectorId: selectedSector.sectorId,
+        endDate:formattedDate ||  ''
+      };
   
       this.isEnabledError = false;
       this.form.reset();
   
       // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
-      this.httpClient.post(environment.apiUrl + '/Localization/DemandCall/CreateDemandCall', formData).subscribe(
+      this.httpClient.post(environment.apiUrl + '/Localization/DemandCall/CreateDemandCall', requestData).subscribe(
         (response) => {
-          console.log('Başarıyla gönderildi!', response);
+          console.log(response);
           // Yanıtı işleyebilirsiniz
         },
         (error) => {

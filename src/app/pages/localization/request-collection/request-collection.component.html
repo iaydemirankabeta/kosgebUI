@@ -157,8 +157,8 @@
               aria-label="Select example"
               formControlName="sector"
             >
-              <option *ngFor="let sector of sectors,let i = index" value="{{ i }}">
-                {{ sector.name }}
+              <option *ngFor="let sector of sectors,let i = index" value="{{ sector.sectorId}}">
+                {{ sector.sectorName }}
               </option>
             </select>
           </div>
