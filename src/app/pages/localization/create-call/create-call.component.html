@@ -63,7 +63,16 @@
             class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
-
+       <!-- sektör taslak -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">sektöre doğru</label>
+        <div class="col-lg-8">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak">
+            <option *ngFor="let option of sectorsTaslak" [value]="option.sectorId"
+              (selectChange)="option.sectorName = $event">{{ option.sectorName }}</option>
+          </select>
+        </div>
+      </div>
 
       <div class="row mb-6">
         <label class="col-lg-4 col-form-label required fw-bold fs-6">İhtiyacınızı Detaylı Olarak Anlatın</label>

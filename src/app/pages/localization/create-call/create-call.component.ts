@@ -9,6 +9,8 @@ import { Observable, first } from 'rxjs';
 import { AuthService, UserModel, UserType } from 'src/app/modules/auth';
 import { GetLocalizationInsertResponse } from './create-call.model';
 import { CreateCallService } from './create-call.service';
+import { ChangeDetectorRef } from '@angular/core';
+
 @Injectable({
   providedIn: 'root', // veya belirli bir modül
 })
@@ -19,11 +21,14 @@ import { CreateCallService } from './create-call.service';
   styleUrls: ['./create-call.component.scss']
 })
 export class CreateCallComponent {
+  taslakForm: FormGroup;
+
   createCalls: GetLocalizationInsertResponse[];
   DropdowDatas: any = [];
   form: FormGroup;
   yuklenenDosyalar: File[] = [];
   filters: any = [];
+  filterstaslak: any = [];
   user$: Observable<UserType>;
   isEnabledError: boolean;
   minLength = 20;
@@ -32,6 +37,9 @@ export class CreateCallComponent {
   result: any;
   tabs: any;
   searchTerm = new FormControl('');
+  sectorsTaslak: any = [];
+  selectedSectorTaslak: any;
+  changeDetectorRef: any;
 
 
   get filteredAdresses() {
@@ -42,7 +50,12 @@ export class CreateCallComponent {
   }
 
   itemId: string | null;
-
+  onSectorChange() {
+    debugger
+    // Bu metod, sektör seçildiğinde çağrılır
+    // selectedSector değeri değiştiğinde burada gerekli işlemleri gerçekleştirebilirsiniz
+    console.log('Seçilen sektör:', this.selectedSectorTaslak);
+  }
 
   modalConfig: ModalConfig = {
     modalTitle: '',
@@ -60,10 +73,30 @@ export class CreateCallComponent {
   user: UserModel | undefined;
   selectedValue: string;
 
+
+
+  getTaslak() {
+
+    // this.createcallService.GetTaslak().pipe(first()).subscribe((res: GetLocalizationInsertResponse) => 
+    this.createcallService.GetTaslak().pipe(first()).subscribe(data => {
+      this.sectorsTaslak = data.dataList;
+      //  this.createcallService.GetTaslak().subscribe(data => {
+      //const datataslak= data.dataList;
+      console.log('yeni veriler', this.sectorsTaslak)
+      this.cdr.detectChanges(); // Change Detection'ı manuel olarak tetikle
+    });
+  }
+
+
+  createFormFromData(taslakData: any): FormControl<string | null> {
+    throw new Error('Method not implemented.');
+  }
+
   constructor(private fb: FormBuilder, private auth: AuthService,
     private route: ActivatedRoute,
     private data: CallsComponent,
-    private createcallService: CreateCallService,) {
+    private createcallService: CreateCallService,
+    private cdr: ChangeDetectorRef) {
     this.user = auth.currentUserValue;
     this.selectedValue = this.user?.selectedCompany?.company.id || "";
     var formGroupInfo = {};
@@ -71,18 +104,22 @@ export class CreateCallComponent {
     (formGroupInfo as any)['adress'] = ['', Validators.required];
     (formGroupInfo as any)['piece'] = ['', Validators.required];
     this.filters = this.getKobiFilter();
+    this.sectorsTaslak = this.getTaslak();
+
     this.getKobiFilter().forEach((item) => {
       (formGroupInfo as any)[item.name] = [''];
     });
 
-
-    
     (formGroupInfo as any)['files'] = [];
     (formGroupInfo as any)['expectationDescription'] = ['', Validators.required];
     (formGroupInfo as any)['isQuestionable'] = [''];
     (formGroupInfo as any)['showFAQ'] = [''];
-
+    (formGroupInfo as any)['taslak'] = [''];
     this.form = this.fb.group(formGroupInfo);
+
+    // Yeni form kontrolü ekleniyor
+    // this.form.addControl('taslak', this.fb.control('', Validators.required));
+    // getTaslak fonksiyonundan gelen verileri taslak form kontrolüne atıyoruz
   }
   id: any;
   getLocalizationInsert() {
@@ -103,7 +140,10 @@ export class CreateCallComponent {
     })
   }
 
+
+
   ngOnInit(): void {
+    // this.getTaslak();
 
     this.route.params.subscribe(params => {
       const itemId = params['itemId'];
@@ -141,7 +181,6 @@ export class CreateCallComponent {
       this.getKobiFilter().forEach((item) => {
         formData.append(item.name, this.form.value[item.name]);
       });
-    
       formData.append('expectationDescription', this.form.value.expectationDescription);
 
       // Dosya yükleme işlemini burada gerçekleştir
@@ -193,6 +232,7 @@ export class CreateCallComponent {
   faqQuestions: { question: string, answer: string }[] = [];
 
   toggleFAQ() {
+    debugger
     this.showFAQ = !this.showFAQ;
     if (this.showFAQ) {
       this.faqQuestions = [];
