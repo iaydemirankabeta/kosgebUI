@@ -17,7 +17,7 @@ export class CreateCallService {
   }
 
   GetLocalizationInsert(companyId: string): Observable<GetLocalizationInsertResponse> {
-    return this.httpClient.get<GetLocalizationInsertResponse>(environment.apiUrl + "/Localization/GetLocalizationsByCompanyId/" + companyId,
+    return this.httpClient.get<GetLocalizationInsertResponse>(environment.apiUrl + "/Localization/Localization/GetLocalizationInsert?companyId=" + companyId,
        {headers:this.headers}).pipe(
       map((result:GetLocalizationInsertResponse)=>{
         return result;

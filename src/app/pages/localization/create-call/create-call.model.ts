@@ -10,6 +10,7 @@ export interface GetLocalizationInsertResponse2 {
 }
 //fabrikalar
 export interface FactoryDTO {
+    Id:string;
     companyId: string;
     name: string;
     businessLocation: {//çok kullanmayacağımız için burada yaptık diğer türlü DTO şeklinde yapılacaktı
@@ -29,6 +30,7 @@ export interface SectorDTO {
 }
 // Sertifika ve Belgeler
 export interface CertificationDocumentDTO {
+    Id:string;
     companyId: string,
     name: string;
 }
@@ -93,13 +95,13 @@ export interface GetLocalizationInsertResponse {
     resultDescriptionList: string[];
     exceptionList: string[];
     dataList: {
-        factories: FactoryDTO[];
-        sectors: SectorDTO[];
-        certificationDocumnets: CertificationDocumentDTO[];
-        naceCode: NACECodeDTO[];
-        supplierType: SupplierTypeDTO[];
-        gtipList: GTIPDTO[];
-        statisticalRegions: StatisticalRegionDTO[];
+        factories?: FactoryDTO[];
+        sectors?: SectorDTO[];
+        certificationDocumnets?: CertificationDocumentDTO[];
+        naceCode?: NACECodeDTO[];
+        supplierType?: SupplierTypeDTO[];
+        gtipList?: GTIPDTO[];
+        statisticalRegions?: StatisticalRegionDTO[];
        
 
     }[],
@@ -230,3 +232,4 @@ export class SelectTask {
   Label: string;
   Hour: string;
 }
+

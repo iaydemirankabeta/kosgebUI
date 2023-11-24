@@ -38,6 +38,7 @@ export class CreateCallComponent {
   tabs: any;
   searchTerm = new FormControl('');
   sectorsTaslak: any = [];
+  sectorsTaslak2: any = [];
   selectedSectorTaslak: any;
   changeDetectorRef: any;
 
@@ -51,10 +52,8 @@ export class CreateCallComponent {
 
   itemId: string | null;
   onSectorChange() {
-    debugger
     // Bu metod, sektör seçildiğinde çağrılır
     // selectedSector değeri değiştiğinde burada gerekli işlemleri gerçekleştirebilirsiniz
-    console.log('Seçilen sektör:', this.selectedSectorTaslak);
   }
 
   modalConfig: ModalConfig = {
@@ -82,7 +81,6 @@ export class CreateCallComponent {
       this.sectorsTaslak = data.dataList;
       //  this.createcallService.GetTaslak().subscribe(data => {
       //const datataslak= data.dataList;
-      console.log('yeni veriler', this.sectorsTaslak)
       this.cdr.detectChanges(); // Change Detection'ı manuel olarak tetikle
     });
   }
@@ -105,7 +103,7 @@ export class CreateCallComponent {
     (formGroupInfo as any)['piece'] = ['', Validators.required];
     this.filters = this.getKobiFilter();
     this.sectorsTaslak = this.getTaslak();
-
+    this.DropdowDatas = this.getLocalizationInsert();
     this.getKobiFilter().forEach((item) => {
       (formGroupInfo as any)[item.name] = [''];
     });
@@ -115,6 +113,8 @@ export class CreateCallComponent {
     (formGroupInfo as any)['isQuestionable'] = [''];
     (formGroupInfo as any)['showFAQ'] = [''];
     (formGroupInfo as any)['taslak'] = [''];
+    (formGroupInfo as any)['taslak2'] = [''];
+    (formGroupInfo as any)['taslak3'] = [''];
     this.form = this.fb.group(formGroupInfo);
 
     // Yeni form kontrolü ekleniyor
@@ -122,29 +122,54 @@ export class CreateCallComponent {
     // getTaslak fonksiyonundan gelen verileri taslak form kontrolüne atıyoruz
   }
   id: any;
+  // getLocalizationInsert() {
+  //   this.id = this.user?.selectedCompany?.company.id;
+  //   this.createcallService.GetLocalizationInsert(this.id).pipe(first()).subscribe((res: GetLocalizationInsertResponse) => {
+  //     res.dataList.forEach(element => {
+
+  //       this.DropdowDatas["factories"] = element.factories;
+  //       this.DropdowDatas["sectors"] = element.sectors;
+  //       this.DropdowDatas["certificationDocumnets"] = element.certificationDocumnets;
+  //       this.DropdowDatas["naceCode"] = element.naceCode;
+  //       this.DropdowDatas["supplierType"] = element.supplierType;
+  //       this.DropdowDatas["gtipList"] = element.gtipList;
+  //       this.DropdowDatas["statisticalRegions"] = element.statisticalRegions;
+
+  //     });
+
+  //      this.cdr.detectChanges();
+  //   })
+
+  // }
+
+
+
+
   getLocalizationInsert() {
     this.id = this.user?.selectedCompany?.company.id;
-    this.createcallService.GetLocalizationInsert(this.id).pipe(first()).subscribe((res: GetLocalizationInsertResponse) => {
-      res.dataList.forEach(element => {
-
-        this.DropdowDatas["factories"] = element.factories;
-        this.DropdowDatas["sectors"] = element.sectors;
-        this.DropdowDatas["certificationDocumnets"] = element.certificationDocumnets;
-        this.DropdowDatas["naceCode"] = element.naceCode;
-        this.DropdowDatas["supplierType"] = element.supplierType;
-        this.DropdowDatas["gtipList"] = element.gtipList;
-        this.DropdowDatas["statisticalRegions"] = element.statisticalRegions;
-
-      });
-      // this.changeDetectorRef.detectChanges();
-    })
+    this.createcallService.GetLocalizationInsert(this.id).pipe(first()).subscribe(
+      (res: GetLocalizationInsertResponse) => {
+        const data = res.data;
+  
+        if (data) {
+          // DropdowDatas nesnesini başlatma
+          this.DropdowDatas = this.DropdowDatas || {};
+          this.DropdowDatas.sectors = data.sectors || [];
+          this.DropdowDatas.certificationDocumnets = data.certificationDocumnets || [];
+          this.DropdowDatas.gtipList = data.gtipList || [];
+  
+          this.cdr.detectChanges();
+        } else {
+          console.error('Data is null or undefined');
+        }
+      },
+      error => {
+        console.error('An error occurred:', error);
+      }
+    );
   }
-
-
-
+  
   ngOnInit(): void {
-    // this.getTaslak();
-
     this.route.params.subscribe(params => {
       const itemId = params['itemId'];
       // Fetch the product details using the product service
@@ -232,7 +257,6 @@ export class CreateCallComponent {
   faqQuestions: { question: string, answer: string }[] = [];
 
   toggleFAQ() {
-    debugger
     this.showFAQ = !this.showFAQ;
     if (this.showFAQ) {
       this.faqQuestions = [];

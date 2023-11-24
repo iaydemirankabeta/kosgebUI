@@ -51,8 +51,8 @@
         </div>
       </div>
 
-
-      <div *ngFor="let item of filters" class="row mb-6">
+       <!-- dropdown for döngü -->
+      <!-- <div *ngFor="let item of filters" class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">{{item.label}}</label>
         <div class="col-lg-8">
           <select class="form-select  mb-5 " aria-label="Select example" formControlName="{{item.name}}">
@@ -62,9 +62,13 @@
           <div *ngIf="itemId &&form.get(item.name)?.pristine && form.get(item.name)?.value !== '' "
             class="text-danger mt-2">Revize Gerekli</div>
         </div>
-      </div>
+      </div> -->
+
+
+      
+
        <!-- sektör taslak -->
-      <div class="row mb-6">
+      <!-- <div class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">sektöre doğru</label>
         <div class="col-lg-8">
           <select class="form-select mb-5" aria-label="Select example" formControlName="taslak">
@@ -72,7 +76,38 @@
               (selectChange)="option.sectorName = $event">{{ option.sectorName }}</option>
           </select>
         </div>
+      </div> -->
+
+
+      <!-- Sektör  sectors-->
+      <div class="row mb-6" *ngIf="DropdowDatas && DropdowDatas.sectors">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">Sektör</label>
+        <div class="col-lg-8">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.sectors" [value]="option.companyId">{{ option.name }}</option>
+          </select>
+        </div>
       </div>
+     <!-- Sertifka  certificationDocumnets -->
+      <div class="row mb-6" *ngIf="DropdowDatas && DropdowDatas.sectors">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">sertifika</label>
+        <div class="col-lg-8">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.certificationDocumnets" [value]="option.companyId">{{ option.name }}</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- İthal Edilen Ürünlerin GTİP’leri gtipList -->
+      <div class="row mb-6" *ngIf="DropdowDatas && DropdowDatas.sectors">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">İthal Edilen Ürünlerin GTİP’leri</label>
+        <div class="col-lg-8">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.gtipList" [value]="option.code">{{ option.name }}</option>
+          </select>
+        </div>
+      </div>
+      
 
       <div class="row mb-6">
         <label class="col-lg-4 col-form-label required fw-bold fs-6">İhtiyacınızı Detaylı Olarak Anlatın</label>
