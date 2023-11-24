@@ -18,19 +18,19 @@ export class MeetPlanService {
   }
 
   addContact(contactModel:ContactDTO){
-    return this.httpClient.post(`http://localhost:5002/api/Contact/AddContact`,contactModel,
+    return this.httpClient.post(`${environment.apiUrl}/Company/Contact/AddContact`,contactModel,
     {headers:this.headers}).pipe((response => {
       return response;
     }));
   }
   getContacts(){
-    return this.httpClient.get(`http://localhost:5002/api/Contact/GetContacts`,
+    return this.httpClient.get(`${environment.apiUrl}/Company/Contact/GetContacts`,
     {headers:this.headers}).pipe((response => {
       return response;
     }));
   }
   deleteContact(id:string){
-    return this.httpClient.delete(`http://localhost:5002/api/Contact/${id}`,
+    return this.httpClient.delete(`${environment.apiUrl}/Company/Contact/${id}`,
     {headers:this.headers}).pipe((response => {
       return response;
     }));
