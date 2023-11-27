@@ -1,6 +1,6 @@
 export interface GetLocalizationInsertResponse2 {
     companyId: string;
-    factories: FactoryDTO[];//fabrikalar
+    // factories: FactoryDTO[];//fabrikalar
     Sectors: SectorDTO[];//Sektörler
     CertificationDocumnets: CertificationDocumentDTO[];// Sertifika ve Belgeler
     NACECode: NACECodeDTO[];// işletme faaliyet yeri - İller dönülecek.
@@ -8,34 +8,39 @@ export interface GetLocalizationInsertResponse2 {
     GTIPList: GTIPDTO[];
     StatisticalRegions: StatisticalRegionDTO[];
 }
-//fabrikalar
-export interface FactoryDTO {
-    Id:string;
-    companyId: string;
-    name: string;
-    businessLocation: {//çok kullanmayacağımız için burada yaptık diğer türlü DTO şeklinde yapılacaktı
-        latitude: Number,
-        longitude: Number
-    }[]
+//Company Adress
+export interface companyAddressesDTO {
+    id: string,
+    name: string
+
 }
+// //fabrikalar
+// export interface FactoryDTO {
+//     Id:string;
+//     companyId: string;
+//     name: string;
+//     businessLocation: {//çok kullanmayacağımız için burada yaptık diğer türlü DTO şeklinde yapılacaktı
+//         latitude: Number,
+//         longitude: Number
+//     }[]
+// }
+
 //Sektörler
 export interface SectorDTO {
-    // todo
-    // companyId: string,
-    // name: string,
-    // sectorType: string;
     sectorId: string;
-    sectorName: string;
-
+    sectocompanyIdrId: string;
+    name: string;
+    sectorType: string;
 }
 // Sertifika ve Belgeler
 export interface CertificationDocumentDTO {
-    Id:string;
     companyId: string,
+    certificationDocumentId: string,
     name: string;
 }
 // işletme faaliyet yeri - İller dönülecek.
 export interface NACECodeDTO {
+    naceCodeId: string,
     naceCode4: string,
     naceCode6: string,
 }
@@ -45,14 +50,21 @@ export interface SupplierTypeDTO {
     supType: string
 }
 export interface GTIPDTO {
+    gtipId: string,
     code: string,
     name: string;
 }
+// export interface StatisticalRegionDTO {
+//     cityId: string,
+//     level1Code: string,
+//     level1Name: string,
+//     level2Cities: CitiesDTO[];
+// }
 export interface StatisticalRegionDTO {
-    cityId: string,
-    level1Code: string,
-    level1Name: string,
-    level2Cities: CitiesDTO[];
+    regionId: string,
+    code: string,
+    parentCode: string,
+    cityCode: string;
 }
 export interface CitiesDTO {
     id:string,
@@ -95,7 +107,8 @@ export interface GetLocalizationInsertResponse {
     resultDescriptionList: string[];
     exceptionList: string[];
     dataList: {
-        factories?: FactoryDTO[];
+        companyAddresses?: companyAddressesDTO[];
+        // factories?: FactoryDTO[];
         sectors?: SectorDTO[];
         certificationDocumnets?: CertificationDocumentDTO[];
         naceCode?: NACECodeDTO[];
@@ -106,7 +119,8 @@ export interface GetLocalizationInsertResponse {
 
     }[],
     data:{
-        factories: FactoryDTO[];
+        // factories: FactoryDTO[];
+        companyAddresses: companyAddressesDTO[];
         sectors: SectorDTO[];
         certificationDocumnets: CertificationDocumentDTO[];
         naceCode: NACECodeDTO[];
@@ -199,37 +213,37 @@ SentForRevision = 5,
 
 }
 
-export class SelectConfig {
-  itemType?: string;
-  items?: any[];
-  defaultValue?: string;
-  bindValue?: string;
-  bindLabel?: string = "Label";
-  required?: boolean = false;
-  disabled?: boolean = false;
-  readonly?: boolean = false;
-  multiple?: boolean = false;
-  searchable?: boolean = true;
-  closeOnSelect?: boolean = true;
-  horizontal?: boolean = true;
-  clearable?: boolean = true;
-  addAll?: boolean = false;
-  selected?: boolean = false;
-  placeholder?: string = 'Seçiniz';
-  isAddId?: boolean = false;
-}
-//multiselect
-export class SelectItem {
-  Id: any;
-  Label: string;
-}
-export class SelectItemString {
-  Id: string;
-  Label: string;
-}
-export class SelectTask {
-  Id: string;
-  Label: string;
-  Hour: string;
-}
+// export class SelectConfig {
+//   itemType?: string;
+//   items?: any[];
+//   defaultValue?: string;
+//   bindValue?: string;
+//   bindLabel?: string = "Label";
+//   required?: boolean = false;
+//   disabled?: boolean = false;
+//   readonly?: boolean = false;
+//   multiple?: boolean = false;
+//   searchable?: boolean = true;
+//   closeOnSelect?: boolean = true;
+//   horizontal?: boolean = true;
+//   clearable?: boolean = true;
+//   addAll?: boolean = false;
+//   selected?: boolean = false;
+//   placeholder?: string = 'Seçiniz';
+//   isAddId?: boolean = false;
+// }
+// //multiselect
+// export class SelectItem {
+//   Id: any;
+//   Label: string;
+// }
+// export class SelectItemString {
+//   Id: string;
+//   Label: string;
+// }
+// export class SelectTask {
+//   Id: string;
+//   Label: string;
+//   Hour: string;
+// }
 

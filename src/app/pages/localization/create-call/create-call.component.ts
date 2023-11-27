@@ -122,52 +122,61 @@ export class CreateCallComponent {
     // getTaslak fonksiyonundan gelen verileri taslak form kontrolüne atıyoruz
   }
   id: any;
+  
+
+
+
+
   // getLocalizationInsert() {
   //   this.id = this.user?.selectedCompany?.company.id;
-  //   this.createcallService.GetLocalizationInsert(this.id).pipe(first()).subscribe((res: GetLocalizationInsertResponse) => {
-  //     res.dataList.forEach(element => {
-
-  //       this.DropdowDatas["factories"] = element.factories;
-  //       this.DropdowDatas["sectors"] = element.sectors;
-  //       this.DropdowDatas["certificationDocumnets"] = element.certificationDocumnets;
-  //       this.DropdowDatas["naceCode"] = element.naceCode;
-  //       this.DropdowDatas["supplierType"] = element.supplierType;
-  //       this.DropdowDatas["gtipList"] = element.gtipList;
-  //       this.DropdowDatas["statisticalRegions"] = element.statisticalRegions;
-
-  //     });
-
-  //      this.cdr.detectChanges();
-  //   })
-
+  //   this.createcallService.GetLocalizationInsert(this.id).pipe(first()).subscribe(
+  //     (res: GetLocalizationInsertResponse) => {
+  //       const data = res.data;
+        
+  
+  //         // DropdowDatas nesnesini başlatma
+  //         this.DropdowDatas = this.DropdowDatas || {};
+  //         this.DropdowDatas.companyAddresses = data?.companyAddresses || [];
+  //         this.DropdowDatas.sectors = data?.sectors || [];
+  //         this.DropdowDatas.certificationDocumnets = data?.certificationDocumnets || [];
+  //         this.DropdowDatas.naceCode = data?.naceCode || [];
+  //         this.DropdowDatas.supplierType = data?.supplierType || [];
+  //         this.DropdowDatas.gtipList = data?.gtipList || [];
+  
+  //         this.cdr.detectChanges();
+       
+  //     },
+     
+  //   );
   // }
-
-
-
-
   getLocalizationInsert() {
-    this.id = this.user?.selectedCompany?.company.id;
-    this.createcallService.GetLocalizationInsert(this.id).pipe(first()).subscribe(
-      (res: GetLocalizationInsertResponse) => {
-        const data = res.data;
-  
-        if (data) {
-          // DropdowDatas nesnesini başlatma
-          this.DropdowDatas = this.DropdowDatas || {};
-          this.DropdowDatas.sectors = data.sectors || [];
-          this.DropdowDatas.certificationDocumnets = data.certificationDocumnets || [];
-          this.DropdowDatas.gtipList = data.gtipList || [];
-  
-          this.cdr.detectChanges();
-        } else {
-          console.error('Data is null or undefined');
-        }
-      },
-      error => {
-        console.error('An error occurred:', error);
-      }
-    );
-  }
+  this.id = this.user?.selectedCompany?.company.id;
+  console.log('kulanıcı id',this.id)
+  this.createcallService.GetLocalizationInsert(this.id).pipe(first()).subscribe(
+    (res: GetLocalizationInsertResponse) => {
+      const data = res.data;
+
+      // DropdowDatas nesnesini başlatma
+      this.DropdowDatas = this.DropdowDatas || {};
+
+      // Güvenli navigasyon operatörü ile özelliğe erişim
+
+      this.DropdowDatas.companyAddresses = data?.companyAddresses || [];
+      this.DropdowDatas.sectors = data?.sectors || [];
+      this.DropdowDatas.certificationDocumnets = data?.certificationDocumnets || [];
+      this.DropdowDatas.naceCode = data?.naceCode || [];
+      this.DropdowDatas.supplierType = data?.supplierType || [];
+      this.DropdowDatas.gtipList = data?.gtipList || [];
+      this.DropdowDatas.statisticalRegions = data?.statisticalRegions || [];
+
+      this.cdr.detectChanges();
+    },
+    error => {
+      console.error('An error occurred:', error);
+    }
+  );
+}
+
   
   ngOnInit(): void {
     this.route.params.subscribe(params => {
