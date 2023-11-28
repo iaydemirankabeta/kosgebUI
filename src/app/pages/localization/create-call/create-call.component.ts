@@ -12,7 +12,7 @@ import { CreateCallService } from './create-call.service';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root', // veya belirli bir modül
+  providedIn: 'root', 
 })
 
 @Component({
@@ -21,8 +21,6 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./create-call.component.scss']
 })
 export class CreateCallComponent {
-  taslakForm: FormGroup;
-
   createCalls: GetLocalizationInsertResponse[];
   DropdowDatas: any = [];
   form: FormGroup;
@@ -41,7 +39,6 @@ export class CreateCallComponent {
   sectorsTaslak2: any = [];
   selectedSectorTaslak: any;
   changeDetectorRef: any;
-
 
   get filteredAdresses() {
     const searchTermValue = this.searchTerm.value as string;
@@ -122,33 +119,7 @@ export class CreateCallComponent {
     // getTaslak fonksiyonundan gelen verileri taslak form kontrolüne atıyoruz
   }
   id: any;
-  
 
-
-
-
-  // getLocalizationInsert() {
-  //   this.id = this.user?.selectedCompany?.company.id;
-  //   this.createcallService.GetLocalizationInsert(this.id).pipe(first()).subscribe(
-  //     (res: GetLocalizationInsertResponse) => {
-  //       const data = res.data;
-        
-  
-  //         // DropdowDatas nesnesini başlatma
-  //         this.DropdowDatas = this.DropdowDatas || {};
-  //         this.DropdowDatas.companyAddresses = data?.companyAddresses || [];
-  //         this.DropdowDatas.sectors = data?.sectors || [];
-  //         this.DropdowDatas.certificationDocumnets = data?.certificationDocumnets || [];
-  //         this.DropdowDatas.naceCode = data?.naceCode || [];
-  //         this.DropdowDatas.supplierType = data?.supplierType || [];
-  //         this.DropdowDatas.gtipList = data?.gtipList || [];
-  
-  //         this.cdr.detectChanges();
-       
-  //     },
-     
-  //   );
-  // }
   getLocalizationInsert() {
   this.id = this.user?.selectedCompany?.company.id;
   console.log('kulanıcı id',this.id)
