@@ -36,10 +36,19 @@ export class CreateCallComponent {
   tabs: any;
   searchTerm = new FormControl('');
   sectorsTaslak: any = [];
-  sectorsTaslak2: any = [];
   selectedSectorTaslak: any;
   changeDetectorRef: any;
 
+
+
+  selectedOptions = new FormControl();
+
+  // Access the selected values using the <code>value</code> property of the <code>selectedOptions</code> FormControl
+  getSelectedOptions(): string[] {
+  return this.selectedOptions.value;
+  }
+
+  
   get filteredAdresses() {
     const searchTermValue = this.searchTerm.value as string;
     return this.adresses.filter((option) => {

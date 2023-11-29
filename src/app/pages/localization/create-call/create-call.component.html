@@ -52,7 +52,7 @@
       </div>
 
       <!-- dropdown for döngü -->
-      <div *ngFor="let item of filters" class="row mb-6">
+      <!-- <div *ngFor="let item of filters" class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">{{item.label}}</label>
         <div class="col-lg-8">
           <select class="form-select  mb-5 " aria-label="Select example" formControlName="{{item.name}}">
@@ -63,7 +63,7 @@
             class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
-
+ -->
 
 
 
@@ -87,18 +87,18 @@
           </select>
         </div>
         <div
-            *ngIf="itemId &&form.get(DropdowDatas.companyAddresses.name)?.pristine && form.get(DropdowDatas.companyAddresses.name)?.value !== '' "
-            class="text-danger mt-2">Revize Gerekli
+          *ngIf="itemId &&form.get(DropdowDatas.companyAddresses.name)?.pristine && form.get(DropdowDatas.companyAddresses.name)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
         </div>
         <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.companyAddresses">
           <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-            <option >Kayıt bulunamadı</option>
+            <option>Kayıt bulunamadı</option>
           </select>
         </div>
       </div>
 
       <!-- Sektör  sectors-->
-        <div class="row mb-6">
+      <div class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">Sektör</label>
         <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.sectors">
           <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
@@ -106,12 +106,12 @@
           </select>
         </div>
         <div
-            *ngIf="itemId &&form.get(DropdowDatas.sectors.name)?.pristine && form.get(DropdowDatas.sectors.name)?.value !== '' "
-            class="text-danger mt-2">Revize Gerekli
+          *ngIf="itemId &&form.get(DropdowDatas.sectors.name)?.pristine && form.get(DropdowDatas.sectors.name)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
         </div>
         <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.sectors">
           <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-            <option >Kayıt bulunamadı</option>
+            <option>Kayıt bulunamadı</option>
           </select>
         </div>
       </div>
@@ -120,57 +120,60 @@
         <label class="col-lg-4 col-form-label fw-bold fs-6">Sertifikasyon ve Belgeler</label>
         <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.certificationDocumnets">
           <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-            <option *ngFor="let option of DropdowDatas.certificationDocumnets" [value]="option.certificationDocumentId">{{ option.name }}</option>
+            <option *ngFor="let option of DropdowDatas.certificationDocumnets" [value]="option.certificationDocumentId">
+              {{ option.name }}</option>
           </select>
         </div>
         <div
-            *ngIf="itemId &&form.get(DropdowDatas.certificationDocumnets.name)?.pristine && form.get(DropdowDatas.certificationDocumnets.name)?.value !== '' "
-            class="text-danger mt-2">Revize Gerekli
+          *ngIf="itemId &&form.get(DropdowDatas.certificationDocumnets.name)?.pristine && form.get(DropdowDatas.certificationDocumnets.name)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
         </div>
         <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.certificationDocumnets">
           <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-            <option >Kayıt bulunamadı</option>
+            <option>Kayıt bulunamadı</option>
           </select>
         </div>
       </div>
 
-         <!--naceCode -->
-         <!-- todo nacecode4 müü 6 mı ona bakılacak -->
-         <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-bold fs-6">NACE Kodu</label>
-          <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.naceCode">
-            <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-              <option *ngFor="let option of DropdowDatas.naceCode" [value]="option.naceCodeId">{{ option.naceCode4 }}</option>
-            </select>
-          </div>
-          <div
-              *ngIf="itemId &&form.get(DropdowDatas.naceCode.naceCode4)?.pristine && form.get(DropdowDatas.naceCode.naceCode4)?.value !== '' "
-              class="text-danger mt-2">Revize Gerekli
-          </div>
-          <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.naceCode">
-            <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-              <option >Kayıt bulunamadı</option>
-            </select>
-          </div>
+      <!--naceCode -->
+      <!-- todo nacecode4 müü 6 mı ona bakılacak -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">NACE Kodu</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.naceCode">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.naceCode" [value]="option.naceCodeId">{{ option.naceCode4 }}
+            </option>
+          </select>
         </div>
-        <!-- supplierType -->
-        <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-bold fs-6">İşletme Tipi</label>
-          <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.supplierType">
-            <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-              <option *ngFor="let option of DropdowDatas.supplierType" [value]="option.companyId">{{ option.supType }}</option>
-            </select>
-          </div>
-          <div
-              *ngIf="itemId &&form.get(DropdowDatas.supplierType.supType)?.pristine && form.get(DropdowDatas.supplierType.supType)?.value !== '' "
-              class="text-danger mt-2">Revize Gerekli
-          </div>
-          <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.supplierType">
-            <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-              <option >Kayıt bulunamadı</option>
-            </select>
-          </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.naceCode.naceCode4)?.pristine && form.get(DropdowDatas.naceCode.naceCode4)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
         </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.naceCode">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div>
+      <!-- supplierType -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">İşletme Tipi</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.supplierType">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.supplierType" [value]="option.companyId">{{ option.supType }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.supplierType.supType)?.pristine && form.get(DropdowDatas.supplierType.supType)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
+        </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.supplierType">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div>
 
       <!-- İthal Edilen Ürünlerin GTİP’leri gtipList -->
       <!-- todo name mi olacak yoksa code mu  -->
@@ -182,12 +185,36 @@
           </select>
         </div>
         <div
-            *ngIf="itemId &&form.get(DropdowDatas.gtipList.name)?.pristine && form.get(DropdowDatas.gtipList.name)?.value !== '' "
-            class="text-danger mt-2">Revize Gerekli
+          *ngIf="itemId &&form.get(DropdowDatas.gtipList.name)?.pristine && form.get(DropdowDatas.gtipList.name)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
         </div>
         <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.gtipList">
           <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-            <option >Kayıt bulunamadı</option>
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div>
+      <!-- İthal Edilen Ürünlerin GTİP’leri Çoklu seçim -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">İthal Edilen Ürünlerin GTİP’leri Çoklu seçim</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.gtipList">
+          <mat-form-field class="col-lg-12">
+
+            <mat-select [multiple]="true" class="form-select mb-5" aria-label="Select example"
+              formControlName="taslak2">
+              <mat-option *ngFor="let option of DropdowDatas.gtipList" [value]="option.gtipId">{{ option.name
+                }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.gtipList.name)?.pristine && form.get(DropdowDatas.gtipList.name)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
+        </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.gtipList">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option>Kayıt bulunamadı</option>
           </select>
         </div>
       </div>
@@ -198,16 +225,17 @@
         <label class="col-lg-4 col-form-label fw-bold fs-6">İstatistiki Bölge</label>
         <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.statisticalRegions">
           <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-            <option *ngFor="let option of DropdowDatas.statisticalRegions" [value]="option.regionId">{{ option.gradeName }}</option>
+            <option *ngFor="let option of DropdowDatas.statisticalRegions" [value]="option.regionId">{{ option.gradeName
+              }}</option>
           </select>
         </div>
         <div
-            *ngIf="itemId &&form.get(DropdowDatas.statisticalRegions.gradeName)?.pristine && form.get(DropdowDatas.gtipList.gradeName)?.value !== '' "
-            class="text-danger mt-2">Revize Gerekli
+          *ngIf="itemId &&form.get(DropdowDatas.statisticalRegions.gradeName)?.pristine && form.get(DropdowDatas.gtipList.gradeName)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
         </div>
         <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.statisticalRegions">
           <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
-            <option >Kayıt bulunamadı</option>
+            <option>Kayıt bulunamadı</option>
           </select>
         </div>
       </div>
