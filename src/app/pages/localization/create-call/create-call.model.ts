@@ -213,37 +213,5 @@ SentForRevision = 5,
 
 }
 
-// export class SelectConfig {
-//   itemType?: string;
-//   items?: any[];
-//   defaultValue?: string;
-//   bindValue?: string;
-//   bindLabel?: string = "Label";
-//   required?: boolean = false;
-//   disabled?: boolean = false;
-//   readonly?: boolean = false;
-//   multiple?: boolean = false;
-//   searchable?: boolean = true;
-//   closeOnSelect?: boolean = true;
-//   horizontal?: boolean = true;
-//   clearable?: boolean = true;
-//   addAll?: boolean = false;
-//   selected?: boolean = false;
-//   placeholder?: string = 'Seçiniz';
-//   isAddId?: boolean = false;
-// }
-// //multiselect
-// export class SelectItem {
-//   Id: any;
-//   Label: string;
-// }
-// export class SelectItemString {
-//   Id: string;
-//   Label: string;
-// }
-// export class SelectTask {
-//   Id: string;
-//   Label: string;
-//   Hour: string;
-// }
+
 

@@ -38,8 +38,16 @@ export class CreateCallComponent {
   sectorsTaslak: any = [];
   selectedSectorTaslak: any;
   changeDetectorRef: any;
-
-
+//input girdileri
+  createCall = {
+    cagriadi: '',
+    adet: '',
+    genislik:'',
+    boy:'',
+    yukseklik:'',
+    agirlik:'',
+   
+  };
 
   selectedOptions = new FormControl();
 
@@ -105,8 +113,8 @@ export class CreateCallComponent {
     this.selectedValue = this.user?.selectedCompany?.company.id || "";
     var formGroupInfo = {};
     (formGroupInfo as any)['name'] = ['', Validators.required];
-    (formGroupInfo as any)['adress'] = ['', Validators.required];
-    (formGroupInfo as any)['piece'] = ['', Validators.required];
+    //(formGroupInfo as any)['adress'] = ['', Validators.required];
+    (formGroupInfo as any)['count'] = ['', Validators.required];
     this.filters = this.getKobiFilter();
     this.sectorsTaslak = this.getTaslak();
     this.DropdowDatas = this.getLocalizationInsert();
@@ -115,12 +123,21 @@ export class CreateCallComponent {
     });
 
     (formGroupInfo as any)['files'] = [];
-    (formGroupInfo as any)['expectationDescription'] = ['', Validators.required];
+    (formGroupInfo as any)['description'] = ['', Validators.required];
     (formGroupInfo as any)['isQuestionable'] = [''];
     (formGroupInfo as any)['showFAQ'] = [''];
     (formGroupInfo as any)['taslak'] = [''];
     (formGroupInfo as any)['taslak2'] = [''];
     (formGroupInfo as any)['taslak3'] = [''];
+
+
+    (formGroupInfo as any)['sectors'] = [''];
+    (formGroupInfo as any)['certificationDocumnets'] = [''];
+    (formGroupInfo as any)['gtipList'] = [''];
+    (formGroupInfo as any)['width'] = [''];
+    (formGroupInfo as any)['lenght'] = [''];
+    (formGroupInfo as any)['height'] = [''];
+    (formGroupInfo as any)['weight'] = [''];
     this.form = this.fb.group(formGroupInfo);
 
     // Yeni form kontrolü ekleniyor
