@@ -8,7 +8,7 @@
                   <label (click)="companySelect(company)" [ngClass]="selectedCompany.id === company.id ? 'bg-info' : 'bg-white'" class="form-control" *ngFor="let company of searchCompanies">{{company.name}}</label>
           </div>
       </div>
-      <div class="form-group row mb-6 col-4">
+      <div class="form-group row mb-6 col-4 ms-3">
         <input style="max-height: 45px;" (change)="citySearch($event)" name="companySearch" class="form-control" type="text" value="" placeholder="Şehir Ara"/>
                 <div *ngIf="searchCities !== null" class="form-control mt-3">
                   <label (click)="citySelect(city)" [ngClass]="selectedCity.id === city.id ? 'bg-info' : 'bg-white'" class="form-control" *ngFor="let city of searchCities">{{city.cityName}}</label>
