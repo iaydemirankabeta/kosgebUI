@@ -48,8 +48,8 @@ export class RequestCollectionComponent {
     closeButtonLabel: 'Kapat',
   };
   createModalConfig: ModalConfig = {
-    modalTitle: "Talep Oluştur",
-    closeButtonLabel: 'Talep Oluştur',
+    modalTitle: "",
+    closeButtonLabel: '',
   };
   closeDemandModalConfig: ModalConfig = {
     modalTitle: "Talep Kapat",
@@ -81,6 +81,8 @@ export class RequestCollectionComponent {
           LastDate: new Date(item.endDate),
           // Diğer sütunlar burada eklenebilir
         }));
+        this.changeDetectorRefs.detectChanges();
+
         
       },
       error: (error) => {

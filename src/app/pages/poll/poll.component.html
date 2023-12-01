@@ -15,7 +15,7 @@
     <!-- Position Column -->
     <ng-container matColumnDef="Id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.surveyId }}</td>
     </ng-container>
     <ng-container matColumnDef="Title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Anket Başlığı</th>
@@ -24,7 +24,7 @@
     <ng-container matColumnDef="LastDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Son Tarih</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.lastDate.toLocaleDateString() }}
+        {{ element.endDate | date: 'dd.MM.yyyy' }}
       </td>
 
     </ng-container>
@@ -33,7 +33,7 @@
       <td mat-cell *matCellDef="let element">
 
         <button class="btn btn-secondary" (click)="openDetailModal(element)">Detay</button>
-        <button class="btn btn-danger btn-margin" (click)="openDeleteModal()">Sil</button>
+        <button class="btn btn-danger btn-margin" (click)="openDeleteModal(element)">Sil</button>
       </td>
     </ng-container>
     <!-- Weight Column -->
@@ -43,157 +43,134 @@
   </table>
   <app-modal #createModal [modalConfig]="createModalConfig" aria-modal="true">
     <!-- <button *ngIf="counter.length < 5" class="btn btn-success" (click) = "counterUpdate()">Soru Ekle</button> -->
-    <div class="col-xs-12 text-center">
-      <div *ngFor="let value of counter ; index as i">
-        <div class="row">
-          <div class="row col-12">
-            <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Anket Başlığı</label>
-            <div class="col-lg-12 ">
-              <input type="text" class="form-control" id="question" placeholder="Anket Başlığı giriniz">
-            </div>
-            <div class="col-lg-12 ">
-              <div class="text-start ">
-                <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Tarih</label>
-                <input class="form-control" type="date" name="endDate" (change)="endDateChange($event)">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="col-xs-12 text-center">
+        <div *ngFor="let value of counter ; index as i">
+          <div class="row">
+            <div class="row col-12">
+              <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Anket Başlığı</label>
+              <div class="col-lg-12 ">
+                <input type="text" class="form-control" id="question" formControlName="question" placeholder="Anket Başlığı giriniz">
               </div>
-            </div>
-            <!-- <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Başlığı</label> -->
-
-            <br><br><br><br><br>
-            <!-- <div class="row col-12 "> -->
-            <label for="sektorSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Seçiniz:</label>
-            <select id="sektorSelect" (change)="changesektor($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
-              <option *ngIf="isCheckboxChecked" value="" selected></option>
-              <option value="Gıda" Selected>Gıda</option>
-              <option value="İnşaat">İnşaat</option>
-              <option value="Tekstil">Tekstil</option>
-              <option value="Kozmetik">Kozmetik</option>
-              <option value="Teknoloji">Teknoloji</option>
-              <option value="Hububat (Tahıl)">Hububat (Tahıl)</option>
-            </select>
-
-            <label for="ulkeSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Ülke Seçiniz:</label>
-            <select id="ulkeSelect" (change)="changeulke($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
-              <option *ngIf="isCheckboxChecked" value="" selected></option>
-              <option value="Almanya" selected>Almanya</option>
-              <option value="Türkiye" >Türkiye</option>
-              <option value="Amerika">Amerika</option>
-              <option value="Çin">Çin</option>
-              <option value="Rusya">Rusya</option>
-              <option value="Fransa">Fransa</option>
-            </select>
-            <label for="sirketSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Şirket Seçiniz:</label>
-            <select id="sirketSelect" (change)="changesirket($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
-              <option *ngIf="isCheckboxChecked" value="" selected></option>
-              <option value="X" selected>X</option>
-              <option value="Y">Y</option>
-              <option value="Z">Z</option>
-            </select>
-            <label for="oranSelect" class="col-lg-6 col-form-label fw-bold fs-6 text-start">Destek Oranı
-              Seçiniz:</label>
-            <select id="oranSelect" (change)="changeoran($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% ">
-              <option *ngIf="isCheckboxChecked" value="" selected></option>
-              <option value="%30" selected>%30</option>
-              <option value="%40">%40</option>
-              <option value="%50">%50</option>
-              <option value="%60">%60</option>
-              <option value="%70">%70</option>
-              <option value="%80">%80</option>
-              <option value="%90">%90</option>
-              <option value="%100">%100</option>
-            </select>
-            <div>
-              <br>
-            <label *ngIf="!isCheckboxChecked" class="fw-bold">{{ selectedUlke }}' da {{ selectedSektor }} sektöründe faliyet gösteren {{
-              selectedSirket }}
-              şirketi için düzenlenen {{ selectedOran }} KOSGEB destekli iş gezisine katılım sağlamak ister
-              misiniz?</label>
-            </div>
-            <!-- <div class="mt-4 row col-6  justify-content-center align-items-center">
-              <input class="form-check-input" type="checkbox" value=""  /> Yeni soru metni ekle
-            </div>
-             <label>Açıklama</label>
-             <textarea class="form-control" formControlName="meetingdescription"  maxlength="300" placeholder="Yeni soru metni..." ></textarea> -->
+              <div class="col-lg-12 ">
+                <div class="text-start ">
+                  <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Tarih</label>
+                  <input class="form-control" type="date" name="endDate" id="endDate" formControlName="endDate">
+                </div>
+              </div>
+              <!-- <label class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Başlığı</label> -->
+  
+              <br><br><br><br><br>
+              <!-- <div class="row col-12 "> -->
+              <label for="sektorSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Sektör Seçiniz:</label>
+                <select
+                  class="form-select mb-5"
+                  aria-label="Select example"
+                  formControlName="sector"
+                  (change)="changesektor($event)"
+                >
+                  <option *ngFor="let sector of sektorler,let i = index" value="{{ sector.id}}">
+                    {{ sector.name }}
+                  </option>
+                </select>
+  
+              <label for="ulkeSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Ülke Seçiniz:</label>
+              <select id="ulkeSelect" (change)="changeulke($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% " formControlName="countries">
+                <option *ngIf="isCheckboxChecked" value="" selected>Ülke Seçiniz..</option>
+                <option  *ngFor="let country of countries" value="{{country.id}}">{{country.countryName}}</option>
+              </select>
+              <label for="sirketSelect" class="col-lg-4 col-form-label fw-bold fs-6 text-start">Şirket Seçiniz:</label>
+              <select id="sirketSelect" (change)="changesirket($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% " formControlName="company">
+                <option *ngIf="isCheckboxChecked" value="" selected></option>
+                <option value="X" selected>X</option>
+                <option value="Y">Y</option>
+                <option value="Z">Z</option>
+              </select>
+              <label for="oranSelect" class="col-lg-6 col-form-label fw-bold fs-6 text-start">Destek Oranı
+                Seçiniz:</label>
+              <select id="oranSelect" (change)="changeoran($event)" class="text-center mx-2 form-select form-select-solid" style="width: 97% " formControlName="support">
+                <option *ngIf="isCheckboxChecked" value="" selected></option>
+                <option value="30" selected>%30</option>
+                <option value="40">%40</option>
+                <option value="50">%50</option>
+                <option value="60">%60</option>
+                <option value="70">%70</option>
+                <option value="80">%80</option>
+                <option value="90">%90</option>
+                <option value="100">%100</option>
+              </select>
+              <div>
+                <br>
+                <label for="">Anket sorusunu aşağıdaki kutucuktan düzenleyebilirsiniz</label>
+                <textarea type="text" class="fw-bold form-control" row="50" cols="50" formControlName="description" id="description">
+                  {{ selectedUlke }}' da {{ selectedSektor }} sektöründe faaliyet gösteren {{ selectedSirket }} şirketi için düzenlenen %{{ selectedOran }} KOSGEB destekli iş gezisine katılım sağlamak ister misiniz?
+                  </textarea>
+              </div>
+              <!-- <div class="mt-4 row col-6  justify-content-center align-items-center">
+                <input class="form-check-input" type="checkbox" value=""  /> Yeni soru metni ekle
+              </div>
+               <label>Açıklama</label>
+               <textarea class="form-control" formControlName="meetingdescription"  maxlength="300" placeholder="Yeni soru metni..." ></textarea> -->
             
-             <div class="mt-4 row col-5 justify-content-center align-items-center">
-              <input class="form-check-input" type="checkbox" [(ngModel)]="isCheckboxChecked" id="showAdditionalContent" />
-              Yeni soru metni ekle
-            </div>
-            
-            <div *ngIf="isCheckboxChecked">
-              <!-- Ek içerik burada -->
-              <br>
-              <textarea class="form-control" formControlName="meetingdescription" maxlength="300" placeholder="Yeni soru metni giriniz..."></textarea>
-            </div>
-            
-            </div>
+              
+              <div *ngIf="isCheckboxChecked">
+                <!-- Ek içerik burada -->
+                <br>
+                <textarea class="form-control" maxlength="300" placeholder="Yeni soru metni giriniz..."></textarea>
+              </div>
+              
+              </div>
+          </div>
         </div>
+        <button type="submit" class="btn btn-primary mt-4" >Gönder</button>
       </div>
-      <button class="btn btn-primary mt-4" (click)="openSuccessModal()">Gönder</button>
-    </div>
+    </form>
   </app-modal>
 
   <app-modal #detailModal [modalConfig]="detailModalConfig" aria-modal="true">
-    <div *ngIf="selectedPool !== null" class="col-xs-12 text-center">
-      <div *ngFor="let question of selectedPool.questions">
+    <div *ngIf="selectedPoolDetail !== null" class="col-xs-12 text-center">
+      <div>
+        <br>
+      <label *ngIf="selectedPoolDetail" class="fw-bold">{{selectedPoolDetail.description}}</label>
+      </div>
+      <div  >
+        <div class="row d-flex mt-4">
+          <div *ngIf="selectedPoolDetail?.yesRatio !== undefined">
+            <label class="fw-bold">Evet (%{{selectedPoolDetail?.yesRatio}})</label>
+            <div class="col-12 justify-content-center align-items-center">
+              <mat-progress-bar color="primary" mode="determinate" [value]="selectedPoolDetail?.yesRatio"></mat-progress-bar>
+            </div>
+          </div>
+          <div *ngIf="selectedPoolDetail?.noRatio !== undefined">
+            <label class="fw-bold">Hayır (%{{selectedPoolDetail?.noRatio}})</label>
+            <div class="col-12 justify-content-center align-items-center">
+              <mat-progress-bar color="primary" mode="determinate" [value]="selectedPoolDetail?.noRatio"></mat-progress-bar>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex mt-4">
+          <div *ngIf="selectedPoolDetail && selectedPoolDetail.countryList && selectedPoolDetail.countryList.length > 0">
+            <div class="row d-flex mt-4" style="text-align: left;">
+              <label class="fw-bold">Gidilmek İstenilen Ülke Oranları;</label>
+            </div>
+            <div class="row d-flex mt-4" *ngFor="let country of selectedPoolDetail.countryList">
+              <div class="col-12">
+                <label class="fw-bold">{{ country.countryName }}: {{ country.countryRatio }}%</label>
+                <mat-progress-bar color="primary" mode="determinate" [value]="country.countryRatio"></mat-progress-bar>
 
-        <label>{{question.title}}</label>
-        <div class="row d-flex mt-4">
-          <label class="fw-bold">Evet (%60)</label>
-          <div class="col-6 justify-content-center align-items-center">
-            <mat-progress-bar color="primary" mode="determinate" value="60"></mat-progress-bar>
+              </div>
+
+            </div>
+            <div class="row d-flex mt-4" style="text-align: left;">
+              <label class="fw-bold">Katılımcı Sayısı: {{ selectedPoolDetail.participantCount }}</label>
+            </div>
+          </div>
+          <div *ngIf="selectedPoolDetail && (!selectedPoolDetail.countryList || selectedPoolDetail.countryList.length === 0)">
+            <p>Ülke Listesi Bulunamadı veya Boş</p>
           </div>
         </div>
-       
-        <div class="row d-flex mt-4">
-          <label class="fw-bold">Hayır (%40)</label>
-          <div class="col-6 justify-content-center align-items-center">
-            <mat-progress-bar color="primary" mode="determinate" value="40"></mat-progress-bar>
-          </div>
-          <div class="row d-flex mt-4" style="text-align: left;">
-            <label class="fw-bold">Gidilmek istenilen Ülke Oranları</label>
-          </div>
-          <div class="row d-flex mt-4">
-          <label class="fw-bold">Almanya (%40)</label>
-          <div class="col-6 justify-content-center align-items-center">
-            <mat-progress-bar color="primary" mode="determinate" value="40"></mat-progress-bar>
-          </div>
-        </div>
-        <div class="row d-flex mt-4">
-          <label class="fw-bold">Türkiye (%10)</label>
-          <div class="col-6 justify-content-center align-items-center">
-            <mat-progress-bar color="primary" mode="determinate" value="40"></mat-progress-bar>
-          </div>
-        </div>
-        <div class="row d-flex mt-4">
-          <label class="fw-bold">Amerika (%20)</label>
-          <div class="col-6 justify-content-center align-items-center">
-            <mat-progress-bar color="primary" mode="determinate" value="40"></mat-progress-bar>
-          </div>
-        </div>
-        <div class="row d-flex mt-4">
-          <label class="fw-bold">Çin (%10)</label>
-          <div class="col-6 justify-content-center align-items-center">
-            <mat-progress-bar color="primary" mode="determinate" value="40"></mat-progress-bar>
-          </div>
-        </div>
-        <div class="row d-flex mt-4">
-          <label class="fw-bold">Rusya (%15)</label>
-          <div class="col-6 justify-content-center align-items-center">
-            <mat-progress-bar color="primary" mode="determinate" value="40"></mat-progress-bar>
-          </div>
-        </div>
-          <div class="row d-flex mt-4">
-          <label class="fw-bold">Fransa (%5)</label>
-          <div class="col-6 justify-content-center align-items-center">
-            <mat-progress-bar color="primary" mode="determinate" value="40"></mat-progress-bar>
-          </div>
-        </div>
-          <div class="row d-flex mt-4" style="text-align: left;">
-            <label class="fw-bold">Katılımcı Sayısı: 61</label>
-          </div>
-         
-        </div>
+        
+        
       </div>
     </div>
   </app-modal>
