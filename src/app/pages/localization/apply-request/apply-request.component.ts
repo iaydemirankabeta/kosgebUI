@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -22,11 +22,7 @@ export class ApplyRequestComponent {
   isEnabledError:boolean = false;
   form : FormGroup;
   displayedColumns: string[] = ["RequestId",'Sector', 'LastDate', 'Action'];
-  data = new MatTableDataSource([
-    {requestId:"1",sector:"Enerji",lastDate:new Date("2021-09-23")},
-    {requestId:"2",sector:"Otomativ",lastDate:new Date("2021-09-23")},
-    {requestId:"3",sector:"Kimya",lastDate:new Date("2021-09-23")},
-  ]);
+  data = new MatTableDataSource([]);
   counter:number[]=[1]
   productData = [
     {id:1,name:"Otomatik Şanzıman",category:"Otomotiv",},
@@ -94,12 +90,44 @@ export class ApplyRequestComponent {
   @ViewChild('successModal') private successModalComponent: ModalComponent;
 
   @ViewChild('MatSort') sort: MatSort;
-  constructor(private auth: AuthService,private fb: FormBuilder,private httpClient: HttpClient) {
+  constructor(private auth: AuthService,private fb: FormBuilder,private httpClient: HttpClient,private changeDetectorRefs: ChangeDetectorRef) {
     this.form = this.fb.group({
       productName: ['', Validators.required],
       productQTY: ['', Validators.required],
     });
   }
+  
+
+
+  getAllDemandCall(){
+    this.httpClient.get<any>(`${environment.apiUrl}/Localization/demandCall/getalldemandcall`).subscribe({
+      next: (response: any) => {
+        // Gelen cevabı işleyebilirsiniz
+
+        this.data = response.map((item: { demandCallId: any; sectorName: any; endDate: string | number | Date; }) => ({
+          RequestId: item.demandCallId,
+          Sector: item.sectorName,
+          LastDate: new Date(item.endDate),
+          // Diğer sütunlar burada eklenebilir
+        }));
+        this.changeDetectorRefs.detectChanges();
+
+        
+      },
+      error: (error) => {
+        console.error('Veri alınamadı:', error);
+      },
+      complete: () => {
+        console.log('İşlem tamamlandı.');
+
+      }
+  });
+  }
+  ngOnInit(): void {
+    this.getAllDemandCall();
+    
+  }
+
   ngAfterViewInit() {
     this.data.sort = this.sort;
   }
@@ -113,22 +141,26 @@ export class ApplyRequestComponent {
   }
 
   onSubmit() {
-    console.log(this.form);
     if (this.form.valid) {
       // Form gönderme işlemini burada gerçekleştir
-      const formData = new FormData();
-      
-      formData.append('product', this.form.value.product);
-      formData.append('productQTY', this.form.value.productQTY);
+      const selectedSectorId = this.form.value.sector;
+      const selectedSector = this.sectors.find(sector => sector.sectorId === selectedSectorId);
+      const date = new Date(this.form.value.lastDate);
+      const formattedDate = new DatePipe('en-US').transform(date, 'yyyy-MM-dd');
 
-  
+      const requestData = {
+        demandCallId: selectedSector.sectorName,
+        productId: selectedSector.sectorId,
+        companyId:selectedSector.sectorId,
+        productAmount:selectedSector.sectorId
+      };
 
 
       this.isEnabledError = false;
       this.form.reset();
   
       // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
-      this.httpClient.post(environment.apiUrl + 'Localization/DemandCall/AddDemandCallApply', formData).subscribe(
+      this.httpClient.post(environment.apiUrl + 'Localization/DemandCall/AddDemandCallApply', requestData).subscribe(
         (response) => {
           console.log('Başarıyla gönderildi!', response);
           // Yanıtı işleyebilirsiniz
