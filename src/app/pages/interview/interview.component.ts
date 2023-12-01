@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { AuthService, UserType } from 'src/app/modules/auth';
 
 export interface request {
   id: number;
@@ -16,6 +18,26 @@ export interface application {
   id: number;
   KOBI: string;
 }
+export interface requestKosgeb {
+  id: number;
+  KobiID: number;
+  BiID: number;
+  MeetingName: string;//Çağrı Adı
+  BusinessRepresentative:string;// Büyük işletme Yetkilisi
+  KobiRepresentative:string;//Kobi Yetkilisi
+  isKobiJoin:boolean;//Kobi görüşmeye katıldı mı
+  applicationsKosgeb: applicationKosgeb[];
+}
+export interface applicationKosgeb {
+  id: number;
+  MeetingName: string;
+  RequestMeetiingBI: string;
+  EmployeeNumber: number;
+  MeetingTime: string;
+  IsBreak: string;
+  MeetingType: string;
+  Meetinglink:  string;
+}
 @Component({
   selector: 'app-interview',
   templateUrl: './interview.component.html',
@@ -24,11 +46,13 @@ export interface application {
 
 export class InterviewComponent {
   form: FormGroup;
+  user$: Observable<UserType>;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private auth:AuthService,) {
     this.form = this.fb.group({
       rejectionReason: ['', Validators.required]
     });
+    this.user$ = this.auth.currentUserSubject.asObservable();
   }
 
   selectedFiltersList: { filterName: string, selectedValue: any }[] = [];
@@ -47,10 +71,20 @@ export class InterviewComponent {
     { id: 6, MeetingName: "B2B Talebi", RequestMeetiingBI: "BI-4", EmployeeNumber: 10, MeetingTime: '5,5 Saat', IsBreak: '30 Dakika', MeetingType: 'Hibrit', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
     { id: 7, MeetingName: "B2B Talebi", RequestMeetiingBI: "BI-4", EmployeeNumber: 10, MeetingTime: '5,5 Saat', IsBreak: '30 Dakika', MeetingType: 'Hibrit', applications: [{ id: 1, KOBI: "KOBI-1" }, { id: 2, KOBI: "KOBI-2" }, { id: 2, KOBI: "KOBI-3" }] },
   ];
+  displayedColumnsKosgeb: string[] = ['Id','MeetingName', 'BusinessRepresentative', 'KobiRepresentative','Information', 'Action'];
+  requestsKosgeb: requestKosgeb[] = [
+    { id: 1,isKobiJoin:true, MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", KobiID: 1,BiID:1,BusinessRepresentative: "Vestel Yetkilisi",KobiRepresentative: 'KOBİ yetkilisi A',applicationsKosgeb:[{id:1,MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", RequestMeetiingBI: "BI-1",  EmployeeNumber: 5, MeetingTime: '2 Saat', IsBreak: 'Yok',  MeetingType: 'Yüz yüze',Meetinglink: 'Polaris Plaza'}]},
+    { id: 2,isKobiJoin:true, MeetingName: "Tekstil Ürün İthalatı", KobiID: 1,BiID:2,BusinessRepresentative: "Özdilek Tekstil Yetkilisi",KobiRepresentative: 'KOBİ yetkilisi A',applicationsKosgeb:[{id:1,MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", RequestMeetiingBI: "BI-1",  EmployeeNumber: 5, MeetingTime: '2 Saat', IsBreak: 'Yok',  MeetingType: 'Online',Meetinglink: 'www.meet1.com'}]},
+    { id: 3,isKobiJoin:true, MeetingName: "Tekstil Ürün İthalatı", KobiID: 2,BiID:2,BusinessRepresentative: "Özdilek Tekstil Yetkilisi",KobiRepresentative: 'KOBİ yetkilisi B',applicationsKosgeb:[{id:1,MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", RequestMeetiingBI: "BI-1",  EmployeeNumber: 5, MeetingTime: '2 Saat', IsBreak: 'Yok',  MeetingType: 'Yüz yüze',Meetinglink: 'www.meet1.com'}]},
+    { id: 4,isKobiJoin:false, MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", KobiID: 3,BiID:1,BusinessRepresentative: "Vestel Yetkilisi",KobiRepresentative: 'KOBİ yetkilisi C',applicationsKosgeb:[{id:1,MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", RequestMeetiingBI: "BI-1",  EmployeeNumber: 5, MeetingTime: '2 Saat', IsBreak: 'Yok',  MeetingType: 'Hibrit',Meetinglink: 'www.meet1.com'}]},
+    { id: 5,isKobiJoin:false, MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", KobiID: 4,BiID:1,BusinessRepresentative: "Vestel Yetkilisi",KobiRepresentative: 'KOBİ yetkilisi D',applicationsKosgeb:[{id:1,MeetingName: "Endüstriyel Aktif Gürültü Kontrolü/Engelleme Sistemi", RequestMeetiingBI: "BI-1",  EmployeeNumber: 5, MeetingTime: '2 Saat', IsBreak: 'Yok',  MeetingType: 'Yüz yüze',Meetinglink: 'www.meet1.com'}]},
+   
+  ];
   rejectID=0;
   startHour: string = "";
   endHour: string = "";
   request: request | null = null;
+  requestKosgeb: requestKosgeb | null = null;
   selectedApplication: application | null = null;
   kobimodalConfig: ModalConfig = {
     modalTitle: "Görüşme İçin Saat ve Tarih Seç",
@@ -65,6 +99,10 @@ export class InterviewComponent {
     closeButtonLabel: 'Kapat',
     hideCloseButton: () => true
   };
+   modalConfigKosgebDetail: ModalConfig = {
+    modalTitle: "Oturum  Bilgisi",
+    closeButtonLabel: 'Kapat',
+  };
 
   closeMeetingModal(){
     this.form.reset();
@@ -76,6 +114,7 @@ export class InterviewComponent {
   @ViewChild('kobimodal') private kobiModalComponent: ModalComponent;
   @ViewChild('success') private modalSuccessComponent: ModalComponent;
   @ViewChild('kobi') private modalKobiComponent: ModalComponent;
+  @ViewChild('KosgebDetail') private modalKosgebDetailComponent: ModalComponent;
 
   characterCount: number = 0;
 
@@ -95,11 +134,18 @@ export class InterviewComponent {
   changeEndDate(event: string) {
     this.endHour = event
   }
-  
+  openKosgebDetailModal(item: any) {
+    this.requestKosgeb = item;
+
+    this.modalKosgebDetailComponent.open();
+  }
+ 
+ closeKosgebDetailModal() {
+    this.modalKosgebDetailComponent.close();
+  }
   acKobiModal() {
     this.kobiModalComponent.open();
   }
-
   kapatKobiModal() {
     this.kobiModalComponent.close();
   }

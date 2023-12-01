@@ -14,12 +14,12 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
 
       <div class="row mb-6">
-        <label class="col-lg-4 col-form-label required fw-bold fs-6">Ürün Adını Giriniz</label>
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">Çağrı Adı Giriniz</label>
         <div class="col-lg-8 fv-row">
           <input type="text" class="form-control form-control-lg" placeholder="Örn;cam, DC Motor" name="name"
             [value]="result ? result.tags : ''" formControlName="name" />
           <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
-            Ürün ismi gerekli.
+            Çağrı Adı gerekli
           </div>
           <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">
             Revize Gerekli</div>
