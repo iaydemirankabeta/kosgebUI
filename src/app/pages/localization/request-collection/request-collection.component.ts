@@ -6,6 +6,7 @@ import { map } from 'rxjs';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { AuthService } from 'src/app/modules/auth';
 import { environment } from 'src/environments/environment';
+
 import { HttpClient } from '@angular/common/http';   
 import { DatePipe } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
@@ -60,6 +61,7 @@ export class RequestCollectionComponent {
   @ViewChild('createModal') private createModalComponent: ModalComponent;
   @ViewChild('closeDemandModal') private closeDemandModalComponent: ModalComponent;
   @ViewChild('MatSort') sort: MatSort;
+
   constructor(private auth: AuthService,private fb: FormBuilder,private httpClient: HttpClient,private changeDetectorRefs: ChangeDetectorRef) {
     this.form = this.fb.group({
       sector: ['', Validators.required],
@@ -168,6 +170,7 @@ export class RequestCollectionComponent {
       this.form.reset();
   
       // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
+
       this.httpClient.post(environment.apiUrl + '/Localization/DemandCall/CreateDemandCall', requestData).subscribe({
        next: (response) => {
           this.getAllDemandCall();
