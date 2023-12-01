@@ -7,7 +7,6 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Contact } from './contact.model';
 import { MeetPlanService } from './meet-plan.service';
 import { MeetingDTO } from '../meetings/meeting.model';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -47,11 +46,7 @@ export class MeetPlanComponent {
     firma: ''
   };
 
-  constructor(private fb:FormBuilder,
-    private meetingService:MeetingService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private meetPlanService:MeetPlanService,
-    private router: Router) {
+  constructor(private fb:FormBuilder,private meetingService:MeetingService,private changeDetectorRef: ChangeDetectorRef,private meetPlanService:MeetPlanService) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
@@ -85,7 +80,6 @@ export class MeetPlanComponent {
     }
     this.meetingService.addMeeting(meeting).pipe(first()).subscribe(res => {
       res;
-      this.router.navigate(['/toplanti/toplantilarim']);
     });
     // İsterseniz veriyi bir API'ye gönderebilirsiniz.
 

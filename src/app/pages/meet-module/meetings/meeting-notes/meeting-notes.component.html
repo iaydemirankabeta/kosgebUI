@@ -22,11 +22,11 @@
     <div class="col-12">
       <mat-tab-group fitInkBarToContent>
         <mat-tab label="Yapılacaklar">
-          <div class="form-group mt-3">
+          <div class="form-group">
             <span class="d-block"*ngFor="let note of willMeetingNotes">
               
               <span>
-                <button *ngIf ="_user.roles[0].appRole.name ==='KOSGEB Admin' || _user.roles[0].appRole.name ==='KOSGEB Kullanıcısı'"  (click)="removeMeetingNote(note.id!)" class="btn btn-link remove-button">
+                <button  (click)="removeMeetingNote(note.id!)" class="btn btn-link remove-button">
                   <span class="text-danger">&times;</span>
                 </button>
                 {{ note.note }}</span>
@@ -49,11 +49,11 @@
           </div>
         </mat-tab>
         <mat-tab label="Yapılabilecekler">
-          <div class="form-group mt-3">
+          <div class="form-group">
             <span class="d-block"*ngFor="let note of canMeetingNotes">
               
               <span>
-                <button *ngIf ="_user.roles[0].appRole.name ==='KOSGEB Admin' || _user.roles[0].appRole.name ==='KOSGEB Kullanıcısı'"  (click)="removeMeetingNote(note.id!)" class="btn btn-link remove-button">
+                <button  (click)="removeMeetingNote(note.id!)" class="btn btn-link remove-button">
                   <span class="text-danger">&times;</span>
                 </button>
                 {{ note.note }}</span>
@@ -78,7 +78,7 @@
           </div>
         </mat-tab>
         <mat-tab *ngIf ="_user.roles[0].appRole.name ==='KOSGEB Admin' || _user.roles[0].appRole.name ==='KOSGEB Kullanıcısı'" label="Bilgi">
-          <div class="form-group mt-3">
+          <div class="form-group">
             <span class="d-block"*ngFor="let note of infoMeetingNotes">
               
               <span>
@@ -105,7 +105,7 @@
           </div>
         </mat-tab>
         <mat-tab *ngIf ="_user.roles[0].appRole.name ==='KOSGEB Admin' || _user.roles[0].appRole.name ==='KOSGEB Kullanıcısı'"  label="BI'dan gelebilecek proje sayısı">
-          <div class="form-group mt-3">
+          <div class="form-group">
             <span class="d-block"*ngFor="let note of numberOfMeetingNotes">
               
               <span>
@@ -132,7 +132,7 @@
           </div>
         </mat-tab>
         <mat-tab *ngIf ="_user.roles[0].appRole.name ==='KOSGEB Admin' || _user.roles[0].appRole.name ==='KOSGEB Kullanıcısı'"  label="Pazar Payı">
-          <div class="form-group mt-3" >
+          <div class="form-group" >
             <span *ngFor="let note of marketShareOfficeMeetingNotes">
               
               <span>

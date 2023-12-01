@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   startOfDay,
@@ -9,9 +9,8 @@ import {
   isSameDay,
   isSameMonth,
   addHours,
-  parseISO,
 } from 'date-fns';
-import { Subject, first } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -23,8 +22,6 @@ import { EventColor } from 'calendar-utils';
 import { ModalComponent, ModalConfig } from 'src/app/_metronic/partials';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { MeetingService } from '../meetings/meeting.service';
-import { Meeting } from '../meetings/meeting.model';
 
 export interface ConversationElement {
   id:string,
@@ -64,7 +61,6 @@ const ELEMENT_DATA: ConversationElement[] = [
 export class ConversationsComponent {
   displayedColumns: string[] = ['Cagri', 'GorusulecekFirma', 'GorusulecekFirmaYetkilisi', 'GorusmeTarihi',"GorusmeSaati","KatilimciSayisi","Aksiyon"];
   dataSource = ELEMENT_DATA;
-  meetings:Meeting[];
   form: FormGroup;
   participant:"";
   selectedConversation = this.dataSource[0]
@@ -81,18 +77,13 @@ export class ConversationsComponent {
     closeButtonLabel:'Kapat',
     hideCloseButton:() => true
   };
-  constructor(private modal: NgbModal,
-    private fb:FormBuilder,
-    private datePipe:DatePipe,
-    private meetingService:MeetingService,
-    private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private modal: NgbModal,private fb:FormBuilder,private datePipe:DatePipe) {
     this.form = this.fb.group({
       meetingDate: ['', Validators.required],
       meetingHour: ['', Validators.required],
       meetingDescription: ['', Validators.required],
       link: ['', Validators.required],
     });
-    this.getMeetings();
   }
   openEditModal(item:ConversationElement){
     this.selectedConversation = item;
@@ -106,30 +97,6 @@ export class ConversationsComponent {
   }
   closeEditModal(){
     this.editModalComponent.close()
-  }
-  getMeetings(){
-    this.meetingService.getMeetings({
-      search : "",cityId:"",count:50,
-      page:1,isDesc:false
-    }).pipe(first()).subscribe((res:any) => {
-      this.meetings = res.data.data;
-      this.events = [];
-      this.meetings.forEach(meeting => {
-        this.events.push({
-          start: parseISO(meeting.meetingDate.toString()),
-          end: parseISO(meeting.meetingDate.toString()),
-          title: meeting.topic,
-          color: { ...colors.yellow },
-          allDay: false,
-          resizable: {
-            beforeStart: true,
-            afterEnd: true,
-          },
-        })
-      });
-      this.changeDetectorRef.detectChanges();
-
-    })
   }
   openCancelModal(){
     this.cancelModalComponent.open();
