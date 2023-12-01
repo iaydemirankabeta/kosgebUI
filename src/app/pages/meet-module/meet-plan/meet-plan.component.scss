@@ -25,3 +25,21 @@
     cursor: pointer;
     padding: 5px !important;
   }
+ 
+.form-group.row.mb-6.col-5 {
+  margin-bottom: 15px; 
+}
+
+.form-group.row.mb-6.col-5 input {
+  border: none;
+  border-bottom: 1px solid #e4dada; 
+  border-radius: 0; 
+  outline: none; 
+  background-color: transparent; 
+}
+
+.form-group.row.mb-6.col-5 input {
+  width: 100%;
+  box-sizing: border-box;
+}
+

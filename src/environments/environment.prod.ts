@@ -5,10 +5,10 @@
 export const environment = {
   production: true,
   appVersion: 'v8.1.8',
-  evnName: 'Canlı Ortamı',
+  evnName: 'production',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
-  apiUrl: 'https://kosgeb.ankabeta.com/',
+  apiUrl: 'http://10.100.68.2:5007/',
   appThemeName: 'Metronic',
   appPurchaseUrl: 'https://1.envato.market/EA4JP',
   appHTMLIntegration: 'https://preview.keenthemes.com/metronic8/demo1/documentation/base/helpers/flex-layouts.html',

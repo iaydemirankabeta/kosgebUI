@@ -4,13 +4,13 @@ import { SocialNetworksModel } from './social-networks.model';
 import { CompanyTypes, UserCompany, UserRoles } from './user-company.model';
 
 export class UserModel extends AuthModel {
-  id?: number;
+  id?: string;
   username?: string;
   password?: string;
   fullname?: string;
   email?: string;
   pic?: string;
-  roles?: CompanyTypes;
+  roles?: any;
   occupation?: string;
   companyName?: string;
   phone?: string;
@@ -54,7 +54,7 @@ export class UserModel extends AuthModel {
 
   // UserModel sınıfı içinde
 loginSetUser(apiData: any,userName:string) {
-  this.id = 1;
+  this.id = "1";
   this.username = userName;
   this.password = ''; // Şifre verisi güvenlik nedeniyle temizlenmiş gibi görünüyor
   this.authToken = apiData.data.token

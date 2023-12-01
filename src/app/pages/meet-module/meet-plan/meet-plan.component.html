@@ -1,4 +1,22 @@
 <form (ngSubmit)="toplantiKaydet()" class="mt-3" #toplantiForm="ngForm">
+
+  <div class="row justify-content-around">
+    <div class="form-group row mb-6 col-5">
+      
+      <input style="max-height: 45px;" (change)="companySearch($event)" name="companySearch" class="form-control" type="text" value="" placeholder="Firma Ara"/>
+              <div *ngIf="searchCompanies !== null && searchCompanies.length > 0" class="form-control mt-3">
+                <label (click)="companySelect(company)" [ngClass]="selectedCompany.id === company.id ? 'bg-info' : 'bg-white'" class="form-control" *ngFor="let company of searchCompanies">{{company.name}}</label>
+        </div>
+    </div>
+    <div class="form-group row mb-6 col-5">
+      
+      <input style="max-height: 45px;" (change)="citySearch($event)" name="citySearch" class="form-control" type="text" value="" placeholder="Şehir Ara"/>
+              <div *ngIf="searchCities !== null && searchCities.length > 0" class="form-control mt-3">
+                <label (click)="citySelect(city)" [ngClass]="selectedCity.id === city.id ? 'bg-info' : 'bg-white'" class="form-control" *ngFor="let city of searchCities">{{city.cityName}}</label>
+        </div>
+    </div>
+  </div>
+  
     <div class="form-group row mb-6">
       <div class="col-xs-12 col-md-6">
         <label for="adi" class="col-lg-4 col-form-label required fw-bold fs-6">Toplanti Adi</label>
@@ -47,9 +65,7 @@
                 </div>
          </div>
         </div>
-    
-    
-    
+
     <div class="form-group row mb-6" > 
       <div class="col-xs-12 col-md-6">
         <label for="link" class="col-lg-4 col-form-label required fw-bold fs-6">Toplanti Linki</label>
@@ -63,16 +79,29 @@
       </div>
       <div class="col-xs-12 col-md-6" style="position: relative;">
         <label for="katilimci" class="col-lg-4 col-form-label required fw-bold fs-6">Katılımcı</label>
+        <input type="text" id="katilimci" [(ngModel)]="toplanti.katilimci" name="katilimci" class="form-control"
+             required #katilimci="ngModel">
+      <div *ngIf="katilimci.invalid && (katilimci.dirty || katilimci.touched)" class="text-danger">
+        <div *ngIf="katilimci.errors?.required">
+          Toplanti Katilimcisi zorunludur.
+        </div>
+      </div>
+        
+        
 
-    <input type="text" id="katilimci" [(ngModel)]="yeniKatilimci" name="katilimci" class="form-control" (keyup.enter)="openAddUpdateModal()">
-    <button type="button" class="btn btn-primary" (click)="openAddUpdateModal()"  style="position: absolute;right: 10px;top:43px;">Ekle</button>
-  <p *ngIf="katilimcilar.length > 0">Katılımcılar</p>
-  <div *ngFor="let katilimci of katilimcilar; let i = index" class="katilimci-item" style="display: inline-block; margin-right: 10px;background-color: white;">
-    <button type="button" class="btn btn-danger" (click)="katilimciKaldir(i)">X</button>
+    <button type="button" [disabled]="selectedCompany.id === '0'" class="btn btn-primary" (click)="openAddUpdateModal()"  style="position: absolute;right: 10px;top:43px;">Ekle</button>
+  <p *ngIf="participants.length > 0">Katılımcılar</p>
+  <div *ngFor="let katilimci of participants; let i = index" class="katilimci-item" style="display: inline-block; margin-right: 10px;background-color: white;">
+    <button type="button" class="btn btn-danger" (click)="removeParticipant(i)">X</button>
 
-    {{ katilimci }}
+    {{ katilimci.appUser.name }}
   </div>
-  <hr  *ngIf="katilimcilar.length > 0"/>
+  <div *ngFor="let katilimci of excludeParticipants; let i = index" class="katilimci-item" style="display: inline-block; margin-right: 10px;background-color: white;">
+    <button type="button" class="btn btn-danger" (click)="removeParticipant(i)">X</button>
+
+    {{ katilimci.name }}
+  </div>
+  <hr  *ngIf="participants.length > 0 ||excludeParticipants.length > 0"/>
     </div>
         
 
@@ -81,49 +110,59 @@
     <button type="submit" class="btn btn-primary m-0" [disabled]="toplantiForm.invalid" style="margin-top: 10px; float:right;">Kaydet</button>
   </form>
   <app-modal #addUpdateModal [modalConfig]="modalAddUpdateConfig" aria-modal="true">
-    <div *ngIf="!isExclude">
-      <input (change)="companySearch($event)" name="companySearch" class="form-control" type="text" value="" placeholder="Firma Ara"/>
-      <div *ngIf="searchCompanies !== null" class="form-control mt-3">
-        <label (click)="companySelect(company)" [ngClass]="selectedCompany.id === company.id ? 'bg-info' : 'bg-white'" class="form-control" *ngFor="let company of searchCompanies">{{company.name}}</label>
-      </div>
-      <div *ngIf="selectedCompany !== null">
-        <div class="form-control mt-3">
-          <input name="companyUserSearch" class="form-control" type="text" value="" placeholder="Firma Kullanıcısı"/>    
-          <label (click)="userSelect(user)" class="form-control" [ngClass]="selectedUser.appUser.id === user.appUser.id ? 'bg-info' : 'bg-white' " *ngFor="let user of searchUser">{{user.appUser.name}} ({{user.appRole.name}})</label>
+    <mat-tab-group>
+      <mat-tab  label="Kontaktlarım">
+        <div *ngIf="myContacts && myContacts.length > 0">
+          <div [ngClass]="selectedContact.id === contact.id ? 'bg-info' : 'bg-white'"  *ngFor="let contact of myContacts" class="mt-2 form-control">
+            <label  (click)="selectContact(contact)">{{contact.name ? contact.name : contact!.contactUser!.name}}</label>
+          </div>
         </div>
-      </div>
-      <button (click)="toggleIsExclude()" class="btn mt-4"><label>Kullanıcı Sistemde Kayıtlı Değil ise Buraya Tıklayınız.</label></button>
-    </div>
-    <div *ngIf="isExclude" class="container">
-      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" style="width: 100%;">
-      <div class="mt-3">
-          <label>İsim </label>
-          <input name="name" class="form-control" [ngClass] = "contactForm.get('name')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="name"/>
-      </div>
-      <div class="mt-3">
-        <label>Soyisim</label>
-        <input name="surname" class="form-control" [ngClass] = "contactForm.get('surname')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="surname"/>
-    </div>
-    <div class="mt-3">
-        <label>E-Mail</label>
-        <input name="email" class="form-control" [ngClass] = "contactForm.get('email')?.invalid ? 'border-danger' : 'border-primary'" type="email" value="" formControlName="email"/>
-    </div>
-    <div class="mt-3">
-      <label>Ünvan</label>
-      <input name="title" class="form-control" [ngClass] = "contactForm.get('title')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="title"/>
-  </div>
-    <div class="mt-3">
-        <label>Bölüm</label>
-        <input name="department" class="form-control" [ngClass] = "contactForm.get('department')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="department"/>
-    </div>
+      </mat-tab>
+      <mat-tab  label="Diğer">
+        <div *ngIf="!isExclude">
+          <div *ngIf="selectedCompany !== null">
+            <div class="form-control mt-3">
+              <input name="companyUserSearch" class="form-control" type="text" value="" placeholder="Firma Kullanıcısı"/>    
+              <label (click)="userSelect(user)" class="form-control" [ngClass]="selectedUser.appUser.id === user.appUser.id ? 'bg-info' : 'bg-white' " *ngFor="let user of searchUser">{{user.appUser.name}} ({{user.appRole.name}})</label>
+            </div>
+          </div>
+          <mat-checkbox (change) = "toggleContact($event.checked)">Kontakt olarak da ekle</mat-checkbox>
 
-    <div class="mt-3">
-      <label>Firma</label>
-      <input name="company" class="form-control" [ngClass] = "contactForm.get('company')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="company"/>
-    </div>
-         <button class="btn btn-primary flex-grow-1 mt-3" style="float:right">Gönder</button>
-      </form>
-      <button  (click)="toggleIsExclude()"  class="btn mt-4"><label>Kullanıcı Sistemde Kayıtlı ise Buraya Tıklayınız.</label></button>
+          <button (click)="toggleIsExclude()" class="btn mt-4"><label>Kullanıcı Sistemde Kayıtlı Değil ise Buraya Tıklayınız.</label></button>
+        </div>
+        <div *ngIf="isExclude" class="container">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" style="width: 100%;">
+          <div class="mt-3">
+              <label>İsim </label>
+              <input name="name" class="form-control" [ngClass] = "contactForm.get('name')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="name"/>
+          </div>
+          <div class="mt-3">
+            <label>Soyisim</label>
+            <input name="surname" class="form-control" [ngClass] = "contactForm.get('surname')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="surname"/>
+        </div>
+        <div class="mt-3">
+            <label>E-Mail</label>
+            <input name="email" class="form-control" [ngClass] = "contactForm.get('email')?.invalid ? 'border-danger' : 'border-primary'" type="email" value="" formControlName="email"/>
+        </div>
+        <div class="mt-3">
+          <label>Ünvan</label>
+          <input name="title" class="form-control" [ngClass] = "contactForm.get('title')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="title"/>
+      </div>
+        <div class="mt-3">
+            <label>Bölüm</label>
+            <input name="department" class="form-control" [ngClass] = "contactForm.get('department')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="department"/>
+        </div>
+    
+        <div class="mt-3">
+          <label>Firma</label>
+          <input [readonly]="true"  name="company" class="form-control" [ngClass] = "contactForm.get('company')?.invalid ? 'border-danger' : 'border-primary'" type="text" value="" formControlName="company"/>
+        </div>
+          </form>
+          <mat-checkbox (change) = "toggleExcludeContact($event.checked)">Kontakt olarak da ekle</mat-checkbox>
+          <button  (click)="toggleIsExclude()"  class="btn mt-4"><label>Kullanıcı Sistemde Kayıtlı ise Buraya Tıklayınız.</label></button>
+    
+      </div>
+      </mat-tab>
+    </mat-tab-group>
 
-  </div>
   </app-modal>
