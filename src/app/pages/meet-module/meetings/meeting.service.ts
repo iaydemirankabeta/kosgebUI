@@ -59,7 +59,7 @@ export class MeetingService {
   }
 
   getMeetings(getMeetingDTO:GetMeetingDTO|null = null):any{
-    return this.httpClient.post(environment.apiUrl+"/Company//Meeting/GetMeetings",getMeetingDTO,
+    return this.httpClient.post(environment.apiUrl+"/Company/Meeting/GetMeetings",getMeetingDTO,
     {headers:this.headers}).pipe(
       map((res)=>{
         return res;
@@ -85,7 +85,7 @@ export class MeetingService {
   
 
   updateMeeting(meeting: MeetingDTO) {
-    return this.httpClient.put(`${environment.apiUrl}/Company//Meeting/${meeting.id}`,meeting).pipe(map((res) => {
+    return this.httpClient.put(`${environment.apiUrl}/Company/Meeting/${meeting.id}`,meeting).pipe(map((res) => {
       return res;
     }));
   }

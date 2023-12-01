@@ -13,7 +13,7 @@
   <div class="d-flex align-items-center mb-12">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
 
-      <div class="row mb-6">
+      <!-- <div class="row mb-6">
         <label class="col-lg-4 col-form-label required fw-bold fs-6">Ürün Adını Giriniz</label>
         <div class="col-lg-8 fv-row">
           <input type="text" class="form-control form-control-lg" placeholder="Örn;cam, DC Motor" name="name"
@@ -25,21 +25,185 @@
             Revize Gerekli</div>
 
         </div>
-      </div>
+      </div> -->
+      <!-- ÇağrıAdı -->
       <div class="row mb-6">
-        <label class="col-lg-4 col-form-label required fw-bold fs-6">Adet Bilgisi Giriniz</label>
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">Çağrı adı</label>
         <div class="col-lg-8 fv-row">
-          <input type="text" class="form-control form-control-lg" placeholder="Örn;20000" name="piece"
-            [value]="result ? result.tags : ''" formControlName="piece" />
-          <div *ngIf="form.get('piece')?.invalid && form.get('piece')?.touched" class="error-message">
-            Adet Bilgisi gerekli.
+
+          <input type="text" class="form-control form-control-lg" name="name"
+            [value]="result ? result.tags : ''" formControlName="name"  [(ngModel)]="createCall.cagriadi"/>
+          <!-- <input type="text" class="form-control form-control-lg" name="name"
+            [value]="result ? result.tags : ''" formControlName="name" /> -->
+          <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
+            Çağrı Adı gerekli.
           </div>
-          <div *ngIf="itemId &&form.get('piece')?.pristine && form.get('piece')?.value !== ''" class="text-danger mt-2">
+          <div *ngIf="itemId && form.get('name')?.pristine && form.get('name')?.value !== ''" class="text-danger mt-2">
             Revize Gerekli</div>
+
         </div>
       </div>
 
+      <!-- Sektör  sectors-->
       <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">Sektör</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.sectors">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="sectors">
+            <option *ngFor="let option of DropdowDatas.sectors" [value]="option.sectorId">{{ option.name }}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.sectors.name)?.pristine && form.get(DropdowDatas.sectors.name)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
+        </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.sectors">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="sectors">
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Sertifika  certificationDocumnets -->
+      <!-- dropdown single -->
+      <!-- <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">Sertifikasyon ve Belgeler</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.certificationDocumnets">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.certificationDocumnets" [value]="option.certificationDocumentId">
+              {{ option.name }}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.certificationDocumnets.name)?.pristine && form.get(DropdowDatas.certificationDocumnets.name)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
+        </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.certificationDocumnets">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div> -->
+     <!-- Sertifikasyon ve Belgeler Çoklu Seçim multi -->
+     <div class="row mb-6">
+      <label class="col-lg-4 col-form-label fw-bold fs-6">Sertifikasyon ve Belgeler</label>
+      <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.certificationDocumnets">
+        <mat-form-field class="col-lg-12">
+
+          <mat-select [multiple]="true" class="form-select mb-5" aria-label="Select example"
+            formControlName="certificationDocumnets">
+            <mat-option *ngFor="let option of DropdowDatas.certificationDocumnets" [value]="option.certificationDocumentId">{{ option.name
+              }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+      <div
+        *ngIf="itemId &&form.get(DropdowDatas.certificationDocumnets.name)?.pristine && form.get(DropdowDatas.certificationDocumnets.name)?.value !== '' "
+        class="text-danger mt-2">Revize Gerekli
+      </div>
+      <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.certificationDocumnets">
+        <select class="form-select mb-5" aria-label="Select example" formControlName="certificationDocumnets">
+          <option>Kayıt bulunamadı</option>
+        </select>
+      </div>
+    </div>
+
+      <!-- GTİP Bilgisi gtipList -->
+      <!-- todo name mi olacak yoksa code mu  -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">GTİP Bilgisi</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.gtipList">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="gtipList">
+            <option *ngFor="let option of DropdowDatas.gtipList" [value]="option.gtipId">{{ option.name }}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.gtipList.name)?.pristine && form.get(DropdowDatas.gtipList.name)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
+        </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.gtipList">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="gtipList">
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Adet  count-->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">Adet </label>
+        <div class="col-lg-8 fv-row">
+
+          <input type="number" class="form-control form-control-lg" name="count"
+          [value]="result ? result.tags : ''" formControlName="count"  [(ngModel)]="createCall.adet"/>
+
+          <!-- <input type="text" class="form-control form-control-lg" name="piece"
+            [value]="result ? result.tags : ''" formControlName="piece" /> -->
+
+            
+          <div *ngIf="form.get('count')?.invalid && form.get('count')?.touched" class="error-message">
+            Adet Bilgisi gerekli.
+          </div>
+          <div *ngIf="itemId &&form.get('count')?.pristine && form.get('count')?.value !== ''" class="text-danger mt-2">
+            Revize Gerekli</div>
+        </div>
+      </div>
+      <!-- Genişlik width -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label  fw-bold fs-6">Genişlik</label>
+        <div class="col-lg-8 fv-row">
+
+          <input type="number" class="form-control form-control-lg" name="width"
+          [value]="result ? result.tags : ''" formControlName="width"  [(ngModel)]="createCall.genislik"/>
+
+          <!-- <input type="text" class="form-control form-control-lg" name="piece"
+            [value]="result ? result.tags : ''" formControlName="piece" /> -->
+
+        </div>
+      </div>
+
+      <!-- Boy lenght -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label  fw-bold fs-6">Boy</label>
+        <div class="col-lg-8 fv-row">
+
+          <input type="number" class="form-control form-control-lg" name="lenght"
+          [value]="result ? result.tags : ''" formControlName="lenght"  [(ngModel)]="createCall.boy"/>
+
+          <!-- <input type="text" class="form-control form-control-lg" name="piece"
+            [value]="result ? result.tags : ''" formControlName="piece" /> -->
+
+        </div>
+      </div>
+
+      <!-- yükseklik height -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label  fw-bold fs-6">Yükseklik</label>
+        <div class="col-lg-8 fv-row">
+
+          <input type="number" class="form-control form-control-lg" name="height"
+          [value]="result ? result.tags : ''" formControlName="height"  [(ngModel)]="createCall.yukseklik"/>
+
+          <!-- <input type="text" class="form-control form-control-lg" name="piece"
+            [value]="result ? result.tags : ''" formControlName="piece" /> -->
+
+        </div>
+      </div>
+
+      <!-- Ağırlık weight -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label  fw-bold fs-6">Ağırlık</label>
+        <div class="col-lg-8 fv-row">
+
+          <input type="number" class="form-control form-control-lg" name="weight"
+          [value]="result ? result.tags : ''" formControlName="weight"  [(ngModel)]="createCall.agirlik"/>
+
+          <!-- <input type="text" class="form-control form-control-lg" name="piece"
+            [value]="result ? result.tags : ''" formControlName="piece" /> -->
+
+        </div>
+      </div>
+        <!-- Konum -->
+      <!-- <div class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">Konum Seç</label>
         <div class="col-lg-8">
           <input type="text" class="form-control mb-2" placeholder="Arama..." [formControl]="searchTerm">
@@ -49,10 +213,10 @@
           <div *ngIf="itemId && form.get('adress')?.pristine && form.get('adress')?.value !== ''"
             class="text-danger mt-2">Revize Gerekli</div>
         </div>
-      </div>
+      </div> -->
 
-
-      <div *ngFor="let item of filters" class="row mb-6">
+      <!-- dropdown for döngü -->
+      <!-- <div *ngFor="let item of filters" class="row mb-6">
         <label class="col-lg-4 col-form-label fw-bold fs-6">{{item.label}}</label>
         <div class="col-lg-8">
           <select class="form-select  mb-5 " aria-label="Select example" formControlName="{{item.name}}">
@@ -63,22 +227,123 @@
             class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
+ -->
 
 
+
+      <!-- sektör taslak -->
+      <!-- <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">sektöre doğru</label>
+        <div class="col-lg-8">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak">
+            <option *ngFor="let option of sectorsTaslak" [value]="option.sectorId"
+              (selectChange)="option.sectorName = $event">{{ option.sectorName }}</option>
+          </select>
+        </div>
+      </div> -->
+
+      <!-- şirket Adresi  companyAddresses-->
+      <!-- <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">Şirket Adresi</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.companyAddresses">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.companyAddresses" [value]="option.id">{{ option.name }}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.companyAddresses.name)?.pristine && form.get(DropdowDatas.companyAddresses.name)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
+        </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.companyAddresses">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div> -->
+
+      
+      
+
+      <!--naceCode -->
+      <!-- todo nacecode4 müü 6 mı ona bakılacak -->
+      <!-- <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">NACE Kodu</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.naceCode">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.naceCode" [value]="option.naceCodeId">{{ option.naceCode4 }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.naceCode.naceCode4)?.pristine && form.get(DropdowDatas.naceCode.naceCode4)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
+        </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.naceCode">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div> -->
+      <!-- supplierType -->
+      <!-- <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">İşletme Tipi</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.supplierType">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.supplierType" [value]="option.companyId">{{ option.supType }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.supplierType.supType)?.pristine && form.get(DropdowDatas.supplierType.supType)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
+        </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.supplierType">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div> -->
+
+      
+ 
+
+      <!-- statisticalRegions -->
+      <!-- todo verilerine bakılacak -->
+      <!-- <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">İstatistiki Bölge</label>
+        <div class="col-lg-8" *ngIf="DropdowDatas && DropdowDatas.statisticalRegions">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option *ngFor="let option of DropdowDatas.statisticalRegions" [value]="option.regionId">{{ option.gradeName
+              }}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="itemId &&form.get(DropdowDatas.statisticalRegions.gradeName)?.pristine && form.get(DropdowDatas.gtipList.gradeName)?.value !== '' "
+          class="text-danger mt-2">Revize Gerekli
+        </div>
+        <div class="col-lg-8" *ngIf="!DropdowDatas || !DropdowDatas.statisticalRegions">
+          <select class="form-select mb-5" aria-label="Select example" formControlName="taslak2">
+            <option>Kayıt bulunamadı</option>
+          </select>
+        </div>
+      </div> -->
+
+
+      <!-- İhtiyacınızı Detaylı Olarak Anlatın  description-->
       <div class="row mb-6">
         <label class="col-lg-4 col-form-label required fw-bold fs-6">İhtiyacınızı Detaylı Olarak Anlatın</label>
         <div class="col-lg-8 fv-row">
-          <textarea name="expectationDescription" class="form-control form-control-lg " rows="3"
+          <textarea name="description" class="form-control form-control-lg " rows="3"
             placeholder="Lütfen almak istediğiniz ürün/hizmet veya hizmeti tanımlayınız."
-            formControlName="expectationDescription" minlength="{{minLength}}" maxlength="{{maxLength}}">
+            formControlName="description" minlength="{{minLength}}" maxlength="{{maxLength}}">
                     </textarea>
           <div
-            *ngIf="(form.get('expectationDescription')?.invalid && form.get('expectationDescription')?.touched) || form.get('expectationDescription')?.getError('invalid')"
+            *ngIf="(form.get('description')?.invalid && form.get('description')?.touched) || form.get('description')?.getError('invalid')"
             class="error-message">
             Lütfen en az {{minLength}} karakter, en fazla {{maxLength}} karakter girişi yapın.
           </div>
           <div
-            *ngIf="itemId && form.get('expectationDescription')?.pristine && form.get('expectationDescription')?.value !== ''"
+            *ngIf="itemId && form.get('description')?.pristine && form.get('description')?.value !== ''"
             class="text-danger mt-2">Revize Gerekli</div>
         </div>
       </div>
