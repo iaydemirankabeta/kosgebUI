@@ -25,19 +25,19 @@
             <div class="card-header">
                 <div class="w-100"><p class="title-sector" style="background-color: {{item.badgetColor}};">{{item.badget}}</p></div>
                 <h3 style="margin:0 auto;">{{item.title}}</h3>
-                <p class="tags">{{item.tags}}</p>
+                <!-- <p class="tags">{{item.tags}}</p> -->
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget ex risus. Proin lobortis lacus diam, sit amet dignissim elit sodales ac. Fusce eu hendrerit arcu, et sodales augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent cursus interdum diam vitae luctus. Phasellus consequat eget tellus sed blandit. Sed bibendum vehicula lorem ac finibus. Pellentesque eget faucibus felis. Ut sagittis neque eu felis faucibus ullamcorper. Nunc a auctor risus, sit amet lobortis neque. Curabitur nisl eros, egestas eu vestibulum vitae, aliquam at elit. Nullam id efficitur libero, sed vehicula mi.
                 </p>
                 <a href="javascript:;" (click)="sss()">Sık Sorulan Sorular</a>
                 <a href="javascript:;" (click)="aboutss()">Çağrı Hakkında Sorular</a>
             </div>
-            <div class="card-body">
+            <!-- <div class="card-body">
                 <h5 class="text-upperCase"><b>{{item.badget}} Kullanıcısı Şirketin;</b></h5>
                 <div>
                     <a class="btn btn-dark btn-active-bg-success col-12"   href="javascript:;" (click)="openModal(0)">Beklentileri</a>
                    
                 </div>
-            </div>
+            </div> -->
             <div class="card-footer">
               <a *ngIf="_user.roles! === 1 && item.status === 'Revize Gerekli'"  [routerLink]="['/yerellestirme/cagri-olustur', item.id]" type="button" class="btn btn-warning" ><i class="fa-solid fa-pencil"></i> Düzenle</a>
               <a  *ngIf="item.status === 'Başvuru Toplama Aşamasında'"  [routerLink]="['/yerellestirme/cagrima-gelen-basvurular', item.id]" class="btn btn-success btn-margin" >Gelen Başvurular</a>

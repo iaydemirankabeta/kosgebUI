@@ -25,24 +25,24 @@ export class CallsComponent {
       {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
     ]
   },
-  {id:2, title:'Kozmetik Teknoloji Çözümler',
-  totalOffer:'70',offer:'56',status:'Revize Gerekli',piece:"500",
-  badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
-  url:[
-    {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-    {name:'Teknoloji Tedarikçisinden Beklentisi'},
-    {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-    {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
-  ]
-},
-{id:3, title:'Tekstil Ürün İthalatı',
-totalOffer:'40',offer:'7',status:'KOSGEB Onayı Bekleniyor',piece:"1000",
-badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
-url:[
-  {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
-  {name:'Teknoloji Tedarikçisinden Beklentisi'},
-  {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
-  {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
+    {id:2, title:'Kozmetik Teknoloji Çözümler',
+    totalOffer:'70',offer:'56',status:'Revize Gerekli',piece:"500",
+    badget:'Kozmetik',badgetColor:'#8e44ad',tags:'#cosmetic,#technology,#application #GürültüEngelleme #GürültüKontrolü',
+    url:[
+      {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
+      {name:'Teknoloji Tedarikçisinden Beklentisi'},
+      {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
+      {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
+    ]
+  },
+    {id:3, title:'Tekstil Ürün İthalatı',
+    totalOffer:'40',offer:'7',status:'KOSGEB Onayı Bekleniyor',piece:"1000",
+    badget:'Tekstil',badgetColor:'#c0392b',tags:'#tekstile,#product,#ithalat,#GürültüEngelleme #GürültüKontrolü',
+    url:[
+      {name:'Özel Sorun/İhtiyaç/Fırsat Alanı'},
+      {name:'Teknoloji Tedarikçisinden Beklentisi'},
+      {name:'Aradığı Teknoloji Tedarikçisi Özellikleri'},
+      {name:'Teknoloji Tedarikçisi Öncelikli Seçim Kriteri'},
 ],
 
 }

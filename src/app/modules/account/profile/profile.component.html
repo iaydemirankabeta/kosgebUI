@@ -183,8 +183,24 @@
                     disabled
                 />
                 </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-lg-4 col-form-label fw-bold fs-6">Görüşme Talepleri Bildirim Sınırı</label>
+        
+                  <input
+                      type="number"
+                      min="0"
+                      class="form-control form-control-lg form-control-solid"
+                      placeholder=""
+                      name="company"
+                      
+                  />
+                  <p>KOBİ’lerden gelecek olan görüşme talepleri belirlemiş olduğunuz sayıyı aştığında bildirim gelecektir. Bunun için bir sayı giriniz. <br>(Örnek: 200)</p> 
+                    
+                </div>
                 
-                <div class="col-lg-6">
+                
+                <div class="row mb-6">
+                  <div class="col-lg-6"  *ngIf="_user.roles[0].appRole.name !=='Büyük İşletme Temsilcisi'">
                   <div class="col-lg-12 fv-row">
                     <label class="col-lg-4 col-form-label fw-bold fs-6">Laboratuvar Bilgisi</label>
       
@@ -197,30 +213,16 @@
                   />
                   </div>
                 </div>
-                <div class="row mb-6">
-                  <div class="col-lg-6 fv-row">
-                    <label class="col-lg-4 col-form-label fw-bold fs-6">Görüşme Talepleri Bildirim Sınırı</label>
-          
-                    <input
-                        type="number"
-                        min="0"
-                        class="form-control form-control-lg form-control-solid"
-                        placeholder=""
-                        name="company"
-                        
-                    />
-                    <p>KOBİ’lerden gelecek olan görüşme talepleri belirlemiş olduğunuz sayıyı aştığında bildirim gelecektir. Bunun için bir sayı giriniz. <br>(Örnek: 200)</p> 
-                      
-                  </div>
                 </div>
 
-              <p>  IDR, D3A, FINDEKS, TSE, Fatura, OEM, İhraç/ithal edilen ürün, GTİP ve Konşimento gibi belgeleri yükleyebilirsiniz.</p>
+              
       <div class="drop-zone" (drop)="dosyaBirak($event)" (dragover)="onDragOver($event)"
         (dragleave)="onDragLeave($event)">
         <input type="file" (change)="dosyaSec($event)" style="display: none">
         <p><a href="javascript:void(0);" (click)="dosyaSecManuel()">Dosyayı buraya sürükleyip bırakın veya tıklayarak
             dosya seçin</a>.</p>
       </div>
+      <p style="text-align: end;">  IDR, D3A, FINDEKS, TSE, Fatura, OEM, İhraç/ithal edilen ürün, GTİP ve Konşimento gibi belgeleri yükleyebilirsiniz.</p>
 
 
       <div *ngIf="yuklenenDosyalar.length > 0">
