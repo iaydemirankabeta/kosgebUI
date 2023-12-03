@@ -18,7 +18,7 @@ import { FilterComponent } from './apply-calls/filter/filter.component';
 
 
 @NgModule({
-  declarations: [ApplyCallsComponent,CallsComponent,CreateCallComponent,RequestCollectionComponent,FilterComponent],
+  declarations: [ApplyCallsComponent,CallsComponent,RequestCollectionComponent,FilterComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
