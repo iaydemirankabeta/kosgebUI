@@ -56,7 +56,6 @@ import { FilterComponent } from './apply-calls/filter/filter.component';
           import('./submitted-offers/submitted-offers.module').then((m) => m.SubmittedOffersModule),
         data: { layout: 'dark-sidebar' }
       },
-
     ]),
     WidgetsModule,
     ModalsModule,
