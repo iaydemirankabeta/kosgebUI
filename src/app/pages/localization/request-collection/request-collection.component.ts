@@ -10,11 +10,22 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';   
 import { DatePipe } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
+import { GetDemandCallsModel } from './request-collection.model';
 
 export interface Request{
   requestId:string,
   sector: string;
   lastDate: Date;
+  demandCallCompanyList?:demandCallCompanyListDTO[];
+}
+export interface demandCallCompanyListDTO{
+  companyId: string,
+  productId: string,
+  totalCompanyAmount: number,
+  totalProductAmount: number,
+  productAmount: number,
+  productName: string;
+  companyName: string,
 }
 @Component({
   selector: 'app-request-collection',
@@ -28,22 +39,12 @@ export class RequestCollectionComponent {
   isLoading: boolean;
   form : FormGroup;
   displayedColumns: string[] = ["RequestId",'Sector', 'LastDate', 'Action'];
-  productBasedColumns:string[] = ["Product","BINumber","Piece"];
-  companyBasedColumns:string[] = ["Name","Product","Piece"];
-  ProductBasedData = new MatTableDataSource([
-    {name:"Otomatik Şanzıman",BINumber:"10",piece:10},
-    {name:"Jant",BINumber:"20",piece:1000},
-    {name:"Motor Sibobu",BINumber:"30",piece:50000},
-  ]);
-  companyBasedData = new MatTableDataSource([
-    {name:"X Şirketi",product:"Otomatik Şanzıman",piece:10},
-    {name:"X Şirketi",product:"Jant",piece:10},
-    {name:"Y Şirketi",product:"Jant",piece:1000},
-    {name:"Y Şirketi",product:"Motor Sibobu",piece:1000},
-    {name:"Z Şirketi",product:"Motor Sibobu",piece:50000},
-  ]);
+  productBasedColumns:string[] = ["productName","totalCompanyAmount","totalProductAmount"];
+  companyBasedColumns:string[] = ["companyName","productName","productAmount"];
+  ProductBasedData = new MatTableDataSource([]);
+  companyBasedData = new MatTableDataSource([]);
   data = new MatTableDataSource([]);
-  selectedRequest: Request | null = null;
+  selectedRequest: any | null = null;
   sectors : any[] = [];
   detailModalConfig: ModalConfig = {
     modalTitle: "Talep Detayı",
@@ -70,7 +71,7 @@ export class RequestCollectionComponent {
 
   }
 
-
+trigClickApply : any=[];
 
   getAllDemandCall(){
     this.isLoading$.next(true);
@@ -79,10 +80,13 @@ export class RequestCollectionComponent {
         console.log(response);
         // Gelen cevabı işleyebilirsiniz
 
-        this.data = response.map((item: { demandCallId: any; sectorName: any; endDate: string | number | Date; }) => ({
+        this.data = response.map((item: {
+          demandCallCompanyList: any; demandCallId: any; sectorName: any; endDate: string | number | Date; 
+}) => ({
           RequestId: item.demandCallId,
           Sector: item.sectorName,
           LastDate: new Date(item.endDate),
+          demandCallCompanyList: item.demandCallCompanyList
           // Diğer sütunlar burada eklenebilir
         }));
         this.changeDetectorRefs.detectChanges();
@@ -100,6 +104,29 @@ export class RequestCollectionComponent {
   });
   }
 
+  filterDataById(idToFilter: string) {
+    // İlgili endpoint'ten veriyi alma işlemi burada gerçekleşir
+    this.httpClient.get<any[]>(`${environment.apiUrl}/Localization/demandCall/getalldemandcall`).subscribe({
+      next: (response: any[]) => {
+        console.log(response);
+        // Gelen cevabı işleyebilirsiniz
+  
+        const filteredData = response.filter(item => item.demandCallId === idToFilter);
+        if (filteredData.length > 0) {
+          // Filtrelenmiş veri bulundu, işlemleri yapabilirsiniz
+          console.log('Filtrelenmiş veri:', filteredData);
+        } else {
+          console.log('ID\'ye göre veri bulunamadı.');
+        }
+      },
+      error: (error) => {
+        console.error('Veri alınamadı:', error);
+      },
+      complete: () => {
+        console.log('İşlem tamamlandı.');
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.getAllDemandCall();
@@ -121,10 +148,25 @@ export class RequestCollectionComponent {
         this.changeDetectorRefs.detectChanges();
 
   }
-  openDetailModal(request: Request) {
+
+  SelectedApplyCall:any = [];
+
+  openDetailModal(request: any) {
+    
     this.selectedRequest = request;
+    console.log(this.selectedRequest)
+    this.ProductBasedData = request.demandCallCompanyList
+    this.companyBasedData = request.demandCallCompanyList
     this.modalComponent.open();
   }
+/*  SelectCall(selectedId: string) {
+    console.log('this.myCalls.filter(call => call.id===selectedId);', this.data.filter(call => call.id === selectedId))
+    this.SelectedApplyCall = this.data.filter(call => call.demandCallId === selectedId)[0];
+    this.SelecetedLocalizationId = this.SelectedApplyCall.id;
+    console.log('localıd', this.SelecetedLocalizationId)
+
+  }*/
+
   openCreateModal() {
     this.createModalComponent.open();
   }
@@ -200,4 +242,5 @@ export class RequestCollectionComponent {
     // details about the values being sorted.
 
   }
+  
 }
