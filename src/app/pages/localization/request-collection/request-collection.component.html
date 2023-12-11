@@ -63,11 +63,11 @@
   <app-modal #detailModal [modalConfig]="detailModalConfig" aria-modal="true">
     <div *ngIf="selectedRequest !== null" class="col-xs-12 text-center">
       <div>
-        <h4>Sektör: {{ selectedRequest?.sector! }}</h4>
+        <h4>Sektör: {{ selectedRequest?.Sector }}</h4>
       </div>
       <div>
         <h4>
-          Son Tarih: {{ selectedRequest?.lastDate!.toLocaleDateString() }}
+          Son Tarih: {{ selectedRequest.LastDate ? selectedRequest.LastDate.toLocaleDateString() : '' }}
         </h4>
       </div>
       <div class="mt-4">
@@ -100,23 +100,22 @@
                               The actual rendered columns are set as a property on the row definition" -->
 
             <!-- Position Column -->
-            <ng-container matColumnDef="Product">
+            <ng-container matColumnDef="productName">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Ürün</th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.productName }}</td>
             </ng-container>
-            <ng-container matColumnDef="BINumber">
+            <ng-container matColumnDef="totalCompanyAmount">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 Kaç BI Talep Etti?
               </th>
-              <td mat-cell *matCellDef="let element">{{ element.BINumber }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.totalCompanyAmount }}</td>
             </ng-container>
-            <ng-container matColumnDef="Piece">
+            <ng-container matColumnDef="totalProductAmount">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                Toplam Kaç Adet Talep Edildi?
+                Kaç Ürün Talep Edildi
               </th>
-              <td mat-cell *matCellDef="let element">{{ element.piece }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.totalProductAmount }}</td>
             </ng-container>
-            <!-- Weight Column -->
             <tr mat-header-row *matHeaderRowDef="productBasedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: productBasedColumns"></tr>
           </table>
@@ -133,19 +132,19 @@
                               The actual rendered columns are set as a property on the row definition" -->
 
             <!-- Position Column -->
-            <ng-container matColumnDef="Name">
+            <ng-container matColumnDef="companyName">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>BI Adı</th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.companyName }}</td>
             </ng-container>
-            <ng-container matColumnDef="Product">
+            <ng-container matColumnDef="productName">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>
                 Ürün Adı
               </th>
-              <td mat-cell *matCellDef="let element">{{ element.product }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.productName }}</td>
             </ng-container>
-            <ng-container matColumnDef="Piece">
+            <ng-container matColumnDef="productAmount">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Adet</th>
-              <td mat-cell *matCellDef="let element">{{ element.piece }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.productAmount }}</td>
             </ng-container>
             <!-- Weight Column -->
             <tr mat-header-row *matHeaderRowDef="companyBasedColumns"></tr>
