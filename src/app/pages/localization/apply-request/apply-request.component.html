@@ -39,35 +39,34 @@
     <app-modal #detailModal [modalConfig]="detailModalConfig" aria-modal="true">
         <div *ngIf="selectedRequest !== null" class="col-xs-12 text-center">
             <div><label>Sektör: {{selectedRequest?.sector!}}</label></div>
-            <div><label>Son Tarih: {{selectedRequest?.lastDate!.toLocaleDateString()}}</label></div>
+            <div><label>Son Tarih: {{selectedRequest.lastDate ? selectedRequest.lastDate.toLocaleDateString():''}}</label></div>
         </div>
     </app-modal>
     <app-modal #createModal [modalConfig]="createModalConfig" aria-modal="true">
-        <form  (ngSubmit)="onSubmit()" [formGroup]="form">
-            <button *ngIf="counter.length < 5" class="btn btn-success" (click) = "counterUpdate()">Ürün Ekle</button>
-        <div class="col-xs-12 text-center">
-            <div *ngFor="let value of counter">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+            <a *ngIf="counter.length < 5" class="btn btn-success" (click)="addItem()">Ürün Ekle</a>
+            <div class="col-xs-12 text-center" formArrayName="items">
+              <div *ngFor="let item of itemsFormArray.controls; let i = index" [formGroupName]="i">
                 <div class="row">
-                    <div class="row col-6">
-                        <label class="col-lg-4 col-form-label fw-bold fs-6">Ürün</label>
-                        <div class="col-lg-12 ">
-                            <select class="form-select" id="productName" aria-label="Select example" formControlName="productName">
-
-                                <option *ngFor="let product of usingProductData" [value]="product.name">{{ product.name }}</option>
-                              </select>
-                        </div>
-                      </div>
-                      <div class="row col-6">
-                        <label class="col-lg-4 col-form-label fw-bold fs-6">Adet</label>
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control" id="productQTY" placeholder="Adet" formControlName="productQTY">
-                        </div>
+                  <div class="row col-6">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Ürün</label>
+                    <div class="col-lg-12">
+                      <select class="form-select" id="productName" aria-label="Select example" formControlName="productId">
+                        <option *ngFor="let product of usingProductData" [value]="product?.productId">{{ product?.productName }}</option>
+                      </select>
                     </div>
+                  </div>
+                  <div class="row col-6">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Adet</label>
+                    <div class="col-lg-12">
+                      <input type="text" class="form-control" id="productQTY" placeholder="Adet" formControlName="productAmount">
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <button type="submit" class="btn btn-primary mt-4">Başvur</button>
             </div>
-            <button class="btn btn-primary mt-4" (click)="openSuccessModal()">Başvur</button>
-        </div>
-        </form>
+          </form>
     </app-modal>
     <app-modal #successModal [modalConfig]="successModalConfig" aria-modal="true">
         <div class="col-xs-12 text-center">

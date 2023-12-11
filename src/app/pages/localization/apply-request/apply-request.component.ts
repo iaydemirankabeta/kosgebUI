@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalConfig, ModalComponent } from 'src/app/_metronic/partials';
@@ -7,11 +7,14 @@ import { AuthService } from 'src/app/modules/auth';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { UserCompany } from 'src/app/modules/auth/models/user-company.model';
+import { UserModel } from 'src/app/modules/auth/models/user.model';
 
 export interface Request{
-  requestId:string,
-  sector: string;
-  lastDate: Date;
+  productId?:string,
+  requestId?:string,
+  lastDate?:Date,
+  sector?:string,
 }
 @Component({
   selector: 'app-apply-request',
@@ -24,38 +27,8 @@ export class ApplyRequestComponent {
   displayedColumns: string[] = ["RequestId",'Sector', 'LastDate', 'Action'];
   data = new MatTableDataSource([]);
   counter:number[]=[1]
-  productData = [
-    {id:1,name:"Otomatik Şanzıman",category:"Otomotiv",},
-    {id:2,name:"Jant",category:"Otomotiv",},
-    {id:3,name:"Motor Sibobu", category:"Otomotiv",},
-    {id:4,name:"Kaporta", category:"Otomotiv",},
-    {id:5,name:"Akü", category:"Otomotiv",},
-    {id:6,name:"Kış Lastiği", category:"Otomotiv",},
-    {id:7,name:"Hidrojen Peroksit", category:"Kimya",},
-    {id:8,name:"Katalizör", category:"Kimya",},
-    {id:9,name:"Karbon Fiber",category:"Kimya",},
-    {id:10,name:"20mm Elektrik Hat Kablosu", category:"Enerji",},
-    {id:11,name:"Karbon Fiber", category:"Enerji",},
-    {id:12,name:"Ölçüm Aracı", category:"Enerji",},
-    {id:13,name:"Ters Akım Önleyici", category:"Enerji",},
-    {id:14,name:"Sigorta", category:"Enerji",},
-  ]
-  usingProductData = [
-    {id:1,name:"Otomatik Şanzıman",category:"Otomotiv",},
-    {id:2,name:"Jant",category:"Otomotiv",},
-    {id:3,name:"Motor Sibobu", category:"Otomotiv",},
-    {id:4,name:"Kaporta", category:"Otomotiv",},
-    {id:5,name:"Akü", category:"Otomotiv",},
-    {id:6,name:"Kış Lastiği", category:"Otomotiv",},
-    {id:7,name:"Hidrojen Peroksit", category:"Kimya",},
-    {id:8,name:"Katalizör", category:"Kimya",},
-    {id:9,name:"Karbon Fiber",category:"Kimya",},
-    {id:10,name:"20mm Elektrik Hat Kablosu", category:"Enerji",},
-    {id:11,name:"Karbon Fiber", category:"Enerji",},
-    {id:12,name:"Ölçüm Aracı", category:"Enerji",},
-    {id:13,name:"Ters Akım Önleyici", category:"Enerji",},
-    {id:14,name:"Sigorta", category:"Enerji",},
-  ]
+  productData:any = [ ]
+  usingProductData:any = [  ]
   selectedProducts: any[] = [];
   selectedRequest: Request | null = null;
   sectors : any[] = [
@@ -90,14 +63,36 @@ export class ApplyRequestComponent {
   @ViewChild('successModal') private successModalComponent: ModalComponent;
 
   @ViewChild('MatSort') sort: MatSort;
+  user: UserModel | undefined;
+
   constructor(private auth: AuthService,private fb: FormBuilder,private httpClient: HttpClient,private changeDetectorRefs: ChangeDetectorRef) {
+    this.user = auth.currentUserValue;
+
+
     this.form = this.fb.group({
-      productName: ['', Validators.required],
-      productQTY: ['', Validators.required],
+      items: this.fb.array([]) // FormGroup dizisi
     });
+  
+    // Örnek olarak 5 adet form kontrolü oluşturmak için döngü
+
+  }
+
+  get itemsFormArray() {
+    return this.form.get('items') as FormArray;
+  }
+  companyId:any;
+  addItem() {
+    this.counter.push(this.counter.length+1);
+    const itemFormGroup = this.fb.group({
+      demandCallId: [this.demandCallId],
+      productId: ['', Validators.required],
+      companyId: [this.companyId],
+      productAmount: [0, [Validators.required, Validators.pattern(/^-?\d+\.?\d*$/)]], // 0 değeri ve sayısal formatta validasyon
+    });
+
+    this.itemsFormArray.push(itemFormGroup);
   }
   
-
 
   getAllDemandCall(){
     this.httpClient.get<any>(`${environment.apiUrl}/Localization/demandCall/getalldemandcall`).subscribe({
@@ -124,6 +119,8 @@ export class ApplyRequestComponent {
   });
   }
   ngOnInit(): void {
+    this.companyId =  this.user ? this.user.selectedCompany?.company.id : null;
+
     this.getAllDemandCall();
     
   }
@@ -134,42 +131,53 @@ export class ApplyRequestComponent {
   openDetailModal() {
     this.modalComponent.open();
   }
-  openCreateModal(request: Request) {
-    this.usingProductData = this.productData.filter(x => x.category === request.sector);
-    console.log(this.usingProductData);
-    this.createModalComponent.open();
-  }
+  demandCallId:any;
+openCreateModal(request: any) {
+
+  this.selectedRequest = request;
+  this.demandCallId = request?.RequestId;
+
+  this.httpClient.get(environment.apiUrl + "/Localization/DemandCall/GetApplyDemandCallData")
+  .subscribe({
+    next: (response: any) => {
+      this.usingProductData = response.data;
+      this.changeDetectorRefs.detectChanges();
+    }
+  });
+
+  this.createModalComponent.open();
+}
 
   onSubmit() {
-    if (this.form.valid) {
-      // Form gönderme işlemini burada gerçekleştir
-      const selectedSectorId = this.form.value.sector;
-      const selectedSector = this.sectors.find(sector => sector.sectorId === selectedSectorId);
-      const date = new Date(this.form.value.lastDate);
-      const formattedDate = new DatePipe('en-US').transform(date, 'yyyy-MM-dd');
+    console.log(this.form);
+    if (this.form) {
 
-      const requestData = {
-        demandCallId: selectedSector.sectorName,
-        productId: selectedSector.sectorId,
-        companyId:selectedSector.sectorId,
-        productAmount:selectedSector.sectorId
+      const products = this.form.value.items;
+      console.log(products)
+
+    const requestData = products.map((product: any) => {
+      return {
+        demandCallId: this.demandCallId,
+        productId: product.productId,
+        companyId: this.companyId,
+        productAmount: Number(product.productAmount)
       };
-
-
+    });
+     
       this.isEnabledError = false;
       this.form.reset();
   
       // FormData'yı API'ye gönderme işlemini burada yapabilirsiniz
-      this.httpClient.post(environment.apiUrl + 'Localization/DemandCall/AddDemandCallApply', requestData).subscribe(
-        (response) => {
+      this.httpClient.post(environment.apiUrl + '/Localization/DemandCall/DemandCallApplyInsert', requestData).subscribe({
+      next:  (response) => {
           console.log('Başarıyla gönderildi!', response);
           // Yanıtı işleyebilirsiniz
         },
-        (error) => {
+      error:  (error) => {
           console.error('Hata oluştu:', error);
           // Hata durumunu ele alabilirsiniz
         }
-      );
+      });
     } else {
       // Form hatalı, kullanıcıya mesaj göster
       this.isEnabledError = true;
@@ -192,9 +200,7 @@ export class ApplyRequestComponent {
   addProductWithoutInList(name: any) {
     this.selectedProducts.push({name:name,category:this.selectedRequest?.sector,id:this.productData.length+1});
   }
-  counterUpdate() {
-    this.counter.push(this.counter.length+1);
-}
+
   announceSortChange(sortState: Sort) {
     // This example uses English messages. If your application supports
     // multiple language, you would internationalize these strings.
